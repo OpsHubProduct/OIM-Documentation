@@ -4,7 +4,7 @@ OpsHubTFSService needs to be registered while communicating with Team Foundation
 
 ## Solution
 
-For registering OpsHubTFSService click [Service configuration](../../../connectors/azure-devops#service-configuration), and follow pre-requisites and steps given in “Service configuration” section.  
+For registering OpsHubTFSService click [Service configuration](../../../connectors/azure-devops.md#service-configuration), and follow pre-requisites and steps given in “Service configuration” section.  
 For troubleshooting, refer [Service Troubleshooting](../../../connectors/service-troubleshooting.md) section.
 
 ## Validate
@@ -17,5 +17,4 @@ E.g. If you have registered OpsHubTFSService with hostname `localhost` and port 
 If OpsHubTFSService is registered successfully, the following output will be opened in browser after hitting the URL:  
 
 ![TFS Service Validation](../../../assets/TFSService_Validation.png)
-
 

@@ -1,4 +1,5 @@
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+
 # New Version(s)
 - **Java Development Kit (JDK):** 17.0.16
 - **Tomcat:** 10.1.44
@@ -14,7 +15,7 @@
 
 ## Azure DevOps Services
 - Added support for Markdown for rich text fields.  
-  - For detailed configuration instructions, refer to the connector guide under [Configuring Rich Text Field Format](../connectors/azure-devops#configuring-rich-text-field-format-for-write-operations).
+  - For detailed configuration instructions, refer to the connector guide under [Configuring Rich Text Field Format](../connectors/azure-devops.md#configuring-rich-text-field-format-for-write-operations).
 
 ## Tricentis qTest
 - Added support for Check and Create operations for Modules in qTest.  

@@ -9,9 +9,9 @@
 ## Supported systems
 
 - Azure DevOps Services and Team Foundation Server  
-  - Please refer to [Team Foundation Server](../connectors/azure-devops) to learn about the required permissions for impersonating comment author.
+  - Please refer to [Team Foundation Server](../connectors/azure-devops.md) to learn about the required permissions for impersonating comment author.
 
 ## Configuration
 
-- Enable the comment sync in the **<code class="expression">space.vars.SITENAME</code>** mapping. As a result, the comment sync will enable the comment's author impersonation without any additional configuration.
+- Enable the comment sync in the **<code class="expression">space.vars.SITENAME</code>** mapping. As a result, the comment sync will enable the comment's author impersonation without any additional configuration. 
 
