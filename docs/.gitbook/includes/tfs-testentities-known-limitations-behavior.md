@@ -13,15 +13,17 @@ Following are the limitations and behaviors specific to the individual entities 
 * When updating only test case steps, parameters, and parameter values - Updating only these fields won't be synced to target. To overcome this limitation, it is always recommended to use overwrite option for all these fields while configuring field mapping.
 
 ## Test Plan
-* REST API–based synchronization is not supported for on-premises instances of Azure DevOps Server prior to version 2020.
+* Synchronization is not supported with REST APIs.
+* Inline image synchronization is not supported
 * Links of 'Remote Work', 'Release pipeline', 'Build', 'GitHub', 'Git' and 'Wiki' with Test Plan are not supported.
 Test Run settings, Outcome settings, MTM settings and MTM environments are not supported in Test Plan.
 * For TFS version below 2013-Update 3, Test Plan is not supported as a separate entity. Test Plan with few fields will synchronize with Test Suite synchronization. Also, Test Plan with duplicate name will not get synchronized.
 * Test Plan as a separate entity is supported from OIM version 7.46. For fresh project synchronization, it is recommended to synchronize Test Plan separately, followed by Test Suite, Test Run and Test Result. After migrating to OIM version >= 7.46 from older version, if you want to synchronize Test Plan separately in running integrations, please refer to [post migration guideline for Test Plan entity support](https://docs.myopshub.com/oim/index.php/Post-Migration_Checklist#Test_Plan_Entity_Support_for_TFS.2FAzure_DevOps).
   
 ## Test Suite
-- REST API–based synchronization is not supported for on-premises instances of Azure DevOps Server prior to version 2020. 
-- Test Suite will migrate current state for on-premise instance with version equal and below version 2013 (Update 3) . 
+- Synchronization is not supported with REST APIs.
+- Inline image synchronization is not supported.
+- Test Suite will migrate current state. Any changes in the target system after synchronization may show inconsistency in data in both end points. . 
 - Synchronization of Test Case chart and Test Result chart created within test suite is not supported. 
 - Query-Based Suite or Requirement-Based Suite. 
   - Once a Query-Based Suite or Requirement-Based Suite synced to target system, then after any new linkage of Test-Case with test suite added due to modification in test case. Hence newly added Test-Case linkage of Test Suite will not sync to the target system and any Test Run with corresponding test point will resulted into processing failure. In such case do following click [here](../../connectors/azure-devops.md#troubleshoot)  for troubleshoot.    
@@ -131,7 +133,7 @@ Test Run settings, Outcome settings, MTM settings and MTM environments are not s
 
 ## **Test Result and Test Run**
 
-* REST API–based synchronization is not supported for on-premises instances of Azure DevOps Server prior to version 2020.
+* Synchronization is not supported with REST APIs.
 * Test Run and Test Result will migrate current state. Any changes in the target system after synchronization may show inconsistency in data in both end points.
 * Following Test Result and Test Run will not synchronize (these Run and Result are logged in <code class="expression">space.vars.SITENAME</code> logs).
   * Run and Result created with Test Suite not existing in the source.
@@ -139,7 +141,8 @@ Test Run settings, Outcome settings, MTM settings and MTM environments are not s
   * Any Run and Result created with Test Case/Configuration, associated with Test Suite after synchronization.
   * Run and Result existing in Plan (e) Automated Run and Result are not supported.
 * Below are only for Test Result:
- * Synchronization of video format attachment of Result Steps and Result is not supported.
- * Synchronization of Parameter Values for Step Results is not happening.
-   * Reason: ADO/TFS API limitations.
- *'Duration' field will get synchronized only when the value of 'Status' field is 'completed'. 
+  * Test Result Attachment link is not supported. 
+  * Synchronization of video format attachment of Result Steps and Result is not supported.
+  * Synchronization of Parameter Values for Step Results is not happening.
+    * Reason: ADO/TFS API limitations.
+  * 'Duration' field will get synchronized only when the value of 'Status' field is 'completed'. 
