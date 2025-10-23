@@ -4,11 +4,13 @@
 * Create one user in HubSpot that is dedicated for <code class="expression">space.vars.SITENAME</code>. This user shouldn't perform any other action from HubSpot's user interface. This user is referred as 'Integration User' in the documentation.
   * For this user to perform operations in HubSpot, various permission scopes are required, as outlined below. To know more about the permission scopes refer to [Manage Scopes in HubSpot](https://developers.hubspot.com/docs/guides/apps/authentication/scopes).
   * To know more about the User permissions in HubSpot refer to [HubSpot user permission guide](https://knowledge.hubspot.com/user-management/hubspot-user-permissions-guide).
-* Using the user created above, create a **Private App** in HubSpot to generate the **Access Token** and obtain the **Application Id** which is required in the system configuration form. Refer to [Create Private App in HubSpot](create-private-app-in-hubspot) to know how to create private app in HubSpot.
+* User can use Access-Key based authentication or OAuth 2.0 authentication mode to communicate with API for HubSpot
+  * If you want to use **Access Token** based authentication then using the user created above, create a **Private App** in HubSpot to generate the **Access Token** and obtain the **Application Id** which is required in the system configuration form. Refer to [Create Private App in HubSpot](#create-private-app-in-hubspot) to know how to create private app in HubSpot.
+  * If you want to use **OAuth 2.0 Access** based authentication then using the user created above, create a **Public App** in HubSpot to generate the **Oauth 2.0 Token** and obtain the **Application Id** which is required in the system configuration form. Refer to [Create Public App in HubSpot](#create-public-app-in-hubspot) to know how to create public app in HubSpot.
 
 ## Required Scope/Permission
-* When configuring a Private App to work with HubSpot, it’s important to assign only the necessary scopes based on the operations plan to perform as per business need. These scopes control what data can access or modify using private App.
-* To **add or remove scopes** in private app, refer to [Managing Permission Scopes in HubSpot Private App ](#managing-permission-scopes-in-hubspot-private-app) section.
+* When configuring a Private App/Public App to work with HubSpot, it’s important to assign only the necessary scopes based on the operations plan to perform as per business need. These scopes control what data can access or modify using private App.
+* To **add or remove scopes** in private app, refer to [Managing Permission Scopes in HubSpot Private/Public App](#managing-permission-scopes-in-hubspot-private-public-app) section.
 > **Note** :If required scopes are missing or insufficient, the integration may fail. Always ensure the Private App has the necessary permissions before starting the integration setup.
 
 ### For Read
@@ -37,18 +39,29 @@
 
 * As you kickstart the integration, the user must first configure HubSpot system in <code class="expression">space.vars.SITENAME</code>. Click [System Configuration](../integrate/system-configuration.md) to learn step-by-step process to configure a system. Refer to the following screenshot:
 
-<p align="center"><img src="../assets/HubSpotSystemConfig.png" width="1500" /></p>
+<p align="center"><img src="../assets/HubSpotSystemConfig.png" width="1300" /></p>
+
+* If Authentication Type is Oauth Token,following will be the form:
+
+<p align="center">
+  <img src="../assets/FullForm.png" width="1300"/>
+</p>
 
 **HubSpot System form details**
 
-| **Field Name**            | **Description**                                                                                                                                                 |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **System Name**          | Provide the system's name                                                                                                                                       |
-| **API URL**              | Provide server URL of the HubSpot instance. This URL will be used for communicating with HubSpot system API. The example format of the URL would be: https://api.hubapi.com. |
-| **User Email**           | Provide the user email of a dedicated user who will be used for communicating with HubSpot API. This user should have the required privileges. Refer to [user-privileges](#user-privileges). |
-| **Access Token**         | Provide the HubSpot private app access token for the specified user. This token must have sufficient permissions to enable communication with the HubSpot API.  |
-| **Application Id**       | Provide the Application ID set up for the specified dedicated user to connect with the HubSpot API. Refer to [prerequisites](#prerequisites) for how to get it. |
-| **Base URL for Remote Link** | Provide a different instance URL of the HubSpot instance. This URL will be used for generating the Remote Link.                                          |
+| **Field Name** | **When is the field visible** | **Description** |
+|----------------|-------------------------------|-----------------|
+| **System Name** | Always | Provide a name to the HubSpot system. |
+| **API Url** | Always | Provide server URL of the HubSpot instance. This URL will be used for communicating with HubSpot system API. The example format of the URL would be: `https://api.hubapi.com`. |
+| **User Email** | Always | Provide the user email of a dedicated user who will be used for communicating with HubSpot API. This user should have the required privileges to use the HubSpot API. For more details on the required privileges, refer to [User privileges](#user-privileges) section. |
+| **Authentication Type** | Always | Select the authentication type you would like to use for communicating with HubSpot API. |
+| **Access Token** | Authentication type is Access Token | Provide the HubSpot private app access token for the specified user. This token must have sufficient permissions to enable communication with the HubSpot API. |
+| **Client ID** | Authentication type is OAuth 2.0 | Provide the HubSpot public app's Client ID. This token must have sufficient permissions to enable communication with the HubSpot API. Refer to [OAuth 2.0 Authorization Token Generation in HubSpot](#oauth-2.0-authorization-token-generation-in-hubspot) section to know how to get the Client ID. |
+| **Client Secret** | Authentication type is OAuth 2.0 | Provide the HubSpot public app's Client Secret to connect with the HubSpot API. Refer to [OAuth 2.0 Authorization Token Generation in HubSpot](#oauth-2.0-authorization-token-generation-in-hubspot) section to know how to get the Client Secret. |
+| **Authorization Code** | Authentication type is OAuth 2.0 | Provide the HubSpot public app's Authorization Code to connect with the HubSpot API. Refer to [OAuth 2.0 Authorization Token Generation in HubSpot](#oauth-2.0-authorization-token-generation-in-hubspot) section to know how to get the Authorization Code. If the scopes or permissions of the app are changed at any point, you must regenerate the Authorization Code again. |
+| **Application Id** | Always | Provide the Application ID set up for the specified dedicated user to connect with the HubSpot API. Refer to [Prerequisites](#prerequisites) section to know how to get the Application Id. |
+| **Base URL for Remote Link** | Always | Provide a different instance URL of the HubSpot instance. This URL will be used for generating the Remote Link. <br> **Note**: If "Base URL for Remote Link" is empty, it will use Instance/Server URL to generate Remote Link if configured on Integration.</p> |
+                                    |
 
 # Mapping Configuration
 
@@ -170,7 +183,7 @@ Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s N
 
 # Appendix
 
-## Add User to HubSpot private app
+## Add User to HubSpot private/public app
 
 1. Log in to HubSpot using a user account with **Super Admin** or **User & Team management** permissions.
 
@@ -210,7 +223,7 @@ Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s N
 
 <p align="center"><img src="../assets/HubSpotCreatePrivateApp.png" width="1000"  /></p>
 
-5. Under **Scopes**, provide required scopes mentioned in [Privileges](#privileges).
+5. Under **Scopes**, provide required scopes mentioned in [User privileges]](#user-privileges).
 
 <p align="center"><img src="../assets/HubSpotPrivateAppScopesAndName.png" width="1000"  /></p>
 
@@ -219,6 +232,46 @@ Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s N
    * To know more details about this private app, refer to [HubSpot Private App Documentation](https://developers.hubspot.com/docs/guides/apps/private-apps/overview)
    * This token will be used in the **API Token** field during system configuration in <code class="expression">space.vars.SITENAME</code>.
    * Refer to [Steps to Get the Application ID for HubSpot ](#steps-to-get-the-application-id-for-hubspot) for details.
+
+---
+
+## Create Public App in HubSpot
+
+1. Log in to your HubSpot Account with Super Admin privileges using the same user that you want to use as Integration User.
+
+2. Navigate to **Settings → Integrations → Legacy Apps**.
+
+<p align="center">
+  <img src="../assets/HubSpotPublicApp.png" width="900" />
+</p>
+
+3. Click **Create a Public App**.
+
+4. Provide the App's Name (e.g., "<code class="expression">space.vars.SITENAME</code> Integration").
+
+<p align="center">
+  <img src="../assets/HubSpotPublicApp2.png" width="900" />
+</p>
+
+5. Once App Name is given, go to Auth Section.
+
+<p align="center">
+  <img src="../assets/HubSpotAuth.png" width="900" />
+</p>
+
+6. You will find Application ID, Client ID and Client Secret (Automatically generated by HubSpot). Under Sample URL (keep it empty for now). Under Redirect URL give your applications URL [Eg. https://hubspot.app.com].
+
+7. Under **Scopes**, provide the required scopes mentioned in the [User privileges](#user-privileges) section.
+
+<p align="center">
+  <img src="../assets/HubSpotPrivateAppScopesAndName.png" width="900" />
+</p>
+
+8. Click **Create App**.
+
+9. Copy the Application ID, Client ID and Client Secret.  
+   * To know more details about this public app, refer to [https://developers.hubspot.com/docs/apps/legacy-apps/public-apps/overview](https://developers.hubspot.com/docs/apps/legacy-apps/public-apps/overview).  
+   * This token will be used in the **Oath Token** field during system configuration in <code class="expression">space.vars.SITENAME</code>.
 
 ---
 
@@ -231,7 +284,7 @@ Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s N
 <p align="center"><img src="../assets/HubSpotPrivateAppId.png" width="900" /></p>
 
 
-## Managing Permission Scopes in HubSpot Private App
+## Managing Permission Scopes in HubSpot Private/Public App
 
 1. Log in to HubSpot using a user with **Super Admin** permissions.
 2. Go to **Settings → Account → Integrations → Private Apps**.
@@ -290,3 +343,73 @@ In HubSpot, each property (field) of an entity (like Contacts, Companies, Deals,
 | Deal Name        | dealname          |
 | Lifecycle Stage  | lifecyclestage    |
 | Company Size     | company_size      |
+
+
+## OAuth 2.0 Authorization Token Generation in HubSpot
+
+### Prerequisites
+
+This authentication guide will show how to enable OAuth 2.0 Authentication in HubSpot with Opshub.
+
+Before you can start using OAuth with HubSpot, you’ll need to have:
+
+* A **developer account**  
+* An **app (legacy public app only)** associated with your developer account. Refer to [Create Public App in HubSpot](#create-public-app-in-hubspot) to know how to create public app in HubSpot.  
+* A **HubSpot account** to install your app in (you can use an existing account or create a test account)  
+* You must be a **Super Admin** to install an app in a HubSpot account  
+
+When you create a system form in HubSpot, you will be given two options for authentication type:
+
+1. **Access Token**  
+2. **OAuth**
+
+<p align="center">
+  <img src="../assets/AuthCodeSelection.png" width="900" />
+</p>
+
+
+After selecting **OAuth**, you will be prompted to enter the following details:
+
+* **Client ID**  
+* **Client Secret**  
+* **Authorization Code**
+
+<p align="center">
+  <img src="../assets/FullForm.png" width="800" />
+</p>
+
+To obtain the required details for OAuth setup:
+
+1. Go to your **Public App Settings** in the HubSpot developer account.  
+2. In the **Auth** section, you will find the following values:  
+   * **Client ID**  
+   * **Client Secret**  
+3. To get the **Authorization Code**:  
+   * Add a redirect URL → the base URL of your HubSpot instance (e.g., `https://app.hubspot.com`) inside your public app at HubSpot instance.  
+   * Assign the required scopes/permissions to your app based on your needs. See: [Scopes Documentation](https://developers.hubspot.com/docs/apps/legacy-apps/authentication/scopes).  
+   * After this, an **Install URL** will be automatically generated.  
+   * Open this Install URL in your browser.  
+   * You will be redirected to another URL. From this URL, copy the value of the `code` parameter.  
+
+<p align="center">
+  <img src="../assets/HubspotAuthCode.png" width="900" />
+</p>
+
+> **Example:**  
+> `https://developers.hubspot.com/?code=na1-ac35-b935-463b-97ab-d755cfaf9e0a`
+
+4. Take this `code` value and enter it into the OpsHub system form along with the Client ID and Client Secret.  
+5. To know more on HubSpot OAuth, refer to [https://developers.hubspot.com/docs/apps/legacy-apps/authentication/working-with-oauth](https://developers.hubspot.com/docs/apps/legacy-apps/authentication/working-with-oauth)
+
+
+# Important Note
+
+* If the scopes or permissions of the app are changed at any point, you must follow the entire **Authorization Code Flow** again.  
+  This means generating a new Install URL, approving the app, and retrieving a fresh `code` parameter to update in the OpsHub system form.
+
+* The `code` used once by anyone, the same code **cannot be reused**.  
+  You must **regenerate a new code** and update it in the system form.
+
+* **Additionally**, one HubSpot application can be linked to **only one user's usecase**.  
+  If another user requires access, they must create or authorize a **separate HubSpot application**.
+
