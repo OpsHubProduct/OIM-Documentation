@@ -30,7 +30,7 @@ Below are the sample templates for OpsHubAutoInstall/OpsHubAutoMigrator XML. You
 # <div id="configure-verification-code"> 4 - Configure Verification Code </div>
 
 * Find "UserInputPanel.EmailIdVerificationForExistingCode" panel and replace the input mentioned below:			
-      * Replace @VERIFICATION_CODE@ with verification code that you got on your registered business email address.
+   * Replace @VERIFICATION_CODE@ with verification code that you got on your registered business email address.
 
 # <div id="configure-base-parameter"> 5 - Configure Base Parameter </div> 
 
