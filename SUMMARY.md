@@ -24,13 +24,13 @@
         * [Default Link Configuration](docs/integrate/default-link-settings.md)
       * [System Configuration](docs/integrate/system-configuration.md)
       * [Excel Upload](docs/integrate/excel-upload.md)
-    * Advanced Synchronization Scenarios
+    * [Advanced Synchronization Scenarios](docs/integrate/advanced-sync-scenario.md)
       * [Comment Author Impersonation](docs/integrate/comment-author-impersonation.md)
       * ["Entity Type" and/or "Project" Change Synchronization](docs/integrate/entity-move-synchronization.md)
       * [Inline Image or File Synchronization](docs/integrate/inline-image-sync-behaviour.md)
       * [Source Delete Synchronization](docs/integrate/source-delete-synchronization.md)
     * [Integration Reconciliation](docs/integrate/reconcile.md)
-    * Monitoring and Organization
+    * [Monitoring and Organization](docs/integrate/monitoring.md)
       * [Organize Integrations](docs/integrate/folder-management.md)
       * [Merge Integrations](docs/integrate/merge.md)
       * [Using the Dashboard](docs/integrate/dashboards.md)
@@ -50,7 +50,7 @@
         * [Configure Socket Timeout](docs/manage/administrator/configure-socket-timeout.md)
         * [Scheduler](docs/manage/administrator/schedular.md)
         * [Log Viewer](docs/manage/administrator/log-viewer.md)
-        * User Access Control
+        * [User Access Control](docs/manage/administrator/user-access-control.md)
           * [User Role Association](docs/manage/administrator/user-role-association.md)
           * [Role Configuration](docs/manage/administrator/role-configuration.md)
     * [Advanced Utilities](docs/manage/advanced-utilities.md) 
