@@ -8,11 +8,11 @@
   <tbody>
     <tr>
       <td align="center"><strong>Upgrading Application Version</strong></td>
-      <td><a href="upgrade-application.md">Upgrading Application Version</a></td>
+      <td><a href="upgrade/upgrade-application.md">Upgrading Application Version</a></td>
     </tr>
     <tr>
       <td align="center"><strong>Taking Application Backup</strong></td>
-      <td><a href="taking-application-backup.md">Taking Application Backup</a></td>
+      <td><a href="upgrade/taking-application-backup.md">Taking Application Backup</a></td>
     </tr>
   </tbody>
 </table>
