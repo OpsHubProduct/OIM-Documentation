@@ -8,7 +8,7 @@
   <tbody>
     <tr>
       <td align="center">⚙️ <strong>Administration</strong></td>
-      <td><a href="administration.md">Administration</a></td>
+      <td><a href="administrator.md">Administration</a></td>
     </tr>
     <tr>
       <td align="center">🧰 <strong>Advanced Utilities</strong></td>
