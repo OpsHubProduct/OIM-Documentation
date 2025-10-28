@@ -6,7 +6,7 @@
 
 4. [Changing MSSQL Server Host](advanced-utilities/how-to-change-mssql-database-server-host.md)
 
-5. [Switching to Windows authentication](advanced-utilities/advanced-utilities/switching-to-windows-authentication-mode-for-mssql-server.md)
+5. [Switching to Windows authentication](advanced-utilities/switching-to-windows-authentication-mode-for-mssql-server.md)
 
 6. [Change Keystore and Private Key passwords](advanced-utilities/change-keystore-and-private-key-passwords.md)
 
