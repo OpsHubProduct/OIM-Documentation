@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <td align="center"><mark style="color:#555555"><strong>🧩 Advanced Synchronization Scenarios</strong></mark></td>
-      <td><a href="advanced-sync-scenarios.md">Advanced Synchronization Scenarios</a></td>
+      <td><a href="advanced-sync-scenario.md">Advanced Synchronization Scenarios</a></td>
     </tr>
     <tr>
       <td align="center"><mark style="color:#555555"><strong>🧭 Integration Reconciliation</strong></mark></td>
