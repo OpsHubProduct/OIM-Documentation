@@ -1,6 +1,6 @@
 # Table of contents
 * [Welcome](README.md)
-* Getting Started
+* [Getting Started](docs/getting-started/getting-started.md)
    * [Getting OpsHub Integration Manager](docs/getting-started/download.md)
    * [Prerequisites](docs/getting-started/prerequisites.md)
    * [Installation](docs/getting-started/installation.md)
@@ -11,7 +11,7 @@
       * [Docker Deployment](docs/getting-started/docker/docker.md)
   * [Logging In](docs/getting-started/logging-in.md)
   * [Start/Stop OpsHub Integration Manager](docs/getting-started/start-or-stop-service.md)
-* Integrate
+* [Integrate](docs/integrate/integrate.md)
     * [Prerequisites](docs/integrate/integration-prerequisites.md)
     * [Overview](docs/integrate/overview-of-integration.md)
     * [Integration Setup](docs/integrate/configure-integrations.md)
@@ -76,8 +76,8 @@
           * [Pre Migration Checklists](docs/manage/upgrade/pre-migration-checklist.md)
           * [Post Migration Checklists](docs/manage/upgrade/post-migration-checklist.md)
         *  [Taking Application Backup](docs/manage/upgrade/taking-application-backup.md)
-* Help Center
-    * FAQs
+* [Help Center](docs/help-center/help-center-index.md)
+    * [FAQs](docs/help-center/faqs.md)
         * [General](docs/help-center/faqs/general-faqs.md)
           * [What are the security aspects of on-premise deployment?](docs/help-center/faqs/general/security-aspects.md)  
           * [How to know which system/entity/version are supported ?](docs/help-center/faqs/general/supported-system-entity-version.md)  
@@ -163,13 +163,13 @@
           * [How to upgrade/migrate the application?](docs/help-center/faqs/installer/how-to-upgrade-oim.md)  
         * [Enterprise Architect](docs/help-center/faqs/enterprise-architect-faqs.md)
           * [An excessive number of EA connections causes slowness in the system and high RAM usage](docs/help-center/faqs/enterprise-architect/an-excessive-number-of-ea-connections-causes-slowness-in-the-system-and-high-ram-usage.md)  
-  * Troubleshooting
+  * [Troubleshooting](docs/help-center/troubleshooting-index.md)
       * [System Information](docs/help-center/troubleshooting/system-information.md)  
       * [Manage Integration Failures](docs/help-center/troubleshooting/manage-integration-failures.md)  
       * [Configure Failure Notification](docs/help-center/troubleshooting/configure-post-failure-notification.md)  
       * [Integration Sync Report](docs/help-center/troubleshooting/integration-sync-report.md)  
       * [Integration Sync Logs](docs/help-center/troubleshooting/integration-sync-logs.md)
-      * Errors
+      * [Errors](docs/help-center/troubleshooting/errors/errors-index.md)
           * [Aras](docs/help-center/troubleshooting/errors/aras-error-solutions.md)
               * [OH-Aras-1502](docs/help-center/troubleshooting/errors/aras/oh-aras-1502.md)
               * [OH-Aras-1000](docs/help-center/troubleshooting/errors/aras/oh-aras-1000.md)
@@ -324,7 +324,7 @@
   * [Verisium Manager](docs/connectors/vManager.md)
   * [Windchill](docs/connectors/windchill-rv-s.md)
   * [Zendesk](docs/connectors/zendesk.md)
-* Connector SDK
+* [Connector SDK](docs/connector-sdk/connector-sdk-index.md)
     * [Getting Started](docs/connector-sdk/getting-started.md)
       * [SDK Best Practices](docs/connector-sdk/sdk-best-practices.md)
       * [APIs Required for Each Feature](docs/connector-sdk/apis-required-for-each-feature.md)
@@ -368,8 +368,8 @@
     * [Register Connectors](docs/connector-sdk/register-connectors.md)
     * [Developer Notes](docs/connector-sdk/developer-notes.md)   
 * [Release Notes](docs/release-notes/release-notes.md)
-* Knowledge Resources
-    *  Integration Combination Examples
+* [Knowledge Resources](docs/knowledge-resources/knowledge-resource-index.md)
+    *  [Integration Combination Examples](docs/knowledge-resources/integration-combination-examples/integration-combination-examples.md)
         * [Azure DevOps Server (TFS) – Micro Focus ALM Integration](docs/knowledge-resources/integration-combination-examples/azure-devops-server-and-micro-focus-alm-integration.md)
         * [Azure DevOps Services (VSTS) – Micro Focus ALM Integration](docs/knowledge-resources/integration-combination-examples/azure-devops-services-and-micro-focus-alm-integration.md)
         * [IBM DOORS – Jira Integration](docs/knowledge-resources/integration-combination-examples/ibm-doors-and-jira-integration.md)
