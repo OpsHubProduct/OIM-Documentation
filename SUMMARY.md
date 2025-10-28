@@ -36,8 +36,8 @@
       * [Using the Dashboard](docs/integrate/dashboards.md)
     * [Best Practices](docs/integrate/best-practises.md)
     * [Limitations](docs/integrate/limitations.md)
-* Manage
-     * Administrator
+* [Manage](docs/manage/manage.md)
+     * [Administrator](docs/manage/administrator.md)
         * [User Management](docs/manage/administrator/user-management.md)
         * [Login Server Management](docs/manage/administrator/login-server-management.md)
         * [Managing Licenses](docs/manage/administrator/license-management.md)
@@ -53,7 +53,7 @@
         * User Access Control
           * [User Role Association](docs/manage/administrator/user-role-association.md)
           * [Role Configuration](docs/manage/administrator/role-configuration.md)
-    * Advanced Utilities 
+    * [Advanced Utilities](docs/manage/advanced-utilities.md) 
         * [Count the users involved in synchronization](docs/manage/advanced-utilities/count-the-users.md)
         * [Migrating Database](docs/manage/advanced-utilities/database-migration.md)
         * [Updating Database Password](docs/manage/advanced-utilities/updating-database-password.md)
@@ -62,7 +62,7 @@
         * [Change Keystore and Private Key passwords](docs/manage/advanced-utilities/change-keystore-and-private-key-passwords.md)
         * [Secret Key Reset Utility](docs/manage/advanced-utilities/regenerate-secret-key.md)
         * [Certificate Private Key Password Encryptor Utility](docs/manage/advanced-utilities/certificate-private-key-password-encryptor-utility.md)
-    * APIs
+    * [APIs](docs/manage/api.md)
         * [Getting Started with APIs](docs/manage/api/getting-started-with-api.md)
         * [Sample Use Cases and Scripts](docs/manage/api/sample-use-cases.md)
           * [Get the project pairs configured in integration(s)](docs/manage/api/use-case-get-all-project-pairs.md)
@@ -71,7 +71,7 @@
           * [Add fields to existing Mapping](docs/manage/api/add-fields-to-mapping.md)
           * [Configure Reconciliation on existing Integration](docs/manage/api/configure-reconcile-on-exisiting-integration.md)
           * [Retrieve and Configure Integration Pair Log Settings](docs/manage/api/retrive-and-configure-integration-pair-log-setting.md)
-     *  Upgrade
+     * [Upgrade](docs/manage/upgrade-index.md)
         *  [Upgrading Application Version](docs/manage/upgrade/upgrade-application.md)
           * [Pre Migration Checklists](docs/manage/upgrade/pre-migration-checklist.md)
           * [Post Migration Checklists](docs/manage/upgrade/post-migration-checklist.md)
