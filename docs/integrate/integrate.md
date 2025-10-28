@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <td align="center"><mark style="color:#555555"><strong>🧩 Advanced Synchronization Scenarios</strong></mark></td>
-      <td><a href="comment-author-impersonation.md">Advanced Synchronization Scenarios</a></td>
+      <td><a href="advanced-sync-scenarios.md">Advanced Synchronization Scenarios</a></td>
     </tr>
     <tr>
       <td align="center"><mark style="color:#555555"><strong>🧭 Integration Reconciliation</strong></mark></td>
@@ -28,7 +28,7 @@
     </tr>
     <tr>
       <td align="center"><mark style="color:#555555"><strong>📊 Monitoring and Organization</strong></mark></td>
-      <td><a href="folder-management.md">Monitoring and Organization</a></td>
+      <td><a href="monitoring.md">Monitoring and Organization</a></td>
     </tr>
     <tr>
       <td align="center"><mark style="color:#555555"><strong>💡 Best Practices</strong></mark></td>
