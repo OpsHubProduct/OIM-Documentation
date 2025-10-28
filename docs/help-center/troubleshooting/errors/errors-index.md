@@ -7,28 +7,60 @@
   </thead>
   <tbody>
     <tr>
-      <td align="center">💠 <strong>System Information</strong></td>
-      <td><a href="troubleshooting/system-information.md">System Information</a></td>
+      <td align="center"><strong>Aras</strong></td>
+      <td><a href="aras-error-solutions.md">Aras</a></td>
     </tr>
     <tr>
-      <td align="center">🛠️ <strong>Manage Integration Failures</strong></td>
-      <td><a href="troubleshooting/manage-integration-failures.md">Manage Integration Failures</a></td>
+      <td align="center"><strong>Rally</strong></td>
+      <td><a href="rally-error-solutions.md">Rally</a></td>
     </tr>
     <tr>
-      <td align="center">📨 <strong>Configure Failure Notification</strong></td>
-      <td><a href="troubleshooting/configure-post-failure-notification.md">Configure Failure Notification</a></td>
+      <td align="center"><strong>Clarity</strong></td>
+      <td><a href="clarity-error-solutions.md">Clarity</a></td>
     </tr>
     <tr>
-      <td align="center">📈 <strong>Integration Sync Report</strong></td>
-      <td><a href="troubleshooting/integration-sync-report.md">Integration Sync Report</a></td>
+      <td align="center"><strong>Common</strong></td>
+      <td><a href="common-error-solutions.md">Common</a></td>
     </tr>
     <tr>
-      <td align="center">🧾 <strong>Integration Sync Logs</strong></td>
-      <td><a href="troubleshooting/integration-sync-logs.md">Integration Sync Logs</a></td>
+      <td align="center"><strong>Enterprise Architect</strong></td>
+      <td><a href="ea-error-solutions.md">Enterprise Architect</a></td>
     </tr>
     <tr>
-      <td align="center">❗ <strong>Errors</strong></td>
-      <td><a href="troubleshooting/errors/errors-index.md">Errors</a></td>
+      <td align="center"><strong>IBM Rational Doors Next Generation</strong></td>
+      <td><a href="ibm-rational-doors-next-generation-error-solutions.md">IBM Rational Doors Next Generation</a></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Installer</strong></td>
+      <td><a href="installer-error-solutions.md">Installer</a></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Jira</strong></td>
+      <td><a href="jira-error-solutions.md">Jira</a></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Micro Focus ALM/QC</strong></td>
+      <td><a href="microfocus-error-solutions.md">Micro Focus ALM/QC</a></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Migrator</strong></td>
+      <td><a href="migrator-error-solutions.md">Migrator</a></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>TFS/Azure DevOps</strong></td>
+      <td><a href="tfs-error-solutions.md">TFS/Azure DevOps</a></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>ServiceNow</strong></td>
+      <td><a href="servicenow-error-solutions.md">ServiceNow</a></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Jama</strong></td>
+      <td><a href="jama-error-solutions.md">Jama</a></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>IBM Rational ClearQuest</strong></td>
+      <td><a href="ibm-rational-clearquest-error-solutions.md">IBM Rational ClearQuest</a></td>
     </tr>
   </tbody>
 </table>
