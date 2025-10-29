@@ -58,7 +58,6 @@
       <td align="center"><strong>User Access Control</strong></td>
       <td><a href="administrator/user-access-control.md">User Access Control</a></td>
     </tr>
-    <tr>
   </tbody>
 </table> 
 
