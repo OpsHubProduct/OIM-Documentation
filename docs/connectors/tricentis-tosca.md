@@ -212,16 +212,19 @@ C:\Program Files (x86)\TRICENTIS\Tosca Server\RestApiService
 
 {% step %}  
 ### Open the Configuration File
+
 * In the above directory, locate and open the **appsettings.json** file using a text editor (such as **Notepad** or **Visual Studio Code**).
 {% endstep %}  
 
 {% step %}  
 ### Update the Workspace Base Path
+
 * Within the JSON file, find the `"Settings"` section and locate the `"WorkspaceBasePath"` attribute.
 {% endstep %}
 
 {% step %}
 ### Modify the Path as per the Required Format
+
 * Ensure that:
   * The `WorkspaceBasePath` value is **not empty**.
   * The path **ends with a double backslash (`\\`)**.
