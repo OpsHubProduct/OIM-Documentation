@@ -199,47 +199,47 @@ Set polling time as the time after which the user wants to synchronize data betw
 
 ## How to Adjust Workspace Base Path
 
-{% stepper %}  
-{% step %}  
-### Locate the Tosca Installation Directory
-* Navigate to the folder where **Tosca Server** is installed.  
-* Example path:
+## Adjust Base Workspace Path on Tosca Server
 
-```Java
-C:\Program Files (x86)\TRICENTIS\Tosca Server\RestApiService
-```
-{% endstep %}  
+{% stepper %}
 
-{% step %}  
-### Open the Configuration File
+{% step %}
+### Step 1: Locate the Tosca Installation Directory
+Navigate to the folder where **Tosca Server** is installed.  
+Example path:
 
-* In the above directory, locate and open the **appsettings.json** file using a text editor (such as **Notepad** or **Visual Studio Code**).
-{% endstep %}  
-
-{% step %}  
-### Update the Workspace Base Path
-
-* Within the JSON file, find the `"Settings"` section and locate the `"WorkspaceBasePath"` attribute.
+    C:\Program Files (x86)\TRICENTIS\Tosca Server\RestApiService
 {% endstep %}
 
 {% step %}
-### Modify the Path as per the Required Format
+### Step 2: Open the Configuration File
+In the above directory, locate and open the **appsettings.json** file using a text editor  
+(such as **Notepad** or **Visual Studio Code**).
+{% endstep %}
 
-* Ensure that:
-  * The `WorkspaceBasePath` value is **not empty**.
-  * The path **ends with a double backslash (`\\`)**.
+{% step %}
+### Step 3: Update the Workspace Base Path
+Within the JSON file, find the `"Settings"` section and locate the `"WorkspaceBasePath"` attribute.
+{% endstep %}
 
-* Example:
-```json
+{% step %}
+### Step 4: Modify the Path as per the Required Format
+Ensure that:
+- The `WorkspaceBasePath` value is **not empty**.
+- The path **ends with a double backslash (`\\`)**.
+
+Example:
+
     {
       "Settings": {
         "WorkspaceBasePath": "C:\\Tosca_Projects\\Tosca_Workspaces\\",
-        ... other default settings ...
+        "... other default settings ..."
       }
     }
-```
-{% endstep %}  
-{% endstepper %}  
+{% endstep %}
+
+{% endstepper %}
+
 
 > **Note:** By default, Tosca provides this value as `"C:\\Tosca_Projects\\Tosca_Workspaces"` (without the trailing `\\`).  
 > You **must** add the double backslash (`\\`) at the end as part of the pre-requisite configuration.
