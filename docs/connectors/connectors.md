@@ -186,7 +186,7 @@ layout:
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Jira Zephyr</strong></mark></td>
           <td><a href="../assets/connector/6_zephyr.png">Jira Zephyr</a></td>
-          <td><a href="jirazephyrscale.md"></a></td>
+          <td><a href="jirazephyrscale.md">Zephyr</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Microsoft Dynamics 365</strong></mark></td>
