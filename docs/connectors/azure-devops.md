@@ -411,7 +411,7 @@ to this:
 </variables>
 ```
 
-{% if spaceName != "OpsHub Migrator for Microsoft Azure DevOps" %}
+{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 ### Comments Field Advance Mapping Configuration for Pipeline Entity
 
 * By default, the comments field is synchronised, as it is, for each revision in the pipeline entity.
@@ -788,7 +788,7 @@ This will be transformed internally to:
 `select [ID], [Work Item Type], [Assigned To] from WorkItems where [Team Project] = @project and [Remote Link] = [Test Field]`
 for processing.
 
-{{% if space.name != "OpsHub Migrator for Microsoft Azure DevOps" %}}
+{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 
 > **Note**: If field name is present in WIQL, which is not in this format, then <code class="expression">space.vars.SITENAME</code> will not do any transformation and the details will be available as stated in the "Team Foundation Server/Azure DevOps End point Format" only. In such case, if any transformation is needed, you can do it with the help of advance mapping as per the expected format.
 
@@ -806,7 +806,7 @@ for processing.
 </wiql>
 ```
 
-{{% /if %}}
+{% endif %}  
 
 > **Note**: The behavior is the same for the missing field values in the target. **For example:** If WIQL refers to area path 'Area1' in the source which is not present in the target, then advance mapping can be done to transform the source area path to the corresponding target area path.
 
@@ -835,10 +835,10 @@ In WIQL, an id of a work item can be referred in the field value.
   `[ID] [=, <, >, <=, >=, <>, in] [Source entity id]`.
   **Example:** `[ID] = [12345]`
   [No change is done here and hence the source work item id will be synchronized/visible in the target end point]
-  
-{{% if space.name != "OpsHub Migrator for Microsoft Azure DevOps" %}} 
+
+{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 * In case, you want the Source workitem id to be replaced with its corresponding target id \[Which is synchronized by <code class="expression">space.vars.SITENAME</code>], please use a customized workflow - **Default Integration Workflow - TFS to TFS - Query.xml**.
-{{% /if %}}
+{% endif %}  
 
  **For example -**
   Consider a WIQL :
