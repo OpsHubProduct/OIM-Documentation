@@ -120,12 +120,12 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>GitHub</strong></mark></td>
-            <td><a href="../assets/connector/Github.png">GitHub</a></td>
+            <td><a href="../assets/connector/GitHub.png">GitHub</a></td>
             <td><a href="github.md">github.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>GitLab</strong></mark></td>
-            <td><a href="../assets/connector/Gitlab.png">GitLab</a></td>
+            <td><a href="../assets/connector/GitLab.png">GitLab</a></td>
             <td><a href="gitlab.md">gitlab.md</a></td>
         </tr>
         <tr>
@@ -135,7 +135,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>HubSpot</strong></mark></td>
-            <td><a href="../assets/connector/Hubspot.png">HubSpot</a></td>
+            <td><a href="../assets/connector/HubSpot.png">HubSpot</a></td>
             <td><a href="hubspot.md">hubspot.md</a></td>
         </tr>
         <tr>
@@ -175,7 +175,7 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Jira Align</strong></mark></td>
-          <td><a href="../assets/connector/Jira_align.png">Jira Align</a></td>
+          <td><a href="../assets/connector/Jira_Align.png">Jira Align</a></td>
           <td><a href="jira-align.md">jira-align.md</a></td>
         </tr>
         <tr>
@@ -210,57 +210,57 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>PagerDuty</strong></mark></td>
-          <td><a href="../assets/connector/pagerduty.png">PagerDuty</a></td>
+          <td><a href="../assets/connector/Pagerduty.png">PagerDuty</a></td>
           <td><a href="pagerduty.md">pagerduty.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Planview AdaptiveWork</strong></mark></td>
-          <td><a href="../assets/connector/planview.png">Planview AdaptiveWork</a></td>
+          <td><a href="../assets/connector/Planview.png">Planview AdaptiveWork</a></td>
           <td><a href="planviewadaptivework.md">planviewadaptivework.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>ReadyOne</strong></mark></td>
-          <td><a href="../assets/connector/readyone.png">ReadyOne</a></td>
+          <td><a href="../assets/connector/Readyone.png">ReadyOne</a></td>
           <td><a href="readyone.md">readyone.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Redmine</strong></mark></td>
-          <td><a href="../assets/connector/redmine.png">Redmine</a></td>
+          <td><a href="../assets/connector/Redmine.png">Redmine</a></td>
           <td><a href="redmine.md">redmine.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Salesforce</strong></mark></td>
-          <td><a href="../assets/connector/salesforce.png">Salesforce</a></td>
+          <td><a href="../assets/connector/Salesforce.png">Salesforce</a></td>
           <td><a href="salesforce.md">salesforce.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>SAP</strong></mark></td>
-          <td><a href="../assets/connector/sap.png">SAP</a></td>
+          <td><a href="../assets/connector/SAP.png">SAP</a></td>
           <td><a href="sap.md">sap.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Selenium</strong></mark></td>
-          <td><a href="../assets/connector/selenium.png">Selenium</a></td>
+          <td><a href="../assets/connector/Selenium.png">Selenium</a></td>
           <td><a href="selenium.md">selenium.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>ServiceNow</strong></mark></td>
-          <td><a href="../assets/connector/servicenow.png">ServiceNow</a></td>
+          <td><a href="../assets/connector/Servicenow.png">ServiceNow</a></td>
           <td><a href="servicenow.md">servicenow.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>ServiceNow Quick Connect</strong></mark></td>
-          <td><a href="../assets/connector/servicenow.png">ServiceNow Quick Connect</a></td>
+          <td><a href="../assets/connector/Servicenow.png">ServiceNow Quick Connect</a></td>
           <td><a href="servicenow-express.md">servicenow-express.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Slack</strong></mark></td>
-          <td><a href="../assets/connector/slack.png">Slack</a></td>
+          <td><a href="../assets/connector/Slack.png">Slack</a></td>
           <td><a href="slack.md">slack.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Snowflake</strong></mark></td>
-          <td><a href="../assets/connector/snowflake.png">Snowflake</a></td>
+          <td><a href="../assets/connector/Snowflake.png">Snowflake</a></td>
           <td><a href="snowflake.md">snowflake.md</a></td>
         </tr>
         <tr>
