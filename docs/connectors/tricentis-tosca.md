@@ -203,16 +203,15 @@ Set polling time as the time after which the user wants to synchronize data betw
 
 {% stepper %}
 {% step %}
-### Step 1: Locate the Tosca Installation Directory
+### Locate the Tosca Installation Directory  
 
 
 Navigate to the folder where **Tosca Server** is installed.  
-Example path:
-    C:\Program Files (x86)\TRICENTIS\Tosca Server\RestApiService
+Example path: `C:\Program Files (x86)\TRICENTIS\Tosca Server\RestApiService`  
 {% endstep %}
 
 {% step %}
-### Step 2: Open the Configuration File
+### Open the Configuration File
 
 
 In the above directory, locate and open the **appsettings.json** file using a text editor  
@@ -220,14 +219,14 @@ In the above directory, locate and open the **appsettings.json** file using a te
 {% endstep %}
 
 {% step %}
-### Step 3: Update the Workspace Base Path
+### Update the Workspace Base Path
 
 
 Within the JSON file, find the `"Settings"` section and locate the `"WorkspaceBasePath"` attribute.
 {% endstep %}
 
 {% step %}
-### Step 4: Modify the Path as per the Required Format
+### Modify the Path as per the Required Format
 
 
 Ensure that:
