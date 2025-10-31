@@ -210,7 +210,7 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>PagerDuty</strong></mark></td>
-          <td><a href="../assets/connector/Pagerduty.png">PagerDuty</a></td>
+          <td><a href="../assets/connector/PagerDuty.png">PagerDuty</a></td>
           <td><a href="pagerduty.md">pagerduty.md</a></td>
         </tr>
         <tr>
@@ -220,7 +220,7 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>ReadyOne</strong></mark></td>
-          <td><a href="../assets/connector/Readyone.png">ReadyOne</a></td>
+          <td><a href="../assets/connector/ReadyOne.png">ReadyOne</a></td>
           <td><a href="readyone.md">readyone.md</a></td>
         </tr>
         <tr>
@@ -265,27 +265,27 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Subversion</strong></mark></td>
-          <td><a href="../assets/connector/subversion.png">Subversion</a></td>
+          <td><a href="../assets/connector/Subversion.png">Subversion</a></td>
           <td><a href="svn.md">svn.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>TestRail</strong></mark></td>
-          <td><a href="../assets/connector/testrail.png">TestRail</a></td>
+          <td><a href="../assets/connector/Testrail.png">TestRail</a></td>
           <td><a href="testrail.md">testrail.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Trac</strong></mark></td>
-          <td><a href="../assets/connector/trac.png">Trac</a></td>
+          <td><a href="../assets/connector/Trac.png">Trac</a></td>
           <td><a href="trac.md">trac.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Tricentis<br>qTest</strong></mark></td>
-          <td><a href="../assets/connector/tricentis_qtest.png">Tricentis qTest</a></td>
+          <td><a href="../assets/connector/Ttricentis_qtest.png">Tricentis qTest</a></td>
           <td><a href="tricentis-qTest.md">tricentis-qTest.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Tricentis<br>Tosca</strong></mark></td>
-          <td><a href="../assets/connector/tricentis_tosca.png">Tricentis Tosca</a></td>
+          <td><a href="../assets/connector/Tricentis_tosca.png">Tricentis Tosca</a></td>
           <td><a href="tricentis-tosca.md">tricentis-tosca.md</a></td>
         </tr>
         <tr>
@@ -300,7 +300,7 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Zendesk</strong></mark></td>
-          <td><a href="../assets/connector/zendesk.png">Zendesk</a></td>
+          <td><a href="../assets/connector/Zendesk.png">Zendesk</a></td>
           <td><a href="zendesk.md">zendesk.md</a></td>
         </tr>
     </tbody>
