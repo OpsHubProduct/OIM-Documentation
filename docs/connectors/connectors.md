@@ -85,12 +85,12 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Database</strong></mark></td>
-            <td><a href="../assets/connector/database.png">Database</a></td>
+            <td><a href="../assets/connector/Database.png">Database</a></td>
             <td><a href="database-integration.md">database</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Digital.ai<br>Agility</strong></mark></td>
-            <td><a href="../assets/connector/digitalai_agility.png">Digital.ai Agility</a></td>
+            <td><a href="../assets/connector/Digitalai_agility.png">Digital.ai Agility</a></td>
             <td><a href="digital.ai-agility.md">digital.ai-agility.md</a></td>
         </tr>
         <tr>
@@ -100,32 +100,32 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Enterprise Architect</strong></mark></td>
-            <td><a href="../assets/connector/enterprise_architect.png">Enterprise Architect</a></td>
+            <td><a href="../assets/connector/Enterprise_architect.png">Enterprise Architect</a></td>
             <td><a href="enterprise-architect.md">enterprise-architect.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>FogBugz</strong></mark></td>
-            <td><a href="../assets/connector/fogbugz.png">FogBugz</a></td>
+            <td><a href="../assets/connector/Fogbugz.png">FogBugz</a></td>
             <td><a href="fogbuz.md">fogbuz.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Gerrit</strong></mark></td>
-            <td><a href="../assets/connector/gerrit.png">Gerrit</a></td>
+            <td><a href="../assets/connector/Gerrit.png">Gerrit</a></td>
             <td><a href="gerrit.md">gerrit.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Git</strong></mark></td>
-            <td><a href="../assets/connector/git.png">Git</a></td>
+            <td><a href="../assets/connector/Git.png">Git</a></td>
             <td><a href="git.md">git.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>GitHub</strong></mark></td>
-            <td><a href="../assets/connector/github.png">GitHub</a></td>
+            <td><a href="../assets/connector/Github.png">GitHub</a></td>
             <td><a href="github.md">github.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>GitLab</strong></mark></td>
-            <td><a href="../assets/connector/gitlab.png">GitLab</a></td>
+            <td><a href="../assets/connector/Gitlab.png">GitLab</a></td>
             <td><a href="gitlab.md">gitlab.md</a></td>
         </tr>
         <tr>
@@ -135,27 +135,27 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>HubSpot</strong></mark></td>
-            <td><a href="../assets/connector/hubspot.png">HubSpot</a></td>
+            <td><a href="../assets/connector/Hubspot.png">HubSpot</a></td>
             <td><a href="hubspot.md">hubspot.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>IBM Engineering<br>Requirements Management (DOORS NextGen)</strong></mark></td>
-            <td><a href="../assets/connector/ibm_doors_nextgen.png">IBM DOORS NextGen</a></td>
+            <td><a href="../assets/connector/IBM_doors_nextgen.png">IBM DOORS NextGen</a></td>
             <td><a href="ibm-rational-doors-next-generation.md">ibm-rational-doors-next-generation.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>IBM Engineering<br>Test Management</strong></mark></td>
-            <td><a href="../assets/connector/ibm_etm.png">IBM Test Management</a></td>
+            <td><a href="../assets/connector/IBM_etm.png">IBM Test Management</a></td>
             <td><a href="etm.md">etm.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>IBM Engineering<br>Workflow Management</strong></mark></td>
-            <td><a href="../assets/connector/ibm_ewm.png">IBM Workflow Management</a></td>
+            <td><a href="../assets/connector/IBM_ewm.png">IBM Workflow Management</a></td>
             <td><a href="ibm-ewm.md">ibm-ewm.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>IBM Rational<br>ClearQuest</strong></mark></td>
-          <td><a href="../assets/connector/ibm_clearquest.png">IBM Rational ClearQuest</a></td>
+          <td><a href="../assets/connector/IBM_clearquest.png">IBM Rational ClearQuest</a></td>
           <td><a href="ibm-rational-clearquest.md">ibm-rational-clearquest.md</a></td>
         </tr>
         <tr>
@@ -165,22 +165,22 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Jama Connect</strong></mark></td>
-          <td><a href="../assets/connector/jama.png">Jama Connect</a></td>
+          <td><a href="../assets/connector/Jama.png">Jama Connect</a></td>
           <td><a href="jama.md">jama.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Jenkins</strong></mark></td>
-          <td><a href="../assets/connector/jenkins.png">Jenkins</a></td>
+          <td><a href="../assets/connector/Jenkins.png">Jenkins</a></td>
           <td><a href="jenkins.md">jenkins.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Jira Align</strong></mark></td>
-          <td><a href="../assets/connector/jira_align.png">Jira Align</a></td>
+          <td><a href="../assets/connector/Jira_align.png">Jira Align</a></td>
           <td><a href="jira-align.md">jira-align.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Jira Cloud / Data Center</strong></mark></td>
-          <td><a href="../assets/connector/jira.png">Jira Cloud / Data Center</a></td>
+          <td><a href="../assets/connector/Jira.png">Jira Cloud / Data Center</a></td>
           <td><a href="jira.md">jira.md</a></td>
         </tr>
         <tr>
@@ -190,7 +190,7 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Microsoft Dynamics 365</strong></mark></td>
-          <td><a href="../assets/connector/msd365.png">Microsoft Dynamics 365</a></td>
+          <td><a href="../assets/connector/MSD365.png">Microsoft Dynamics 365</a></td>
           <td><a href="msdynamics.md">msdynamics.md</a></td>
         </tr>
         <tr>
