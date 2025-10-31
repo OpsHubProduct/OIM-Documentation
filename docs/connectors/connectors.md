@@ -50,7 +50,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Broadcom<br>Clarity</strong></mark></td>
-            <td><a href="../assets/connector/Broadcom_clarity.png">Clarity</a></td>
+            <td><a href="../assets/connector/Broadcom_Clarity.png">Clarity</a></td>
             <td><a href="clarity.md">clarity.md</a></td>
         </tr>
         <tr>
@@ -90,7 +90,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Digital.ai<br>Agility</strong></mark></td>
-            <td><a href="../assets/connector/Digitalai_agility.png">Digital.ai Agility</a></td>
+            <td><a href="../assets/connector/Digitalai_Agility.png">Digital.ai Agility</a></td>
             <td><a href="digital.ai-agility.md">digital.ai-agility.md</a></td>
         </tr>
         <tr>
@@ -105,7 +105,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>FogBugz</strong></mark></td>
-            <td><a href="../assets/connector/Fogbugz.png">FogBugz</a></td>
+            <td><a href="../assets/connector/FogBugz.png">FogBugz</a></td>
             <td><a href="fogbuz.md">fogbuz.md</a></td>
         </tr>
         <tr>
@@ -270,7 +270,7 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>TestRail</strong></mark></td>
-          <td><a href="../assets/connector/Testrail.png">TestRail</a></td>
+          <td><a href="../assets/connector/TestRail.png">TestRail</a></td>
           <td><a href="testrail.md">testrail.md</a></td>
         </tr>
         <tr>
@@ -280,12 +280,12 @@ layout:
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Tricentis<br>qTest</strong></mark></td>
-          <td><a href="../assets/connector/Ttricentis_qtest.png">Tricentis qTest</a></td>
+          <td><a href="../assets/connector/Tricentis_qTest.png">Tricentis qTest</a></td>
           <td><a href="tricentis-qTest.md">tricentis-qTest.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Tricentis<br>Tosca</strong></mark></td>
-          <td><a href="../assets/connector/Tricentis_tosca.png">Tricentis Tosca</a></td>
+          <td><a href="../assets/connector/Tricentis_Tosca.png">Tricentis Tosca</a></td>
           <td><a href="tricentis-tosca.md">tricentis-tosca.md</a></td>
         </tr>
         <tr>
