@@ -3,6 +3,7 @@ icon: hand-wave
 cover: ./docs/assets/Site_Images/Background.png
 coverY: 0
 layout:
+  width: wide
   title:
     visible: false
   description:
