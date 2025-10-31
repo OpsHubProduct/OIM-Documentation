@@ -62,6 +62,7 @@
         * [Change Keystore and Private Key passwords](docs/manage/advanced-utilities/change-keystore-and-private-key-passwords.md)
         * [Secret Key Reset Utility](docs/manage/advanced-utilities/regenerate-secret-key.md)
         * [Certificate Private Key Password Encryptor Utility](docs/manage/advanced-utilities/certificate-private-key-password-encryptor-utility.md)
+        * [Data Count Utility](docs/manage/advanced-utilities/data-count-utility.md)
     * [APIs](docs/manage/api.md)
         * [Getting Started with APIs](docs/manage/api/getting-started-with-api.md)
         * [Sample Use Cases and Scripts](docs/manage/api/sample-use-cases.md)
