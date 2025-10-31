@@ -30,7 +30,7 @@ layout:
         </tr>
         <tr>    
             <td align="center"><mark style="color:#555555"><strong>Aras Innovator</strong></mark></td>
-            <td><a href="../assets/connector/aras.png">Aras</a></td>
+            <td><a href="../assets/connector/aras.png">Aras </a></td>
             <td><a href="aras.md">Aras</a></td>
         </tr>
         <tr>
@@ -45,7 +45,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>BMC Remedy</strong></mark></td>
-            <td><a href="../assets/connector/bmc_remedy.png">Remedy</a></td>
+            <td><a href="../assets/connector/bmc_remedy.png">Remedy</a></td> 
             <td><a href="remedy.md">remedy.md</a></td>
         </tr>
         <tr>
