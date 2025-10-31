@@ -1,6 +1,6 @@
 ---
 icon: hand-wave
-cover: ./docs/assets/Site_Images/Background2.png
+cover: ./docs/assets/Site_Images/Background.png
 coverY: 0
 layout:
   width: wide
@@ -19,20 +19,10 @@ layout:
 ---
 
 {% columns fullWidth="true" %}
-{% column width="70%" valign="middle" %}
-
-## <mark style="color:orange;">**WELCOME TO THE**</mark>
-
-# **<code class="expression">space.vars.CAPS_SITENAME</code> DOCUMENTATION**
+{% column width="100%" valign="middle" %}
 This site provides complete and up-to-date documentation to help you install, configure, and operate <code class="expression">space.vars.SITENAME</code>(<code class="expression">space.vars.PRODUCT_SHORTNAME</code>) effectively. Whether you're setting up your first integration, developing custom connectors, or troubleshooting issues, this documentation is structured to guide you through every step.
 {% endcolumn %}
-
-{% column width="30%" valign="middle" %}
-<figure><img src="./docs/assets/Site_Images/SideLogo.png" alt="" width="239"><figcaption></figcaption></figure>
-
-{% endcolumn %}
 {% endcolumns %}
-
 
 
 ***
