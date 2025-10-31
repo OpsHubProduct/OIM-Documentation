@@ -13,3 +13,5 @@
 7. [Secret Key Reset Utility](advanced-utilities/regenerate-secret-key.md)
 
 8. [Certificate Private Key Password Encryptor Utility](advanced-utilities/certificate-private-key-password-encryptor-utility.md)
+
+9. [Data Count Utility](advanced-utilities/data-count-utility.md)
