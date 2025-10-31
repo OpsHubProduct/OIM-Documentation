@@ -30,7 +30,7 @@ layout:
         </tr>
         <tr>    
             <td align="center"><mark style="color:#555555"><strong>Aras Innovator</strong></mark></td>
-            <td><a href="../assets/connector/aras.png">Aras</a></td>
+            <td><a href="../assets/connector/azure.png">Aras</a></td>
             <td><a href="aras.md">Aras</a></td>
         </tr>
         <tr>
@@ -50,7 +50,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Broadcom<br>Clarity</strong></mark></td>
-            <td><a href="../assets/connector/">Clarity</a></td>
+            <td><a href="../assets/connector/broadcom_clarity.png">Clarity</a></td>
             <td><a href="clarity.md">clarity.md</a></td>
         </tr>
         <tr>
@@ -70,7 +70,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Cherwell</strong></mark></td>
-            <td><a href="../assets/connector/Cherwell.png">Cherwell</a></td>
+            <td><a href="../assets/connector/cherwell.png">Cherwell</a></td>
             <td><a href="cherwell.md">cherwell.md</a></td>
         </tr>
         <tr>
@@ -305,3 +305,5 @@ layout:
         </tr>
     </tbody>
 </table>
+
+
