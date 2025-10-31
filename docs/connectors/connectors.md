@@ -28,6 +28,11 @@ layout:
         <td data-object-fit="contain"><a href="../assets/connector/Aha1.png">Aha</a></td>
         <td><a href="aha.md">aha.md</a></td>
       </tr>
+    <tr>    
+        <td align="center"><mark style="color:#555555"><strong>Aras Innovator</strong></mark></td>
+        
+        <td><a href="aras.md">Aras</a></td>
+    </tr>
     </tbody>
 </table>
 
