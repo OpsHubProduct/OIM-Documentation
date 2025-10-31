@@ -3,12 +3,16 @@ icon: hand-wave
 cover: ./docs/assets/Site_Images/Background.png
 coverY: 0
 layout:
+  width: wide
+  cover:
+    visible: true
+    size: full
   title:
-    visible: false
+    visible: true
   description:
     visible: false
   tableOfContents:
-    visible: true
+    visible: false
   outline:
     visible: false
   pagination:
