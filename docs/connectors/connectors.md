@@ -14,7 +14,7 @@ layout:
     visible: false
 ---
 
-<table data-view="cards" data-full-width="false">
+<table data-view="cards">
    <thead>
       <tr>
         <th align="center"></th>
