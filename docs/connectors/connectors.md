@@ -65,7 +65,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Bugzilla</strong></mark></td>
-            <td><a href="../assets/connector/Bugzilla.png">Bugzilla</a></td>
+            <td><a href="../assets/connector/5_bugzilla.png">Bugzilla</a></td>
             <td><a href="bugzilla.md">bugzilla.md</a></td>
         </tr>
         <tr>
