@@ -245,6 +245,48 @@ Example:
 > You **must** add the double backslash (`\\`) at the end as part of the pre-requisite configuration.
 
 
+### Trial
+
+
+<details>
+<summary><b>Step 1: Locate the Tosca Installation Directory</b></summary>
+
+Navigate to the folder where **Tosca Server** is installed.  
+Example path:
+
+</details>
+
+<details>
+<summary><b>Step 2: Open the Configuration File</b></summary>
+
+In the above directory, locate and open **appsettings.json** using a text editor.
+</details>
+
+<details>
+<summary><b>Step 3: Update the Workspace Base Path</b></summary>
+
+Find the `"Settings"` → `"WorkspaceBasePath"` attribute in the JSON file.
+</details>
+
+<details>
+<summary><b>Step 4: Modify the Path Format</b></summary>
+
+Ensure:
+- Not empty  
+- Ends with a double backslash (`\\`)
+
+Example:
+
+```json
+{
+  "Settings": {
+    "WorkspaceBasePath": "C:\\Tosca_Projects\\Tosca_Workspaces\\"
+  }
+}
+```
+</details>
+
+
 ## Add Users
 
 1. Log in to the Tosca Commander with the user having administrator privileges (by default admin user has administrator privileges).  
