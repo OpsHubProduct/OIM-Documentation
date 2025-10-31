@@ -1,4 +1,4 @@
-# Prerequisites
+ # Prerequisites
 
 ## User privileges
 * Create one user in HubSpot that is dedicated for <code class="expression">space.vars.SITENAME</code>. This user shouldn't perform any other action from HubSpot's user interface. This user is referred as 'Integration User' in the documentation.
