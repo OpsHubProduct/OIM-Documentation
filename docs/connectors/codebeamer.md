@@ -357,9 +357,9 @@ To find the codebeamer / codebeamer X version, follow the steps given below:
 
 <div align="center"><img src="../assets/CodebeamerX_Version.png" alt=""></div>
 
-## Add User
+## Add User  
 
-### Add User Group
+### Add User Group 
 
 * Login to codebeamer / codebeamer X with the Admin User.
 * Select **System Admin** tab.
@@ -395,7 +395,7 @@ To find the codebeamer / codebeamer X version, follow the steps given below:
 
 * Click on **Save** button.
 
-## Add User Account
+## Add User Account  
 
 * Login to codebeamer / codebeamer X with the Admin User.
 * Select **System Admin** tab.

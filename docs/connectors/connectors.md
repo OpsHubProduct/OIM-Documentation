@@ -1,6 +1,24 @@
 <table data-view="cards" data-full-width="false">
    <thead>
       <tr>
+        <th align="center" data-hidden data-card-cover data-type="image">Cover image</th>
+        <th align="center" data-card-cover></th>
+        <th data-hidden data-card-target data-type="content-ref"></th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+        <td data-object-fit="contain"><a href="../assets/connector/Aha.png">Aha</a></td>
+        <td align="center"><mark style="color:#555555"><strong>Aha!</strong></mark></td>
+        <td><a href="aha.md">aha.md</a></td>
+      </tr>
+</tbody>
+</table>
+
+
+<table data-view="cards" data-full-width="false">
+   <thead>
+      <tr>
         <th align="center" data-card-cover></th>
         <th data-hidden data-card-target data-type="content-ref"></th>
       </tr>
