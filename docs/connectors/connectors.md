@@ -17,15 +17,15 @@ layout:
 <table data-view="cards">
    <thead>
       <tr>
+        <th data-hidden data-card-cover data-type="image">Cover image</th>        
         <th align="center"></th>
-        <th data-hidden data-card-cover data-type="image">Cover image</th>
         <th data-hidden data-card-target data-type="content-ref"></th>
       </tr>
    </thead>
    <tbody>
         <tr>
-            <td align="center"><mark style="color:#555555"><strong>Aha!</strong></mark></td>        
-            <td><a href="../assets/connector/aha.png">Aha</a></td>
+            <td><a href="../assets/connector/aha.png">Aha</a></td>            
+            <td align="center"><mark style="color:#555555"><strong>Aha!</strong></mark></td>
             <td><a href="aha.md">aha.md</a></td>
         </tr>
         <tr>    
