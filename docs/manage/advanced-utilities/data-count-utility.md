@@ -5,6 +5,7 @@
   * Jira
   * OpenText ALM
   * Helix ALM
+  
 
 * **After Downloading the Utility**
   * Once the utility is extracted, the folder will contain the following files:
