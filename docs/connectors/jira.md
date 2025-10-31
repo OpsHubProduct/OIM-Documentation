@@ -77,6 +77,8 @@ In appendix, please refer: [Grant Browse User Global Permission](jira.md#grant-b
 
 If your Jira system is configured with Single sign-on (SSO), then the above-mentioned User privileges and permissions are sufficient.
 
+In your Jira system, the sync user timezone determines the date-based filtering in JQL queries. Changing this timezone during an active synchronization may lead to skipping of entities.It is recommended not to change the sync user timezone once configured. If it is changed,update the system configuration to clear cache immediately after changing the user-timezone.
+
 ## Licenses required
 
 * For Jira on-premises instance, Jira Software license is required. If you want to use Jira Service Desk entities, then make sure that you have an active Jira Service Desk license.
