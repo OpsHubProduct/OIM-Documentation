@@ -5,7 +5,7 @@
 * For Integrating Tosca, it is necessary to modify the default workspace path configuration for accessing Tosca Rest APIs. 
 * By Default, the workspace base path can be empty or not ending with "\\".
   * For retriving the workspace, the variable "WorkspaceBasePath" should not be empty and must end with "\\" with the path.
-* On how to adjust workspace base path, refer to the steps mentioned in the [How to adjust workspace base path](#adjust-base-workspace-path-on-tosca-server) section. 
+* On how to adjust workspace base path, refer to the steps mentioned in the [How to adjust workspace base path](#how-to-adjust-workspace-base-path) section. 
 
 ## User Permissions
 
@@ -198,8 +198,6 @@ Set polling time as the time after which the user wants to synchronize data betw
 
 
 ## How to Adjust Workspace Base Path
-
-## Adjust Base Workspace Path on Tosca Server
 
 {% stepper %}
 {% step %}
