@@ -25,12 +25,12 @@ layout:
    <tbody>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Aha!</strong></mark></td>
-            <td><a href="../assets/connector/aha.png">Aha</a></td>
+            <td><a href="../assets/connector/aha.png">Aha </a></td>
             <td><a href="aha.md">aha.md</a></td>
         </tr>
         <tr>    
             <td align="center"><mark style="color:#555555"><strong>Aras Innovator</strong></mark></td>
-            <td><a href="../assets/connector/aras.png">Aras </a></td>
+            <td><a href="../assets/connector/aras.png">Aras</a></td>
             <td><a href="aras.md">Aras</a></td>
         </tr>
         <tr>
