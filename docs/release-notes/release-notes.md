@@ -20,7 +20,7 @@
 * Resolved an issue where entities were skipped when the API response did not include newly created or updated records due to delays in APIs from Microsoft Dynamics 365.
 
 ## Tricentis Tosca
-* Resolved an issue where a job error occurred with the message `**"Unexpected character ('<' (code 60)): expected a valid value (JSON String, Number, Array, Object, or token 'null', 'true', or 'false')"**` when retrieving test steps from Tosca.
+* Resolved an issue where a job error occurred with the message `"Unexpected character ('<' (code 60)): expected a valid value (JSON String, Number, Array, Object, or token 'null', 'true', or 'false')"` when retrieving test steps from Tosca.
 
 
 {% endif %}  
