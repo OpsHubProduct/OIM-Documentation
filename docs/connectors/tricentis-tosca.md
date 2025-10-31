@@ -1,6 +1,12 @@
 
 # Prerequisites
 
+## Adjust Base Workspace Path on Tosca Server
+* For Integrating Tosca, it is necessary to modify the default workspace path configuration for accessing Tosca Rest APIs. 
+* By Default, the workspace base path can be empty or not ending with "\\".
+  * For retriving the workspace, the variable "WorkspaceBasePath" should not be empty and must end with "\\" with the path.
+* On how to adjust workspace base path, refer to the steps mentioned in the [How to adjust workspace base path](#adjust-base-workspace-path-on-tosca-server) section. 
+
 ## User Permissions
 
 * Basic-level access must be granted to the service account for synchronization as shown in the screenshot below.
@@ -189,6 +195,56 @@ Set polling time as the time after which the user wants to synchronize data betw
 <p align="center">
   <img src="../assets/Tosca_Project_Creation.png" width="900"/>
 </p>
+
+
+## How to Adjust Workspace Base Path
+
+{% stepper %}
+
+{% step %}
+### Step 1: Locate the Tosca Installation Directory
+* Navigate to the folder where **Tosca Server** is installed.  
+* Example path:
+
+```Java
+C:\Program Files (x86)\TRICENTIS\Tosca Server\RestApiService
+```
+{% endstep %}
+
+{% step %}
+### Step 2: Open the Configuration File
+* In the above directory, locate and open the **appsettings.json** file using a text editor (such as **Notepad** or **Visual Studio Code**).
+{% endstep %}
+
+{% step %}
+### Step 3: Update the Workspace Base Path
+* Within the JSON file, find the `"Settings"` section and locate the `"WorkspaceBasePath"` attribute.
+{% endstep %}
+
+{% step %}
+### Step 4: Modify the Path as per the Required Format
+* Ensure that:
+  * The `WorkspaceBasePath` value is **not empty**.
+  * The path **ends with a double backslash (`\\`)**.
+
+* Example:
+```json
+    {
+      "Settings": {
+        "WorkspaceBasePath": "C:\\Tosca_Projects\\Tosca_Workspaces\\",
+        ... other default settings ...
+      }
+    }
+```
+{% endstep %}
+
+> **Note:**  
+> By default, Tosca provides this value as `"C:\\Tosca_Projects\\Tosca_Workspaces"` (without the trailing `\\`).  
+> You **must** add the double backslash (`\\`) at the end as part of the pre-requisite configuration.
+
+{% endstepper %}
+
+
 
 
 ## Add Users
