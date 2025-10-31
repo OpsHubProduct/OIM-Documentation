@@ -199,30 +199,29 @@ Set polling time as the time after which the user wants to synchronize data betw
 
 ## How to Adjust Workspace Base Path
 
-{% stepper %}
-
-{% step %}
-### Step 1: Locate the Tosca Installation Directory
+{% stepper %}  
+{% step %}  
+### Locate the Tosca Installation Directory
 * Navigate to the folder where **Tosca Server** is installed.  
 * Example path:
 
 ```Java
 C:\Program Files (x86)\TRICENTIS\Tosca Server\RestApiService
 ```
-{% endstep %}
+{% endstep %}  
 
-{% step %}
-### Step 2: Open the Configuration File
+{% step %}  
+### Open the Configuration File
 * In the above directory, locate and open the **appsettings.json** file using a text editor (such as **Notepad** or **Visual Studio Code**).
-{% endstep %}
+{% endstep %}  
 
-{% step %}
-### Step 3: Update the Workspace Base Path
+{% step %}  
+### Update the Workspace Base Path
 * Within the JSON file, find the `"Settings"` section and locate the `"WorkspaceBasePath"` attribute.
 {% endstep %}
 
 {% step %}
-### Step 4: Modify the Path as per the Required Format
+### Modify the Path as per the Required Format
 * Ensure that:
   * The `WorkspaceBasePath` value is **not empty**.
   * The path **ends with a double backslash (`\\`)**.
@@ -236,15 +235,11 @@ C:\Program Files (x86)\TRICENTIS\Tosca Server\RestApiService
       }
     }
 ```
-{% endstep %}
+{% endstep %}  
+{% endstepper %}  
 
-> **Note:**  
-> By default, Tosca provides this value as `"C:\\Tosca_Projects\\Tosca_Workspaces"` (without the trailing `\\`).  
+> **Note:** By default, Tosca provides this value as `"C:\\Tosca_Projects\\Tosca_Workspaces"` (without the trailing `\\`).  
 > You **must** add the double backslash (`\\`) at the end as part of the pre-requisite configuration.
-
-{% endstepper %}
-
-
 
 
 ## Add Users
