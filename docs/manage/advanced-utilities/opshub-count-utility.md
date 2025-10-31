@@ -32,7 +32,7 @@ Following are the steps to run the utility:
 * Refer to the screenshot below:  
 
 <p align="center">
-  <img src="../../assets/Opshub_Count_Utility_CMD_Start.png" width="800"/>
+  <img src="../../assets/Opshub_Count_Utility_CMD_Start.png" width="950"/>
 </p>
 
 ## STEP 02
@@ -40,7 +40,7 @@ Following are the steps to run the utility:
 * Refer to the screenshot below:  
 
 <p align="center">
-  <img src="../../assets/OCU_Utility_Folder.png" width="800" alt="Going to the utility folder"/>
+  <img src="../../assets/OCU_Utility_Folder.png" width="950" alt="Going to the utility folder"/>
 </p>
 
 ## STEP 03
@@ -48,13 +48,13 @@ Following are the steps to run the utility:
 * Refer to the screenshot mentioned below:  
 
 <p align="center">
-  <img src="../../assets/OCU_RUN_FILE.png" width="800" alt="Execution of the utility using the run file"/>
+  <img src="../../assets/OCU_RUN_FILE.png" width="950" alt="Execution of the utility using the run file"/>
 </p>
 
 Once you press Enter, you will see the screen shown below.  
 
 <p align="center">
-  <img src="../../assets/OCU_Welcome_Screen.png" width="800" alt="Welcome screen"/>
+  <img src="../../assets/OCU_Welcome_Screen.png" width="950" alt="Welcome screen"/>
 </p>
 
 ## STEP 04
@@ -63,7 +63,7 @@ Once you press Enter, you will see the screen shown below.
 * Refer to the screenshot below:  
 
 <p align="center">
-  <img src="../../assets/OCU_Email_Prompt.png" width="800" alt="Provide the email id"/>
+  <img src="../../assets/OCU_Email_Prompt.png" width="950" alt="Provide the email id"/>
 </p>
 
 ## STEP 05
@@ -72,7 +72,7 @@ Once you press Enter, you will see the screen shown below.
 * Refer to the screenshot below:  
 
 <p align="center">
-  <img src="../../assets/OCU_System_Selection.png" width="800" alt="e.g. Entering system code 1 for Rally"/>
+  <img src="../../assets/OCU_System_Selection.png" width="950" alt="e.g. Entering system code 1 for Rally"/>
 </p>
 
 ## STEP 06
@@ -86,17 +86,17 @@ Based on the configuration in the **Rally.properties** file:
   * Refer to the screenshot below:  
 
   <p align="center">
-    <img src="../../assets/OCU_Rally_Authentication_Token.png" width="800" alt="Provide the Authentication token and press Enter"/>
+    <img src="../../assets/OCU_Rally_Authentication_Token.png" width="950" alt="Provide the Authentication token and press Enter"/>
   </p>
 
 * If the value of the **rallyAuthType** property is set to 2, the user must provide the **Username and Password**.  
   * Refer to the screenshots below:  
 
   <p align="center">
-    <img src="../../assets/OCU_Username_Prompt.png" width="800" alt="Provide the Username and press Enter"/>
+    <img src="../../assets/OCU_Username_Prompt.png" width="950" alt="Provide the Username and press Enter"/>
   </p>
   <p align="center">
-    <img src="../../assets/OCU_Password_Prompt.png" width="800" alt="Provide the Password and press Enter"/>
+    <img src="../../assets/OCU_Password_Prompt.png" width="950" alt="Provide the Password and press Enter"/>
   </p>
 
 ### For Jira
@@ -107,14 +107,14 @@ The utility supports both **Data Center (DC)** and **Cloud** instances for Jira.
   * Refer to the screenshot below:  
 
   <p align="center">
-    <img src="../../assets/OCU_JIRA_UserName.png" width="800" alt="Provide the username and press Enter"/>
+    <img src="../../assets/OCU_JIRA_UserName.png" width="950" alt="Provide the username and press Enter"/>
   </p>
 
 * Provide the API token for **Cloud** instances and the Password for **Data Center (DC)** instances.  
   * Refer to the screenshot below:  
 
   <p align="center">
-    <img src="../../assets/OCU_Jira_Password_API_Key.png" width="800">
+    <img src="../../assets/OCU_Jira_Password_API_Key.png" width="950">
   </p>
 
 ### For OpenText ALM
@@ -122,10 +122,10 @@ In the case of OpenText ALM, the user must provide only the Username and Passwor
 * Refer to the screenshots below:  
 
 <p align="center">
-  <img src="../../assets/OCU_Username_Prompt.png" width="800" />
+  <img src="../../assets/OCU_Username_Prompt.png" width="950" />
 </p>
 <p align="center">
-  <img src="../../assets/OCU_Password_Prompt.png" width="800" >
+  <img src="../../assets/OCU_Password_Prompt.png" width="950" >
 </p>
 
 ### For Helix Core ALM
@@ -133,10 +133,10 @@ In the case of Helix, the user must provide only the Username and Password.
 * Refer to the screenshots below:  
 
 <p align="center">
-  <img src="../../assets/OCU_Username_Prompt.png" width="800"/>
+  <img src="../../assets/OCU_Username_Prompt.png" width="950"/>
 </p>
 <p align="center">
-  <img src="../../assets/OCU_Password_Prompt.png" width="800" />
+  <img src="../../assets/OCU_Password_Prompt.png" width="950" />
 </p>
 
 ## STEP 07
@@ -145,7 +145,7 @@ In the case of Helix, the user must provide only the Username and Password.
 * Refer to the screenshot below:  
 
 <p align="center">
-  <img src="../../assets/OCU_Verification_Code.png" width="800"/>
+  <img src="../../assets/OCU_Verification_Code.png" width="950"/>
 </p>
 
 >**Note**: 
@@ -157,7 +157,7 @@ In the case of Helix, the user must provide only the Username and Password.
   * The CSV file contains counts of all issues of all issue types based on the project. Refer to the screenshot below:  
 
   <p align="center">
-    <img src="../../assets/OCU_Jira_Output.png" width="800"/>
+    <img src="../../assets/OCU_Jira_Output.png" width="950"/>
   </p>
 
 * In case any issue or error occurs, the utility creates another CSV file containing the error details. This CSV file is generated inside the system-specific output folder located within the main **output** directory.  
