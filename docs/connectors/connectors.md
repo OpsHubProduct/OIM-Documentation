@@ -28,14 +28,9 @@ layout:
             <td><a href="../assets/connector/Aha.png">Aha</a></td>
             <td><a href="aha.md">aha.md</a></td>
         </tr>
-        <tr>
-            <td align="center"><mark style="color:#555555"><strong>Aha!</strong></mark></td>
-            <td><a href="../assets/connector/Aha.png">Aha </a></td>
-            <td><a href="aha.md">aha.md</a></td>
-        </tr>
         <tr>    
             <td align="center"><mark style="color:#555555"><strong>Aras Innovator</strong></mark></td>
-            <td><a href="../assets/connector/aras.png">Aras</a></td>
+            <td><a href="../assets/connector/Aras.png">Aras</a></td>
             <td><a href="aras.md">Aras</a></td>
         </tr>
         <tr>
@@ -55,7 +50,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Broadcom<br>Clarity</strong></mark></td>
-            <td><a href="../assets/connector/broadcom_clarity.png">Clarity</a></td>
+            <td><a href="../assets/connector/Broadcom_clarity.png">Clarity</a></td>
             <td><a href="clarity.md">clarity.md</a></td>
         </tr>
         <tr>
@@ -70,7 +65,7 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Bugzilla</strong></mark></td>
-            <td><a href="../assets/connector/bugzilla.png">Bugzilla</a></td>
+            <td><a href="../assets/connector/Bugzilla.png">Bugzilla</a></td>
             <td><a href="bugzilla.md">bugzilla.md</a></td>
         </tr>
         <tr>
@@ -80,12 +75,12 @@ layout:
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>Codebeamer</strong></mark></td>
-            <td><a href="../assets/connector/codebeamer.png">Codebeamer</a></td>
+            <td><a href="../assets/connector/Codebeamer.png">Codebeamer</a></td>
             <td><a href="codebeamer.md">codebeamer.md</a></td>
         </tr>
         <tr>
             <td align="center"><mark style="color:#555555"><strong>CodebeamerX</strong></mark></td>
-            <td><a href="../assets/connector/codebeamerX.png">CodebeamerX</a></td>
+            <td><a href="../assets/connector/CodebeamerX.png">CodebeamerX</a></td>
             <td><a href="codebeamer.md">codebeamer.md</a></td>
         </tr>
         <tr>
