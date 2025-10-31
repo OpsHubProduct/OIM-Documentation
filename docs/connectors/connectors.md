@@ -28,10 +28,10 @@ layout:
         <td align="center"><mark style="color:#555555"><strong>Aha!</strong></mark></td>
         <td><a href="aha.md">aha.md</a></td>
       </tr>
-</tbody>
+    </tbody>
 </table>
 
-
+<!--
 <table data-view="cards" data-full-width="false">
    <thead>
       <tr>
@@ -267,3 +267,4 @@ layout:
    </tbody>
 </table>  
 
+-->
