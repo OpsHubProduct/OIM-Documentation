@@ -381,7 +381,7 @@
         * [Micro Focus ALM – Tricentis qTest Integration](docs/knowledge-resources/integration-combination-examples/micro-focus-alm-and-tricentis-qTest-integration.md)
         * [ServiceNow – Azure DevOps Services (VSTS) Integration](docs/knowledge-resources/integration-combination-examples/servicenow-azure-devops-services-integration.md)
         * [TestRail – Jama Integration](docs/knowledge-resources/integration-combination-examples/jama-tr-integration.md)
-        * [Jira Xray – Codebeamer Integration](docs/knowledge-resourcess/integration-combination-examples/jira-xray-and-codebeamer-integration.md)
+        * [Jira Xray – Codebeamer Integration](docs/knowledge-resources/integration-combination-examples/jira-xray-and-codebeamer-integration.md)
         * [ETM – Keyword Configuration](docs/knowledge-resources/integration-combination-examples/how-to-configure-keywords.md)
     * [Videos](docs/knowledge-resources/videos.md)
     * [Webinars](docs/knowledge-resources/webinars.md)
