@@ -323,7 +323,7 @@
   * [Tricentis qTest](docs/connectors/tricentis-qTest.md)
   * [Tricentis Tosca](docs/connectors/tricentis-tosca.md)
   * [Verisium Manager](docs/connectors/vManager.md)
-  * [Windchill](docs/connectors/windchill-rv-s.md)
+  * [Windchill](docs/connectors/windchillrv&s.md)
   * [Zendesk](docs/connectors/zendesk.md)
 * [Connector SDK](docs/connector-sdk/connector-sdk-index.md)
     * [Getting Started](docs/connector-sdk/getting-started.md)
