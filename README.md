@@ -50,7 +50,7 @@ layout:
          <td><a href="docs/help-center/help-center-index.md">Help Center</a></td>
       </tr>
       <tr>
-         <td align="center"><h3><mark style="color:#233C5D">Supported Connector</mark></h3></td>
+         <td align="center"><h3><mark style="color:#233C5D">Supported Connectors</mark></h3></td>
          <td><a href="docs/assets/Site_Images/Supported_Connectors.png">Supported Connectors</a></td>
          <td><a href="docs/supported-connectors/systems-supported.md">Supported Connectors</a></td>
       </tr>
