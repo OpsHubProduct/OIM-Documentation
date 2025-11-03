@@ -1,6 +1,6 @@
 # Table of contents
-
-* Getting Started
+* [Welcome](README.md)
+* [Getting Started](docs/getting-started/getting-started.md)
    * [Getting OpsHub Integration Manager](docs/getting-started/download.md)
    * [Prerequisites](docs/getting-started/prerequisites.md)
    * [Installation](docs/getting-started/installation.md)
@@ -11,7 +11,7 @@
       * [Docker Deployment](docs/getting-started/docker/docker.md)
   * [Logging In](docs/getting-started/logging-in.md)
   * [Start/Stop OpsHub Integration Manager](docs/getting-started/start-or-stop-service.md)
-* Integrate
+* [Integrate](docs/integrate/integrate.md)
     * [Prerequisites](docs/integrate/integration-prerequisites.md)
     * [Overview](docs/integrate/overview-of-integration.md)
     * [Integration Setup](docs/integrate/configure-integrations.md)
@@ -24,20 +24,20 @@
         * [Default Link Configuration](docs/integrate/default-link-settings.md)
       * [System Configuration](docs/integrate/system-configuration.md)
       * [Excel Upload](docs/integrate/excel-upload.md)
-    * Advanced Synchronization Scenarios
+    * [Advanced Synchronization Scenarios](docs/integrate/advanced-sync-scenario.md)
       * [Comment Author Impersonation](docs/integrate/comment-author-impersonation.md)
       * ["Entity Type" and/or "Project" Change Synchronization](docs/integrate/entity-move-synchronization.md)
       * [Inline Image or File Synchronization](docs/integrate/inline-image-sync-behaviour.md)
       * [Source Delete Synchronization](docs/integrate/source-delete-synchronization.md)
     * [Integration Reconciliation](docs/integrate/reconcile.md)
-    * Monitoring and Organization
+    * [Monitoring and Organization](docs/integrate/monitoring.md)
       * [Organize Integrations](docs/integrate/folder-management.md)
       * [Merge Integrations](docs/integrate/merge.md)
       * [Using the Dashboard](docs/integrate/dashboards.md)
     * [Best Practices](docs/integrate/best-practises.md)
     * [Limitations](docs/integrate/limitations.md)
-* Manage
-     * Administrator
+* [Manage](docs/manage/manage.md)
+     * [Administrator](docs/manage/administrator.md)
         * [User Management](docs/manage/administrator/user-management.md)
         * [Login Server Management](docs/manage/administrator/login-server-management.md)
         * [Managing Licenses](docs/manage/administrator/license-management.md)
@@ -50,10 +50,10 @@
         * [Configure Socket Timeout](docs/manage/administrator/configure-socket-timeout.md)
         * [Scheduler](docs/manage/administrator/schedular.md)
         * [Log Viewer](docs/manage/administrator/log-viewer.md)
-        * User Access Control
+        * [User Access Control](docs/manage/administrator/user-access-control.md)
           * [User Role Association](docs/manage/administrator/user-role-association.md)
           * [Role Configuration](docs/manage/administrator/role-configuration.md)
-    * Advanced Utilities 
+    * [Advanced Utilities](docs/manage/advanced-utilities.md) 
         * [Count the users involved in synchronization](docs/manage/advanced-utilities/count-the-users.md)
         * [Migrating Database](docs/manage/advanced-utilities/database-migration.md)
         * [Updating Database Password](docs/manage/advanced-utilities/updating-database-password.md)
@@ -62,7 +62,8 @@
         * [Change Keystore and Private Key passwords](docs/manage/advanced-utilities/change-keystore-and-private-key-passwords.md)
         * [Secret Key Reset Utility](docs/manage/advanced-utilities/regenerate-secret-key.md)
         * [Certificate Private Key Password Encryptor Utility](docs/manage/advanced-utilities/certificate-private-key-password-encryptor-utility.md)
-    * APIs
+        * [Data Count Utility](docs/manage/advanced-utilities/data-count-utility.md)
+    * [APIs](docs/manage/api.md)
         * [Getting Started with APIs](docs/manage/api/getting-started-with-api.md)
         * [Sample Use Cases and Scripts](docs/manage/api/sample-use-cases.md)
           * [Get the project pairs configured in integration(s)](docs/manage/api/use-case-get-all-project-pairs.md)
@@ -71,13 +72,13 @@
           * [Add fields to existing Mapping](docs/manage/api/add-fields-to-mapping.md)
           * [Configure Reconciliation on existing Integration](docs/manage/api/configure-reconcile-on-exisiting-integration.md)
           * [Retrieve and Configure Integration Pair Log Settings](docs/manage/api/retrive-and-configure-integration-pair-log-setting.md)
-     *  Upgrade
+     * [Upgrade](docs/manage/upgrade-index.md)
         *  [Upgrading Application Version](docs/manage/upgrade/upgrade-application.md)
           * [Pre Migration Checklists](docs/manage/upgrade/pre-migration-checklist.md)
           * [Post Migration Checklists](docs/manage/upgrade/post-migration-checklist.md)
         *  [Taking Application Backup](docs/manage/upgrade/taking-application-backup.md)
-* Help Center
-    * FAQs
+* [Help Center](docs/help-center/help-center-index.md)
+    * [FAQs](docs/help-center/faqs.md)
         * [General](docs/help-center/faqs/general-faqs.md)
           * [What are the security aspects of on-premise deployment?](docs/help-center/faqs/general/security-aspects.md)  
           * [How to know which system/entity/version are supported ?](docs/help-center/faqs/general/supported-system-entity-version.md)  
@@ -108,7 +109,7 @@
         * [Clarity](docs/help-center/faqs/clarity-faqs.md)
           * [Which authentication modes do OpsHub Integration Manager support for Clarity?](docs/help-center/faqs/clarity/clarity-auth-types.md)  
           * [What privileges are required for synchronization?](docs/help-center/faqs/clarity/clarity-user-permission.md)  
-        * [Micro Focus ALM/QC](docs/help-center/faqs/micro-focus-faqs.md)
+        * [Micro Focus ALM/QC](docs/help-center/faqs/hp-faqs.md)
           * [In an integration where Micro Focus ALM/QC is the source system, a specific field in the target system is not getting updated as per the updates in the source system](docs/help-center/faqs/hp/field-not-updated-hp-source.md)  
           * [Updated comment in Micro Focus ALM/QC is added as a new comment in the target system](docs/help-center/faqs/hp/present-comment-sync-to-target-system.md)  
           * [How to create a folder structure in Micro Focus QC/ALM based on the hierarchy in the source system?](docs/help-center/faqs/hp/folder-structure-on-information-from-source-system.md)  
@@ -163,13 +164,13 @@
           * [How to upgrade/migrate the application?](docs/help-center/faqs/installer/how-to-upgrade-oim.md)  
         * [Enterprise Architect](docs/help-center/faqs/enterprise-architect-faqs.md)
           * [An excessive number of EA connections causes slowness in the system and high RAM usage](docs/help-center/faqs/enterprise-architect/an-excessive-number-of-ea-connections-causes-slowness-in-the-system-and-high-ram-usage.md)  
-  * Troubleshooting
+  * [Troubleshooting](docs/help-center/troubleshooting-index.md)
       * [System Information](docs/help-center/troubleshooting/system-information.md)  
       * [Manage Integration Failures](docs/help-center/troubleshooting/manage-integration-failures.md)  
       * [Configure Failure Notification](docs/help-center/troubleshooting/configure-post-failure-notification.md)  
       * [Integration Sync Report](docs/help-center/troubleshooting/integration-sync-report.md)  
       * [Integration Sync Logs](docs/help-center/troubleshooting/integration-sync-logs.md)
-      * Errors
+      * [Errors](docs/help-center/troubleshooting/errors/errors-index.md)
           * [Aras](docs/help-center/troubleshooting/errors/aras-error-solutions.md)
               * [OH-Aras-1502](docs/help-center/troubleshooting/errors/aras/oh-aras-1502.md)
               * [OH-Aras-1000](docs/help-center/troubleshooting/errors/aras/oh-aras-1000.md)
@@ -298,7 +299,7 @@
   * [Jira Align](docs/connectors/jira-align.md)
       * [Sample JSON File for Jira Align](docs/connectors/sample-json-file-for-jira-align.md) 
   * [Jira Cloud/Data Center](docs/connectors/jira.md)
-  * [Jira Zephyr](docs/connectors/jira-zephyr.md)
+  * [Jira Zephyr](docs/connectors/jirazephyrscale.md)
       * [Jira Zephyr Sample JSON File](docs/connectors/sample-json-file-for-jira-zephyr.md) 
   * [Microsoft Dynamics 365](docs/connectors/msdynamics.md)
   * [OpenText ALM Octane](docs/connectors/almoctane.md)
@@ -322,9 +323,9 @@
   * [Tricentis qTest](docs/connectors/tricentis-qTest.md)
   * [Tricentis Tosca](docs/connectors/tricentis-tosca.md)
   * [Verisium Manager](docs/connectors/vManager.md)
-  * [Windchill](docs/connectors/windchill-rv-s.md)
+  * [Windchill](docs/connectors/windchillrv&s.md)
   * [Zendesk](docs/connectors/zendesk.md)
-* Connector SDK
+* [Connector SDK](docs/connector-sdk/connector-sdk-index.md)
     * [Getting Started](docs/connector-sdk/getting-started.md)
       * [SDK Best Practices](docs/connector-sdk/sdk-best-practices.md)
       * [APIs Required for Each Feature](docs/connector-sdk/apis-required-for-each-feature.md)
@@ -368,8 +369,8 @@
     * [Register Connectors](docs/connector-sdk/register-connectors.md)
     * [Developer Notes](docs/connector-sdk/developer-notes.md)   
 * [Release Notes](docs/release-notes/release-notes.md)
-* Knowledge Resources
-    *  Integration Combination Examples
+* [Knowledge Resources](docs/knowledge-resources/knowledge-resource-index.md)
+    *  [Integration Combination Examples](docs/knowledge-resources/integration-combination-examples/integration-combination-examples.md)
         * [Azure DevOps Server (TFS) – Micro Focus ALM Integration](docs/knowledge-resources/integration-combination-examples/azure-devops-server-and-micro-focus-alm-integration.md)
         * [Azure DevOps Services (VSTS) – Micro Focus ALM Integration](docs/knowledge-resources/integration-combination-examples/azure-devops-services-and-micro-focus-alm-integration.md)
         * [IBM DOORS – Jira Integration](docs/knowledge-resources/integration-combination-examples/ibm-doors-and-jira-integration.md)
@@ -380,8 +381,10 @@
         * [Micro Focus ALM – Tricentis qTest Integration](docs/knowledge-resources/integration-combination-examples/micro-focus-alm-and-tricentis-qTest-integration.md)
         * [ServiceNow – Azure DevOps Services (VSTS) Integration](docs/knowledge-resources/integration-combination-examples/servicenow-azure-devops-services-integration.md)
         * [TestRail – Jama Integration](docs/knowledge-resources/integration-combination-examples/jama-tr-integration.md)
-        * [Jira Xray – Codebeamer Integration](docs/knowledge-resourcess/integration-combination-examples/jira-xray-and-codebeamer-integration.md)
+        * [Jira Xray – Codebeamer Integration](docs/knowledge-resources/integration-combination-examples/jira-xray-and-codebeamer-integration.md)
         * [ETM – Keyword Configuration](docs/knowledge-resources/integration-combination-examples/how-to-configure-keywords.md)
     * [Videos](docs/knowledge-resources/videos.md)
     * [Webinars](docs/knowledge-resources/webinars.md)
     
+  
+
