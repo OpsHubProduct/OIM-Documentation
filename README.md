@@ -1,15 +1,18 @@
 ---
 icon: hand-wave
-cover: ./docs/assets/Site_Images/Background2.png
+cover: ./docs/assets/Site_Images/Background.png
 coverY: 0
 layout:
   width: wide
+  cover:
+    visible: true
+    size: full
   title:
     visible: false
   description:
     visible: false
   tableOfContents:
-    visible: true
+    visible: false
   outline:
     visible: false
   pagination:
@@ -18,22 +21,7 @@ layout:
     visible: false
 ---
 
-{% columns fullWidth="true" %}
-{% column width="70%" valign="middle" %}
-
-## <mark style="color:orange;">**WELCOME TO THE**</mark>
-
-# **<code class="expression">space.vars.CAPS_SITENAME</code> DOCUMENTATION**
-This site provides complete and up-to-date documentation to help you install, configure, and operate <code class="expression">space.vars.SITENAME</code>(<code class="expression">space.vars.PRODUCT_SHORTNAME</code>) effectively. Whether you're setting up your first integration, developing custom connectors, or troubleshooting issues, this documentation is structured to guide you through every step.
-{% endcolumn %}
-
-{% column width="30%" valign="middle" %}
-<figure><img src="./docs/assets/Site_Images/SideLogo.png" alt="" width="239"><figcaption></figcaption></figure>
-
-{% endcolumn %}
-{% endcolumns %}
-
-
+<p align="center">This site provides complete and up-to-date documentation to help you install, configure, and operate <code class="expression">space.vars.SITENAME</code>(<code class="expression">space.vars.PRODUCT_SHORTNAME</code>) effectively. Whether you're setting up your first integration, developing custom connectors, or troubleshooting issues, this documentation is structured to guide you through every step.</p>
 
 ***
 
@@ -62,7 +50,7 @@ This site provides complete and up-to-date documentation to help you install, co
          <td><a href="docs/help-center/help-center-index.md">Help Center</a></td>
       </tr>
       <tr>
-         <td align="center"><h3><mark style="color:#233C5D">Supported Connector</mark></h3></td>
+         <td align="center"><h3><mark style="color:#233C5D">Supported Connectors</mark></h3></td>
          <td><a href="docs/assets/Site_Images/Supported_Connectors.png">Supported Connectors</a></td>
          <td><a href="docs/supported-connectors/systems-supported.md">Supported Connectors</a></td>
       </tr>

@@ -12,7 +12,7 @@
     </tr>
     <tr>
       <td align="center">🛠️ <strong>Troubleshooting</strong></td>
-      <td><a href="troubleshooting.md">Troubleshooting</a></td>
+      <td><a href="troubleshooting-index.md">Troubleshooting</a></td>
     </tr>
     <tr>
       <td align="center">✉️ <strong>Contact Us</strong></td>
