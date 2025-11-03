@@ -1,10 +1,10 @@
 # Overview
 
 * This utility counts the total number of issues across one or more projects. It supports the following systems:
-  * Rally ( Cloud )
-  * Jira ( Cloud, DC: 8.x to 11.x )
-  * OpenText ALM ( 12.x to 24.x )
-  * Helix ALM ( 2021, 2024 )
+  * **Rally ( Cloud )**
+  * **Jira ( Cloud, DC: 8.x to 11.x )**
+  * **OpenText ALM ( 12.x to 24.x )**
+  * **Helix ALM ( 2021, 2024 )**
   
 
 * **After Downloading the Utility**
