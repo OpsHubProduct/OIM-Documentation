@@ -1,7 +1,6 @@
 # Prerequisites
 
 ## User privileges
-
 * Create one user of Windchill RV&S, dedicated to <code class="expression">space.vars.SITENAME</code>. User should not be used to do any operations from system's user interface.
 * User should have access to all the projects that needs to be integrated.
 * Integration user should at least have the following ACL permissions:
