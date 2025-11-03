@@ -109,7 +109,7 @@
         * [Clarity](docs/help-center/faqs/clarity-faqs.md)
           * [Which authentication modes do OpsHub Integration Manager support for Clarity?](docs/help-center/faqs/clarity/clarity-auth-types.md)  
           * [What privileges are required for synchronization?](docs/help-center/faqs/clarity/clarity-user-permission.md)  
-        * [Micro Focus ALM/QC](docs/help-center/faqs/micro-focus-faqs.md)
+        * [Micro Focus ALM/QC](docs/help-center/faqs/hp-faqs.md)
           * [In an integration where Micro Focus ALM/QC is the source system, a specific field in the target system is not getting updated as per the updates in the source system](docs/help-center/faqs/hp/field-not-updated-hp-source.md)  
           * [Updated comment in Micro Focus ALM/QC is added as a new comment in the target system](docs/help-center/faqs/hp/present-comment-sync-to-target-system.md)  
           * [How to create a folder structure in Micro Focus QC/ALM based on the hierarchy in the source system?](docs/help-center/faqs/hp/folder-structure-on-information-from-source-system.md)  
