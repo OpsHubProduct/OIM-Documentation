@@ -299,6 +299,11 @@ layout:
           <td><a href="windchillrv&s.md">windchillrv&s.md</a></td>
         </tr>
         <tr>
+          <td align="center"><mark style="color:#555555"><strong>Windchill PLM</strong></mark></td>
+          <td><a href="../assets/connector/122_windchill_plm.png">Windchill PLM</a></td>
+          <td><a href="plm.md">plm.md</a></td>
+        </tr>
+        <tr>
           <td align="center"><mark style="color:#555555"><strong>Zendesk</strong></mark></td>
           <td><a href="../assets/connector/59_zendesk.png">Zendesk</a></td>
           <td><a href="zendesk.md">zendesk.md</a></td>
