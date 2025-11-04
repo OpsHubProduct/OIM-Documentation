@@ -336,7 +336,18 @@ To configure criteria in codebeamer/codebeamerX, integration needs to be created
 25. For **Test Sets** entity, it is recommended to configure **"Test Cases"** link with the setting:
     **Fail if not found**
     **Reason**: Due to API limitations, other-way link operation is not supported.
-
+26. Creating a Duplicate Item:
+    * When duplicating an item in Codebeamer, any inline files embedded within wiki fields are copied as reference links in the new item. These references point to the original files in the source item.
+    * Behavior of <code class="expression">space.vars.SITENAME</code>:
+        * When syncing the duplicated entity to the target system, <code class="expression">space.vars.SITENAME</code> retrieves the actual images or files linked in the original item and syncs them to the corresponding target entity of the duplicated item.
+    * Modifying the Original Entity:
+      * If an inline file is removed from the original item, the reference to that file in the duplicated item becomes invalid.
+      * In this case, with the sync of the original entity <code class="expression">space.vars.SITENAME</code> will remove the inline file from the corresponding target entity.
+      * However, the duplicated entity itself remains unchanged, meaning it will not be updated unless explicitly modified by the user.
+    * Modifying the Duplicated Entity:
+        * If a user updates the wiki field in the duplicated item (e.g., by modifying the reference to the inline file), <code class="expression">space.vars.SITENAME</code> will sync the changes to the target system.
+        * Importantly, the file attachment itself will not be removed from the target system entity, as it was already removed from the original entity.
+      
 # Appendix
 
 ## Find version of codebeamer/codebeamer X Instance
