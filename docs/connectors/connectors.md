@@ -188,6 +188,11 @@ layout:
           <td><a href="../assets/connector/6_zephyr.png">Jira Zephyr</a></td>
           <td><a href="jirazephyrscale.md">Zephyr</a></td>
         </tr>
+ <tr>
+          <td align="center"><mark style="color:#555555"><strong>Midas</strong></mark></td>
+          <td><a href="../assets/connector/119_midas.png">Midas</a></td>
+          <td><a href="Midas.md">Midas.md</a></td>
+        </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Microsoft Dynamics 365</strong></mark></td>
           <td><a href="../assets/connector/110_msd365.png">Microsoft Dynamics 365</a></td>
