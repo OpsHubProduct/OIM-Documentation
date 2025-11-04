@@ -4,7 +4,7 @@
 
 ### Creating an Integration User
 
-Before you begin, you need to set up a dedicated user account in Windchill PLM that will be used specifically for this integration. This dedicated user is called an "Integration User".
+Before you begin, create a dedicated user account in Windchill PLM that will be used specifically for this integration. This dedicated user is called an "Integration User" . This dedicated user is called an "Integration User".
 - This user will handle all data synchronization between Windchill PLM and your other system
 - This user shouldn't perform any other action from Windchill PLM's user interface
 
@@ -37,15 +37,15 @@ As you kickstart the integration, the user must first configure Windchill PLM sy
 
 ### Form Fields Explained
 
-| **Field Name**               | **What to Enter**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **System**                   | Select **Windchill PLM** from the dropdown list                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **System Name**              | Give this configuration a unique name (e.g., "Production Windchill" or "Windchill Main"). This helps you identify this connection later                                                                                                                                                                                                                                                                                                                                                                         |
-| **Instance URL**             | Provide Server URL of the Windchill instance. This URL will be used for communicating with PLM system API. The format of the URL would be: `http://hostname:port/` or `https://hostname:port/`<br><br>**Example**: `https://windchill.yourcompany.com/`                                                                                                                                                                                                                                                         |
-| **Username**                 | Provide the username of a dedicated Windchill PLM user who will be used for communicating with the system. This user should have the required privileges to access the end system. For more details on the required privileges, refer to [User privileges](#permissions-Required-for-integration-user-in-windchill-plm) section.                                                                                                                                                                                |
-| **Password**                 | Provide the password of the user added in **Username**                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Metadata Details**         | This is an advanced field for customizing how fields and relationships work. See the [Advanced Configuration](#advanced-configuration-metadata-details) section below for details                                                                                                                                                                                                                                                                                                                               |
-| **Base URL for Remote Link** | This is the URL that will be used when creating clickable links back to Windchill PLM.<br><br>**When to use this**: If your Windchill PLM has different URLs for internal use (API) versus external access (user interface), enter the user-facing URL here.<br><br>**Example**: If your API URL is `https://api.windchill.com/` but users access Windchill at `https://windchill.yourcompany.com/`, enter the second URL here.<br><br>If left empty, the system will use the Instance URL for generating links |
+| **Field Name**               | *When is the field visible** | **What to Enter**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|------------------------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System**                   | Always                       | Select **Windchill PLM** from the dropdown list                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **System Name**              | Always                       | Give this configuration a unique name (e.g., "Production Windchill" or "Windchill Main"). This helps you identify this connection later                                                                                                                                                                                                                                                                                                                                                                  |
+| **Instance URL**             | Always                       | Provide Server URL of the Windchill instance. This URL will be used for communicating with PLM system API. The format of the URL would be: `http://hostname:port/` or `https://hostname:port/`<br><br>**Example**: `https://windchill.yourcompany.com/`                                                                                                                                                                                                                                                  |
+| **Username**                 | Always                       | Provide the username of a dedicated Windchill PLM user who will be used for communicating with the system. This user should have the required privileges to access the end system. For more details on the required privileges, refer to [User privileges](#permissions-Required-for-integration-user-in-windchill-plm) section.                                                                                                                                                                         |
+| **Password**                 | Always                       | Provide the password of the user added in **Username**                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Metadata Details**         | Always                       | This is an advanced field for customizing how fields and relationships work. This data is pre-populated in JSON format according to our knowledge of system metadata (entity type, field attributes, relationship...). See the [Advanced Configuration](#advanced-configuration-metadata-details) section below for details                                                                                                                                                                              |
+| **Base URL for Remote Link** | Always                       | This URL is used to generate links that open the related item in Windchill PLM.<br><br>**When to use this**: If your Windchill PLM has different URLs for internal use (API) versus external access (user interface), enter the user-facing URL here.<br><br>**Example**: If your API URL is `https://api.windchill.com/` but users access Windchill at `https://windchill.yourcompany.com/`, enter the second URL here.<br><br>If left empty, the system will use the Instance URL for generating links |
 
 
 ### Advanced Configuration: Metadata Details
@@ -97,7 +97,7 @@ The Metadata Details field accepts configuration in JSON format. Here's a templa
 ```
 
 ### JSON Configuration Parameters
-
+> **Note**: Refer to [Get Internal Field Names for Windchill PLM Entities](#get-internal-field-names-for-windchill-plm-entities) to learn how to retrieve the exact entity and field internal names for your Windchill instance.
 #### Entity Level
 
 **`internalName`** (at entity level)
@@ -147,7 +147,6 @@ The Metadata Details field accepts configuration in JSON format. Here's a templa
 - **`reverseLinkType`**: The type of link from the other item back to this one
 
 > **Important**: You only need to include fields in the JSON that you want to customize. Standard fields that work correctly don't need to be listed.
-> **Note**: Refer to [Get Internal Field Names for Windchill PLM Entities](#get-internal-field-names-for-windchill-plm-entities) to learn how to retrieve the exact entity and field internal names for your Windchill instance.
 
 ### JSON Configuration Examples:
 1) Make the `status` field writable (set `readOnly` to `false`):
@@ -216,6 +215,7 @@ The Metadata Details field accepts configuration in JSON format. Here's a templa
 Currently, this integration supports:
 
 - **Issue** (Soft types / Subtypes of Problem Reports)
+>**Note**: Entity support can be continuously enhanced, and additional Windchill PLM objects can be incorporated based on evolving business needs/priorities
 ---
 
 # Mapping Configuration
@@ -238,9 +238,10 @@ Set a time to synchronize data between Windchill PLM and the other system to be 
 <p><img alt="Windchill PLM Integration Config Screenshot" src="../assets/PLMIntegrationConfig.png" width="2200"/></p>
 
 
-### Setting Up Synchronization Filters (Criteria Configuration)
+### Criteria Configuration
 
-You may want to synchronize only specific items from Windchill PLM, rather than everything. For example, you might only want to sync Issues with a certain priority.
+If the user wants to specify conditions for synchronizing an entity from Windchill PLM as source system to the other system, the criteria must be configured. Navigate to Criteria Configuration section on [Integration Configuration](../integrate/integration-configuration.md) page to learn in detail about Criteria Configuration.
+For example, you might only want to sync Issues with a certain priority.
 
 **How to set up filters:**
 
@@ -281,7 +282,11 @@ For more information about query options, see [Windchill PLM's Query Parameters 
 
 ### Target Lookup Configuration
 
-Before creating a new item in Windchill PLM, you might want to check if it already exists. This prevents duplicate items from being created.
+* Provide Query in Target Search Query field such that it is possible to search the entity in the Windchill PLM as the target system. In the target search query field, the user can provide a placeholder for the source system's field value in the '@'.
+
+* To learn in detail about how to configure Target LookUp, refer to **Search in Target Before Sync** section on [Integration Configuration](../integrate/integration-configuration.md) page.
+
+* Overall, Target LookUp Query is similar to [Criteria configuration](#criteria-configuration), except that the value part contains a field name with '@' instead of static value.
 
 **How it works:**
 
@@ -305,17 +310,18 @@ In this example:
 
 # Known Behaviors and Limitations
 
-- Each synchronization run captures the latest version of the item at that time, not its full history
-- Some fields may appear as read-only in the mapping interface, but you can override this in the Metadata Details JSON if the field can actually be updated via APIs. Example, Status field.
-- Windchill does not report whether a field supports multiple values. Use the JSON configuration to specify the correct behavior for the field.
-- The integration can only sync attached files that are uploaded to an item using **Attach new local file** option.
-- Comments and discussions are not synchronized
-- While you can read configured relationships, you cannot create or modify relationships through the integration
-- New items created by the integration are placed in the base folder of the product container
-- The folder field is read-only; items cannot be moved to different folders via the integration
-- Only fields that appear in an item's details tab are available for synchronization
-- The Metadata Details JSON cannot introduce entirely new entity types to Windchill, It can only modify or add fields to existing entity types, along with relationships.
-- Product names containing a single quote (`'`) are not supported
+* History-based synchronization is currently not supported. Each synchronization run captures the latest version of an item available at that time.
+* The integration synchronizes only those attachments that are uploaded using the Attach new local file option.
+* Comments and discussions are currently not synchronized.
+* Relationship information can be read and synchronized, but new relationships/links cannot be created or modified through the integration.
+* Any new items created by the integration are placed in the base folder of the product container.
+  * Once item created in base folder, items cannot be moved to a different folder through the integration.
+* Currently, fields that appear in an **Item's Details** tab will be synchronized.
+* Windchill does not always indicate whether a field supports multiple values. You can define the correct behavior for such fields in the Metadata Details JSON.
+* Some fields may appear read-only in the mapping interface. However, if the Windchill API allows updates (for example, the Status field), you can override this behavior in the Metadata Details JSON configuration.
+* The Metadata Details JSON cannot introduce entirely new entity types to Windchill, It can only modify or add fields to existing entity types, along with relationships.
+  * User can only configure Issue entity and its fields/relationships through Metadata Details JSON right now.
+* Product names containing a single quote (`'`) are not supported
 
 ---
 
@@ -326,7 +332,34 @@ In this example:
 To determine the exact internal names of Entity and Fields for your Windchill PLM instance:
 
 1. Access the Windchill REST API documentation at your Windchill instance.
-2. Use the `GetWindchillMetaInfo()` API call (see Windchill REST API docs).
+2. Use the `GetWindchillMetaInfo()` API call [see Windchill REST API docs](https://support.ptc.com/help/windchill_rest_services/r2.7/en/#page/windchill_rest_services/WCCG_RESTAPIsAccessPTCCommonDomainsfunctions.html).
 3. Look for these values in the response:
    * **EntityType** → use as `entities[].internalName`
    * **PropertyName** → use as `fields.system[].internalName`
+* Example, making mentioned api call for Issue entity user would see response like below:
+```json
+{
+  "EntityType": "PTC.ChangeMgmt.Issue",
+  "BaseType": "PTC.ChangeMgmt.ProblemReport",
+  "DisplayName": "Issue",
+  "InternalName": "com.Test.Issue",
+  .
+  .
+  .
+  "PropertyInfo": [
+    {
+      "PropertyName": "State",
+      "DisplayName": "State",
+      "InternalName": "state.state",
+      "DataType": "PTC.EnumType",
+      "ReadOnly": true,
+      .
+      .
+      .
+    }
+  ]
+}
+```
+* The following mappings were determined:
+  * `entities[].internalName` will be `PTC.ChangeMgmt.Issue`
+  * `fields.system[].internalName` will be `State`
