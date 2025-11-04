@@ -294,9 +294,14 @@ layout:
           <td><a href="vManager.md">vManager.md</a></td>
         </tr>
         <tr>
-          <td align="center"><mark style="color:#555555"><strong>Windchill RV&S</strong></mark></td>
+          <td align="center"><mark style="color:#555555"><strong>Windchill</strong></mark></td>
           <td><a href="../assets/connector/63_windchill_rv_s.png">Windchill RV&S</a></td>
           <td><a href="windchillrv&s.md">windchillrv&s.md</a></td>
+        </tr>
+        <tr>
+          <td align="center"><mark style="color:#555555"><strong>Windchill PLM</strong></mark></td>
+          <td><a href="../assets/connector/122_windchill_plm.png">Windchill PLM</a></td>
+          <td><a href="plm.md">plm.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Zendesk</strong></mark></td>

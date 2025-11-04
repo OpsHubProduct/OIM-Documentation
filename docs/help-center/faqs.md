@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <td align="center"><mark style="color:#555555"><strong>Micro Focus ALM/QC</strong></mark></td>
-      <td><a href="faqs/micro-focus-faqs.md">Micro Focus ALM/QC</a></td>
+      <td><a href="faqs/hp-faqs.md">Micro Focus ALM/QC</a></td>
     </tr>
     <tr>
       <td align="center"><mark style="color:#555555"><strong>Jira</strong></mark></td>

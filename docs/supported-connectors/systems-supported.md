@@ -536,6 +536,13 @@ Given below are the systems supported currently by <code class="expression">spac
         </tr>
         <tr>
             <td>73</td>
+            <td>Windchill PLM*</td>
+            <td>13.x</td>
+            <td>Issue [Soft type/Subtype of Problem Reports]</td>
+            <td>PDM Link</td>
+        </tr>
+        <tr>
+            <td>74</td>
             <td>Zendesk</td>
             <td>Cloud</td>
             <td>Zendesk Ticket</td>

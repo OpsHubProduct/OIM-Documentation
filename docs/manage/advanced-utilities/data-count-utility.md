@@ -1,10 +1,10 @@
 # Overview
 
 * This utility counts the total number of issues across one or more projects. It supports the following systems:
-  * Rally
-  * Jira
-  * OpenText ALM
-  * Helix ALM
+  * **Rally ( Cloud )**
+  * **Jira ( Cloud, DC: 8.x to 11.x )**
+  * **OpenText ALM ( 12.x to 24.x )**
+  * **Helix ALM ( 2021, 2024 )**
   
 
 * **After Downloading the Utility**
@@ -111,7 +111,7 @@ The utility supports both **Data Center (DC)** and **Cloud** instances for Jira.
     <img src="../../assets/OCU_JIRA_UserName.png" width="950" />
   </p>
 
-* Provide the API token for **Cloud** instances and the Password for **Data Center (DC)** instances.  
+* Provide the API token for **Cloud** instances, or the Password/API token for **Data Center (DC)** instances.  
   * Refer to the screenshot below:  
 
   <p align="center">
