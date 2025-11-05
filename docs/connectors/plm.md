@@ -222,7 +222,7 @@ Currently, this integration supports:
 
 Map the fields between Windchill PLM and the other system to be integrated to ensure that the data between both the systems synchronize correctly. Refer to [Mapping Configuration](../integrate/mapping-configuration.md) to learn the step-by-step process to configure mapping between the systems.
 
-<p align="center"><img alt="Windchill PLM Mapping Configuration Screenshot" src="../assets/PLMMappingConfiguration.png" width="1200"/></p>
+<p align="center"><img alt="Windchill PLM Mapping Configuration Screenshot" src="../assets/PLMMappingConfiguration.png" width="1500"/></p>
 
 ---
 
@@ -230,7 +230,7 @@ Map the fields between Windchill PLM and the other system to be integrated to en
 
 Set a time to synchronize data between Windchill PLM and the other system to be integrated. Also, define parameters and conditions (if any) for integration. Refer to [Integration Configuration](../integrate/integration-configuration.md) to learn the step-by-step process to configure the integration between two systems.
 
-<p align="center"><img alt="Windchill PLM Integration Config Screenshot" src="../assets/PLMIntegrationConfig.png" width="2200"/></p>
+<p align="center"><img alt="Windchill PLM Integration Config Screenshot" src="../assets/PLMIntegrationConfig.png" width="1500"/></p>
 
 
 ### Criteria Configuration
