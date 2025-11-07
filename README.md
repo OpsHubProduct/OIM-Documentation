@@ -40,6 +40,11 @@ layout:
          <td><a href="docs/getting-started/getting-started.md">getting-started</a></td>
       </tr>
       <tr>
+         <td align="center"><h3><mark style="color:#233C5D">Integrate</mark></h3></td>
+         <td><a href="docs/assets/Site_Images/integrate.svg">Integrate</a></td>
+         <td><a href="docs/integrate/integrate.md">Integrate</a></td>
+      </tr>
+      <tr>
          <td align="center"><h3><mark style="color:#233C5D">Manage</mark></h3></td>
          <td><a href="docs/assets/Site_Images/Manage.png">Manage</a></td>
          <td><a href="docs/manage/manage.md">Manage</a></td>
@@ -73,11 +78,6 @@ layout:
          <td align="center"><h3><mark style="color:#233C5D">Knowledge Resources</mark></h3></td>
          <td><a href="docs/assets/Site_Images/Knowledge_Resources.png">Knowledge Resources</a></td>
          <td><a href="docs/knowledge-resources/knowledge-resource-index.md">Knowledge Resource</a></td>
-      </tr>
-      <tr>
-         <td align="center"><h3><mark style="color:#233C5D">Contact Us</mark></h3></td>
-         <td><a href="docs/assets/Site_Images/Contact_US.png">Contact US</a></td>
-         <td><a href="https://www.opshub.com/contact-us/">Contact Us</a></td>
       </tr>
    </tbody>
 </table>  
