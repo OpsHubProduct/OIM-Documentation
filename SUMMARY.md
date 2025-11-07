@@ -301,6 +301,7 @@
   * [Jira Cloud/Data Center](docs/connectors/jira.md)
   * [Jira Zephyr](docs/connectors/jirazephyrscale.md)
       * [Jira Zephyr Sample JSON File](docs/connectors/sample-json-file-for-jira-zephyr.md) 
+  * [Midas](docs/connectors/Midas.md)
   * [Microsoft Dynamics 365](docs/connectors/msdynamics.md)
   * [OpenText ALM Octane](docs/connectors/almoctane.md)
   * [OpenText ALM Quality Center](docs/connectors/micro-focus-alm-qc.md)
