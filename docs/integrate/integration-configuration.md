@@ -226,6 +226,9 @@ When the Entity Type changes in the N side configuration, OIM will use the **Rou
 > * If a single source entity is required to stay synchronized with multiple target entity types simultaneously, do not use Rule-Based Routing. Under rule-based routing, a source entity can be in sync with only one target entity type at a time, determined by the rule it matches.
 
 
+> **Known Behavior for Rule Based and Duplicate Configuration** 
+> * When some target entity types are intended to convert into each other (e.g., Bug ↔ Story ↔ Epic) while others are meant to remain as duplicates (e.g., Task), it is recommended not to configure the duplicate types under the same source–target system pair used for the rule-based configuration.
+    This separation ensures that conversion behavior is applied only to convertible entity types and does not inadvertently affect duplicate entities.
 
 **Know Behaviors**
 
