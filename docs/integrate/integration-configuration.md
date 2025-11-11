@@ -167,6 +167,76 @@ The scenario mentioned above will be the expected behavior as entity **C2** does
 
 > **Note** : **If integration gets deleted and created with the same configuration, the older criteria data synced by deleted integration will not remain in sync.**
 
+# Rule Based Routing
+
+Rule based conditional movement is used when one entity type in the source system needs to synchronize with different entity types in the target system, depending on the value of a partitioning field.
+Although the source entity type remains the same, its business meaning changes when its field values changes, and the target entity must shift to the corresponding entity type without creating duplicates.
+
+**Example Scenario**
+
+Consider a source system where all items are created as Request, and the field **requestType** determines the entity type to be created in target.
+
+| **requestType Value**  | **Target Entity Type** |
+|------------------------|------------------------|
+| Bug                    | Bug                    |
+| Feature Request        | Feature                |
+| Change Request         | Change Request         |    
+
+* When a Request is synced with requestType = Bug, OIM creates a Bug in the target.
+* If the user later updates requestType = Feature Request, the same target Bug is converted to a Feature as per Entity Type and Project Movement Behavior.
+* If the user changes the target’s entity type, OIM updates the source requestType field value to maintain consistency.
+
+**Steps to Enable Rule Based Routing Configuration**
+
+* Click the icon shown in the image below for enabling **Rule Based Routing Configuration**.
+<p align="center">
+  <img src="../assets/RuleBasedConfigEnable.png" width="900" />
+</p>
+
+* On clicking the plus icon, below structure will be visible, provide the entity type and mapping values.
+<p align="center">
+  <img src="../assets/Configure_One_To_Many_Tree.png" width="900" />
+</p>
+
+This 1-to-many configuration represents that  a single source entity type can synchronize with multiple target entity types.
+
+Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
+
+When an entity meets the criteria of a particular row, it is synchronized to the corresponding target entity type. If the routing field value later changes and matches another row, the entity is automatically moved to that new target entity type based on entity type and project change behavior.
+* To Configure routing rules click on the <img src="../assets/routing_rules_icon.png" width="20" /> symbol, below screen will appear.
+<p align="center">
+  <img src="../assets/Routing_criteria_field_screen.png" width="900" />
+</p>
+
+In the Routing Criteria Section provide the routing query in the [Opshub Query Format](opshub-query-format.md).
+
+The **Routing criteria field values** table specifies the routing field values used for 1-N configurations. Each value must satisfy the OpsHub Query Format and must be a valid subset of the allowed criteria,
+
+Example: Routing criteria is provided like: {"condition": "IN","field": "priority","values": ["High", "Medium"] }, only 'High' and 'Medium' are permitted to be provided as default value for priority.
+
+When the Entity Type changes in the N side configuration, OIM will use the **Routing criteria field values** table to change the routing field of the 1 side entity.
+
+
+> **Note** : 
+> * The fields used in the Routing Query must not be mapped in the 1-side configuration direction in the mapping, as OIM manages their synchronization based on the default values defined in the Routing Criteria Field Values table.
+> * The default values provided for routing fields must satisfy the routing query to ensure consistent behavior.
+> * All rows within a single rule-based 1-to-N configuration must define routing queries on the same set of fields.
+> * Routing rules must be mutually exclusive. No overlap is allowed between rows; each routing rule should be independent and uniquely identifiable.
+> * Routing rules must be configured for every row in the 1-to-N configuration.
+> * If a single source entity is required to stay synchronized with multiple target entity types simultaneously, do not use Rule-Based Routing. Under rule-based routing, a source entity can be in sync with only one target entity type at a time, determined by the rule it matches.
+
+
+> **Known Behavior for Rule Based and Duplicate Configuration** 
+> * When some target entity types are intended to convert into each other (e.g., Bug ↔ Story ↔ Epic) while others are meant to remain as duplicates (e.g., Task), it is recommended not to configure the duplicate types under the same source–target system pair used for the rule-based configuration.
+    This separation ensures that conversion behavior is applied only to convertible entity types and does not inadvertently affect duplicate entities.
+
+**Know Behaviors**
+
+* Changing the direction of any row within a rule-based configuration will automatically update the direction for all rows in that rule-based configuration.
+* Actions such as Activate, Deactivate, Execute Integration, Delete Job, etc., performed on one direction will impact all rows configured in that direction.
+* Enabling reconciliation for any row in a rule-based configuration will enable reconciliation for all rows in that rule-based configuration for the given direction.
+* During reconciliation, if the job completes for one row, you cannot switch to Integrate mode until reconciliation is completed for all rows.
+* If an entity processed through a rule-based configuration meets multiple routing rules or no routing rule at all, OIM will throw a processing failure.
 # Advance Settings
 
 Here is the video on Advanced Configuration settings:
