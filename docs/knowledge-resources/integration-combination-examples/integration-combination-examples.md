@@ -10,3 +10,4 @@
 - [TestRail – Jama Integration](jama-tr-integration.md)  
 - [Jira Xray – Codebeamer Integration](jira-xray-and-codebeamer-integration.md)  
 - [ETM – Keyword Configuration](how-to-configure-keywords.md)  
+- [Jira Zephyr Shared Step Synchronization configuration](Jira-zephyr-shared-step-configuration.md)
