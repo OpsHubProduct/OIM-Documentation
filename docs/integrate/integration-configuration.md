@@ -203,7 +203,7 @@ This 1-to-many configuration represents that  a single source entity type can sy
 Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
 
 When an entity meets the criteria of a particular row, it is synchronized to the corresponding target entity type. If the routing field value later changes and matches another row, the entity is automatically moved to that new target entity type based on entity type and project change behavior.
-* To Configure routing rules click on the <span><img src="../assets/routing_rules_icon.png" width="20" height="20" /></span> symbol, below screen will appear.
+* To Configure routing rules click on the ![defaultemapping](../assets/routing_rules_icon.png) symbol, below screen will appear.
 <p align="center">
   <img src="../assets/Routing_criteria_field_screen.png" width="900" />
 </p>
