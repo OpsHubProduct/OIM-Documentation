@@ -71,7 +71,7 @@ layout:
       </tr>
       <tr>
          <td align="center"><h3><mark style="color:#233C5D">Knowledge Resources</mark></h3></td>
-         <td><a href="docs/assets/Site_Images/Release_Note.svg">Knowledge Resources</a></td>
+         <td><a href="docs/assets/Site_Images/Knowledge_Resources.svg">Knowledge Resources</a></td>
          <td><a href="docs/knowledge-resources/knowledge-resource-index.md">Knowledge Resource</a></td>
       </tr>
       <tr>
