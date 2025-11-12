@@ -384,6 +384,7 @@
         * [TestRail – Jama Integration](docs/knowledge-resources/integration-combination-examples/jama-tr-integration.md)
         * [Jira Xray – Codebeamer Integration](docs/knowledge-resources/integration-combination-examples/jira-xray-and-codebeamer-integration.md)
         * [ETM – Keyword Configuration](docs/knowledge-resources/integration-combination-examples/how-to-configure-keywords.md)
+        * [Zephyr - Shared Step Configuration](docs/knowledge-resources/integration-combination-examples/Jira-zephyr-shared-step-configuration.md)
     * [Videos](docs/knowledge-resources/videos.md)
     * [Webinars](docs/knowledge-resources/webinars.md)
     
