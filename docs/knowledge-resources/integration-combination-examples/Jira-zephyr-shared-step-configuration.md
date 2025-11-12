@@ -38,6 +38,10 @@ To synchronize linked test case steps from **Zephyr Scale** to **ETM**, follow t
     Therefore, while synchronizing a test case to a Test Script, if <code class="expression">space.vars.SITENAME</code> finds a linked test case, it can be replaced with a keyword.
 2. Download the customized workflow from below  
 {% file src="../../assets/Files/Custom Integration Workflow For Shared Step.xml" %}
+Custom Integration Workflow For Shared Step
+{% endfile %}  
+
+
    > **Note:**  
    > The attached workflow can be directly used as-is in this case. The parameters of the function `EaiUtility.handleStepFromSharedStepToSharedStep` are described as follows:
    > - **steps** → All the steps are set in this field.
