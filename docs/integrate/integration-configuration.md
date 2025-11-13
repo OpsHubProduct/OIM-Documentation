@@ -198,7 +198,7 @@ This feature allows seamless conversion when the routing field value changes and
 <img src="../assets/Configure_One_To_Many_Tree.png" width="900" />
 </p>
 
-**Step 3:** Click on the <img src="../assets/tick_Icon.png" style="width:20px;"/> icon.</p>
+<p><strong>Step 3:</strong> Click on the <img src="../assets/tick_Icon.png" style="width:20px;"/> icon.</p>
 * Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
 
 <p align="center">
@@ -231,26 +231,30 @@ If your configuration includes both **convertible** and **duplicate** entity typ
 
 * Changing the direction for one row applies to all rows in the same rule-based configuration.
   * In the below image, if Direction is changed for the Bug-Bug config row, it will also change the direction of Bug-Epic row.
-    <p align="center">
+  
+  <p align="center">
 <img src="../assets/Routing_Screen_direction.png" width="900" />
 </p>
 
 * Actions like Activate, Deactivate, Execute Integration, or Delete Job affect all rows in that direction.
     * All rows share the same source entity type and are treated as a single logical configuration.
     * In the below image, if Bug-Bug config row is activated in forward direction, then Bug-Epic row will also be activated in forward direction.
-  <p align="center">
+ 
+ <p align="center">
 <img src="../assets/Routing_Activated_Image.png" width="900" />
 </p>
 
 * Enabling reconciliation for any row enables it for all rows in that configuration.
     * Since one entity is common across all routing rules, OIM manages them together to maintain data consistency and prevent partial updates.
     * In the below image, if for Bug-Bug config row reconciliation is enabled, then Bug-Epic row reconciliation will be enabled.
-  <p align="center">
+ 
+ <p align="center">
 <img src="../assets/Routing_Reco_Img.png" width="900" />
 </p>
 
 * During reconciliation, you must wait for all rows to complete before switching to Integrate mode.
 * If an entity matches multiple rules or no rules, the system will throw a processing failure.
+
 <p align="center">
 <img src="../assets/failure-message.png" width="900" />
 </p>
