@@ -220,7 +220,7 @@ This feature allows seamless conversion when the routing field value changes and
   <img src="../assets/Configure_One_To_Many_Tree.png" width="900" />
 </p> 
 
-* **Step3:** Click on the <img src="../assets/tick_icon.png" width="20"/>  Icon
+* **Step3:** Click on the <img src="../assets/tickIcon.png" width="20"/>  Icon
   * Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
 
 <p align="center">
