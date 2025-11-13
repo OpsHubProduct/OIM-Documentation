@@ -233,7 +233,7 @@ If your configuration includes both **convertible** and **duplicate** entity typ
 * Changing the direction for one row applies to all rows in the same rule-based configuration.
   * In the below image, if Direction is changed for the Bug-Bug config row, it will also change the direction of Bug-Epic row.
   
-  <p align="center">
+<p align="center">
 <img src="../assets/Routing_Screen_direction.png" width="900" />
 </p>
 
