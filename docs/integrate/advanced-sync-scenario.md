@@ -22,5 +22,9 @@
       <td align="center"><strong>Source Delete Synchronization</strong></td>
       <td><a href="source-delete-synchronization.md">Source Delete Synchronization</a></td>
     </tr>
+    <tr>
+      <td align="center"><strong>Rule Based Routing</strong></td>
+      <td><a href="rule-based-routing.md">Rule Based Routing</a></td>
+    </tr>
   </tbody>
 </table>
