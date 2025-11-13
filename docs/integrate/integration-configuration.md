@@ -171,33 +171,10 @@ The scenario mentioned above will be the expected behavior as entity **C2** does
 
 **Overview**
 
-* In many real-world integrations, a single entity type in the source system may need to synchronize with different entity types in the target system based on the value of a specific field — such as Request Type, Category, or Type.
+In real-world integrations, a single source entity type may need to sync with different target types based on a classification field (like Request Type or Category). When this field’s value changes, the target entity type updates automatically to maintain consistency without creating duplicates.
 
-* Even though the source entity type remains the same, its business meaning changes when that field’s value changes. In such cases, the target entity type should update automatically without creating duplicates, ensuring both systems stay consistent.
-
-This need typically arises when:
-
-* The number of entity types differs between the source and target systems.
-
-* A classification or partitioning field determines how the entity should behave (e.g., Bug, Feature Request, Change Request).
-
-* Entities are created from both systems, and entity type changes must remain synchronized in both directions.
-
-**Example Use Case**
-
-Consider a source system where all items are created as Request, and the field **requestType** determines the entity type to be created in target.
-
-| **requestType Value**  | **Target Entity Type** |
-|------------------------|------------------------|
-| Bug                    | Bug                    |
-| Feature Request        | Feature                |
-| Change Request         | Change Request         |    
-
-**Typical Behavior:**
-
-* When the source Request has requestType = Bug, it is synchronized as a Bug in the target system.
-* If the requestType changes to Feature Request, the previously synced Bug is automatically converted to a Feature Request — without creating duplicates.
-* If the entity type changes on the target side, the requestType field in the source system updates automatically to stay aligned.
+Example:
+If all source items are created as Request and requestType=Bug, it syncs as a Bug in the target. Changing it to Feature Request converts the synced item to a Feature — keeping both systems aligned bidirectionally.
 
 **Feature: Rule Based Routing**
 
@@ -236,7 +213,7 @@ This feature allows seamless conversion when the routing field value changes and
 <img src="../assets/Routing_criteria_field_screen.png" width="900" />
 </p>
 
-
+**Step 5:** Save the Integration
 ## Handling Rule-Based and Duplicate Configuration
 
 If your configuration includes both **convertible** and **duplicate** entity types — for example, some entities that can convert into each other (*Bug ↔ Story ↔ Epic*) and others that should remain as duplicates (*Task*) — follow the steps below to avoid unexpected behavior.
@@ -253,10 +230,25 @@ If your configuration includes both **convertible** and **duplicate** entity typ
 ## Know Behaviours
 
 * Changing the direction for one row applies to all rows in the same rule-based configuration.
+  * In the below image, if Direction is changed for the Bug-Bug config row, it will also change the direction of Bug-Epic row.
+    <p align="center">
+<img src="../assets/Routing_Screen_direction.png" width="900" />
+</p>
+
 * Actions like Activate, Deactivate, Execute Integration, or Delete Job affect all rows in that direction.
     * All rows share the same source entity type and are treated as a single logical configuration.
+    * In the below image, if Bug-Bug config row is activated in forward direction, then Bug-Epic row will also be activated in forward direction.
+  <p align="center">
+<img src="../assets/Routing_Activated_Image.png" width="900" />
+</p>
+
 * Enabling reconciliation for any row enables it for all rows in that configuration.
-    * Since the one entity is common across all routing rules, OIM manages them together to maintain data consistency and prevent partial updates.
+    * Since one entity is common across all routing rules, OIM manages them together to maintain data consistency and prevent partial updates.
+    * In the below image, if for Bug-Bug config row reconciliation is enabled, then Bug-Epic row reconciliation will be enabled.
+  <p align="center">
+<img src="../assets/Routing_Reco_Img.png" width="900" />
+</p>
+
 * During reconciliation, you must wait for all rows to complete before switching to Integrate mode.
 * If an entity matches multiple rules or no rules, the system will throw a processing failure.
 <p align="center">

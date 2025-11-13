@@ -29,6 +29,7 @@
       * ["Entity Type" and/or "Project" Change Synchronization](docs/integrate/entity-move-synchronization.md)
       * [Inline Image or File Synchronization](docs/integrate/inline-image-sync-behaviour.md)
       * [Source Delete Synchronization](docs/integrate/source-delete-synchronization.md)
+      * [Rule Based Routing](docs/integrate/rule-based-routing.md)
     * [Integration Reconciliation](docs/integrate/reconcile.md)
     * [Monitoring and Organization](docs/integrate/monitoring.md)
       * [Organize Integrations](docs/integrate/folder-management.md)
