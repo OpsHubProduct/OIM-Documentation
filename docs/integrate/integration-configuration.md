@@ -222,7 +222,7 @@ This feature allows seamless conversion when the routing field value changes and
 
 * **Step3:** Click on the <img src="../assets/tickIcon1.png" width="5" alt=""/>  <img src="../../assets/I_9.png" width="20"/> Icon
   * Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
-
+    <img src="../assets/tickIcon1.png" width="5" alt=""/>
 <p align="center">
   <img src="../assets/routing-config-screen.png" width="900" />
 </p>
