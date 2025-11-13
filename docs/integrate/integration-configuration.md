@@ -198,9 +198,9 @@ This feature allows seamless conversion when the routing field value changes and
 <img src="../assets/Configure_One_To_Many_Tree.png" width="900" />
 </p>
 
-<p><strong>Step 3:</strong> Click on the <img src="../assets/tick_Icon.png" width="20"/> icon.</p>
+<p><strong>Step 3:</strong> Click on the <img src="../assets/tick_Icon.png" width="5%"/> icon.</p>
 
-* Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
+* Each 1 row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
 
 <p align="center">
 <img src="../assets/routing-config-screen.png" width="900" />
