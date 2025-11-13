@@ -206,7 +206,7 @@ This feature allows seamless conversion when the routing field value changes and
 **How To Configure Rule Based Routing in OIM**
 
 * **Step1:** Open Integration Create Screen
-    * In the 'Select Entities To Sync' section, click on the <p><img src="../assets/routing_plus_icon.png" width="20" /></p> icon beside the entity type selected.
+    * In the 'Select Entities To Sync' section, click on the <span><img src="../assets/routing_plus_icon.png" width="20" /></span> icon beside the entity type selected.
     * You can click the plus icon (+) from either side (source or target) to configure the one-side rule-based mapping.
 <p align="center">
   <img src="../assets/RuleBasedConfigEnable.png" width="900" />
@@ -220,7 +220,7 @@ This feature allows seamless conversion when the routing field value changes and
   <img src="../assets/Configure_One_To_Many_Tree.png" width="900" />
 </p> 
 
-* **Step3:** Click on the <p><img src="../assets/tick_Icon.png" width="20"/></p> Icon
+* **Step3:** Click on the <span><img src="../assets/tick_Icon.png" width="20"/></span> Icon
   * Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
     
 <p align="center">
@@ -228,7 +228,7 @@ This feature allows seamless conversion when the routing field value changes and
 </p>
 
 * **Step4:** Configure Routing Rules
-    * Click on the <p><img src="../assets/routing_rules_icon.png" width="20" /></p> icon, to open the Routing Criteria Settings screen.
+    * Click on the <span><img src="../assets/routing_rules_icon.png" width="20" /></span> icon, to open the Routing Criteria Settings screen.
     * For more guidelines, refer to the [Routing Rules Configuration Guidelines](#routing-rules-configuration-guidelines) section.
 <p align="center">
   <img src="../assets/Routing_criteria_field_screen.png" width="900" />
