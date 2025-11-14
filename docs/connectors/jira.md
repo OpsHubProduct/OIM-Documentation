@@ -2198,6 +2198,9 @@ The known limitations for Jira Service Desk are:
 * In Jira On-Premise, updating the mandatory "Sub Task Parent" link for the "SubTask" entity is not possible due to limitations in the REST API.
   * It is recommended to configure "Sub Task Parent" link with the settings, **Fail if not found** and no default link. It ensures that incorrect link associations are avoided during entity creation via integration.
   * Reason : Rest API Limitation
+* For Jira Data Center 11.x and above, attachment synchronization will fail if the attachment name contains the `%` character.  
+**Reason:** Jira DC 11.x+ no longer supports `%` in attachment file names
+
 
 # Troubleshoot
 For "Link Issue" permissions, refer to document [OH-JIRA-0220](../help-center/troubleshooting/errors/jira/oh-jira-0220.md) for errors and solutions.
