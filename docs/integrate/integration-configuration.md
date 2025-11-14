@@ -229,15 +229,15 @@ If your configuration includes both **convertible** and **duplicate** entity typ
   This separation ensures that conversion logic applies only to convertible entity types and does not affect duplicate entities.
 
 ## Know Behaviors
-* If an entity matches multiple rules or no rules, the system will throw a processing failure.
+* If entity matched multiple rules and no rules, then the sync will be failed with below-mentioned processing failure
   * Example 1: Multiple Routing Rule Match: 
     * Row1: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Bug"},{"condition":"EQUALS","field":"priority","value":"Low"}]}`
     * Row2: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Feature"},{"condition":"EQUALS","field":"priority","value":"High"}]}`
-    * The entity getting polled has `type = 'Feature'` and `priority = 'Low'`, in this case, multiple routing rules are matched.
+    * The entity read from the end system has `type = 'Feature'` and `priority = 'Low'`, in this case, multiple routing rules are matched.
   * Example 2: No Routing Rule Match
     * Row1: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Bug"},{"condition":"EQUALS","field":"priority","value":"Low"}]}`
     * Row2: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Feature"},{"condition":"EQUALS","field":"priority","value":"High"}]}`
-    * The entity getting polled has `type = 'Story'` and `priority = 'Medium'`, in this case, no routing rule is matched.
+    * The entity read from the end system has `type = 'Story'` and `priority = 'Medium'`, in this case, no routing rule is matched.
 
 <p align="center">
 <img src="../assets/failure-message.png" width="900" />
@@ -259,7 +259,7 @@ If your configuration includes both **convertible** and **duplicate** entity typ
 </p>
 
 * Enabling reconciliation for any row enables it for all rows in that configuration.
-    * Since one entity is common across all routing rules, OIM manages them together to maintain data consistency and prevent partial updates.
+    * Since one entity is common across all routing rules, <code class="expression">space.vars.SITENAME</code> manages them together to maintain data consistency and prevent partial updates.
     * In the below image, if reconciliation is enabled for the Bug-Bug config row, then the Bug-Epic row reconciliation will be enabled.
  
  <p align="center">
@@ -281,8 +281,7 @@ Follow these guidelines when configuring the **Routing Criteria** and **Routing 
     * **Example:** If the routing criteria is `{"condition": "IN", "field": "priority", "values": ["High", "Medium"]}`, then only *High* and *Medium* can be used as default values for *priority*.
 
 * Do **not** map the fields in the mapping used in the routing criteria query.
-    * Example: If the routing criteria query uses the `priority` field, it should not be mapped in the one-side configuration, as OIM automatically manages synchronization based on the default values defined in the Routing Criteria Field Values table.
-
+  * Example: If the routing criteria query uses the `priority` field, it should not be mapped in the sync direction from the N-side configuration to the 1-side configuration, as <code class="expression">space.vars.SITENAME</code> automatically manages the field's value based on the defaults defined in the Routing Criteria Field Values table.
 * Use the **same field set** across all rows in a rule-based configuration.
   * Example: If one row in a rule-based configuration uses the `priority` field in its routing query, then all other rows in that configuration must also use only the `priority` field in their routing queries.
 
