@@ -1,4 +1,3 @@
-
 # Overview
 
 * In many real-world integrations, a single entity type in the source system may need to synchronize with different entity types in the target system based on the value of a specific field — such as Request Type, Category, or Type.
