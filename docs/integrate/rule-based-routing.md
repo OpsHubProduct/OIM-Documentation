@@ -12,7 +12,7 @@ This need typically arises when:
 
 * Entities are created from both systems, and entity type changes must remain synchronized in both directions.
 
-## Example Use Case
+# Example Use Case
 
 Consider a source system where all items are created as a Request, and the field **requestType** determines the entity type to be created in the target.
 
