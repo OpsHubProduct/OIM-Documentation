@@ -26,12 +26,11 @@ Follow [Make Item Type Versionable](#make-item-type-versionable) in the Appendix
 ### System Prerequisites
 
 - Configure <code class="expression">space.vars.SITENAME</code> Aras Service on a machine that has .NET Framework version 4.7.2 or a higher version installed.
-- Please refer to the following link for information on software and hardware requirements for installing .NET Framework 4.7.2:  
-  https://docs.microsoft.com/en-us/dotnet/framework/get-started/system-requirements
+- Please refer to the following [link](https://docs.microsoft.com/en-us/dotnet/framework/get-started/system-requirements) for information on software and hardware requirements for installing .NET Framework 4.7.2.
 
 ### Installation Steps
 
-{{Aras_Installation_Steps}}
+{% include "../.gitbook/includes/aras-installtion-steps.md" %}
 
 
 # System Configuration
