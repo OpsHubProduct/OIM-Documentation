@@ -174,9 +174,9 @@ The scenario mentioned above will be the expected behavior as entity **C2** does
 In real-world integrations, a single source entity type may need to sync with different target types based on a classification field (like Request Type or Category). When this field’s value changes, the target entity type updates automatically to maintain consistency without creating duplicates.
 
 Example:
-If all source items are created as Request and requestType=Bug, it syncs as a Bug in the target. Changing it to Feature Request converts the synced item to a Feature — keeping both systems aligned bidirectionally.
+If all source items are created as a Request and requestType=Bug, it syncs as a Bug in the target. Changing it to a Feature Request converts the synced item to a Feature — keeping both systems aligned bidirectionally.
 
-**Feature: Rule Based Routing**
+**Feature: Rule-Based Routing**
 
 This feature allows seamless conversion when the routing field value changes and automatically updates the corresponding target entity type. It also ensures that when updates flow in the reverse direction, the source field value is adjusted accordingly—maintaining complete bidirectional consistency.
 
@@ -190,9 +190,9 @@ This feature allows seamless conversion when the routing field value changes and
 <img src="../assets/RuleBasedConfigEnable.png" width="900" />
 </p>
 
-**Step 2:**  Define 1-to-N entity types configuration
+**Step 2:**  Define the 1-to-N entity types configuration
 * Clicking the plus icon (+) opens the 1-to-many configuration view.
-* Select the required entity types on N side configuration and provide their respective mappings.
+* Select the required entity types on the N side configuration and provide their respective mappings.
 
 <p align="center">
 <img src="../assets/Configure_One_To_Many_Tree.png" width="900" />
@@ -200,14 +200,14 @@ This feature allows seamless conversion when the routing field value changes and
 
 **Step 3:** Click on the ![Tick Icon](../assets/tickIcon.png) icon.
 
-* Each 1 row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
+* Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
 
 <p align="center">
 <img src="../assets/routing-config-screen.png" width="900" />
 </p>
 
-**Step 4:** Configure Routing Rules
-* Click on the ![Routing Rules Icon](../assets/routing_rules_icon.png) icon, to open the Routing Criteria Settings screen.
+**Step 4:** Configure Routing Rules for Each Row in the rule-based configuration
+* Click on the ![Routing Rules Icon](../assets/routing_rules_icon.png) icon to open the Routing Criteria Settings screen.
 * For more guidelines, refer to the [Routing Rules Configuration Guidelines](#routing-rules-configuration-guidelines) section.
 
 <p align="center">
@@ -228,10 +228,23 @@ If your configuration includes both **convertible** and **duplicate** entity typ
 * Create a **separate system** for the duplicate configuration.  
   This separation ensures that conversion logic applies only to convertible entity types and does not affect duplicate entities.
 
-## Know Behaviours
+## Know Behaviors
+* If an entity matches multiple rules or no rules, the system will throw a processing failure.
+  * Example 1: Multiple Routing Rule Match: 
+    * Row1: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Bug"},{"condition":"EQUALS","field":"priority","value":"Low"}]}`
+    * Row2: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Feature"},{"condition":"EQUALS","field":"priority","value":"High"}]}`
+    * The entity getting polled has `type = 'Feature'` and `priority = 'Low'`, in this case, multiple routing rules are matched.
+  * Example 2: No Routing Rule Match
+    * Row1: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Bug"},{"condition":"EQUALS","field":"priority","value":"Low"}]}`
+    * Row2: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Feature"},{"condition":"EQUALS","field":"priority","value":"High"}]}`
+    * The entity getting polled has `type = 'Story'` and `priority = 'Medium'`, in this case, no routing rule is matched.
+
+<p align="center">
+<img src="../assets/failure-message.png" width="900" />
+</p>
 
 * Changing the direction for one row applies to all rows in the same rule-based configuration.
-  * In the below image, if Direction is changed for the Bug-Bug config row, it will also change the direction of Bug-Epic row.
+  * In the image below, if the direction is changed for the Bug-Bug config row, it will also change the direction of Bug-Epic row.
   
 <p align="center">
 <img src="../assets/Routing_Screen_direction.png" width="900" />
@@ -239,7 +252,7 @@ If your configuration includes both **convertible** and **duplicate** entity typ
 
 * Actions like Activate, Deactivate, Execute Integration, or Delete Job affect all rows in that direction.
     * All rows share the same source entity type and are treated as a single logical configuration.
-    * In the below image, if Bug-Bug config row is activated in forward direction, then Bug-Epic row will also be activated in forward direction.
+    * In the image below, if Bug-Bug config row is activated in the forward direction, then Bug-Epic row will also be activated in forward direction.
  
  <p align="center">
 <img src="../assets/Routing_Activated_Image.png" width="900" />
@@ -247,23 +260,20 @@ If your configuration includes both **convertible** and **duplicate** entity typ
 
 * Enabling reconciliation for any row enables it for all rows in that configuration.
     * Since one entity is common across all routing rules, OIM manages them together to maintain data consistency and prevent partial updates.
-    * In the below image, if for Bug-Bug config row reconciliation is enabled, then Bug-Epic row reconciliation will be enabled.
+    * In the below image, if reconciliation is enabled for the Bug-Bug config row, then the Bug-Epic row reconciliation will be enabled.
  
  <p align="center">
 <img src="../assets/Routing_Reco_Img.png" width="900" />
 </p>
 
-* During reconciliation, you must wait for all rows to complete before switching to Integrate mode.
-* If an entity matches multiple rules or no rules, the system will throw a processing failure.
+* During reconciliation, you must wait for all rows to complete before switching to Integrate Mode.
 
-<p align="center">
-<img src="../assets/failure-message.png" width="900" />
-</p>
 
 ## Routing Rules Configuration Guidelines
 
 Follow these guidelines when configuring the **Routing Criteria** and **Routing Query** in the **Routing Criteria Settings** section:
 
+* Configure **routing rules** for every row, otherwise you will not be able to save the integration.
 * Write the routing query in the [OpsHub Query Format](opshub-query-format.md).
 
 * Make sure the **Default Values** in the **Routing Criteria Field Values** table match the routing criteria.
@@ -271,15 +281,14 @@ Follow these guidelines when configuring the **Routing Criteria** and **Routing 
     * **Example:** If the routing criteria is `{"condition": "IN", "field": "priority", "values": ["High", "Medium"]}`, then only *High* and *Medium* can be used as default values for *priority*.
 
 * Do **not** map the fields in the mapping used in the routing criteria query.
-    * Fields used in the routing query should not be mapped in the one-side configuration, as OIM handles their synchronization automatically based on the default values in the Routing Criteria Field Values table.
+    * Example: If the routing criteria query uses the `priority` field, it should not be mapped in the one-side configuration, as OIM automatically manages synchronization based on the default values defined in the Routing Criteria Field Values table.
 
 * Use the **same field set** across all rows in a rule-based configuration.
-    * Each row in a one-to-many configuration must define routing queries on the same set of fields.
+  * Example: If one row in a rule-based configuration uses the `priority` field in its routing query, then all other rows in that configuration must also use only the `priority` field in their routing queries.
 
 * Keep all **routing rules independent** across rows.
-    * Each rule must be unique and should not apply to the same entity condition.
-
-* Configure **routing rules** for every row.
+  * Example: If one row in a rule-based configuration uses the routing criteria
+  `{"condition": "IN", "field": "priority", "values": ["High", "Medium"]`}, then another row in the same configuration **cannot** use`{"condition": "IN", "field": "priority", "values": ["High", "Low"]}`. Each row must define a distinct and non-overlapping routing rule.
 
 * Do **not** use routing-based configuration if duplication is expected in the target.
     * If one source entity needs to stay in sync with multiple target entity types at the same time, avoid rule-based routing.  
