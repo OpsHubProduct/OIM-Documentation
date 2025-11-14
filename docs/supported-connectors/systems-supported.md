@@ -306,7 +306,7 @@ Given below are the systems supported currently by <code class="expression">spac
         <tr>
             <td>40</td>
             <td>Jira Data Center</td>
-            <td>5.x–10.x</td>
+            <td>5.x–11.x</td>
             <td>All System & Custom Issue Types, Sub-Task Types, Version, Work-log</td>
             <td></td>
         </tr>
