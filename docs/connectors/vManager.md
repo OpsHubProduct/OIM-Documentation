@@ -168,8 +168,8 @@ Refer to the screenshot given below :
 
 ## Project Specific Entity Information
 
-In Verisium Manager, vPlan can be created under the Verisium Manager Project. Hence, Verisium Manager Project is treated as a Parent-project whereas vPlan is treated as a child-project. The vPlan is listed as a child-project under the corresponding Parent-project (Verisium Manager Project) in the <code class="expression">space.vars.SITENAME</code> configuration. 
- [Section [(Sub Type)]]/#Section.5B.28Sub _Type.29.5D / [Metrics Port [(Sub Type) ]](vManager.md#Metrics_Port.5B.28Sub_Type.29.5D) entity can be created only under the vPlan. As a result, the [Section [(Sub Type) ]](vManager.md#Section.5B.28Sub_Type.29.5D)/[Metrics Port [(Sub Type) ]](vManager.md#Metrics_Port.5B.28Sub_Type.29.5D) can be configured in <code class="expression">space.vars.SITENAME</code>, if child-project(vPlan) is selected in Mapping Configuration or Integration Configuration section.
+In Verisium Manager, vPlan can be created under the Verisium Manager Project. Hence, Verisium Manager Project is treated as a Parent-project whereas vPlan is treated as a child-project. The vPlan is listed as a child-project under the corresponding Parent-project (Verisium Manager Project) in the <code class="expression">space.vars.SITENAME</code> configuration.
+[Section [(Sub Type)]](#section-sub-type) / [Metrics Port [(Sub Type) ]](#metrics-port-sub-type-entity) entity can be created only under the vPlan. As a result, the [Section [(Sub Type) ]](#section-sub-type)/[Metrics Port [(Sub Type) ]](#metrics-port-sub-type) can be configured in <code class="expression">space.vars.SITENAME</code>, if child-project(vPlan) is selected in Mapping Configuration or Integration Configuration section.
 
 ## Criteria Configuration
 

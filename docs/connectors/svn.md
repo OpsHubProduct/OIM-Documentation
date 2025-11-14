@@ -75,7 +75,7 @@ If Regex is configured on commit message to synchronize commit on mentioned Issu
 
 If Subversion client is not installed on the machine, then please follow the steps given below for installing Subversion Client of version 1.5 or above:
 
-* Please go to link: http://www.sliksvn.com/en/download
+* Please visit the following [link](http://www.sliksvn.com/en/download) to download the software.
 * Download the latest version of Subversion from there and install the software by double clicking on the application.
 * This will automatically set the PATH for Subversion into the system PATH variable.
 * For checking whether Subversion client is properly installed, and its path is set into system PATH variable, fire command `svn` on command prompt.

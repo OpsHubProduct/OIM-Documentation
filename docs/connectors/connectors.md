@@ -251,7 +251,7 @@ layout:
         <tr>
           <td align="center"><mark style="color:#555555"><strong>ServiceNow Quick Connect</strong></mark></td>
           <td><a href="../assets/connector/70_servicenow.png">ServiceNow Quick Connect</a></td>
-          <td><a href="servicenow-express.md">servicenow-express.md</a></td>
+          <td><a href="servicenow-quick-connect.md">servicenow-quick-connect.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Slack</strong></mark></td>
