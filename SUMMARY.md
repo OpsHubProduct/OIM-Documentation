@@ -338,7 +338,6 @@
       * [Attachment Update](docs/connector-sdk/attachment-update.md)
       * [Comment History List](docs/connector-sdk/comment-history-list.md)
       * [Connector Metadata Get](docs/connector-sdk/connector-metadata-get.md)
-      * [Connector SDK](docs/connector-sdk/connector-sdk.md)
       * [Discovery API Get](docs/connector-sdk/discovery-api-get.md)
       * [Dynamic Substeps Get](docs/connector-sdk/dynamic-substeps-get.md)
       * [Entity Create](docs/connector-sdk/entity-create.md)
