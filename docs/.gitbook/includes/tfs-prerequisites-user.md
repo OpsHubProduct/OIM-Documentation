@@ -73,7 +73,7 @@ Refer [Create Personal Access Token](../../connectors/azure-devops.md#create-per
 
 * Personal Access Token should be created with **Full access** scope for all entities if user is using On-Premises deployed server.
 
-{% if spaceName != "OpsHub Migrator for Microsoft Azure DevOps" %}
+{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 ### Service Principal Privileges
 
 * It is applicable when the authentication mode is set to **Service Principal - Client Secret** or **Service Principal - Client Certificate**.
@@ -82,4 +82,4 @@ Refer [Create Personal Access Token](../../connectors/azure-devops.md#create-per
 * Azure DevOps collection must be connected to Microsoft Entra (Azure Active Directory) for which Service Principal is being used.
 * Refer to [Secret key & Certificate](../../connectors/azure-devops.md#secret-key--certificate-in-microsoft-entra-azure-active-directory) section to generate **Secret key** or to upload **Certificate** in Microsoft Entra (Azure Active Directory). 
 
-.
+{% endif %}  
