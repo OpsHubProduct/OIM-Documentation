@@ -34,7 +34,7 @@ The registered connectors are available in the form of a list on the "Registered
   <img src="../assets/RegisterConnectorList.png" width="1200"/>
 </p>
 
-There is an audit icon ![Audits Icon](../assets/AuditsIcon.png =25x) present on the top right corner of the list. Clicking this icon will show all the audits related to the registered connectors.
+There is an audit icon <img src="../assets/AuditsIcon.png" width="30"/>  present on the top right corner of the list. Clicking this icon will show all the audits related to the registered connectors.
 
 # Edit Connectors
 Registered connectors can be edited by clicking the specific connector followed by clicking the pencil icon on the top right corner of the page:
