@@ -80,7 +80,7 @@ Refer [Create Personal Access Token](../../connectors/azure-devops.md#create-per
 
 * Personal Access Token should be created with **Full access** scope for all entities if user is using On-Premises deployed server.
 
-{% if spaceName != "OpsHub Migrator for Microsoft Azure DevOps" %}  
+{% if "OpsHub Integration Manager" === space.vars.SITENAME %}   
 
 ### Service Principal Privileges
 
