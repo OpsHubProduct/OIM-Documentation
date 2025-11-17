@@ -105,3 +105,5 @@ Place the connector logo in: `assets/connector/` directory.
 >   * [ServiceNow Quick Connect](docs/connectors/servicenow-quick-connect.md)
 > ```
 
+{% endstep %}  
+{% endstepper %}    
