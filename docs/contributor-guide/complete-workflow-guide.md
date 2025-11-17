@@ -68,20 +68,20 @@ To list a new connector in the documentation, follow the steps below. These step
 - Create a new markdown file inside the `connectors` folder.
    > **Example:** connectors/│── snow-quick-connect.md
 
-{% endstep %}  
-{% step %}  
+{% endstep %}   
+{% step %}   
 ### Add Logo in Assets Folder
-Place the connector logo in: `assets/connector/` directory.
-#### Logo requirements
-- Background color: `#EDF4FD`
-- Background box: **536px × 161px**
-- Logo size: **72px × 72px**
-   > **Example file:** `assets/connector/servicenow.png`
+Place the connector logo in: `assets/connector/` directory.  
+    #### Logo requirements  
+    - Background color: `#EDF4FD`   
+    - Background box: **536px × 161px**  
+    - Logo size: **72px × 72px**
+    > **Example file:** `assets/connector/servicenow.png`  
   
-{% endstep %}  
+{% endstep %}   
 {% step %}  
-### Add Entry in `connectors.md`
-- Use the table/card layout format.
+### Add Entry in `connectors.md`  
+- Use the table/card layout format.  
    > **Example:**
    > ```html
    >  <tr>
