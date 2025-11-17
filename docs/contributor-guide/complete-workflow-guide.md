@@ -80,6 +80,7 @@ To list a new connector in the documentation, follow the steps below. These step
   
 {% endstep %}  
 {% step %}  
+
 ### Add Entry in `connectors.md`
 - Use the table/card layout format.
     > **Example:**
@@ -88,12 +89,14 @@ To list a new connector in the documentation, follow the steps below. These step
     > <td align="center"><mark style="color:#555555"><strong>ServiceNow Quick Connect</strong></mark></td>
     > <td><a href="../assets/connector/70_servicenow.png">ServiceNow Quick Connect</a></td>
     > <td><a href="servicenow-quick-connect.md">servicenow-quick-connect.md</a></td>
-    > </tr>  
+    > </tr>
+    > ```  
 
 {% endstep %}  
 {% step %}  
 ### Add Entry in `supported-connectors.md`
-- Include supported versions and entities in the table format.
+- Include supported versions and entities in the table format.  
+
 {% endstep %}  
 {% step %}  
 ### Add Entry in `SUMMARY.md`
