@@ -35,7 +35,7 @@ layout:
    </thead>
    <tbody>
       <tr>
-         <td align="center"><h3><mark style="color:#233C5D">Getting Started</mark></h3></td>
+         <td align="center"><h3><mark style="color:#233C5D">Get Started</mark></h3></td>
          <td><a href="docs/assets/Site_Images/Getting_Started.svg">Getting Started</a></td>
          <td><a href="docs/getting-started/getting-started.md">getting-started</a></td>
       </tr>
