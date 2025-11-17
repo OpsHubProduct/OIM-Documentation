@@ -71,39 +71,38 @@ To list a new connector in the documentation, follow the steps below. These step
 {% endstep %}   
 {% step %}   
 ### Add Logo in Assets Folder
-Place the connector logo in: `assets/connector/` directory.  
-    #### Logo requirements  
-    - Background color: `#EDF4FD`   
-    - Background box: **536px × 161px**  
-    - Logo size: **72px × 72px**
-    > **Example file:** `assets/connector/servicenow.png`  
+- Place the connector logo in: `assets/connector/` directory.
+- **Logo requirements**
+  - Background color: `#EDF4FD`
+  - Background box: **536px × 161px**
+  - Logo size: **72px × 72px**
+  > **Example file:** `assets/connector/servicenow.png`  
   
-{% endstep %}   
+{% endstep %}  
 {% step %}  
-### Add Entry in `connectors.md`  
-- Use the table/card layout format.  
-   > **Example:**
-   > ```html
-   >  <tr>
-   >  <td align="center"><mark style="color:#555555"><strong>ServiceNow Quick Connect</strong></mark></td>
-   >  <td><a href="../assets/connector/70_servicenow.png">ServiceNow Quick Connect</a></td>
-   >  <td><a href="servicenow-quick-connect.md">servicenow-quick-connect.md</a></td>
-   > </tr>
+### Add Entry in `connectors.md`
+- Use the table/card layout format.
+    > **Example:**
+    > ```html
+    > <tr>
+    > <td align="center"><mark style="color:#555555"><strong>ServiceNow Quick Connect</strong></mark></td>
+    > <td><a href="../assets/connector/70_servicenow.png">ServiceNow Quick Connect</a></td>
+    > <td><a href="servicenow-quick-connect.md">servicenow-quick-connect.md</a></td>
+    > </tr>  
 
 {% endstep %}  
 {% step %}  
 ### Add Entry in `supported-connectors.md`
 - Include supported versions and entities in the table format.
-
 {% endstep %}  
 {% step %}  
 ### Add Entry in `SUMMARY.md`
 - Include the connector under the Connectors section for sidebar navigation.
-> **Example:**
-> ```markdown
-> * [Connectors](connectors/connectors.md)
->   * [ServiceNow Quick Connect](docs/connectors/servicenow-quick-connect.md)
-> ```
+    > **Example:**
+    > ```markdown
+    > * [Connectors](connectors/connectors.md)
+    >   * [ServiceNow Quick Connect](docs/connectors/servicenow-quick-connect.md)
+    > ```
 
 {% endstep %}  
 {% endstepper %}    
