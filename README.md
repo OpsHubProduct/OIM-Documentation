@@ -21,10 +21,6 @@ layout:
     visible: false
 ---
 
-<p align="center">This site provides complete and up-to-date documentation to help you install, configure, and operate <code class="expression">space.vars.SITENAME</code>(<code class="expression">space.vars.PRODUCT_SHORTNAME</code>) effectively. Whether you're setting up your first integration, developing custom connectors, or troubleshooting issues, this documentation is structured to guide you through every step.</p>
-
-***
-
 <table data-view="cards">
    <thead>
       <tr>
@@ -35,7 +31,7 @@ layout:
    </thead>
    <tbody>
       <tr>
-         <td align="center"><h3><mark style="color:#233C5D">Getting Started</mark></h3></td>
+         <td align="center"><h3><mark style="color:#233C5D">Get Started</mark></h3></td>
          <td><a href="docs/assets/Site_Images/Getting_Started.svg">Getting Started</a></td>
          <td><a href="docs/getting-started/getting-started.md">getting-started</a></td>
       </tr>
