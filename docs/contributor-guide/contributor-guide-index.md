@@ -12,7 +12,7 @@
     </tr>
     <tr>
       <td align="center">🧩<strong> Markdown Basics</strong></td>
-      <td><a href="gitbook-markdown-basics.md"></a></td>
+      <td><a href="gitbook-markdown-basics.md">gitbook-markdown-basics.md</a></td>
     </tr>
     <tr>
       <td align="center">🔗<strong> Commit Flow</strong></td>
