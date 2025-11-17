@@ -386,4 +386,5 @@
                 * [OH-ClearQuest-0064](docs/help-center/troubleshooting/errors/clearquest/oh-clearquest-0064.md)
                 * [OH-ClearQuest-0065](docs/help-center/troubleshooting/errors/clearquest/oh-clearquest-0065.md)
                 * [OH-ClearQuest-0005](docs/help-center/troubleshooting/errors/clearquest/oh-clearquest-0005.md)
-    * [Contact Us](docs/help-center/contact-us.md)     
+    * [Contact Us](docs/help-center/contact-us.md)  
+* [Contributor Guide](docs/contributor-guide/complete-workflow-guide.md)
