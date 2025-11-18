@@ -15,8 +15,8 @@
       <td><a href="gitbook-markdown-basics.md">gitbook-markdown-basics.md</a></td>
     </tr>
     <tr>
-      <td align="center">🔗<strong> Commit Flow</strong></td>
-      <td><a href="register-connectors.md">Register Connectors</a></td>
+      <td align="center">🔗<strong> GitHub Commit Flow</strong></td>
+      <td><a href="github-contribution-guide.md">github-contribution-guide.md</a></td>
     </tr>
   </tbody>
 </table>

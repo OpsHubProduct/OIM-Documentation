@@ -390,3 +390,4 @@
 * [Contributor Guide](docs/contributor-guide/contributor-guide-index.md)
   * [Get Started](docs/contributor-guide/complete-workflow-guide.md)
   * [Markdown Basics](docs/contributor-guide/gitbook-markdown-basics.md)
+  * [GitHub Commit Guide](docs/contributor-guide/github-contribution-guide.md)
