@@ -550,7 +550,6 @@ Given below are the systems supported currently by <code class="expression">spac
         </tr>
         <tr>
             <td>74</td>
-            <td>74</td>
             <td>Zendesk</td>
             <td>Cloud</td>
             <td>Zendesk Ticket</td>
