@@ -390,3 +390,4 @@
 * [Contributor Guide](docs/contributor-guide/contributor-guide-index.md)
   * [Page Structure & Markdown Formatting Guide](docs/contributor-guide/content-creation-guide.md)
   * [Contribution Workflow](CONTRIBUTING.md)
+  * [Troubleshoot Formatting Issues](docs/contributor-guide/content-troubleshooting.md)

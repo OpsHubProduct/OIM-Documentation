@@ -91,7 +91,8 @@ To list a new connector in the documentation, follow the steps below. These step
 {% endstepper %}  
 
 # Markdown Basics
-This section provides the essential formatting rules for writing clean, consistent, and well-structured documentation using Markdown. Each topic includes examples, best practices, and recommended usage guidelines to ensure clarity and readability across all content.
+- This section provides the essential formatting rules for writing clean, consistent, and well-structured documentation using Markdown. Each topic includes examples, best practices, and recommended usage guidelines to ensure clarity and readability across all content. 
+- For additional reference, you may also review the official formatting guide: [GitBook Formatting Guide](https://gitbook.com/docs/creating-content/formatting)
 
 ## Headings (Titles and Sections)
 - Use the `#` symbol to create headings.
@@ -376,36 +377,3 @@ This section provides the essential formatting rules for writing clean, consiste
 - **Rendered Output:**
   >     This site describes <code class="expression">space.vars.SITENAME</code> features.
   (This replaces the variable with its actual value.)
-
-
-# Troubleshooting
-
-1. **Page not visible?**
-    - Added to SUMMARY.md?
-    - Correct indentation?
-    - Correct filename?
-
-2. **Broken internal links?**
-    - File exists?
-    - Path correct?
-    - Heading anchor correct?
-
-3. **Images not loading?**
-    - Inside assets folder?
-    - Lowercase name?
-    - Path correct?
-
-4. **Table issues?**
-    - Aligned pipes?
-    - Equal columns?
-
-5. **Code block issues?**
-    - Triple backticks correct?
-
-6. **Layout issues?**
-    - Remove extra blank lines
-    - Maintain heading hierarchy
-
-7. **Anchor link issues?**
-    - Unique headings
-    - Avoid symbols
