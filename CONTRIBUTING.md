@@ -1,11 +1,10 @@
-# Contribution Workflow
 
-**Industry-Standard Fork → Edit → PR Workflow**
+# Industry-Standard Fork → Edit → PR Workflow
 - This repository is public, and **no contributor has direct write access**. 
 - All contributions must follow the **Fork → Edit → Commit → Pull Request** workflow. 
 - This ensures security, review quality, and governance — matching the standards used by large open-source foundations and enterprise GitHub projects.
 
-## ⚠️ Public Repository Rules
+# ⚠️ Public Repository Rules
 - Because this is a **public repository**:
   - Anyone can **view**, **fork**, or **clone** the repository.
   - **No one** (including internal OpsHub members) can push directly.
@@ -16,7 +15,6 @@
       - server URLs or internal IPs
       - proprietary or confidential information 
   - Every change is reviewed before merging.
-
 
 # 🚀 How to Contribute
 - There are **two supported methods** — both are industry standard.
