@@ -27,7 +27,7 @@
   <tbody>
     <tr>
       <td align="center">🚀<strong> Get Started</strong></td>
-      <td><a href="opshub-gitbook-help-guide.md">opshub-gitbook-help-guide.md</a></td>
+      <td><a href="content-creation-guide.md">opshub-gitbook-help-guide.md</a></td>
     </tr>
     <tr>
       <td align="center">🔗<strong> GitHub Commit Flow</strong></td>
