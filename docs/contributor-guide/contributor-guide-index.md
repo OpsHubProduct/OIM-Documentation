@@ -20,11 +20,11 @@
   </thead>
   <tbody>
     <tr>
-      <td align="center">🚀<strong> Content Creation</strong></td>
+      <td align="center">🚀<strong> Page Structure & Markdown Formatting Guide</strong></td>
       <td><a href="content-creation-guide.md">opshub-gitbook-help-guide.md</a></td>
     </tr>
     <tr>
-      <td align="center">🔗<strong> GitHub Commit Flow</strong></td>
+      <td align="center">🔗<strong> Contribution Workflow</strong></td>
       <td><a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></td>
     </tr>
   </tbody>

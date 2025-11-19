@@ -1,4 +1,4 @@
-# Content Creation Guide
+# Page Structure & Markdown Formatting Guide
 
 # Creating and Editing Pages in GitBook
 
