@@ -8,15 +8,11 @@
   <tbody>
     <tr>
       <td align="center">🚀<strong> Get Started</strong></td>
-      <td><a href="complete-workflow-guide.md">complete-workflow-guide.md</a></td>
-    </tr>
-    <tr>
-      <td align="center">🧩<strong> Markdown Basics</strong></td>
-      <td><a href="gitbook-markdown-basics.md">gitbook-markdown-basics.md</a></td>
+      <td><a href="opshub-gitbook-help-guide.md">opshub-gitbook-help-guide.md</a></td>
     </tr>
     <tr>
       <td align="center">🔗<strong> GitHub Commit Flow</strong></td>
-      <td><a href="github-contribution-guide.md">github-contribution-guide.md</a></td>
+      <td><a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></td>
     </tr>
   </tbody>
 </table>

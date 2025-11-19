@@ -388,6 +388,5 @@
                 * [OH-ClearQuest-0005](docs/help-center/troubleshooting/errors/clearquest/oh-clearquest-0005.md)
     * [Contact Us](docs/help-center/contact-us.md)  
 * [Contributor Guide](docs/contributor-guide/contributor-guide-index.md)
-  * [Get Started](docs/contributor-guide/complete-workflow-guide.md)
-  * [Markdown Basics](docs/contributor-guide/gitbook-markdown-basics.md)
-  * [GitHub Commit Guide](docs/contributor-guide/github-contribution-guide.md)
+  * [Get Started](docs/contributor-guide/opshub-gitbook-help-guide.md)
+  * [GitHub Commit Guide](CONTRIBUTING.md)
