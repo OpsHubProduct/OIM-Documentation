@@ -11,7 +11,7 @@
 - A simple text format used for writing documentation.
 - GitBook fully supports Markdown.
 
-<table data-view="cards" data-full-width="false">
+<table data-view="cards" data-full-width="true">
   <thead>
     <tr>
       <th align="center" data-card-cover></th>

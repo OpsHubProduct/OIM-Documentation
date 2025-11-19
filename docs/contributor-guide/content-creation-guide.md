@@ -1,5 +1,3 @@
-# Page Structure & Markdown Formatting Guide
-
 # Creating and Editing Pages in GitBook
 
 ## How to Edit an Existing Page
@@ -168,13 +166,13 @@ This section provides the essential formatting rules for writing clean, consiste
     - **Rendered Output** 
         > **Warning:** Do not delete this folder.
 
-## 5. Angle Brackets `<` and `>`
+## Angle Brackets `<` and `>`
 
 | Purpose | How to Write It | Correct Output |
 |---------|------------------|----------------|
 | Escape `<` and `>` | `&lt;tag&gt;` instead of `<tag>` | `<tag>` |
 
-## 6. Code Blocks (Multiple Lines)
+## Code Blocks (Multiple Lines)
 - Use triple backticks to create multi-line code blocks.
 - You can also specify the language to enable syntax highlighting.
 - **JSON Example (How to Write It)**
@@ -229,8 +227,9 @@ This section provides the essential formatting rules for writing clean, consiste
     ```markdown
     ![](../assets/image-name.png)
     ```
-- **Rendered Output**
-  ![](../assets/integrationdetail.png)  
+- **Rendered Output**  
+
+  ![](../assets/sample.jpg)  
 
 ### Centered Image
 - **Syntax:**
@@ -241,7 +240,7 @@ This section provides the essential formatting rules for writing clean, consiste
   ```
 - **Rendered Output**
   <p align="center">
-    <img src="../assets/integrationdetail.png" width="500">
+    <img src="../assets/sample.jpg" width="400">
   </p>
 
 ## Image Naming Rules
@@ -264,19 +263,19 @@ This section provides the essential formatting rules for writing clean, consiste
     ```
     {% embed url="https://youtu.be/Po6K9_UXrfM" %}
     ```
--  **Video Storage Rules**
-  - Video files cannot be uploaded directly into the repository.
-  - To include video content, follow these guidelines:
-    - Upload all videos to YouTube.
-    - Ensure the video is publicly visible.
-    - Use the `embed` tag to insert the video link into your documentation pages.
+- **Video Storage Rules**
+    - Video files cannot be uploaded directly into the repository.
+    - To include video content, follow these guidelines:
+      - Upload all videos to YouTube. 
+      - Ensure the video is publicly visible. 
+      - Use the `embed` tag to insert the video link into your documentation pages.
 
 # Reusable Content
 - Reusable content allows you to maintain common text (such as repeated instructions or configuration notes) in a single location and include it across multiple pages.
 - This helps ensure consistency, easy maintenance, and automatic updates whenever the shared content changes.
 - All reusable Markdown files should be stored inside: `.gitbook/includes`.
 - **How to Include a Reusable File:**
-  - Use the GitBook `{% include %}` tag to pull shared content into any page.  
+  - Use the `{% include %}` tag to pull shared content into any page.  
     Example:
    ```
   {% include "../.gitbook/includes/windows-specific-configuration.md" %}
@@ -318,23 +317,39 @@ This section provides the essential formatting rules for writing clean, consiste
 
 
 ## Card View HTML Table
-```html
-<table data-view="cards" data-full-width="false">
-  <thead>
-    <tr>
-      <th align="center" data-card-cover></th>
-      <th data-hidden data-card-target data-type="content-ref"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="center"><strong>Example Title</strong></td>
-      <td><a href="https://www.google.com/">Google</a></td>
-    </tr>
-  </tbody>
-</table>
-```
-
+- You can use cards to create a visually engaging page layout, combining text, links, and optional images in a clean, grid-based structure.
+- **Example:** 
+    ```html
+    <table data-view="cards" data-full-width="false">
+      <thead>
+        <tr>
+          <th align="center" data-card-cover></th>
+          <th data-hidden data-card-target data-type="content-ref"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td align="center"><strong>Welcome to OpsHub Guide</strong></td>
+          <td><a href="../../README.md">Welcome</a></td>
+        </tr>
+      </tbody>
+    </table>
+    ```
+- **Rendered Output:**
+    <table data-view="cards" data-full-width="false">
+      <thead>
+        <tr>
+          <th align="center" data-card-cover></th>
+          <th data-hidden data-card-target data-type="content-ref"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td align="center"><strong>Welcome to OpsHub Guide</strong></td>
+          <td><a href="../../README.md">Welcome</a></td>
+        </tr>
+      </tbody>
+    </table>
 # Conditional Blocks
 - Conditional blocks allow you to show or hide content depending on selected product variables (e.g., OIM vs OM4ADO).
     > **Example:**
