@@ -1,7 +1,7 @@
 # Contributor Guide 
 
 **Complete Workflow Guide: Creating, Committing, and Publishing Markdown Files to GitBook via GitHub**
-This guide explains, step by step, how to edit, commit, and publish Markdown files (`.md`) in GitHub so that they appear correctly in GitBook.
+- This guide explains, step by step, how to edit, commit, and publish Markdown files (`.md`) in GitHub so that they appear correctly in GitBook.
 
 ## Understanding the Basics
 
