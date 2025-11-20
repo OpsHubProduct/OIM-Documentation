@@ -99,7 +99,7 @@ git push origin feature-your-change
 
 1. Open the file you want to edit on GitHub.
   <p align="center">
-  <img src="docs/assets/ContributorGuide_Images/GitHub_Repo.png" width="800"/>
+  <img src="docs/assets/ContributorGuide_Images/GitHub_Repo.png" width="1100"/>
   </p>
 2. Click Edit (✏️).
   <p align="center">
