@@ -1,20 +1,20 @@
 
 # Industry-Standard Fork → Edit → PR Workflow
-- This repository is public, and **no contributor has direct write access**. 
-- All contributions must follow the **Fork → Edit → Commit → Pull Request** workflow. 
+- This repository is public, and **no contributor has direct write access**.
+- All contributions must follow the **Fork → Edit → Commit → Pull Request** workflow.
 - This ensures security, review quality, and governance — matching the standards used by large open-source foundations and enterprise GitHub projects.
 
 # ⚠️ Public Repository Rules
 - Because this is a **public repository**:
-  - Anyone can **view**, **fork**, or **clone** the repository.
-  - **No one** (including internal OpsHub members) can push directly.
-  - All changes must come through a **Pull Request (PR)**.
-  - Never commit or upload:
-      - passwords, API keys, tokens
-      - customer data
-      - server URLs or internal IPs
-      - proprietary or confidential information 
-  - Every change is reviewed before merging.
+    - Anyone can **view**, **fork**, or **clone** the repository.
+    - **No one** (including internal OpsHub members) can push directly.
+    - All changes must come through a **Pull Request (PR)**.
+    - Never commit or upload:
+        - passwords, API keys, tokens
+        - customer data
+        - server URLs or internal IPs
+        - proprietary or confidential information
+    - Every change is reviewed before merging.
 
 # 🚀 How to Contribute
 - There are **two supported methods** — both are industry standard.
@@ -63,6 +63,9 @@ git push origin feature-your-change
 
 1. Go to **your fork** on GitHub.
 2. Click **Compare & Pull Request**.
+  <p align="center">
+  <img src="docs/assets/ContributorGuide_Images/pull_request.png"/>
+  </p>
 3. Set:
     - Base branch → **DevSpace**
     - Compare branch → **your branch**
@@ -71,36 +74,35 @@ git push origin feature-your-change
 
 ## 2️⃣ Contribute Using GitHub UI (No Git Required)
 - Even without Git, GitHub will automatically:
-  - Create a **fork** for you
-  - Allow editing the file in the browser
-  - Commit changes to your fork
-  - Prompt you to open a Pull Request
+    - Create a **fork** for you
+    - Allow editing the file in the browser
+    - Commit changes to your fork
+    - Prompt you to open a Pull Request
 
 ### Steps (UI Contribution)
 
 1. Open the file you want to edit on GitHub.
-<p align="center">
-<img src="docs/assets/ContributorGuide_Images/GitHub_Repo.png"/>
-</p>
+  <p align="center">
+  <img src="docs/assets/ContributorGuide_Images/GitHub_Repo.png"/>
+  </p>
 2. Click **Edit (✏️)**.
-<p align="center">
-<img src="docs/assets/ContributorGuide_Images/edit_icon.png"/>
-</p>
-3. GitHub will show:  
-   *“You don’t have write access, so we created a fork for you.”*
-<p align="center">
-<img src="docs/assets/ContributorGuide_Images/fork_repo.png"/>
-</p>
-4. Make edits.
+  <p align="center">
+  <img src="docs/assets/ContributorGuide_Images/edit_icon.png"/>
+  </p>
+3. GitHub will show: **“You don’t have write access, so we created a fork for you.”**
+  <p align="center">
+  <img src="docs/assets/ContributorGuide_Images/fork_repo.png"/>
+  </p>
+4. Make edits.<br>
 5. Add a commit message.
-<p align="center">
-<img src="docs/assets/ContributorGuide_Images/commit_message.png"/>
-</p>
-6. Commit changes.
+  <p align="center">
+  <img src="docs/assets/ContributorGuide_Images/commit_message.png"/>
+  </p>
+6. Commit changes.<br>
 7. Click **Create Pull Request** when prompted.
-<p align="center">
-<img src="docs/assets/ContributorGuide_Images/pull_request.png"/>
-</p>
+  <p align="center">
+  <img src="docs/assets/ContributorGuide_Images/pull_request.png"/>
+  </p>
 
 
 # 🔁 Keeping Your Fork Updated
