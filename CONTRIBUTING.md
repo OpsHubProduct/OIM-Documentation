@@ -16,6 +16,25 @@
         - proprietary or confidential information
     - Every change is reviewed before merging.
 
+# 📝 Pull Request Review Process
+
+- Reviewer checks content, formatting, and structure.
+- Reviewer may request changes.
+- Update your branch → PR updates automatically.
+- Reviewer merges PR once approved.
+
+# 🔁 Keeping Your Fork Updated
+
+Before starting contributing to the documentation work, sync your fork:
+
+```bash
+git fetch upstream
+git checkout DevSpace
+git merge upstream/DevSpace
+git push origin DevSpace
+```
+
+
 # 🚀 How to Contribute
 - There are **two supported methods** — both are industry standard.
 
@@ -80,7 +99,7 @@ git push origin feature-your-change
 
 1. Open the file you want to edit on GitHub.
   <p align="center">
-  <img src="docs/assets/ContributorGuide_Images/GitHub_Repo.png"/>
+  <img src="docs/assets/ContributorGuide_Images/GitHub_Repo.png" width="800"/>
   </p>
 2. Click Edit (✏️).
   <p align="center">
@@ -100,25 +119,5 @@ git push origin feature-your-change
   <p align="center">
   <img src="docs/assets/ContributorGuide_Images/pull_request.png"/>
   </p>
-
-
-# 🔁 Keeping Your Fork Updated
-
-Before starting new work, sync your fork:
-
-```bash
-git fetch upstream
-git checkout DevSpace
-git merge upstream/DevSpace
-git push origin DevSpace
-```
-
-# 📝 Pull Request Review Process
-
-- Reviewer checks content, formatting, and structure.
-- Reviewer may request changes.
-- Update your branch → PR updates automatically.
-- Reviewer merges PR once approved.
-
 
 You are now ready to contribute professionally using open-source industry standards! 🚀
