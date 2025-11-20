@@ -79,13 +79,28 @@ git push origin feature-your-change
 ### Steps (UI Contribution)
 
 1. Open the file you want to edit on GitHub.
+<p align="center">
+<img src="docs/assets/ContributorGuide_Images/GitHub_Repo.png"/>
+</p>
 2. Click **Edit (✏️)**.
+<p align="center">
+<img src="docs/assets/ContributorGuide_Images/edit_icon.png"/>
+</p>
 3. GitHub will show:  
    *“You don’t have write access, so we created a fork for you.”*
+<p align="center">
+<img src="docs/assets/ContributorGuide_Images/fork_repo.png"/>
+</p>
 4. Make edits.
 5. Add a commit message.
+<p align="center">
+<img src="docs/assets/ContributorGuide_Images/commit_message.png"/>
+</p>
 6. Commit changes.
 7. Click **Create Pull Request** when prompted.
+<p align="center">
+<img src="docs/assets/ContributorGuide_Images/pull_request.png"/>
+</p>
 
 
 # 🔁 Keeping Your Fork Updated
