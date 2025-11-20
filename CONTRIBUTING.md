@@ -21,54 +21,51 @@
 
 ## 1️⃣ Standard Git Contribution Workflow (Recommended)
 
-### Step 1: Fork the Repository
-Click **Fork** on the top-right of the GitHub page.
-
-### Step 2: Clone Your Fork
+### Step 1: Clone Your Fork
 ```bash
 git clone https://github.com/<your-username>/OIM-Documentation.git
 cd OIM-Documentation
 ```
 
-### Step 3: Add the Upstream Remote
+### Step 2: Add the Upstream Remote
 
 ```bash
 git remote add upstream https://github.com/OpsHubProduct/OIM-Documentation.git
 ```
 
-### Step 4: Create a Working Branch
+### Step 3: Create a Working Branch
 
 ```bash
 git checkout -b feature-your-change
 ```
 
-### Step 5: Make Documentation Changes
+### Step 4: Make Documentation Changes
 
 Edit `.md` files using your preferred editor (e.g., VS Code, IntelliJ).
 
-### Step 6: Commit Your Changes
+### Step 5: Commit Your Changes
 
 ```bash
 git add .
 git commit -m "Update: improved documentation for XYZ section"
 ```
 
-### Step 7: Push Your Branch
+### Step 6: Push Your Branch
 
 ```bash
 git push origin feature-your-change
 ```
 
-### Step 8: Open a Pull Request
+### Step 7: Open a Pull Request
 
 1. Go to **your fork** on GitHub.
 2. Click **Compare & Pull Request**.
-  <p align="center">
-  <img src="docs/assets/ContributorGuide_Images/pull_request.png"/>
-  </p>
-3. Set:
-    - Base branch → **DevSpace**
-    - Compare branch → **your branch**
+<p align="center">
+<img src="docs/assets/ContributorGuide_Images/pull_request.png"/>
+</p>
+3. Set:<br>
+    - Base branch → DevSpace <br>
+    - Compare branch → your branch <br>
 4. Submit the PR for review.
 
 
@@ -85,11 +82,11 @@ git push origin feature-your-change
   <p align="center">
   <img src="docs/assets/ContributorGuide_Images/GitHub_Repo.png"/>
   </p>
-2. Click **Edit (✏️)**.
+2. Click Edit (✏️).
   <p align="center">
   <img src="docs/assets/ContributorGuide_Images/edit_icon.png"/>
   </p>
-3. GitHub will show: **“You don’t have write access, so we created a fork for you.”**
+3. GitHub will show: “You don’t have write access, so we created a fork for you.”
   <p align="center">
   <img src="docs/assets/ContributorGuide_Images/fork_repo.png"/>
   </p>
@@ -99,7 +96,7 @@ git push origin feature-your-change
   <img src="docs/assets/ContributorGuide_Images/commit_message.png"/>
   </p>
 6. Commit changes.<br>
-7. Click **Create Pull Request** when prompted.
+7. Click "Create Pull Request" when prompted.
   <p align="center">
   <img src="docs/assets/ContributorGuide_Images/pull_request.png"/>
   </p>
