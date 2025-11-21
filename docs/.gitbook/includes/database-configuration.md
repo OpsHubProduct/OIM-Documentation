@@ -4,7 +4,7 @@
 2. If Database Connection requires connection to database other than the Database server on which <code class="expression">space.vars.SITENAME</code> is deployed, then follow the given steps below:
    - Download the required database driver on which you want new database connection to be created. For downloading, refer the links below:
      - MySQL Server: [MySQL Server Driver](https://dev.mysql.com/downloads/connector/j/5.0.html)
-     - MS SQL Server: [MS SQL Server Driver](http://www.microsoft.com/enus/download/details.aspx?displaylang=en&id=11774)
+     - MS SQL Server: [MS SQL Server Driver](https://www.microsoft.com/en-in/sql-server/sql-server-downloads#tabs-pill-bar-oca8e1_tab1)
      - Oracle Server: [Oracle Server Driver](http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-10201088211.html)
      - PostgreSQL Server: [PostgreSQL Server Driver](https://jdbc.postgresql.org/download/)
      - HSQLDB Server: No need for any jar download. It is already bundled with <code class="expression">space.vars.SITENAME</code>.
