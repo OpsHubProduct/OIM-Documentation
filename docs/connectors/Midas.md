@@ -29,7 +29,7 @@ Here's the screenshot:
 | **Override SSL Certificate Hostname Verification** | Always | The HTTPS certificate of Midas server often contains different Common Name (CN) and Hostname that can create conflicts in hostname verification. Enable this input if a conflict exists.If input is disabled, generate a certificate on the Midas server and add it. Refer to [Steps to upload the server certificate:](Midas.md#steps-to-upload-the-server-certificate) section . |
 
 
-## Mapping Configuration
+# Mapping Configuration
 
 Map the fields between Midas and the other system to ensure that the data synchronizes correctly.
 
@@ -39,7 +39,7 @@ Click **Mapping Configuration** to learn the step-by-step process to configure m
 </p>
 
 
-## Integration Configuration
+# Integration Configuration
 
 Set a time to synchronize data between Midas and the other system. Define parameters and conditions, if any, for integration.
 
@@ -48,7 +48,7 @@ Refer to **Integration Configuration** for step-by-step instructions.
   <img src="../assets/MidasIntegrationConfiguration.png" />
 </p>
 
-## Criteria Configuration
+# Criteria Configuration
 
 Specify conditions for synchronizing an entity between Midas and the other system using criteria configuration.
 
@@ -56,7 +56,7 @@ Specify conditions for synchronizing an entity between Midas and the other syste
 - Example: `SM_Type=DMR`, `SM_Class=HW`, `SM_NAME=DEMO`,`User=admin`,`updated_after=2025-11-04T02:20:13-05:00`.
 
 
-## Known Behaviors/Limitations
+# Known Behaviors/Limitations
 
 - Remote Links are not supported in Midas.
   - **Reason**: It does not have any web interface.
