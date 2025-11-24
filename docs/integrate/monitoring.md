@@ -18,5 +18,9 @@
       <td align="center"><strong>Using the Dashboard</strong></td>
       <td><a href="dashboards.md">Using the Dashboard</a></td>
     </tr>
+     <tr>
+      <td align="center"><strong>Searching in OIM</strong></td>
+      <td><a href="search.md">Searching in OIM</a></td>
+    </tr>
   </tbody>
 </table>
