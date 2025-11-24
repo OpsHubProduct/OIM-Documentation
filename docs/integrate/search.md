@@ -28,8 +28,8 @@ You can search within two scopes — depending on whether you want a focused or 
 
 > **Note:**
 > - **Current Folder** is selected by default.
-> - If you switch to **All Folders**, all searches will continue to use this scope **until you manually change it back**.
-> - Your selected scope remains active across navigation and does not reset automatically.
+> - If you switch to **All Folders**, all searches will continue to use this mode **until you manually change it back**.
+> - Your selected mode remains active across navigation and does not reset automatically.
 
 <p align="center">
   <img src="../assets/Search_scope_all.png" />
