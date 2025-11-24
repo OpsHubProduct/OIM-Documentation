@@ -11,9 +11,9 @@
         - Such entities are categorized as "Not Applicable" in the integration sync report.
   - In the "Logical Delete", some of the fields of the target entity is updated with some fixed values to represent that the corresponding source entity is deleted.
   - In the "Soft Delete", the target entity will be deleted in the target, which can go to the recycle bin of the corresponding systems.  
-    - Currently, the "Soft Delete" is supported for the Rally, Team Foundation Server, VersionOne, Doors, Salesforce, and Codebeamer systems in **<code class="expression">space.vars.SITENAME</code>**. For further details on the same, please refer to connector documentation of systems.
+    - Currently, the "Soft Delete" is supported for the Rally, Team Foundation Server, VersionOne, Doors, Salesforce, Codebeamer and Monday.com systems in **<code class="expression">space.vars.SITENAME</code>**. For further details on the same, please refer to connector documentation of systems.
   - In the "Archive operation", target entity will be archived in the corresponding systems.  
-    - Currently, "Archive" is supported in **Jira data center** system.
+    - Currently, "Archive" is supported in **Jira data center** and Monday.com systems.
 
 # Configuration Steps
 
