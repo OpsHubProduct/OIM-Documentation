@@ -26,6 +26,6 @@ It offers two search scopes based on how broad or focused you want your results 
   Once you navigate, the folder view updates to show all matching components in that folder.
 
 <p align="center">
-  <img src="../assets/Search_Scope_all.png" />
+  <img src="../assets/Search_scope_all.png" />
 </p>
 
