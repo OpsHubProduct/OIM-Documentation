@@ -35,6 +35,7 @@
       * [Organize Integrations](docs/integrate/folder-management.md)
       * [Merge Integrations](docs/integrate/merge.md)
       * [Using the Dashboard](docs/integrate/dashboards.md)
+      * [Searching in OIM](docs/integrate/search.md)
     * [Best Practices](docs/integrate/best-practises.md)
     * [Limitations](docs/integrate/limitations.md)
 * [Manage](docs/manage/manage.md)
