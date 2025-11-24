@@ -19,8 +19,8 @@
       <td><a href="dashboards.md">Using the Dashboard</a></td>
     </tr>
      <tr>
-      <td align="center"><strong>Searching in OIM</strong></td>
-      <td><a href="search.md">Searching in OIM</a></td>
+      <td align="center"><strong>Search and Navigation</strong></td>
+      <td><a href="search.md">Search and Navigation</a></td>
     </tr>
   </tbody>
 </table>

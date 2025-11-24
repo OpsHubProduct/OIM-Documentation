@@ -1,6 +1,6 @@
-The search functionality allows users to quickly locate components within <code class="expression">space.vars.SITENAME</code>.
+The search functionality allows users to quickly locate components such as Integrations, Mappings, Systems, Workflows, etc., within <code class="expression">space.vars.SITENAME</code>.
 
-It offers two search scopes based on how broad or focused you want your results to be: **Current Folder** and **All Folders**.
+You can search within two scopes — depending on whether you want a focused or global search: **Current Folder** and **All Folders**.
 <p align="center">
   <img src="../assets/Search_Scopes.png" />
 </p>
@@ -19,13 +19,23 @@ It offers two search scopes based on how broad or focused you want your results 
 
 ### All Folders Search
 
-- This mode searches **across all folders** you have permission to access.
-- Results are displayed in a **separate results panel** below the search bar, without disturbing your current folder view.
-- Helpful when you are unsure in which folder the component is located or want a global search experience.
-- Clicking on the component name or folder path in this panel navigates you directly to the folder where the component exists.  
-  Once you navigate, the folder view updates to show all matching components in that folder.
+- This mode searches across **all folders** you have permission to access.
+- Results are displayed in a **separate panel below the search bar**, so your current folder view remains unchanged.
+- Useful when you are **unsure of a component’s location** or want a **global search** across all folders.
+- Clicking on a component name or folder path in the results panel navigates you **directly to the folder** containing that component.
+- After navigation, the folder view updates to display **all matching components** within that folder.
+- This is where you can perform all standard operations, such as **editing integrations**, **creating mappings**, or performing other routine tasks.
+
+> **Note:**
+> - **Current Folder** is selected by default.
+> - If you switch to **All Folders**, all searches will continue to use this scope **until you manually change it back**.
+> - Your selected scope remains active across navigation and does not reset automatically.
 
 <p align="center">
   <img src="../assets/Search_scope_all.png" />
+</p>
+
+<p align="center">
+  <img src="../assets/Search_scope_all_after.png" />
 </p>
 
