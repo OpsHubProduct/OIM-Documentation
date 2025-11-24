@@ -6,13 +6,17 @@
     </tr>
   </thead>
   <tbody>
+     <tr>
+      <td align="center"><strong>Merge Integrations</strong></td>
+      <td><a href="merge.md">Merge Integrations</a></td>
+     </tr>
     <tr>
       <td align="center"><strong>Organize Integrations</strong></td>
       <td><a href="folder-management.md">Organize Integrations</a></td>
     </tr>
     <tr>
-      <td align="center"><strong>Merge Integrations</strong></td>
-      <td><a href="merge.md">Merge Integrations</a></td>
+      <td align="center"><strong>Search and Navigation</strong></td>
+      <td><a href="search.md">Search and Navigation</a></td>
     </tr>
     <tr>
       <td align="center"><strong>Using the Dashboard</strong></td>
