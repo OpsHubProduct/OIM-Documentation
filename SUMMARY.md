@@ -139,6 +139,7 @@
   * [Tricentis Tosca](docs/connectors/tricentis-tosca.md)
   * [Verisium Manager](docs/connectors/vManager.md)
   * [Windchill](docs/connectors/windchillrv&s.md)
+  * [Windchill PLM](docs/connectors/plm.md)
   * [Zendesk](docs/connectors/zendesk.md)
 * [Connector SDK](docs/connector-sdk/connector-sdk-index.md)
     * [Getting Started](docs/connector-sdk/getting-started.md)
