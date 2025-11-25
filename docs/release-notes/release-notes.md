@@ -1,35 +1,46 @@
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 
+# New Version(s)
+* Jira Data Center: 11.x
+
+# Enhancement 
+
+## Common
+* Enhanced support for rule base routing.
+  * Use case: When one source entity type needs to sync with different target entity types based on the value of a specific field, this can now be configured directly from the UI without requiring advanced scripting.
+  * For more details, refer to [rule base routing](../integrate/rule-based-routing.md).
+* Enhanced the UI behavior for identifying ambiguities when field names, entity types, project names, lookups, or link types share the same display name.
+  * Added internal values for these items, allowing users to easily distinguish duplicates by hovering over the label.
+  * For example:
+  <p align="center">
+  <img src="../assets/duplicate_displayname_field.png" width="500">
+  </p>
+* Enhanced performance where <code class="expression">space.vars.SITENAME</code> installed on the Microsoft SQL Server(MSSQL) that helps to reduce the high CPU usage.
+
+## Jira Cloud
+* Added support for synchronizing shared steps from Zephyr (formerly Zephyr Scale).
+  * For guidance on integrating shared steps with other systems, see the Integration Combination Example: [Jira-Zephyr Shared Step Configuration](../knowledge-resources/integration-combination-examples/Jira-zephyr-shared-step-configuration.md)
+
 # Major Bugs
 
-## Azure DevOps Server/Services
-* Resolved an issue where edited comments were duplicated when the History-based Integration was enabled where Azure DevOps Server/Services as the source system.  
-    * Use case: When the integration was configured in history mode, if a work item had already been synced without comments, and comments were later added and edited, some edited comments were duplicated while synchronizing from Azure DevOps Server/Services.
+## Common
+* Resolved an issue where the license expiry warning did not appear as expected when the system contained both expired licenses and at least one active license that was within the warning period.
+* Resolved an issue where loading integration details, mapping lists, and failure lists took longer than expected to display data.  
+* Resolved an issue where a global failure occurred while retrieving comments from a deleted source entity.
+  * Use case: 
+    * If an item of type A was previously synced to the target and later converted to type B, <code class="expression">space.vars.SITENAME</code>are used to retrieve comments from the original entity so that no data is lost when creating the corresponding new entity in the target.
+    * If a processing failure occurred during this process and the item was subsequently deleted in the source system, a global failure would occur when the system attempted to re-fetch comments from the now-deleted source item.
 
-## GitHub
-* Resolved an issue where a processing failure occurred with the message **'Invalid Comment Type'** during synchronization of the issue entity to GitHub.
+## Gerrit
+* Resolved an issue that caused a global failure when an inactive user with an empty username was encountered. The user’s email address was used to create another user, resulting in multiple matches and an error due to the empty username.
 
-## Jira Cloud/Jira Data Center
-* For Jira Cloud, resolved an issue where entities/issues/work items were skipped in cases when the API response did not include newly created or updated issues due to delayed indexing.
-* Resolved an issue where an inline image was not synchronized as expected when there was an extra space before the '!' symbol in the image placeholder.  
-  * Use case: When reading data from a source system that includes additional image properties such as height or width, a trailing space in those properties could cause an extra space to appear before the closing exclamation mark (for example:  
-`!About.png|width=500 !`), preventing proper synchronization.  
-    > **Note**: Jira supports the Wiki format in rich text fields. In Wiki format, an inline image is rendered when its name is placed between two exclamation marks (for example: `!Note.jpg!`).
-
-## Microsoft Dynamics 365
-* Resolved an issue where entities were skipped when the API response did not include newly created or updated records due to delays in APIs from Microsoft Dynamics 365.
-
-## Tricentis Tosca
-* Resolved an issue where a job error occurred with the message `"Unexpected character ('<' (code 60)): expected a valid value (JSON String, Number, Array, Object, or token 'null', 'true', or 'false')"` when retrieving test steps from Tosca.
-
+## IBM Engineering Workflow Management
+* Resolved an issue where a processing failure occurred with the error message “com.opshub.exceptions.eai.OIMRunTimeException: java.lang.NumberFormatException: Character is neither a decimal digit number, decimal point, nor ‘e’ notation exponential mark. Failed to execute method OIMCoreUtility::getEntityRevisions.”
+  * The issue was caused by an extra space before a numeric field in the revision, which led to a conversion error.
 
 {% endif %}  
 
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
 
-# Major Bugs
-
-* Resolved an issue where edited comments were duplicated during migration.  
-**Use case:** When migration was configured, if a work item had already been migrated without comments and comments were later added and edited, some edited comments were duplicated during migration from Azure DevOps Server/Services.
 
 {% endif %}  
