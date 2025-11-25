@@ -41,7 +41,7 @@ Now, let’s see this in different search scopes
 - After navigation, the folder view updates to show all matching components within that folder.
 
 <p align="center">
-  <img src="../assets/Search_scope_all_after.png" />
+  <img src="../assets/Search_scope_all_after.png" width="2000"/>
 </p>
 
 - From there, you can perform all standard operations, such as editing integrations, creating mappings, or carrying out other routine tasks
