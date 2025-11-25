@@ -18,6 +18,20 @@
 | **Updates permissions** | - Create item updates<br>- Create doc comments                                                                                                                                                                                                                |
 | **Group permissions**   | - Create groups                                                                                                                                                                                                                                               |                                                                                                                                                                                                                     |
 
+# Supported Entities
+
+* All **board items'** and **sub items'** sync are supported for the following modules: Monday Dev, Service, Monday CRM, Work Management and Campaigns.
+* Example of board items:
+    * In the screenshot below, each row of the ticket on the given board represents a board item:
+      <p align="center">
+        <img src="../assets/MondayItemExample.png" width="858"  alt=""/>
+      </p>
+* Example of board sub items:
+    * In the screenshot below, ticket with name “Need to replace monitor” is a sub item under the parent item with name “I need help with my laptop”:
+        <p align="center">
+            <img src="../assets/MondaySubItemExample.png" width="936"  alt=""/>
+          </p>
+
 # System Configuration
 
 Before you continue with the integration, you must first configure the Monday.com system in <code class="expression">space.vars.SITENAME</code>.
@@ -49,33 +63,20 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
   <img src="../assets/MondayMappingCreation.png" />
 </p>
 
-## Supported Entities
-
-* All **board items'** and **sub items'** sync are supported for the following modules: Monday Dev, Service, Monday CRM, Work Management and Campaigns.
-* Example of board items:
-  * In the screenshot below, each row of the ticket on the given board represents a board item:
-    <p align="center">
-      <img src="../assets/MondayItemExample.png" width="858"  alt=""/>
-    </p>
-* Example of board sub items:
-  * In the screenshot below, ticket with name “Need to replace monitor” is a sub item under the parent item with name “I need help with my laptop”:
-      <p align="center">
-          <img src="../assets/MondaySubItemExample.png" width="936"  alt=""/>
-        </p>
-    
 ## Field Configuration
 
-- **Country field**: Accepts country codes as values only. Example: "IN"
+For Monday.com as a target system:
+
+- **Country**: Accepts country codes as values only. Example: "IN"
   - Refer to this JSON for available country codes: [country.io/names.json](https://country.io/names.json)
-- **Location field**:  Accepts values in the format: {latitude} {longitude} {address} only
+- **Location**:  Accepts values in the format: {latitude} {longitude} {address} only
   - Example: 29.9772962 31.1324955 Giza Pyramid Complex
-- **Rating field**: Accepts values from 0 to 5 only.
+- **Rating**: Accepts values from 0 to 5 only.
   - Any other numbers will cause the sync to fail according to Monday.com field behavior.
 - **World clock**: Accepts a time zone as a value only. Example: "Europe/London"
   - Other time zone values can be referred from: [List of Time Zones of the World](https://utctime.info/timezone/)
-- **Group field**: Group is a **mandatory** field for items.
+- **Group**: Group is a **mandatory** field for items.
   - If a group with the specified name does not exist on Monday.com, <code class="expression">space.vars.SITENAME</code> will create and use it.
-- **Group Id field**: It can be used as an alternative for Group field if the internal ID for Group is known.
 
 ## Relationship Configuration
 
@@ -114,7 +115,7 @@ If the user wants to sync item and sub items with parent-child links:
           <img src="../assets/MondayAttachmentMappingExample.png" width="936"  alt=""/>
         </p>
 
-## Mapping for Soft Delete Configuration
+## Soft Delete Configuration
 
 - When Monday.com is the target system, the **soft delete operation** is performed by **default** in the synchronization of the [Source Delete event](../integrate/source-delete-synchronization.md).
 - After the soft delete operation is performed by <code class="expression">space.vars.SITENAME</code>, the entity will be deleted from Monday.com and it can be found in trash.
@@ -169,15 +170,15 @@ Navigate to [Criteria Configuration](crtieria) section on [Integration Configura
   - The folder of an item can be only read. The user cannot create folders or assign individual items to them.
     - Reason: Monday.com only allows entire boards to be added to folders, and not an item only.
 - **Attachments**:
-  - Attachments added directly to the File Gallery of Monday.com (not inside a file-type column) cannot be synced because Monday.com  API unavailability.
-    - **Recommended**: Always upload attachments to a file-type column, not the File Gallery.
+  - In order to sync attachments from monday.com, make sure they're added to any file type column.
+    - Reason: Attachments added directly to the File Gallery of Monday.com (not inside a file-type column) cannot be synced because of Monday.com API unavailability.
 - **Items and sub items relationship linkage**:
   - A Parent item link is mandatory when creating a subitem.
     - Hence, Monday.com as the target system, once subitem is created , its parent link cannot be changed or removed. 
     - Reason: Monday.com API unavailability
   - A parent link can be added on a sub item while creation, but a child link cannot be added from already existing items in Monday.com due to unavailability of API.
 - **Comments**:
-  - Replies to comments in Monday.com will be synced as separate comments by <code class="expression">space.vars.SITENAME</code>.
+  - Replies to comments or edits in Monday.com will be synced as separate comments by <code class="expression">space.vars.SITENAME</code>.
 - **Documents**:
   - Synchronization of documents as entity is not supported.
 
