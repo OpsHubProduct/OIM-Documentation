@@ -119,6 +119,7 @@
       * [Jira Zephyr Sample JSON File](docs/connectors/sample-json-file-for-jira-zephyr.md) 
   * [Midas](docs/connectors/Midas.md)
   * [Microsoft Dynamics 365](docs/connectors/msdynamics.md)
+  * [Monday.com](docs/connectors/monday.md)
   * [OpenText ALM Octane](docs/connectors/almoctane.md)
   * [OpenText ALM Quality Center](docs/connectors/micro-focus-alm-qc.md)
   * [OpenText Project and Portfolio Management(PPM)](docs/connectors/caliberrm.md)
