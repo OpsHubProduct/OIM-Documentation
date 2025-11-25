@@ -18,6 +18,12 @@
 | **Updates permissions** | - Create item updates<br>- Create doc comments                                                                                                                                                                                                                |
 | **Group permissions**   | - Create groups                                                                                                                                                                                                                                               |                                                                                                                                                                                                                     |
 
+## Monday.com edition
+
+- For smooth integration without delays, the **Pro** or **Enterprise** edition is required.
+  - Reason: The Trial and Standard editions allow only a limited number of API calls per day.
+- For the **Pro** edition, it is recommended to set the entity sync schedule to more than 15 minutes. For more details, see [Integration Configuration - Associate Schedule](../../../integrate/integration-configuration.md#associate-schedule).
+
 # Supported Entities
 
 * All **board items'** and **sub items'** sync are supported for the following modules: Monday Dev, Service, Monday CRM, Work Management and Campaigns.
