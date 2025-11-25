@@ -49,7 +49,7 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
   <img src="../assets/MondayMappingCreation.png" />
 </p>
 
-# Supported Entities
+## Supported Entities
 
 * All **board items'** and **sub items'** sync are supported for the following modules: Monday Dev, Service, Monday CRM, Work Management and Campaigns.
 * Example of board items:
@@ -62,6 +62,20 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
       <p align="center">
           <img src="../assets/MondaySubItemExample.png" width="936"  alt=""/>
         </p>
+    
+## Field Configuration
+
+- **Country field**: Accepts country codes as values only. Example: "IN"
+  - Refer to this JSON for available country codes: [country.io/names.json](https://country.io/names.json)
+- **Location field**:  Accepts values in the format: {latitude} {longitude} {address} only
+  - Example: 29.9772962 31.1324955 Giza Pyramid Complex
+- **Rating field**: Accepts values from 0 to 5 only.
+  - Any other numbers will cause the sync to fail according to Monday.com field behavior.
+- **World clock**: Accepts a time zone as a value only. Example: "Europe/London"
+  - Other time zone values can be referred from: [List of Time Zones of the World](https://utctime.info/timezone/)
+- **Group field**: Group is a **mandatory** field for items.
+  - If a group with the specified name does not exist on Monday.com, <code class="expression">space.vars.SITENAME</code> will create and use it.
+- **Group Id field**: It can be used as an alternative for Group field if the internal ID for Group is known.
 
 ## Relationship Configuration
 
@@ -89,10 +103,6 @@ If the user wants to sync item and sub items with parent-child links:
         </p>
 3. Synchronize the sub items. It will add the required parent links to the parent items.
 
-## Comment Configuration
-
-All the comments updates and replies on Monday.com items will be synced as individual comments.
-
 ## Attachment Configuration
 
 * All file-type columns are supported for syncing attachment types. 
@@ -103,7 +113,6 @@ All the comments updates and replies on Monday.com items will be synced as indiv
     <p align="center">
           <img src="../assets/MondayAttachmentMappingExample.png" width="936"  alt=""/>
         </p>
-
 
 ## Mapping for Soft Delete Configuration
 
@@ -162,8 +171,6 @@ Navigate to [Criteria Configuration](crtieria) section on [Integration Configura
 - **Attachments**:
   - Attachments added directly to the File Gallery of Monday.com (not inside a file-type column) cannot be synced because Monday.com  API unavailability.
     - **Recommended**: Always upload attachments to a file-type column, not the File Gallery.
-  - If a board has multiple file-type columns, the user must define attachment type mappings as explained in the [Attachment Configuration] (link here) section.
-    - If no mapping is provided, all source attachments will be synced into a single target file-type column.
 - **Items and sub items relationship linkage**:
   - A Parent item link is mandatory when creating a subitem.
     - Hence, Monday.com as the target system, once subitem is created , its parent link cannot be changed or removed. 
@@ -173,18 +180,6 @@ Navigate to [Criteria Configuration](crtieria) section on [Integration Configura
   - Replies to comments in Monday.com will be synced as separate comments by <code class="expression">space.vars.SITENAME</code>.
 - **Documents**:
   - Synchronization of documents as entity is not supported.
-- **Fields behavior**:
-  - **Country field**: Accepts country codes as values only. Example: "IN"
-    - Refer to this JSON for available country codes: [country.io/names.json](https://country.io/names.json)
-  - **Location field**:  Accepts values in the format: {latitude} {longitude} {address} only
-    - Example: 29.9772962 31.1324955 Giza Pyramid Complex 
-  - **Rating field**: Accepts values from 0 to 5 only. 
-    - Any other numbers will cause the sync to fail according to Monday.com field behavior. 
-  - **World clock**: Accepts a time zone as a value only. Example: "Europe/London"
-    - Other time zone values can be referred from: [List of Time Zones of the World](https://utctime.info/timezone/)
-  - **Group field**: Group is a mandatory field for items.
-    - If a group with the specified name does not exist on Monday.com, <code class="expression">space.vars.SITENAME</code> will create it.
-    - **Group Id** field can be used as an alternative for Group field if the internal ID for Group is known.
 
 # Appendix
 
