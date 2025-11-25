@@ -18,6 +18,14 @@
 | **Updates permissions** | - Create item updates<br>- Create doc comments                                                                                                                                                                                                                |
 | **Group permissions**   | - Create groups                                                                                                                                                                                                                                               |                                                                                                                                                                                                                     |
 
+## Monday.com Edition Guidelines
+
+- To ensure smooth integration without delays, the **Pro** or **Enterprise** edition is required.
+  - **Reason**: Trial and Standard editions have limited API calls per day. See [Monday.com daily API call limit](https://developer.monday.com/api-reference/docs/rate-limits#daily-call-limit) for details.
+- For the **Pro** edition, set the item sync schedule to **15 minutes or more**.
+  - **Reason**: Shorter sync intervals may cause sync delays due to API rate limit, especially for boards with many items.
+  - See [Integration Configuration - Associate Schedule](../integrate/integration-configuration.md#associate-schedule) for details
+
 # Supported Entities
 
 * All **board items'** and **sub items'** sync are supported for the following modules: Monday Dev, Service, Monday CRM, Work Management and Campaigns.
@@ -136,7 +144,7 @@ Refer to [Integration Configuration](../integrate/integration-configuration.md) 
 
 If the user wants to specify conditions for synchronizing an item from Monday.com as source system to the other system, the criteria must be configured.
 
-Navigate to [Criteria Configuration](crtieria) section on [Integration Configuration](../integrate/integration-configuration.md) for details.
+Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#criteria-configuration) for details.
 
 - Set the Criteria Query as per Monday.com’s **Native JSON query format**.
 - Refer to [Monday API Reference](https://developer.monday.com/api-reference/reference/items-page#filtering-items-by-name) for more details on query format.
