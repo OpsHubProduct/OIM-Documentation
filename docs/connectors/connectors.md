@@ -199,6 +199,11 @@ layout:
           <td><a href="msdynamics.md">msdynamics.md</a></td>
         </tr>
         <tr>
+          <td align="center"><mark style="color:#555555"><strong>Monday.com</strong></mark></td>
+          <td><a href="../assets/connector/123_monday.png.png">Monday.com</a></td>
+          <td><a href="monday.md">monday.md</a></td>
+        </tr>
+        <tr>
           <td align="center"><mark style="color:#555555"><strong>OpenText<br>ALM Octane</strong></mark></td>
           <td><a href="../assets/connector/75_opentext_alm_octane.png">OpenText ALM Octane</a></td>
           <td><a href="almoctane.md">almoctane.md</a></td>

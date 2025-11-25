@@ -2,7 +2,7 @@
 
 ## User privileges
 
-- Create one user in Monday.com that is dedicated to OpsHub Integration Manager. This user should not perform any other action from Monday.com’s user interface. This user is referred to as an 'Integration User' in the documentation.
+- Create one user in Monday.com that is dedicated to <code class="expression">space.vars.SITENAME</code>. This user should not perform any other action from Monday.com’s user interface. This user is referred to as an 'Integration User' in the documentation.
 - For this integration user to perform operations in Monday.com, various permissions are required, as outlined in the [Required Permissions](#required-permissions) section.
 
 ## Required Permissions
@@ -10,19 +10,20 @@
 - Add the integration user to the board to be synchronized. (Refer to [Add user to board](https://support.monday.com/hc/en-us/articles/115005312649-Board-members) for more details.)
 - These permissions should be granted to the user: (Refer to [Set permissions](https://support.monday.com/hc/en-us/articles/115005315809-Board-permissions) for more details on setting permissions)
 
-| Permission category | Permissions                                                                                                                                                                                                                |
-|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Items               | Create items, edit items, view items, move items within a group, move items across group, archive self-created items, archive items created by other users, delete self-created items, delete items created by other users |
-| Sub items           | Create sub items, View sub items, edit, archive self-created subitems, archive subitems created by other users, delete self-created subitems, delete subitems created by other users                                       |
-| General permissions | Upload files in boards and docs                                                                                                                                                                                            |
-| Updates permissions | Create item updates and doc comments                                                                                                                                                                                       |
-| Group permissions   | Create groups                                                                                                                                                                                                              |
+| **Permission category** | **Permissions**                                                                                                                                                                                                                                               |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Items**               | - Create items<br>- Edit items<br>- View items<br>- Move items within a group<br>- Move items across groups<br>- Archive self-created items<br>- Archive items created by other users<br>- Delete self-created items<br>- Delete items created by other users |
+| **Sub items**           | - Create sub items<br>- View sub items<br>- Edit sub items<br>- Archive self-created sub items<br>- Archive sub items created by other users<br>- Delete self-created sub items<br>- Delete sub items created by other users                                  |
+| **General permissions** | - Upload files in boards and docs                                                                                                                                                                                                                             |
+| **Updates permissions** | - Create item updates<br>- Create doc comments                                                                                                                                                                                                                |
+| **Group permissions**   | - Create groups                                                                                                                                                                                                                                               |                                                                                                                                                                                                                     |
 
 # System Configuration
 
 Before you continue with the integration, you must first configure the Monday.com system in <code class="expression">space.vars.SITENAME</code>.
 
-Refer to [System Configuration](../integrate/system-configuration.md) for a step-by-step guide on how to configure the system. Refer to the screenshot below:
+Refer to [System Configuration](../integrate/system-configuration.md) for a steps on how to configure the system.
+Refer to the screenshot below:
 
 <p align="center">
   <img src="../assets/MondaySystemCreation.png" width="842"  alt=""/>
@@ -30,13 +31,13 @@ Refer to [System Configuration](../integrate/system-configuration.md) for a step
 
 ## Monday.com System Form Details
 
-| Field Name               | When is the field visible | Description                                                                                                                                                                                                                                                                                        |
-|--------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **System Name**          | Always                    | Provide a unique name for the Monday.com system.                                                                                                                                                                                                                                                   |
-| **API URL**              | Always                    | The GraphQL API endpoint used. Default value is: https://api.monday.com/v2                                                                                                                                                                                                                         |
-| **User Email**           | Always                    | Provide a dedicated email address of the Monday.com user for <code class="expression">space.vars.SITENAME</code>. This user should not be used for any other operations from system's user interface, and must have the [required permissions](#required-permissions) to access data in Monday.com |
-| **API Token**            | Always                    | Provide the API token generated for the user given in the User Email field. Refer to [Access API Token](#get-api-token) section for details.                                                                                                                                                       |
-| Base URL for Remote Link | Always                    | Provide a different instance URL of the Monday.com instance. This URL will be used for generating the Remote Link. <br> Note: If "Base URL for Remote Link" is empty, it will use default instance URL to generate remote link if configured on integration.                                       |
+| Field Name                   | When is the field visible | Description                                                                                                                                                                                                                                                                                        |
+|------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System Name**              | Always                    | Provide a unique name for the Monday.com system.                                                                                                                                                                                                                                                   |
+| **API URL**                  | Always                    | The GraphQL API endpoint used. Default value is: https://api.monday.com/v2                                                                                                                                                                                                                         |
+| **User Email**               | Always                    | Provide a dedicated email address of the Monday.com user for <code class="expression">space.vars.SITENAME</code>. This user should not be used for any other operations from system's user interface, and must have the [required permissions](#required-permissions) to access data in Monday.com |
+| **API Token**                | Always                    | Provide the API token generated for the user given in the User Email field. Refer to [Access API Token](#get-api-token) section for details.                                                                                                                                                       |
+| **Base URL for Remote Link** | Always                    | Provide a different instance URL of the Monday.com instance. This URL will be used for generating the Remote Link. <br> Note: If "Base URL for Remote Link" is empty, it will use default instance URL to generate remote link if configured on integration.                                       |
 
 ## Mapping Configuration
 
@@ -50,7 +51,7 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
 
 ### Supported Entities
 
-* All board items' and sub items' sync are supported for the following modules: Monday Dev, Service, Monday CRM, Work Management and Campaigns.
+* All **board items'** and **sub items'** sync are supported for the following modules: Monday Dev, Service, Monday CRM, Work Management and Campaigns.
 * Example of board items:
   * In the screenshot below, each row of the ticket on the given board represents a board item:
     <p align="center">
@@ -71,7 +72,7 @@ The user will be able to sync the following relationship types:
 
 #### Mandatory Links
 
-* For sub items, 'Parent' is a mandatory relationship linkage as a subitem can only be created inside an item. 
+* For sub items, **'Parent'** is a mandatory relationship linkage as a subitem can only be created inside an item. 
 * Example: To create a sub item, parent item must exist:
     <p align="center">
           <img src="../assets/MondayMandatoryLinkExample.png" width="843"  alt=""/>
@@ -97,7 +98,7 @@ All the comments updates and replies on Monday.com items will be synced as indiv
 * All file-type columns are supported for syncing attachment types. 
 * The user can choose which file-type column each attachment should sync to. If the attachment types' mapping is not configured, all attachments will be synced to one single column.
 * If there is no attachment mapping provided, all attachments will be synced to any one column only.
-* Here's the screenshot of attachment types' mapping:
+* Here's the screenshot of attachment types' mapping for reference:
 
     <p align="center">
           <img src="../assets/MondayAttachmentMappingExample.png" width="936"  alt=""/>
@@ -106,11 +107,11 @@ All the comments updates and replies on Monday.com items will be synced as indiv
 
 ### Mapping for Soft Delete Configuration
 
-- When Monday.com is the target system, the soft delete operation is performed by default in the synchronization of the [Source Delete event](../integrate/source-delete-synchronization.md).
+- When Monday.com is the target system, the **soft delete operation** is performed by **default** in the synchronization of the [Source Delete event](../integrate/source-delete-synchronization.md).
 - After the soft delete operation is performed by <code class="expression">space.vars.SITENAME</code>, the entity will be deleted from Monday.com and it can be found in trash.
 - Configuring Delete Mode:
-  - To enable archive operation in target, "OH Archive" field shall be mapped with default value "Yes" in the [Delete Mode](../integrate/mapping-configuration.md#delete-mode) mapping.
-  - To enable only the logical delete operation in the target, "OH Soft Delete" field shall be mapped with the default value "No" in the [Delete Mode](../integrate/mapping-configuration.md#delete-mode) mapping.
+  - To enable **archive** operation in target, "OH Archive" field shall be mapped with default value "Yes" in the [Delete Mode](../integrate/mapping-configuration.md#delete-mode) mapping.
+  - To enable only the **logical delete** operation in the target, "OH Soft Delete" field shall be mapped with the default value "No" in the [Delete Mode](../integrate/mapping-configuration.md#delete-mode) mapping.
 
 ## Integration Configuration
 
@@ -127,7 +128,7 @@ If the user wants to specify conditions for synchronizing an item from Monday.co
 
 Navigate to [Criteria Configuration](crtieria) section on [Integration Configuration](../integrate/integration-configuration.md) for details.
 
-- Set the Criteria Query as per Monday.com’s Native JSON query format.
+- Set the Criteria Query as per Monday.com’s **Native JSON query format**.
 - Refer to [Monday API Reference](https://developer.monday.com/api-reference/reference/items-page#filtering-items-by-name) for more details on query format.
 - While adding the criteria, user needs to add the internal names of the fields on which the criteria is to be applied. To get the internal field name for the Monday.com columns, refer to the [Get field internal name](#get-internal-names-for-fields) section.
 - Given below are the sample snippets of how the Monday.com queries can be used as criteria query in <code class="expression">space.vars.SITENAME</code>:
@@ -155,32 +156,35 @@ Navigate to [Criteria Configuration](crtieria) section on [Integration Configura
 
 ## Known Behaviors and Limitations
 
-- Folder:
+- **Folder**:
   - The folder of an item can be only read. The user cannot create folders or assign individual items to them.
     - Reason: Monday.com only allows entire boards to be added to folders, and not an item only.
-- Attachments:
+- **Attachments**:
   - Attachments added directly to the File Gallery of Monday.com (not inside a file-type column) cannot be synced because Monday.com  API unavailability.
-    - Recommended: Always upload attachments to a file-type column, not the File Gallery.
+    - **Recommended**: Always upload attachments to a file-type column, not the File Gallery.
   - If a board has multiple file-type columns, the user must define attachment type mappings as explained in the [Attachment Configuration] (link here) section.
     - If no mapping is provided, all source attachments will be synced into a single target file-type column.
-- Items and sub items relationship linkage:
+- **Items and sub items relationship linkage**:
   - A Parent item link is mandatory when creating a subitem.
     - Hence, Monday.com as the target system, once subitem is created , its parent link cannot be changed or removed. 
     - Reason: Monday.com API unavailability
   - A parent link can be added on a sub item while creation, but a child link cannot be added from already existing items in Monday.com due to unavailability of API.
-- Comments:
+- **Comments**:
   - Replies to comments in Monday.com will be synced as separate comments by <code class="expression">space.vars.SITENAME</code>.
-- Documents:
+- **Documents**:
   - Synchronization of documents as entity is not supported.
-- Fields behavior:
-  - Country field: Accepts country codes as values only. Example: "IN"
-    - Refer to this JSON for available country codes: [country.io/names.json](TODO)
-  - Location field:  Accepts values in the format: {latitude} {longitude} {address} only
+- **Fields behavior**:
+  - **Country field**: Accepts country codes as values only. Example: "IN"
+    - Refer to this JSON for available country codes: [country.io/names.json](https://country.io/names.json)
+  - **Location field**:  Accepts values in the format: {latitude} {longitude} {address} only
     - Example: 29.9772962 31.1324955 Giza Pyramid Complex 
-  - Rating field: Accepts values from 0 to 5 only. 
+  - **Rating field**: Accepts values from 0 to 5 only. 
     - Any other numbers will cause the sync to fail according to Monday.com field behavior. 
-  - World clock: Accepts a time zone as a value only. Example: "Europe/London"
-    - Other time zone values can be referred from: [List of Time Zones of the World](TODO)
+  - **World clock**: Accepts a time zone as a value only. Example: "Europe/London"
+    - Other time zone values can be referred from: [List of Time Zones of the World](https://utctime.info/timezone/)
+  - **Group field**: Group is a mandatory field for items.
+    - If a group with the specified name does not exist on Monday.com, <code class="expression">space.vars.SITENAME</code> will create it.
+    - **Group Id** field can be used as an alternative for Group field if the internal ID for Group is known.
 
 # Appendix
 
