@@ -39,7 +39,7 @@ Refer to the screenshot below:
 | **API Token**                | Always                    | Provide the API token generated for the user given in the User Email field. Refer to [Access API Token](#get-api-token) section for details.                                                                                                                                                       |
 | **Base URL for Remote Link** | Always                    | Provide a different instance URL of the Monday.com instance. This URL will be used for generating the Remote Link. <br> Note: If "Base URL for Remote Link" is empty, it will use default instance URL to generate remote link if configured on integration.                                       |
 
-## Mapping Configuration
+# Mapping Configuration
 
 Map the fields between Monday.com and the other system to be integrated to ensure that the data between both the systems synchronizes correctly. 
 
@@ -49,7 +49,7 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
   <img src="../assets/MondayMappingCreation.png" />
 </p>
 
-### Supported Entities
+# Supported Entities
 
 * All **board items'** and **sub items'** sync are supported for the following modules: Monday Dev, Service, Monday CRM, Work Management and Campaigns.
 * Example of board items:
@@ -63,14 +63,14 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
           <img src="../assets/MondaySubItemExample.png" width="936"  alt=""/>
         </p>
 
-### Relationship Configuration
+## Relationship Configuration
 
 The user will be able to sync the following relationship types:
 * Connected Boards
 * Dependency columns
 * Parent–child relationships between items and subitems
 
-#### Mandatory Links
+### Mandatory Links
 
 * For sub items, **'Parent'** is a mandatory relationship linkage as a subitem can only be created inside an item. 
 * Example: To create a sub item, parent item must exist:
@@ -78,7 +78,7 @@ The user will be able to sync the following relationship types:
           <img src="../assets/MondayMandatoryLinkExample.png" width="843"  alt=""/>
         </p>
 
-##### Sample configuration to sync items and sub items:
+#### Sample configuration to sync items and sub items:
 
 If the user wants to sync item and sub items with parent-child links:
 
@@ -89,11 +89,11 @@ If the user wants to sync item and sub items with parent-child links:
         </p>
 3. Synchronize the sub items. It will add the required parent links to the parent items.
 
-### Comment Configuration
+## Comment Configuration
 
 All the comments updates and replies on Monday.com items will be synced as individual comments.
 
-### Attachment Configuration
+## Attachment Configuration
 
 * All file-type columns are supported for syncing attachment types. 
 * The user can choose which file-type column each attachment should sync to. If the attachment types' mapping is not configured, all attachments will be synced to one single column.
@@ -105,7 +105,7 @@ All the comments updates and replies on Monday.com items will be synced as indiv
         </p>
 
 
-### Mapping for Soft Delete Configuration
+## Mapping for Soft Delete Configuration
 
 - When Monday.com is the target system, the **soft delete operation** is performed by **default** in the synchronization of the [Source Delete event](../integrate/source-delete-synchronization.md).
 - After the soft delete operation is performed by <code class="expression">space.vars.SITENAME</code>, the entity will be deleted from Monday.com and it can be found in trash.
@@ -113,7 +113,7 @@ All the comments updates and replies on Monday.com items will be synced as indiv
   - To enable **archive** operation in target, "OH Archive" field shall be mapped with default value "Yes" in the [Delete Mode](../integrate/mapping-configuration.md#delete-mode) mapping.
   - To enable only the **logical delete** operation in the target, "OH Soft Delete" field shall be mapped with the default value "No" in the [Delete Mode](../integrate/mapping-configuration.md#delete-mode) mapping.
 
-## Integration Configuration
+# Integration Configuration
 
 Set a time to synchronize data between Monday.com and the other system. Define parameters and conditions, if any, for integration.
 
@@ -154,7 +154,7 @@ Navigate to [Criteria Configuration](crtieria) section on [Integration Configura
 |-------------|---------------------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | Description | text_description    | Target Lookup on the item having the source entity's id in 'description' field | {"rules":[{"column_id":"description","compare_value":["@oh_internal_id@]}]} |
 
-## Known Behaviors and Limitations
+# Known Behaviors and Limitations
 
 - **Folder**:
   - The folder of an item can be only read. The user cannot create folders or assign individual items to them.

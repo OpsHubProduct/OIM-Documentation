@@ -404,7 +404,7 @@ Given below are the systems supported currently by <code class="expression">spac
         <tr>
             <td>54</td>
             <td>Monday.com</td>
-            <td>Saas</td>
+            <td>SaaS</td>
             <td>Board items, Board sub items</td>
             <td></td>
         </tr>
