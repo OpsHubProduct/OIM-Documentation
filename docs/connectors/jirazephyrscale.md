@@ -33,7 +33,7 @@ Refer the screenshot given below for reference.
 * The internal name of each system field must match exactly as shown in the template JSON.  
 * The internal name of a custom field must match the one defined in the end system. For how to find custom field name, refer [Find Custom Field Names](#find-custom-field-names).
 
-## Mapping Configuration
+# Mapping Configuration
 
 * If the Folder entity is configured in <code class="expression">space.vars.SITENAME</code> as a separate entity, map the Folder in a link relationship with Test Plan, Test Case, and Test Cycle entities.  
   * The **folderType** field is mandatory in folder synchronization.  
@@ -194,16 +194,17 @@ Refer the screenshot given below for reference.
 * Polling for all entity types requires a full scan of all records; therefore, choose the polling frequency judiciously. Refer [Best Practices for Polling Frequency](../integrate/best-practises.md#polling-frequency-scheduling)
 * Shared Step is not supported.
 * The following limitations exist in <code class="expression">space.vars.SITENAME</code> due to API restrictions:
-* Delete and Archive functionality is not supported.
-* For Test Execution,  
-  * Criteria and target lookup are not supported.  
-  * The **Release Version** and **Environment** fields cannot be modified.
-* For Test Environment,  
-  * Criteria and target lookup are not supported.  
-  * Updates to the **Description** field will not work and will return the error _An environment with this name already exists._
-* For Test Cycle,  
-  * The **Iteration** field is not synchronized.  
-    * **Reason:** Zephyr API does not provide or handle any information related to this field.
+  * Attachment write support is not available due to API limitation.
+  * Delete and Archive functionality is not supported.
+  * For Test Execution,  
+    * Criteria and target lookup are not supported.  
+    * The **Release Version** and **Environment** fields cannot be modified.
+  * For Test Environment,  
+    * Criteria and target lookup are not supported.  
+    * Updates to the **Description** field will not work and will return the error _An environment with this name already exists._
+  * For Test Cycle,  
+    * The **Iteration** field is not synchronized.  
+      * **Reason:** Zephyr API does not provide or handle any information related to this field.
 
 # Appendix
 

@@ -1547,21 +1547,21 @@ For Target Lookup Configuration of Zephyr entities, refer to [Target lookup for 
 * Synchronization of attachment of Test Steps (field of Test entity) is not supported.
 * For Zephyr as the target system, if the attachment filename contains Windows special characters(/,,",:, *,?,<,>,|), then attachment will not be added in Zephyr. As a result, the user will encounter a processing failure. This is because Zephyr does not support Windows special characters in filename.
 * When Jira's deployment type is **Self-Managed**:
-* Synchronization of custom fields of Test Execution entity and Test Steps (field of Test entity) is not supported.
+  * Synchronization of custom fields of Test Execution entity and Test Steps (field of Test entity) is not supported.
 * When Jira's deployment type is **Cloud**:
-* Synchronization of attachments of **Test Execution** entity is not supported. This feature will be supported in the upcoming versions of  <code class="expression">space.vars.SITENAME</code>.
-* Write side support for attachments in the **Step Results** field (part of the **Test Execution** entity) is not available.
-* To synchronize custom fields in Zephyr Cloud, custom field id is required.
-* **Reason**: Zephyr doesn't provide an API to get the custom field details. Therefore, user needs to provide custom field id to synchronize custom fields. Refer to [Find Zephyr Custom Field Id](jira.md#find-zephyr-custom-field-id) section for the custom field ids.
-* To synchronize custom fields of Test Execution entity, refer to  [Synchronize Custom Fields of Test Execution](#test-execution) section.
-* To synchronize custom fields of Test Steps (field of Test entity), refer to [Synchronize Custom Fields of Test Steps](jira.md#test-steps) section.
-* Due to API limitation, if the project configured in integration has more than 10000 Test Execution entities,  <code class="expression">space.vars.SITENAME</code> will only synchronize the first 10000 entities based on creation date of the Test Execution entity.
-* **Folder(Zephyr) entity**
-* Target lookup is not supported for Jira cloud. Criteria, Target and Remote Link sync are not supported for Jira on premise.
-  * Reason: Zephyr API unavailability.
-* Default Link Configuration for link type **Test Cycle Linkage** is not supported.
-* **Sprint Id** field synchronization is not supported.
-* Folders can be moved across different Test Cycles in Zephyr. However, the synchronization of the movement is not supported by  <code class="expression">space.vars.SITENAME</code>. Hence, if any folder movement will occur, then the synchronization will be failed.
+  * Synchronization of attachments of **Test Execution** entity is not supported. This feature will be supported in the upcoming versions of  <code class="expression">space.vars.SITENAME</code>.
+  * Write side support for attachments in the **Step Results** field (part of the **Test Execution** entity) is not available.
+  * To synchronize custom fields in Zephyr Cloud, custom field id is required.
+    * **Reason**: Zephyr doesn't provide an API to get the custom field details. Therefore, user needs to provide custom field id to synchronize custom fields. Refer to [Find Zephyr Custom Field Id](jira.md#find-zephyr-custom-field-id) section for the custom field ids.
+  * To synchronize custom fields of Test Execution entity, refer to  [Synchronize Custom Fields of Test Execution](#test-execution) section.
+  * To synchronize custom fields of Test Steps (field of Test entity), refer to [Synchronize Custom Fields of Test Steps](jira.md#test-steps) section.
+  * Due to API limitation, if the project configured in integration has more than 10000 Test Execution entities,  <code class="expression">space.vars.SITENAME</code> will only synchronize the first 10000 entities based on creation date of the Test Execution entity.
+  * **Folder(Zephyr) entity**
+    * Target lookup is not supported for Jira cloud. Criteria, Target and Remote Link sync are not supported for Jira on premise.
+      * Reason: Zephyr API unavailability.
+  * Default Link Configuration for link type **Test Cycle Linkage** is not supported.
+  * **Sprint Id** field synchronization is not supported.
+  * Folders can be moved across different Test Cycles in Zephyr. However, the synchronization of the movement is not supported by  <code class="expression">space.vars.SITENAME</code>. Hence, if any folder movement will occur, then the synchronization will be failed.
 
 ## Xray plugin entities
 
