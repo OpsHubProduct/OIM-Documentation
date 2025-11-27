@@ -565,3 +565,134 @@ Provide 'read' access to a table
 ```
 
 >**Note**:  If details for an operation are not provided in the JSON, then default API endpoints with namespace `now` are used.
+
+### Configure Additional Metadata for Specific Use Cases
+
+This section explains how to provide additional metadata in your API configurations when using **ServiceNow Quick Connect** as the target.  
+Use these options whenever your API structure or field names differ from the default expectations.
+
+#### 1. Configure Date Format
+If your API uses a custom **date-time format**, you can specify it directly in the API configuration:
+
+* Go to the relevant API section (**Create**, **Update**).
+* Under `additionalMeta`, add the required date-time format using the key `dateFormat`.
+
+#### 2. Configure Internal ID Field for Create API
+If the entity creation response provides the **entity ID** in a field other than `sys_id`:
+* In the **Create API** details, go to `additionalMeta`. 
+* Set the key `entityInternalIdFieldNameInResponse` to the correct field name.
+
+#### 3. Configure Internal ID Field for Update API
+If your **Update API** request body expects an **entity ID** field that is not default `sys_id`:
+
+* In the **Update API** details, go to `additionalMeta`. 
+* Set the key `entityInternalIdFieldNameInRequest` to the required field name.
+
+#### 4. Pass Entity ID in Request Body
+If the **entity’s ID** must be included inside the **request body** (not as a path or query parameter):
+
+* Set `passIdInBody: true` in the respective API configuration.
+* Do this for each API where the ID needs to be part of the payload.
+
+#### 5. Configure Transition APIs
+If your workflows use **custom transition APIs**:
+
+* Define them under the `transitionDetails` section.
+* Map each transition API to its corresponding **internal state value**.
+
+>1. **Add the `transitionDetails` section**  
+      Define a JSON array named `transitionDetails` inside your API configuration.
+
+>2. **Specify the transition field name**  
+      Use the key `fieldName` to define which field the transitions will be tracked for (e.g., `"fieldName": "state"`).
+
+>3. **Define the transition mappings**  
+>* Under `transitionApis`, map each **internal transition value** (for example, `-4`, `0`, `3`, `4`) to its respective API details.
+>>**Understand internal transition values**
+>> - The **internal transition value** is the actual value of a particular transition used internally by the system.
+>>- For example: If the transition’s **display name** is `Review`, but its **internal value** is `5`, then the mapping should use `5` as the key in `transitionApis`.
+>* Each mapping should include:
+>  - `apiUrl`: The endpoint for the transition API.
+>  - `methodType`: The HTTP method to be used (e.g., `PUT`, `PATCH`).
+>  - `passIdInBody`: Set to `true` if the entity ID must be included in the request body.
+
+* Follow the pattern shown in the example JSON for consistent configuration.
+
+```json
+{
+  "CREATE_ENTITY": {
+    "default": {
+      "apiUrl": null,
+      "methodType": null
+    },
+    "entityWise": [
+      {
+        "apiCalls": [
+          {
+            "apiUrl": "api/oim/change/create",
+            "executionOrder": 1,
+            "methodType": "POST",
+            "queryParams": {}
+          }
+        ],
+        "entityType": "change_request",
+        "additionalMeta": {
+          "dateFormat": "MM/dd/yyyy hh:mm:ss a",
+          "entityInternalIdFieldNameInResponse": "change_request_sys_id"
+        }
+      }
+    ]
+  },
+  "UPDATE_ENTITY": {
+    "default": {
+      "apiUrl": null,
+      "methodType": null
+    },
+    "entityWise": [
+      {
+        "apiCalls": [
+          {
+            "apiUrl": "api/oim/change/update",
+            "passIdInBody": true,
+            "executionOrder": 1,
+            "methodType": "PUT",
+            "queryParams": {}
+          }
+        ],
+        "entityType": "change_request",
+        "additionalMeta": {
+          "dateFormat": "MM/dd/yyyy hh:mm:ss a",
+          "entityInternalIdFieldNameInRequest": "change_id"
+        },
+        "transitionDetails": [
+          {
+            "fieldName": "state",
+            "transitionApis": {
+              "-4": {
+                "apiUrl": "/api/oim/change/approval",
+                "methodType": "PUT",
+                "passIdInBody": true
+              },
+              "0": {
+                "apiUrl": "/api/oim/change/review",
+                "methodType": "PATCH",
+                "passIdInBody": true
+              },
+              "3": {
+                "apiUrl": "/api/oim/change/close",
+                "methodType": "PATCH",
+                "passIdInBody": true
+              },
+              "4": {
+                "apiUrl": "/api/oim/change/cancel",
+                "methodType": "PATCH",
+                "passIdInBody": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
