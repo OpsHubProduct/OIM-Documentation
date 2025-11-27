@@ -566,7 +566,27 @@ Provide 'read' access to a table
 
 >**Note**:  If details for an operation are not provided in the JSON, then default API endpoints with namespace `now` are used.
 
-### Configure additional metadata (Date Format, Internal ID Name and Transition APIs)
+### Configure additional metadata for specific use cases
+
+#### Configuring Date Format
+* If you need to use a different date-time format when ServiceNow Quick Connect is the target, specify the required format in the relevant operation section (such as Create or Update API details).
+Add the format information under the **additionalMeta** section, as shown in the example JSON above.
+
+#### Configuring Internal ID Field for Create API
+* If the internal ID field name in your entity creation response is different from **sys_id**, provide that field name in the **additionalMeta** section of the Create API details using the key **entityInternalIdFieldNameInResponse**.
+Refer to the example JSON above for guidance.
+
+#### Configuring Internal ID Field for Update API
+
+* If the internal ID field name in your update request body is different from **sys_id**, specify it in the **additionalMeta** section of the Update API details using the key **entityInternalIdFieldNameInRequest**.
+
+#### Passing Entity ID in Request Body
+* If your entity ID needs to be passed in the request body, set **passIdInBody: true** in each corresponding API configuration.
+
+#### Configuring Transition APIs
+* If you are using custom APIs for transitions, define them under the **transitionDetails** section, as shown in the example JSON.
+Make sure that each API is mapped to its respective internal state value.
+
 ```json
 {
   "CREATE_ENTITY": {
@@ -645,11 +665,3 @@ Provide 'read' access to a table
   }
 }
 ```
-
-* If the user needs to use a different **date-time** format when ServiceNow Quick Connect is the target, they can specify the desired format in the specific operation section (such as the Create or Update API details).
-  * Add the format information under the **additionalMeta** section, as shown in the above JSON.
-
-* If the **internal ID** field name in the creation entity response is different from **sys_id**, provide that field name in the **additionalMeta** section of the Create API details, using the key **entityInternalIdFieldNameInResponse**. (Refer to the example JSON above.)
-* Similarly, if the **internal ID** field name in the update request body differs from **sys_id**, specify it in the **additionalMeta** section of the Update API details, using the key **entityInternalIdFieldNameInRequest**.
-* If the entity ID needs to be passed in the request body, set **passIdInBody: true** in each corresponding API configuration.
-* If the user is using custom APIs for **transitions**, they can define them under the **transitionDetails** section, as shown in the example JSON. **Each API should be mapped to its respective internal state value**.
