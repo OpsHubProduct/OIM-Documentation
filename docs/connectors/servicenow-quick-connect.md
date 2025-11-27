@@ -565,3 +565,91 @@ Provide 'read' access to a table
 ```
 
 >**Note**:  If details for an operation are not provided in the JSON, then default API endpoints with namespace `now` are used.
+
+### Configure additional metadata (Date Format, Internal ID Name and Transition APIs)
+```json
+{
+  "CREATE_ENTITY": {
+    "default": {
+      "apiUrl": null,
+      "methodType": null
+    },
+    "entityWise": [
+      {
+        "apiCalls": [
+          {
+            "apiUrl": "api/oim/change/create",
+            "executionOrder": 1,
+            "methodType": "POST",
+            "queryParams": {}
+          }
+        ],
+        "entityType": "change_request",
+        "additionalMeta": {
+          "dateFormat": "MM/dd/yyyy hh:mm:ss a",
+          "entityInternalIdFieldNameInResponse": "change_request_sys_id"
+        }
+      }
+    ]
+  },
+  "UPDATE_ENTITY": {
+    "default": {
+      "apiUrl": null,
+      "methodType": null
+    },
+    "entityWise": [
+      {
+        "apiCalls": [
+          {
+            "apiUrl": "api/oim/change/update",
+            "passIdInBody": true,
+            "executionOrder": 1,
+            "methodType": "PUT",
+            "queryParams": {}
+          }
+        ],
+        "entityType": "change_request",
+        "additionalMeta": {
+          "dateFormat": "MM/dd/yyyy hh:mm:ss a",
+          "entityInternalIdFieldNameInRequest": "change_id"
+        },
+        "transitionDetails": [
+          {
+            "fieldName": "state",
+            "transitionApis": {
+              "-4": {
+                "apiUrl": "/api/oim/change/approval",
+                "methodType": "PUT",
+                "passIdInBody": true
+              },
+              "0": {
+                "apiUrl": "/api/oim/change/review",
+                "methodType": "PATCH",
+                "passIdInBody": true
+              },
+              "3": {
+                "apiUrl": "/api/oim/change/close",
+                "methodType": "PATCH",
+                "passIdInBody": true
+              },
+              "4": {
+                "apiUrl": "/api/oim/change/cancel",
+                "methodType": "PATCH",
+                "passIdInBody": true
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+* If the user needs to use a different **date-time** format when ServiceNow Quick Connect is the target, they can specify the desired format in the specific operation section (such as the Create or Update API details).
+  * Add the format information under the **additionalMeta** section, as shown in the above JSON.
+
+* If the **internal ID** field name in the creation entity response is different from **sys_id**, provide that field name in the **additionalMeta** section of the Create API details, using the key **entityInternalIdFieldNameInResponse**. (Refer to the example JSON above.)
+* Similarly, if the **internal ID** field name in the update request body differs from **sys_id**, specify it in the **additionalMeta** section of the Update API details, using the key **entityInternalIdFieldNameInRequest**.
+* If the entity ID needs to be passed in the request body, set **passIdInBody: true** in each corresponding API configuration.
+* If the user is using custom APIs for **transitions**, they can define them under the **transitionDetails** section, as shown in the example JSON. **Each API should be mapped to its respective internal state value**.
