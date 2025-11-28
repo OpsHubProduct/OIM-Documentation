@@ -568,31 +568,30 @@ Provide 'read' access to a table
 
 ### Configure Additional Metadata for Specific Use Cases
 
-This section explains how to provide additional metadata in your API configurations when using **ServiceNow Quick Connect** as the target.  
-Use these options whenever your API structure or field names differ from the default expectations.
+This will help you to provide additional metadata in your API configurations whenever your API structure or field names differ from the default expectations.
 
 #### 1. Configure Date Format
-If your API uses a custom **date-time format**, you can specify it directly in the API configuration:
+If your API uses a custom **date-time format** then the default one, you can specify it directly in the JSON configuration:
 
 * Go to the relevant API section (**Create**, **Update**).
 * Under `additionalMeta`, add the required date-time format using the key `dateFormat`.
 
-#### 2. Configure Internal ID Field for Create API
+#### 2. Configure Entity's Internal ID Field for Create API
 If the entity creation response provides the **entity ID** in a field other than `sys_id`:
-* In the **Create API** details, go to `additionalMeta`. 
-* Set the key `entityInternalIdFieldNameInResponse` to the correct field name.
+* In the **Create API** details, go to `additionalMeta`.
+* Set the key `entityInternalIdFieldNameInResponse` to the correct field name, in which actual ID is coming.
 
-#### 3. Configure Internal ID Field for Update API
+#### 3. Configure Entity's Internal ID Field for Update API
 If your **Update API** request body expects an **entity ID** field that is not default `sys_id`:
 
-* In the **Update API** details, go to `additionalMeta`. 
-* Set the key `entityInternalIdFieldNameInRequest` to the required field name.
+* In the **Update API** details, go to `additionalMeta`.
+* Set the key `entityInternalIdFieldNameInRequest` to the required field name, in which actual ID will be going.
 
 #### 4. Pass Entity ID in Request Body
-If the **entity’s ID** must be included inside the **request body** (not as a path or query parameter):
+If the **entity’s ID** must be included inside the **request body** (not as a URL path or query parameter):
 
 * Set `passIdInBody: true` in the respective API configuration.
-* Do this for each API where the ID needs to be part of the payload.
+* Do this for each API where the ID needs to be part of the payload, for an example for Transition APIs as mentioned below.
 
 #### 5. Configure Transition APIs
 If your workflows use **custom transition APIs**:
@@ -601,24 +600,24 @@ If your workflows use **custom transition APIs**:
 * Map each transition API to its corresponding **internal transition value**.
 
 >1. **Add the `transitionDetails` section**  
-      Define a JSON array named `transitionDetails` inside your API configuration.
+    Define a JSON array named `transitionDetails` inside your configuration.
 
 >2. **Specify the transition field name**  
-      Use the key `fieldName` to define which field the transitions will be tracked for (e.g., `"fieldName": "state"`).
+    Use the key `fieldName` to define which field the transitions will be tracked for (e.g., `"fieldName": "state"`).
 
->3. **Define the transition mappings**  
+>3. **Define the transition mappings**
 >* Under `transitionApis`, map each **internal transition value** (for example, `-4`, `0`, `3`, `4`) to its respective API details.
 >>**Understand internal transition values**
 >>- The **internal transition value** is the actual value of a particular transition used internally by the system.
 >>- For example: If the transition’s **display name** is `Review`, but its **internal value** is `5`, then the mapping should use `5` as the key in `transitionApis`.
->>* This API can be used to get all available values : `https://<your_instance>.service-now.com/api/now/v1/table/sys_choice?sysparm_query=name=<table_name>^element=<field_name>^inactive=false&sysparm_fields=value,label`
+>>* This API can be used to get all available values for transitions and internal value : `https://<your_instance>.service-now.com/api/now/v1/table/sys_choice?sysparm_query=name=<table_name>^element=<field_name>^inactive=false&sysparm_fields=value,label`
 
 >* Each mapping should include:
->  - `apiUrl`: The endpoint for the transition API.
+   >  - `apiUrl`: The endpoint for the transition API.
 >  - `methodType`: The HTTP method to be used (e.g., `PUT`, `PATCH`).
 >  - `passIdInBody`: Set to `true` if the entity ID must be included in the request body.
 
-* Follow the pattern shown in the example JSON for consistent configuration.
+* Follow the pattern shown in the example JSON for consistent configuration. Below is the sample JSON, you can customize as per your use case and environment.
 
 ```json
 {
