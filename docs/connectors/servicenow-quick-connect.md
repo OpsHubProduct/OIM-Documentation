@@ -566,26 +566,59 @@ Provide 'read' access to a table
 
 >**Note**:  If details for an operation are not provided in the JSON, then default API endpoints with namespace `now` are used.
 
-### Configure additional metadata for specific use cases
+### Configure Additional Metadata for Specific Use Cases
 
-#### Configuring Date Format
-* If you need to use a different date-time format when ServiceNow Quick Connect is the target, specify the required format in the relevant operation section (such as Create or Update API details).
-Add the format information under the **additionalMeta** section, as shown in the example JSON above.
+This section explains how to provide additional metadata in your API configurations when using **ServiceNow Quick Connect** as the target.  
+Use these options whenever your API structure or field names differ from the default expectations.
 
-#### Configuring Internal ID Field for Create API
-* If the internal ID field name in your entity creation response is different from **sys_id**, provide that field name in the **additionalMeta** section of the Create API details using the key **entityInternalIdFieldNameInResponse**.
-Refer to the example JSON above for guidance.
+#### 1. Configure Date Format
+If your API uses a custom **date-time format**, you can specify it directly in the API configuration:
 
-#### Configuring Internal ID Field for Update API
+* Go to the relevant API section (**Create**, **Update**).
+* Under `additionalMeta`, add the required date-time format using the key `dateFormat`.
 
-* If the internal ID field name in your update request body is different from **sys_id**, specify it in the **additionalMeta** section of the Update API details using the key **entityInternalIdFieldNameInRequest**.
+#### 2. Configure Internal ID Field for Create API
+If the entity creation response provides the **entity ID** in a field other than `sys_id`:
+* In the **Create API** details, go to `additionalMeta`. 
+* Set the key `entityInternalIdFieldNameInResponse` to the correct field name.
 
-#### Passing Entity ID in Request Body
-* If your entity ID needs to be passed in the request body, set **passIdInBody: true** in each corresponding API configuration.
+#### 3. Configure Internal ID Field for Update API
+If your **Update API** request body expects an **entity ID** field that is not default `sys_id`:
 
-#### Configuring Transition APIs
-* If you are using custom APIs for transitions, define them under the **transitionDetails** section, as shown in the example JSON.
-Make sure that each API is mapped to its respective internal state value.
+* In the **Update API** details, go to `additionalMeta`. 
+* Set the key `entityInternalIdFieldNameInRequest` to the required field name.
+
+#### 4. Pass Entity ID in Request Body
+If the **entity’s ID** must be included inside the **request body** (not as a path or query parameter):
+
+* Set `passIdInBody: true` in the respective API configuration.
+* Do this for each API where the ID needs to be part of the payload.
+
+#### 5. Configure Transition APIs
+If your workflows use **custom transition APIs**:
+
+* Define them under the `transitionDetails` section.
+* Map each transition API to its corresponding **internal state value**.
+
+>1. **Add the `transitionDetails` section**  
+      Define a JSON array named `transitionDetails` inside your API configuration.
+
+>2. **Specify the transition field name**  
+      Use the key `fieldName` to define which field the transitions will be tracked for (e.g., `"fieldName": "state"`).
+
+>3. **Define the transition mappings**  
+>* Under `transitionApis`, map each **internal state value** (for example, `-4`, `0`, `3`, `4`) to its respective API details.
+>>**Understand internal state values**
+>> - The **internal state value** is the actual value of a particular state field used internally by the system.
+>>- It can be a **number** or a **string**, depending on how the state field is defined.
+>>- For example:  
+  If the transition’s **display name** is `Review`, but its **internal value** is `5`, then the mapping should use `5` as the key in `transitionApis`.
+>* Each mapping should include:
+>  - `apiUrl`: The endpoint for the transition API.
+>  - `methodType`: The HTTP method to be used (e.g., `PUT`, `PATCH`).
+>  - `passIdInBody`: Set to `true` if the entity ID must be included in the request body.
+
+* Follow the pattern shown in the example JSON for consistent configuration.
 
 ```json
 {
