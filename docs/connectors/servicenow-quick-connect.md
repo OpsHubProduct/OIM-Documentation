@@ -598,7 +598,7 @@ If the **entity’s ID** must be included inside the **request body** (not as a 
 If your workflows use **custom transition APIs**:
 
 * Define them under the `transitionDetails` section.
-* Map each transition API to its corresponding **internal state value**.
+* Map each transition API to its corresponding **internal transition value**.
 
 >1. **Add the `transitionDetails` section**  
       Define a JSON array named `transitionDetails` inside your API configuration.
@@ -609,8 +609,10 @@ If your workflows use **custom transition APIs**:
 >3. **Define the transition mappings**  
 >* Under `transitionApis`, map each **internal transition value** (for example, `-4`, `0`, `3`, `4`) to its respective API details.
 >>**Understand internal transition values**
->> - The **internal transition value** is the actual value of a particular transition used internally by the system.
+>>- The **internal transition value** is the actual value of a particular transition used internally by the system.
 >>- For example: If the transition’s **display name** is `Review`, but its **internal value** is `5`, then the mapping should use `5` as the key in `transitionApis`.
+>>* This API can be used to get all available values : `https://<your_instance>.service-now.com/api/now/v1/table/sys_choice?sysparm_query=name=<table_name>^element=<field_name>^inactive=false&sysparm_fields=value,label`
+
 >* Each mapping should include:
 >  - `apiUrl`: The endpoint for the transition API.
 >  - `methodType`: The HTTP method to be used (e.g., `PUT`, `PATCH`).
