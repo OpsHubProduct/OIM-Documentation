@@ -229,6 +229,11 @@ layout:
           <td><a href="planviewadaptivework.md">planviewadaptivework.md</a></td>
         </tr>
         <tr>
+          <td align="center"><mark style="color:#555555"><strong>Polarion</strong></mark></td>
+          <td><a href="../assets/connector/121_polarion.png">Polarion</a></td>
+          <td><a href="polarion.md">polarion.md</a></td>
+        </tr>
+        <tr>
           <td align="center"><mark style="color:#555555"><strong>ReadyOne</strong></mark></td>
           <td><a href="../assets/connector/111_readyone.png">ReadyOne</a></td>
           <td><a href="readyone.md">readyone.md</a></td>
