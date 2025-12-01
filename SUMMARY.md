@@ -125,6 +125,7 @@
   * [OpenText Project and Portfolio Management(PPM)](docs/connectors/caliberrm.md)
   * [PagerDuty](docs/connectors/pagerduty.md)
   * [Planview AdaptiveWork](docs/connectors/planviewadaptivework.md)
+  * [Polarion](docs/connectors/polarion.md)
   * [ReadyOne](docs/connectors/readyone.md)
   * [Redmine](docs/connectors/redmine.md)
       * [Database Configuration](docs/connectors/database-configuration.md)
