@@ -31,7 +31,7 @@
   * Use case: This occurred during pull request integration from GitHub when the auto_merge field contained data that caused a parsing error due to a type mismatch.
 
 ## Jama
-* * Resolved an issue where the data for non-history field such as 'description' was cleared and then restored, causinf extra updates in the end system. 
+* Resolved an issue where the data for non-history field such as 'description' was cleared and then restored, causinf extra updates in the end system. 
 
 ## ServiceNow Express
 * Resolved an issue that caused a processing error with the message: “java.lang.NullPointerException: Cannot invoke 'java.util.Map.get(Object)' because 'entityDetails' is null.”
