@@ -1,35 +1,51 @@
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 
+# New Connector(s)
+* **[Monday.com](../connectors/monday.md)**
+  * **Supported Version:** SaaS
+  * **Supported Entities:** Board items, Board sub items
+
+# New Version(s)
+- Java Development Kit(JDK): 17.0.17
+
+# New Enhancements
+
+## ServiceNow Express
+* Added support for custom transition APIs.
+  * Refer to the connector documentation on [how to enable custom transition APIs](../connectors/servicenow-quick-connect.md#5-configure-transition-apis) through the metadata JSON.
+
 # Major Bugs
 
+## Common
+* Resolved an issue where generating the global ID took excessive time when multiple integrations were performing create and update operations concurrently on a large number of entities. 
+
 ## Azure DevOps Server/Services
-* Resolved an issue where edited comments were duplicated when the History-based Integration was enabled where Azure DevOps Server/Services as the source system.  
-    * Use case: When the integration was configured in history mode, if a work item had already been synced without comments, and comments were later added and edited, some edited comments were duplicated while synchronizing from Azure DevOps Server/Services.
+* Resolved an issue where processing error observed with message "OH-TFS/AzureDevOps-0094: Error occurred while loading entity object using REST API for the URL `https://dev.azure.com/<org_name>/_apis/wit/workitems/-1?$expand=all&api-version=1.0` due to error 404 Not Found."
+  * Use case: This issue occurred when creating a work item in Azure DevOps Server/Services as the target system, where the comment included referenced attachments/documents at the creation time.
+
+## Gerrit
+* Resolved an issue where synchronization failed to work as expected due to double encoding of the changeid field for the change entity. 
 
 ## GitHub
-* Resolved an issue where a processing failure occurred with the message **'Invalid Comment Type'** during synchronization of the issue entity to GitHub.
+* Resolved an issue where a global error occurred with the message: "com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize value of type java.lang.String from Object value (token JsonToken.START_OBJECT)".
+  * Use case: This occurred during pull request integration from GitHub when the auto_merge field contained data that caused a parsing error due to a type mismatch.
 
-## Jira Cloud/Jira Data Center
-* For Jira Cloud, resolved an issue where entities/issues/work items were skipped in cases when the API response did not include newly created or updated issues due to delayed indexing.
-* Resolved an issue where an inline image was not synchronized as expected when there was an extra space before the '!' symbol in the image placeholder.  
-  * Use case: When reading data from a source system that includes additional image properties such as height or width, a trailing space in those properties could cause an extra space to appear before the closing exclamation mark (for example:  
-`!About.png|width=500 !`), preventing proper synchronization.  
-    > **Note**: Jira supports the Wiki format in rich text fields. In Wiki format, an inline image is rendered when its name is placed between two exclamation marks (for example: `!Note.jpg!`).
+## Jama
+* * Resolved an issue where the data for non-history field such as 'description' was cleared and then restored, causinf extra updates in the end system. 
 
-## Microsoft Dynamics 365
-* Resolved an issue where entities were skipped when the API response did not include newly created or updated records due to delays in APIs from Microsoft Dynamics 365.
+## ServiceNow Express
+* Resolved an issue that caused a processing error with the message: “java.lang.NullPointerException: Cannot invoke 'java.util.Map.get(Object)' because 'entityDetails' is null.”
+  * Use case: This occurred when ServiceNow was customized such that, after item creation, the default sys_id key in the response was replaced with a different identifier. 
+  * **Action**: Refer to the connector documentation for guidance on [configuring additional metadata for this specific use case](../connectors/servicenow-quick-connect.md#configure-additional-metadata-for-specific-use-cases). 
+* Resolved an issue that caused a processing error with the message: "OH-ServiceNow-1004: Incorrect date format for value 07/11/2025 07:40:00 AM. Expected date value should be in format yyyy-MM-dd HH:mm:ssXXX."
+  * **Action**: Refer to the connector documentation for guidance on [configuring additional metadata for date formats](../connectors/servicenow-quick-connect.md#1-configure-date-format).
+* Resolved an issue where the end system’s error message was not populated correctly when a 404 error code was received from the ServiceNow.
 
-## Tricentis Tosca
-* Resolved an issue where a job error occurred with the message `"Unexpected character ('<' (code 60)): expected a valid value (JSON String, Number, Array, Object, or token 'null', 'true', or 'false')"` when retrieving test steps from Tosca.
-
+## Verisium Manager
+* Resolved an issue where a processing failure occurred when a delete job was configured with soft-delete enabled while using Verisium Manager as the target system. 
 
 {% endif %}  
 
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
-
-# Major Bugs
-
-* Resolved an issue where edited comments were duplicated during migration.  
-**Use case:** When migration was configured, if a work item had already been migrated without comments and comments were later added and edited, some edited comments were duplicated during migration from Azure DevOps Server/Services.
 
 {% endif %}  
