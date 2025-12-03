@@ -72,12 +72,13 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
 
 ### Sample criteria:
 
-| Field name   | Field internal name | Criteria description                                                   | Criteria snippet                 |
-|--------------|---------------------|------------------------------------------------------------------------|----------------------------------|
-| Title        | title               | Sync items with title containing "API"                                 | (title:\*API\*)                  |
-| Status       | status              | Sync items where status equals "Open"                                  | (status:open)                    |
-| Created Date | created             | Sync items created between 1 June 2025 to 30 June 2025                 | (created:[20250601 TO 20250630]) |
-| Type, Status | type, status        | Sync items whose work item type is task and status of task is reviewed | (type:task AND status:reviewed)  |
+| Field name   | Field internal name | Criteria description                                   | Criteria snippet                         |
+|--------------|---------------------|--------------------------------------------------------|------------------------------------------|
+| Title        | title               | Sync items with title containing "API"                 | (title:\*API\*)                          |
+| Status       | status              | Sync items where status equals "Open"                  | (status:open)                            |
+| Created Date | created             | Sync items created between 1 June 2025 to 30 June 2025 | (created:[20250601 TO 20250630])         |
+| Status       | status              | Sync items where status is not reviewed                | (NOT status:reviewed)                    |
+| Severity     | severity            | Sync items where severity is either normal or blocker  | (severity:normal OR severity:blocker)    |
 
 
 ## Target LookUp Configuration
@@ -89,9 +90,9 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
 
 ### Sample target lookup query:
 
-| Field name           | Field internal name | Target Lookup use case                                                                         | Query snippet                     |
-|----------------------|---------------------|------------------------------------------------------------------------------------------------|-----------------------------------|
-| Custom Target Lookup | targetLookup        | Target Lookup on the item having the source entity's id in custom field called 'targetLookup'  | targetLookup:@oh_internal_id@     |
+| Field name      | Field internal name | Target Lookup use case                                                                       | Query snippet                     |
+|-----------------|---------------------|----------------------------------------------------------------------------------------------|-----------------------------------|
+| Target Item ID  | targetItem          | Target Lookup on the item having the source entity's id in custom field called 'targetItem'  | targetLookup:@oh_internal_id@     |
 
 
 # Known Behaviors and Limitations
