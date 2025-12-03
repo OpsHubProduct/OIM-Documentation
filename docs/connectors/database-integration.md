@@ -1,3 +1,4 @@
+
 # Prerequisites
 
 ## Integration user
@@ -34,20 +35,20 @@ Here is the screenshot:
 
 ## Database System form details
 
-| **Field Name** | **Description** |
-|----------------|-----------------|
-| **System Name** | Provide the system's name |
-| **Database Type** | Select the database type for which you want to create a new database system. Currently supported databases are: 1. MySQL 2. MS SQL Server/Azure SQL 3. Oracle 4. PostgreSQL 5. MariaDB |
-| **Database Host Name** | The name of the host machine where the database server is deployed |
-| **Database Port** | Port number on which database server is deployed. Generally, default ports for MySQL/MariaDB is 3306, MS SQL Server/Azure SQL is 1433, Oracle is 1521, and PostgreSQL is 5432 |
-| **Instance Name** | Instance name of the MS SQL Server/Azure SQL, if it is a named instance. Applicable to MS SQL Server only |
-| **Database Name** | Name of the database to connect with |
-| **Schema Name** | Default schema of the database to connect with. Mandatory for MS SQL Server/Azure SQL and PostgreSQL |
-| **Database User Name** | Provide the user name of a dedicated user that will be used for communicating with database. User should have the read and write permission on database |
-| **Database Password** | Provide the password for the user provided in Database User Name |
-| **Timezone** | Select the timezone for date and time values. If not selected, UTC timezone will be considered by default |
-| **Hibernate Mapping XML** | XML mapping required to map the columns of database table with some properties. For more details, refer to [Understanding Hibernate XML Input](#understanding-hibernate-xml-input) section. |
-| **Metadata** | Provide the table name and column which is used to sync links, comments, or attachments. Refer to the [Understanding Metadata JSON Input](#understanding-metadata-json-input) section for details on format and JSON structure. |
+| **Field Name**            | **Description**                                                                                                                                                                                                                                         |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System Name**           | Provide the system's name                                                                                                                                                                                                                               |
+| **Database Type**         | Select the database type for which you want to create a new database system. Currently supported databases are: 1. MySQL 2. MS SQL Server/Azure SQL 3. Oracle 4. PostgreSQL 5. MariaDB                                                                  |
+| **Database Host Name**    | The name of the host machine where the database server is deployed                                                                                                                                                                                      |
+| **Database Port**         | Port number on which database server is deployed. Generally, default ports for MySQL/MariaDB is 3306, MS SQL Server/Azure SQL is 1433, Oracle is 1521, and PostgreSQL is 5432                                                                           |
+| **Instance Name**         | Instance name of the MS SQL Server/Azure SQL, if it is a named instance. Applicable to MS SQL Server only                                                                                                                                               |
+| **Database Name**         | Name of the database to connect with                                                                                                                                                                                                                    |
+| **Schema Name**           | Default schema of the database to connect with. Mandatory for MS SQL Server/Azure SQL and PostgreSQL                                                                                                                                                    |
+| **Database User Name**    | Provide the user name of a dedicated user that will be used for communicating with database. User should have the read and write permission on database                                                                                                 |
+| **Database Password**     | Provide the password for the user provided in Database User Name                                                                                                                                                                                        |
+| **Timezone**              | Select the timezone for date and time values. If not selected, UTC timezone will be considered by default                                                                                                                                               |
+| **Hibernate Mapping XML** | XML mapping required to map the columns of database table with some properties. For more details, refer to [Understanding Hibernate XML Input](#understanding-hibernate-xml-input) section.                                                             |
+| **Metadata**              | Provide the table name and column which is used to configure links, comments, attachments, or additional fields. Refer to the [Understanding Metadata JSON Input](#understanding-metadata-json-input) section for details on format and JSON structure. |
 
 ## Understanding Hibernate XML Input
 
@@ -94,6 +95,23 @@ Here is the screenshot:
   </class>
 </hibernate-mapping>
 ```
+* <code class="expression">space.vars.SITENAME</code> supports history via OH_History field using history-tracking table (OH_History). Refer to [OH_History Table](#oh_history-table) for configuration steps.
+  * This table can store **field-wise revision history** for the entity.
+  * For each field change in each revision, a new record would be stored capturing:
+    - which field changed
+    - the old and new values
+    - the revision number
+    - who changed it
+    - when it was changed
+* <code class="expression">space.vars.SITENAME</code> supports virtual field storage in additional table (OH_Additional_Fields). Refer to [OH_Additional_Fields Table](#oh_additional_fields-table) for configuration steps.
+  * This table stores **user-defined or dynamically added fields** that are not part of the main table.
+  * Each additional field is stored as a separate row with:
+    - workitem_id
+    - workitem_type
+    - field_id (field name)
+    - field_data_type
+    - field_value
+  * This allows systems to add extra fields without modifying the core table structure.
 
 ## Understanding Metadata JSON Input
 
@@ -103,10 +121,15 @@ An example input for the metadata JSON:
 
 {% include "../.gitbook/includes/database_metadata_input.md" %}
 
+* User can configure additional field for each table, using OH_Additional_Field table. Refer to [OH_Additional_Fields Table](#OH_Additional_Fields-Table)
+
 # Mapping Configuration
 
 * Map the fields between the database and the other system to be integrated to ensure that the data between both the systems synchronize correctly.  
 * Refer to [Mapping Configuration](../integrate/mapping-integration.md) page to learn the step-by-step process to configure mapping between the systems.
+* <code class="expression">space.vars.SITENAME</code> supports storing audits using OH_History field using history-tracking tabl. Refer to [OH_History Table Mapping Configuration](#mapping-configuration-1).
+* <code class="expression">space.vars.SITENAME</code> supports storing extra fields without modifying the table structure. Refer to [Additional field configuration](#json-configuration) for configuration steps.
+  * These configured fields will be available for mapping once configured.
 
 * Here is the screenshot:  
 
@@ -181,7 +204,248 @@ Here is the screenshot:
 * For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the <code class="expression">space.vars.SITENAME</code> is installed.  
   For example, on Windows, characters such as `\ / : * ? " < > |` are not allowed in file names.
 
+# Appendix
+
+## OH_History Table
+
+* The **OH_History** table stores field-level revision history for any work item.  
+
+### Table configuration
+
+#### Required Columns
+| Column               | Data Type               | Description                                                                                           |
+|----------------------|-------------------------|-------------------------------------------------------------------------------------------------------|
+| `workitem_change_id` | `VARCHAR`               | Deterministic unique ID generated using (`workitem_id`, `workitem_type`, `revision_id`, `field_name`) |
+| `workitem_id`        | `VARCHAR`               | <code class="expression">space.vars.SITENAME</code> overwrites this based on entity being processed   |
+| `workitem_type`      | `VARCHAR`               | <code class="expression">space.vars.SITENAME</code> overwrites this with entity type                  |
+| `revision_id`        | `VARCHAR`               | Logical revision number                                                                               |
+| `field_name`         | `VARCHAR`               | Name of field changed                                                                                 |
+| `old_value`          | `TEXT`                  | Previous value                                                                                        |
+| `new_value`          | `TEXT`                  | Updated value                                                                                         |
+| `change_description` | `TEXT`                  | Description of revision change                                                                        |
+| `changed_by`         | `VARCHAR`               | Display name of user who made the change                                                              |
+| `changed_at`         | `VARCHAR` or `DATETIME` | Timestamp of change                                                                                   |
+
+**Note:**  
+* Users may add more columns; use that column as tags in `<op_list>` to store it in a database.  
+* Users may choose any table or column names in their database, but they must not modify the `class:entity-name` and `property:name` in the provided HBM XML.
+  * The `table` and `column` attributes may be adjusted to match the actual database schema created by user.
+
+### HBM XML
+
+```xml
+<class entity-name="OH_History" table="OH_History">
+    <id name="workitem_change_id" type="string">
+        <column name="workitem_change_id"/>
+        <generator class="assigned"/>
+    </id>
+    <property name="workitem_id" column="workitem_id" type="string"/>
+    <property name="workitem_type" column="workitem_type" type="string"/>
+    <property name="revision_id" column="revision_id" type="string"/>
+    <property name="field_name" column="field_name" type="string"/>
+    <property name="old_value" column="old_value" type="text"/>
+    <property name="new_value" column="new_value" type="text"/>
+    <property name="change_description" column="change_description" type="text"/>
+    <property name="changed_by" column="changed_by" type="string"/>
+    <property name="changed_at" column="changed_at" type="string"/>
+</class>
+```
+### Query for table creation
+
+#### MySQL
+```sql
+CREATE TABLE OH_History (
+    workitem_change_id VARCHAR(255) PRIMARY KEY,
+    workitem_id VARCHAR(255),
+    workitem_type VARCHAR(255),
+    revision_id VARCHAR(255) NOT NULL,
+    field_name VARCHAR(255),
+    old_value TEXT,
+    new_value TEXT,
+    change_description TEXT,
+    changed_by VARCHAR(255),
+    changed_at VARCHAR(255)
+);
+````
+
+#### MSSQL
+
+```sql
+CREATE TABLE OH_History (
+    workitem_change_id VARCHAR(255) PRIMARY KEY,
+    workitem_id VARCHAR(255),
+    workitem_type VARCHAR(255),
+    revision_id VARCHAR(255) NOT NULL,
+    field_name VARCHAR(255),
+    old_value VARCHAR(MAX),
+    new_value VARCHAR(MAX),
+    change_description VARCHAR(MAX),
+    changed_by VARCHAR(255),
+    changed_at VARCHAR(255)
+);
+```
+
+### Mapping configuration
+
+#### Expected data format
+
+* After the transformation, <code class="expression">space.vars.SITENAME</code> expects data in the following format:
+
+```xml
+<OH_History>
+    <op_list>
+        <revision_id>1</revision_id>
+        <field_name>Title</field_name>
+        <old_value>Old title</old_value>
+        <new_value>New title</new_value>
+        <change_description>Title updated</change_description>
+        <changed_by>user1</changed_by>
+        <changed_at>2025-01-01T10:00:00Z</changed_at>
+    </op_list>
+    <op_list>
+        <revision_id>1</revision_id>
+        <field_name>Status</field_name>
+        <old_value>New</old_value>
+        <new_value>Active</new_value>
+        <change_description>Status Activated</change_description>
+        <changed_by>user1</changed_by>
+        <changed_at>2025-01-01T10:00:00Z</changed_at>
+    </op_list>
+    <op_list>
+        <revision_id>2</revision_id>
+        <field_name>Title</field_name>
+        <old_value>New title</old_value>
+        <new_value>Update 2</new_value>
+        <change_description>Title updated</change_description>
+        <changed_by>user1</changed_by>
+        <changed_at>2025-01-01T11:00:00Z</changed_at>
+    </op_list>
+</OH_History>
+```
+- Only `revision_id` is mandatory in the mapping.
+- <code class="expression">space.vars.SITENAME</code> automatically sets `workitem_id` and `workitem_type`.
+
+#### Sample mapping
+* The following mapping can be used to, get data from source using utility method  ```utils:getEntityRevisions``` and use it for preparing history.
+```xml
+<OH_History xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+            xmlns:revision="http://com.opshub.eai.core.carriers.EntityRevisionDetails"
+            xmlns:revisionDesc="http://com.opshub.eai.core.carriers.RevisionDescription"
+            xmlns:userMeta="http://com.opshub.eai.metadata.UserMeta">
+    <xsl:variable name="revisions" select="utils:getEntityRevisions($workflowId, $sourceSystemId, /SourceXML/opshubProjectKey, $entityType, /SourceXML/opshubEntityId, $createUpdateTime)"/>
+
+    <xsl:for-each select="$revisions">
+        <xsl:variable name="rev" select="."/>
+        <xsl:variable name="revisionId" select="revision:getRevisionId($rev)"/>
+        <xsl:variable name="revisionTime" select="revision:getRevisionTime($rev)"/>
+        <xsl:variable name="changedByUser" select="revision:getUser($rev)"/>
+        <xsl:variable name="changedByDisplay" select="userMeta:getUserDisplayName($changedByUser)"/>
+        <xsl:variable name="description" select="revision:getRevisionDescription($rev)"/>
+        <xsl:variable name="changeDescription" select="revisionDesc:getDescriptionString($description)"/>
+
+        <xsl:for-each select="revisionDesc:getFieldsChangedInRevision($description)">
+            <op_list>
+                <revision_id><xsl:value-of select="$revisionId"/></revision_id>
+                <field_name><xsl:value-of select="./fieldName"/></field_name>
+                <old_value><xsl:value-of select="./oldValue"/></old_value>
+                <new_value><xsl:value-of select="./newValue"/></new_value>
+                <change_description><xsl:value-of select="$changeDescription"/></change_description>
+                <changed_by><xsl:value-of select="$changedByDisplay"/></changed_by>
+                <changed_at><xsl:value-of select="$revisionTime"/></changed_at>
+            </op_list>
+        </xsl:for-each>
+    </xsl:for-each>
+</OH_History>
+```
 
 
+## OH_Additional_Fields Table
+
+* The **OH_Additional_Fields** table is used to store dynamically configured fields for any entity.
+* Each row corresponds to a single field of a specific work item.
+
+### Table configuration
+
+#### Required Columns
+
+| Column            | Data Type | Description                                                                                       |
+|-------------------|-----------|---------------------------------------------------------------------------------------------------|
+| `field_value_id`  | `VARCHAR` | Deterministic/assigned unique ID generated by <code class="expression">space.vars.SITENAME</code> |
+| `workitem_id`     | `VARCHAR` | Entity identifier                                                                                 |
+| `workitem_type`   | `VARCHAR` | Entity type                                                                                       |
+| `field_id`        | `VARCHAR` | Internal name of the field                                                                        |
+| `field_data_type` | `VARCHAR` | Data type provided in JSON                                                                        |
+| `field_value`     | `TEXT`    | Actual stored value                                                                               |
+
+* Users may choose any table or column names in their database, but they must not modify the `class:entity-name` and `property:name` in the provided HBM XML.
+  * The `table` and `column` attributes may be adjusted to match the actual database schema created by user.
+
+#### HBM XML
+
+```xml
+<class entity-name="OH_Additional_Fields" table="OH_Additional_Fields">
+    <id name="field_value_id" type="string">
+        <column name="field_value_id"/>
+    </id>
+    <property name="workitem_id" column="workitem_id" type="string"/>
+    <property name="workitem_type" column="workitem_type" type="string"/>
+    <property name="field_id" column="field_id" type="string"/>
+    <property name="field_data_type" column="field_data_type" type="string"/>
+    <property name="field_value" column="field_value" type="text"/>
+</class>
+```
+
+### Query for table creation
+
+#### MySQL
+
+```sql
+CREATE TABLE OH_Additional_Fields (
+    field_value_id VARCHAR(255) PRIMARY KEY,
+    workitem_id VARCHAR(255),
+    workitem_type VARCHAR(255),
+    field_id VARCHAR(255),
+    field_data_type VARCHAR(255),
+    field_value TEXT
+);
+```
+
+#### MSSQL
+
+```sql
+CREATE TABLE OH_Additional_Fields (
+    field_value_id VARCHAR(255) PRIMARY KEY,
+    workitem_id VARCHAR(255),
+    workitem_type VARCHAR(255),
+    field_id VARCHAR(255),
+    field_data_type VARCHAR(255),
+    field_value VARCHAR(MAX)
+);
+```
 
 
+### JSON configuration
+
+```json
+"additionalMeta": [
+    {
+        "fields": {
+            "system": [
+                {
+                    "dataType": "number",
+                    "displayName": "Iteration",
+                    "internalName": "Iteration"
+                },
+                {
+                    "displayName": "Schedule State",
+                    "internalName": "schedule_state"
+                }
+            ]
+        },
+        "internalName": "workitem"
+    }
+]
+```
+* `internalName` of the entity must match the `entity-name` in HBM XML.
+* Only `internalName` is mandatory for defining a new additional field.
+* Data type defaults to **text** if not provided.
