@@ -4,6 +4,8 @@
 * **API Enablement**: 
   - Polarion's REST API must be enabled in the `polarion.properties` file by setting the following property: 
     - `com.siemens.polarion.rest.enabled=true`
+  - You can find this file in Polarion installed directory at: 
+      - `@POLARION_INSTALLATION_PATH@\polarion\configuration`
   - Refer [Polarion API Reference](https://docs.sw.siemens.com/en-US/doc/230235217/PL20241023686685479.polarion_help_sc.xid2134849/xid2137943) for more details.
 
 ## User Privileges
@@ -58,22 +60,24 @@ Refer to [Integration Configuration](../integrate/integration-configuration.md) 
 
 ## Criteria Configuration
 
-If the user wants to specify conditions for synchronizing an item from Polarion as source system to the other system, the criteria must be configured.
+If you want to specify conditions for synchronizing an entity between Polarion and the other system to be integrated, you can use the Criteria Configuration feature.
 
-Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#criteria-configuration) for details.
+Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#criteria-configuration) to learn in detail about Criteria Configuration.
 
-- Set the Criteria Query as per Polarion's **Lucene query syntax**.
-- Refer to [Polarion API Reference](https://developer.siemens.com/polarion/basic-concepts.html#querying) for more details on query format.
+- To configure criteria in Polarion, integration needs to be created with Polarion as the source system. Set the **Query** as per Polarion's **Lucene query syntax**.
+  - Refer to [Polarion API Reference](https://developer.siemens.com/polarion/basic-concepts.html#querying) for more details on query format.
 - While adding the criteria, user needs to add the internal names of the fields on which the criteria has to be applied.
+  - Refer to [Access Field Internal Name](#access-field-internal-name) section for details.
 - Given below are the sample snippets of how the Polarion queries can be used as criteria query in <code class="expression">space.vars.SITENAME</code>:
 
 ### Sample criteria:
 
-| Field name    | Field internal name | Criteria description                                    | Criteria snippet                 |
-|---------------|---------------------|---------------------------------------------------------|----------------------------------|
-| Title         | title               | Sync items with title containing "API"                  | (title:\*API\*)                  |
-| Status        | status              | Sync items where status equals "Open"                   | (status:Open)                    |
-| Created Date  | created             | Sync items created between 1 June 2025 to 30 June 2025  | (created:[20250601 TO 20250630]) |
+| Field name   | Field internal name | Criteria description                                                   | Criteria snippet                 |
+|--------------|---------------------|------------------------------------------------------------------------|----------------------------------|
+| Title        | title               | Sync items with title containing "API"                                 | (title:\*API\*)                  |
+| Status       | status              | Sync items where status equals "Open"                                  | (status:open)                    |
+| Created Date | created             | Sync items created between 1 June 2025 to 30 June 2025                 | (created:[20250601 TO 20250630]) |
+| Type, Status | type, status        | Sync items whose work item type is task and status of task is reviewed | (type:task AND status:reviewed)  |
 
 
 ## Target LookUp Configuration
@@ -85,9 +89,9 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
 
 ### Sample target lookup query:
 
-| Field name  | Field internal name | Target Lookup use case                                                         | Query snippet                  |
-|-------------|---------------------|--------------------------------------------------------------------------------|--------------------------------|
-| Description | description         | Target Lookup on the item having the source entity's id in 'description' field | description:@oh_internal_id@   |
+| Field name           | Field internal name | Target Lookup use case                                                                         | Query snippet                     |
+|----------------------|---------------------|------------------------------------------------------------------------------------------------|-----------------------------------|
+| Custom Target Lookup | targetLookup        | Target Lookup on the item having the source entity's id in custom field called 'targetLookup'  | targetLookup:@oh_internal_id@     |
 
 
 # Known Behaviors and Limitations
@@ -96,7 +100,7 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
   - Replies to comments or edits in Polarion will be synced as separate comments by <code class="expression">space.vars.SITENAME</code>.
 - **Project Groups**:
   - Project Groups are not visible in the Project mapping list due to API limitations; projects are listed individually.
-- **Work item - Test cases**:
+- **Test cases and Unit test cases in Work item**:
     - Test Steps and relation with Test Records are not supported currently.
 
 # Appendix
@@ -119,4 +123,27 @@ To get the API token for a user:
    <br>
     <p align="center">
       <img src="../assets/PolarionAppendix_Token3.png" width="936"  alt=""/>
+    </p>
+
+Note:
+- It is recommended to regenerate API token before it expires, to avoid unexpected processing failures in <code class="expression">space.vars.SITENAME</code>.
+
+## Access Field Internal Name
+
+To get the field internal names:
+1. Log in to your Polarion account.
+2. Go to the 'Administration' section by clicking on the settings icon in the top left-hand corner of your screen. Refer to the screenshot below:
+   <p align="center">
+      <img src="../assets/PolarionAppendix_FieldInternalName1.png" width="936"  alt=""/>
+    </p>
+   <br>
+3. Click 'Work Items' -> 'Custom Fields' in the left pane. Refer to the screenshot below:
+   <br>
+    <p align="center">
+      <img src="../assets/PolarionAppendix_FieldInternalName2.png" width="936"  alt=""/>
+    </p>
+4. The column named 'ID' contains internal names of the field. Refer to the screenshot below:
+   <br>
+    <p align="center">
+      <img src="../assets/PolarionAppendix_FieldInternalName3.png" width="936"  alt=""/>
     </p>
