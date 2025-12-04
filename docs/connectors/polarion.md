@@ -9,14 +9,20 @@
   - Refer [Polarion API Reference](https://docs.sw.siemens.com/en-US/doc/230235217/PL20241023686685479.polarion_help_sc.xid2134849/xid2137943) for more details.
 
 ## User Privileges
-* Create one user in Polarion that is dedicated for <code class="expression">space.vars.SITENAME</code>. This user shouldn't perform any other action from Polarion's user interface.
-* The user must have the following minimal permissions:
+* Create a user in Polarion that is dedicated for <code class="expression">space.vars.SITENAME</code>. This user shouldn't perform any other action from Polarion's user interface.
+* Following are the user privileges required:
+1. The user must have access to the default SVN repository:
+   - To grant user access to the default repository, refer [Grant Permission To Access Repository](#grant-permission-to-access-repository).
+2. The user must have the role of '**project_admin**' in the project which they are going to configure in <code class="expression">space.vars.SITENAME</code>.
+   - To assign this role, refer [Assign Role To User](#assign-role-to-user).
+3. The user must have the following minimal permissions:
 
-|       | Access Level | Permissions                                                                                                                                                                                                                                             |
-|:------|--------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| READ  | Project      | Permission to VIEW                                                                                                                                                                                                                                      |
-| READ  | Work items   | Permission to READ <br> Permission to READ all Fields                                                                                                                                                                                                   |                                                                                                                                                                |
-| WRITE | Work items   | Permission to CREATE NEW <br> Permission to MODIFY <br> Permission to DELETE <br> Permission to COMMENT <br> Permission to WATCH <br> Permission to APPROVE/DISAPPROVE <br> Permission to RESET APPROVALS <br> Permission to READ and MODIFY all Fields |
+| Access Level       | READ Permissions    | WRITE Permissions                                                                                                     |
+|--------------------|:--------------------|-----------------------------------------------------------------------------------------------------------------------|
+| Projects           | Permission to VIEW  | Permission to VIEW                                                                                                    |
+| REST API Endpoints | Permission to GET   | Permission to GET <br> Permission to PATCH  <br> Permission to POST  <br> Permission to DELETE (For attachments only) |   
+   - To check if the user has above permissions, refer to section [Check API Permissions Required](#check-api-permissions-required)
+ 
 
 # System Configuration
 
@@ -105,6 +111,66 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
     - Test Steps and relation with Test Records are not supported currently.
 
 # Appendix
+
+## Grant Permission To Access Repository
+
+To make sure the user (Example, ID = automationtest) has access to the SVN repository:
+- Update the 'access' file located at `@POLARION_INSTALLATION_PATH@\data\svn`, add the following entries:
+
+   ```ini
+   # Append automationtest to existing lists
+    [groups]
+    user = ..., automationtest
+    
+    [/]
+    automationtest = rw
+   
+    [repo:/]
+    automationtest = rw
+
+    [repo:/.polarion/access]
+    automationtest = rw
+   ```
+
+## Assign Role To User
+
+To assign user the role of 'project_admin':
+1. Log in to your Polarion account as admin.
+2. Go to the 'Administration' section by clicking on the settings icon in the top left-hand corner of your screen. Refer to the screenshot below:
+    <p align="center">
+       <img src="../assets/PolarionAppendix_FieldInternalName1.png" width="936"  alt=""/>
+     </p>
+    <br>
+3. Click 'User Management' -> 'Users' in the left pane. Refer to the screenshot below:
+   <br>
+    <p align="center">
+      <img src="../assets/PolarionAppendix_User1.png" width="936"  alt=""/>
+    </p>
+   <br>
+4. In 'Project Roles', give the user 'project_admin' role. For example, refer to the screenshot below for Role assigned to the user in Project 'Automation_Unit_Project':
+   <br>
+    <p align="center">
+      <img src="../assets/PolarionAppendix_User2.png" width="936"  alt=""/>
+    </p>
+   <br>
+
+
+## Check API Permissions Required
+
+To give user the relevant permissions that allows synchronization of entities:
+1. Log in to your Polarion account as admin.
+2. Go to the 'Administration' section by clicking on the settings icon in the top left-hand corner of your screen. Refer to the screenshot below:
+    <p align="center">
+       <img src="../assets/PolarionAppendix_FieldInternalName1.png" width="936"  alt=""/>
+     </p>
+    <br>
+3. Now, go to 'User Management' -> 'Permissions Management' -> 'By Role'. Here, make sure the following permissions are checked.
+   <br>
+    <p align="center">
+      <img src="../assets/PolarionAppendix_User3.png" width="936"  alt=""/>
+    </p>
+   <br>
+
 
 ## Get API Token
 
