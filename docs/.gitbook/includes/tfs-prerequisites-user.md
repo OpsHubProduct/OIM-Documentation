@@ -69,6 +69,22 @@ Refer [Create Personal Access Token](../../connectors/azure-devops.md#create-per
 
 > **Note**: In case build pipeline is created with TFSGit as source code, you will need to provide additional permission for Git (as specified in Additional permissions for specific entities) data while creating Personal access token.
 
+**Permissions required for Release Pipeline**
+
+| **Permission Types**        | **Required Permission Values**  |
+|-----------------------------|---------------------------------|
+| Release                     | Read, Write, Execute, & Manage  |
+| Agent Pools                 | Read & Manage                   |
+| Service Connections         | Read, Query, & Manage           |
+| Variable Groups             | Read & Create                   |
+| Work Items (Query)          | Read, Write, & Manage           |
+| Build                       | Read & Execute                  |
+| Packaging (Azure Artifacts) | Read                            |
+| Deployment Groups           | Read & Manage                   |
+| Secure Files                | Read                            |
+
+<div align="center"><img src="../../assets/PAT_CUSTOM_PERMISSION_FOR_RELEASE_PIPELINE.png" alt="" width="800"></div>
+
 #### For On-Premises Deployment
 
 * Personal Access Token should be created with **Full access** scope for all entities if user is using On-Premises deployed server.
