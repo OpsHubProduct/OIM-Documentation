@@ -430,7 +430,7 @@ to this:
 
 ## Perform check & create for Variable Groups in Pipeline
 
-* To perform check & create for **Variable Groups** in pipeline, **Variable Group details** field should be mapped.
+* To perform check & create for **Variable Groups** in build pipeline and release pipeline, **Variable Group details** field should be mapped.
 * Advanced mapping is required for the same in <code class="expression">space.vars.SITENAME</code>. Below is the sample advanced mapping:
 
 ```xml
@@ -465,7 +465,8 @@ to this:
 </Variable-space-group-space-details>
 ```
 
-* While configuring integration for the same, **Default Integration Workflow Pipeline** should be selected to perform check & create for variable groups. For more details, refer to [Workflow Association](../integrate/integration-configuration.md#workflow-association).
+* While configuring the integration for the Build Pipeline, select the **Default Integration Workflow Pipeline** to enable the check-and-create process for variable groups. Similarly, for the Release Pipeline, ensure that the **Default Integration Workflow Pipeline** is selected to perform check-and-create for variable groups.For more details, refer to the [Workflow Association](../integrate/integration-configuration.md#workflow-association) section.
+
 
 # Integration Configuration
 
