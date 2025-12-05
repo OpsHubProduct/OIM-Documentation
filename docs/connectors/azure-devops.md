@@ -392,7 +392,7 @@ to this:
 </Kanban-space-Board>
 ```
 
-## Pipeline Variables Advance Mapping Configuration
+## Build Pipeline Variables Advance Mapping Configuration
 
 * To sync variables of pipeline, advance mapping is required in <code class="expression">space.vars.SITENAME</code>.
 * Below is the sample advanced mapping for syncing Variables field:
@@ -412,7 +412,7 @@ to this:
 ```
 
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
-### Comments Field Advance Mapping Configuration for Pipeline Entity
+### Comments Field Advance Mapping Configuration for Build Pipeline Entity
 
 * By default, the comments field is synchronised, as it is, for each revision in the pipeline entity.
 * If there is a need to add actual revision time and user email with each revision comment, the following XSLT can be used:
@@ -430,7 +430,7 @@ to this:
 
 ## Perform check & create for Variable Groups in Pipeline
 
-* To perform check & create for **Variable Groups** in pipeline, **Variable Group details** field should be mapped.
+* To perform check & create for **Variable Groups** in build pipeline or release pipeline, **Variable Group details** field should be mapped.
 * Advanced mapping is required for the same in <code class="expression">space.vars.SITENAME</code>. Below is the sample advanced mapping:
 
 ```xml
@@ -465,7 +465,9 @@ to this:
 </Variable-space-group-space-details>
 ```
 
-* While configuring integration for the same, **Default Integration Workflow Pipeline** should be selected to perform check & create for variable groups. For more details, refer to [Workflow Association](../integrate/integration-configuration.md#workflow-association).
+* While configuring the integration for the Build Pipeline, select the **Default Integration Workflow Pipeline** to enable the check-and-create process for variable groups.
+* Similarly, for the Release Pipeline, ensure that the **Default Integration Workflow Release Pipeline** is selected to perform check-and-create for variable groups. For more details, refer to the [Workflow Association](../integrate/integration-configuration.md#workflow-association) section.
+
 
 # Integration Configuration
 
@@ -534,7 +536,7 @@ Special symbols \[%, $, !, |] are not supported in criteria.
 
 You can refer to [Microsoft API documentation](https://docs.microsoft.com/en-us/rest/api/azure/devops/git/pull%20requests/get%20pull%20requests?view=azure-devops-rest-4.1) to check all the possible criterias available for the Pull Request entity.
 
-### Sample Criteria Examples for 'Pipeline' entity
+### Sample Criteria Examples for 'Build Pipeline' entity
 
 | **Field Name**                    | **Criteria Description**                                                                  | **Criteria Snippet**                                 |
 | --------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
@@ -544,7 +546,49 @@ You can refer to [Microsoft API documentation](https://docs.microsoft.com/en-us/
 
 > **Note**: Set the query as per Native ADO URL encoded query format.
 
-Refer to [Microsoft API documentation](https://learn.microsoft.com/en-us/rest/api/azure/devops/build/definitions/list?view=azure-devops-rest-7.0) to check all the possible criterias available for the Pipeline entity.
+Refer to [Microsoft API documentation](https://learn.microsoft.com/en-us/rest/api/azure/devops/build/definitions/list?view=azure-devops-rest-7.0) to check all the possible criterias available for the Build Pipeline entity.
+
+### Sample Criteria Examples for 'Release Pipeline' entity
+
+| **Field Name**                       | **Criteria Description**                                                       | **Criteria Snippet**                                   |
+|--------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------------|
+| Name                                 | Synchronize all entities with the name 'TestReleasePipeline'                   | `searchText=TestReleasePipeline&isExactNameMatch=true` |
+| Path                                 | Synchronize all entities present on the Folder path "/ChildFolder"             | `path=%5CChildFolder`                                  |
+| Artifact Source Id and Artifact Type | Synchronize all entities with artifact source Id "$/" and artifact type "Git". | `artifactSourceId=$%2F&artifactType=Git`               |
+
+> **Note**: Set the query as per Native ADO URL encoded query format.
+
+Refer to [Microsoft API documentation](https://learn.microsoft.com/en-us/rest/api/azure/devops/release/definitions/list?view=azure-devops-rest-7.0) to check all the possible criterias available for the Release Pipeline entity.
+
+### Sample Criteria Examples for 'Service Connection' entity
+
+| **Field Name** | **Criteria Description**                                       | **Criteria Snippet**                  |
+|----------------|----------------------------------------------------------------|---------------------------------------|
+| Name           | Synchronize all entities with the name 'TestServiceConnection' | `endpointNames=TestServiceConnection` |
+| Type           | Synchronize all entities with 'github' type                    | `type=github`                         |
+
+> **Note**: Set the query as per Native ADO URL encoded query format.
+
+Refer to [Microsoft API documentation](https://learn.microsoft.com/en-us/rest/api/azure/devops/serviceendpoint/endpoints/get-service-endpoints?view=azure-devops-rest-7.0) to check all the possible criterias available for the Service Connection entity.
+
+### Sample Criteria Examples for 'Agent Pool' entity
+
+| **Field Name** | **Criteria Description**                               | **Criteria Snippet**         |
+|----------------|--------------------------------------------------------|------------------------------|
+| Name           | Synchronize all entities with the name 'TestAgentPool' | `agentName=TestAgentPool`    |
+| Pool Type      | Synchronize all entities with 'deployment' pool type   | `poolType=deployment`        |
+
+> **Note**: Set the query as per Native ADO URL encoded query format.
+
+Refer to [Microsoft API documentation](https://{instance}/{collection}/_apis/distributedtask/pools/{poolId}/agents?api-version=6.0) to check all the possible criterias available for the Agent Pool entity.
+
+### Sample Criteria Examples for 'Task Group' entity
+
+| **Field Name** | **Criteria Description**                               | **Criteria Snippet**                                                          |
+|----------------|--------------------------------------------------------|-------------------------------------------------------------------------------|
+| Name           | Synchronize all entities with the name 'TestTaskGroup' | `[{\"condition\":\"EQUALS\",\"field\":\"name\",\"value\":\"TestTaskGroup\"}]` |
+| Category       | Synchronize all entities with the category of 'Deploy' | `[{\"condition\":\"EQUALS\",\"field\":\"category\",\"value\":\"Deploy\"}]`    |
+
 
 You can find more Criteria Configuration details on [Integration Configuration](Integration_Configuration/) page.
 
@@ -576,11 +620,38 @@ If a query named `TestQuery` exists in the folder `Shared Queries/FolderA`, then
 `Shared Queries/FolderA/TestQuery`
 
 
-### Supported Target Lookup Query for Pipeline Entity
+### Supported Target Lookup Query for Build Pipeline Entity
 
 The query must be in the format:
 `name=@name@`
 
+### Supported Target Lookup Query for Release Pipeline Entity
+
+The query must be in the format:
+`searchText=@name@&isExactNameMatch=true`
+- `searchText` performs the lookup on the release pipeline name
+- `isExactNameMatch=true` ensures that only release pipelines with an **exact name match** are returned.
+
+
+### Supported Target Lookup Query for Service Connection Entity
+
+The query must be in the format:
+`endpointNames=@name@`
+- Returns Service Connections whose **endpoint name** matches the provided value.
+
+### Supported Target Lookup Query for Agent Pool Entity
+
+The query must be in the format:
+`agentName=@name`
+- This retrieves Agent Pools based on the **agent name** provided.
+
+### Supported Target Lookup Query for Task Group Entity
+
+The query must be in the format:
+`[{\"condition\":\"EQUALS\",\"field\":\"name\",\"value\":\"@name"}]`
+- `field` specifies that the lookup is performed on the **name** field
+- `condition: EQUALS` ensures an exact name match
+- `value` is the Task Group name to be searched
 
 ### Supported Target Lookup Queries for Other Entities
 
@@ -744,6 +815,12 @@ A sample snippet of JSON is given below:
 }
 ```
 
+## Release Pipeline
+
+* **<code class="expression">space.vars.SITENAME</code>** supports Release Pipeline bidirectional synchronization along with all the dependent Azure DevOps artifacts such as agents, pools, service connections, variable groups, and tasks, ensuring that the complete release execution context is synced accurately.
+* To understand the pre-requisites for enabling Release Pipeline synchronization, refer to the section: [Release Pipeline Pre-Requisites](#release-pipeline-entity)
+* For detailed steps on configuring the Release Pipeline integration, refer to the section: [Release Pipeline configuration](../knowledge-resources/integration-combination-examples/azure-devops-server-and-azure-devops-services-releasepipeline-integration.md)
+
 # Known Behaviors & Limitations
 
 ## Common
@@ -759,13 +836,19 @@ A sample snippet of JSON is given below:
 {% include "../.gitbook/includes/tfs-metaentities-known-limitations-behavior.md" %}
 
 ## Dashboard/Query/Widgets Entities
-{% include "../.gitbook/includes/tfs-dashboardquerywidget-known-limitations-behavior.md %}
+{% include "../.gitbook/includes/tfs-dashboardquerywidget-known-limitations-behavior.md" %}
 
 ## Pull Request
-{% include "../.gitbook/includes/tfs-pullrequest-known-limitations-behavior.md %}
+{% include "../.gitbook/includes/tfs-pullrequest-known-limitations-behavior.md" %}
 
-## Pipeline Entity
+## Build Pipeline Entity
 {% include "../.gitbook/includes/tfs-pipeline-known-limitations-behavior.md" %}
+
+## Release Pipeline Entity
+{% include "../.gitbook/includes/tfs-release-pipeline-known-limitations-behavior.md" %}
+
+## Dependent Artifacts of Pipeline
+{% include "../.gitbook/includes/tfs-serviceconnection-agentpool-taskgroup-known-limitations-behavior.md" %}
 
 # Appendix
 
