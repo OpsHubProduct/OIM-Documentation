@@ -8,7 +8,7 @@ This page covers the bidirectional integration of Release Pipelines and their de
 # System Prerequisites
 * Check out the pre-requisites for [Azure DevOps Server and Azure DevOps Service](../../connectors/azure-devops.md#prerequisites)
 * Configuring [system pre-requisites](../../integrate/integration-prerequisites.md) is mandatory for successful system configuration.
-* To understand the pre-requisites for enabling Release Pipeline synchronization, refer to the section: [Release Pipeline Pre-requisites](../../.gitbook/includes/tfs-release-pipeline-known-limitations-behavior.md)
+* To understand the pre-requisites for enabling Release Pipeline synchronization, refer to the section: [Release Pipeline Pre-requisites](../../connectors/azure-devops.md#release-pipeline-entity)
 
 # Integration Configuration
 * Log in into **<code class="expression">space.vars.SITENAME</code>**. The default credentials are:  
