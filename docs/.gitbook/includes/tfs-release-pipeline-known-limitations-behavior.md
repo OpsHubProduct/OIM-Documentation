@@ -20,6 +20,8 @@ These are required to in target due to Azure DevOps API Restrictions/limitations
   * Release Pipeline will be synced TFS version 2018 or above, as APIs are available from that version only.
   * Azure Artifact in release pipeline are supported from TFS version 2019 or above.
     * Reason: APIs for Azure Artifacts are supported from version 2019.
+  * Agent Pool in release pipeline are supported from TFS version 2020 or above.
+    * Reason: APIs for Azure Artifacts are supported from version 2020.
   * Release Pipeline does not have Attachments, Comments, and Inline images, hence Attachments, Comments, and Inline images won't be synchronization.
   * End System Criteria Storage is not supported.
     * Reason: Release Pipeline does not have any custom fields.
