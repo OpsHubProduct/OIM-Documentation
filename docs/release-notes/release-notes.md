@@ -1,51 +1,65 @@
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 
-# New Connector(s)
-* **[Monday.com](../connectors/monday.md)**
-  * **Supported Version:** SaaS
-  * **Supported Entities:** Board items, Board sub items
-
-# New Version(s)
-- Java Development Kit(JDK): 17.0.17
+# New Entities
+* **Azure DevOps Server**
+  * Release Pipeline**, Service Connection, Task Group : supported in versions 2018 and above
+  * Agent Pool : supported in versions 2020 and above
+* **Azure DevOps Services**
+  * Release Pipeline**, Agent Pool, Service Connection, Task Group
 
 # New Enhancements
 
-## ServiceNow Express
-* Added support for custom transition APIs.
-  * Refer to the connector documentation on [how to enable custom transition APIs](../connectors/servicenow-quick-connect.md#5-configure-transition-apis) through the metadata JSON.
+## Common
+* Improved search capability to help users quickly find Integrations, Mappings, Systems, Workflows, and other components across folders within <code class="expression">space.vars.SITENAME</code>.
+  * Additional details are available in the [Search and Navigate](../integrate/search.md) guide.
+
+## GitHub
+* Improved GitHub connector behavior by enforcing inclusion of the API version header on every outbound request, rather than relying on GitHub’s default versioning.
+  > Note: Note: At this time, only a single API version header is available from GitHub.
+  
+## Jira Cloud
+* Added documentation describing the permission requirements for the scoped base token used with Jira Cloud.
+  * For a full list of the minimum permissions the service-account user must have, see the Jira Connector [API Token](../connectors/jira.md#api-token) documentation.
 
 # Major Bugs
 
 ## Common
-* Resolved an issue where generating the global ID took excessive time when multiple integrations were performing create and update operations concurrently on a large number of entities. 
+* Resolved an issue where a global error occurred in the delete job synchronization when processing attachments on items that were deleted in the source.
+  * Use case: In <code class="expression">space.vars.SITENAME</code> version 7.196 and above, significant improvements were made to attachment and inline synchronization. After upgrading, if a source item was found to be deleted, its attachment and inline information was not processed to align with the new behavior, which could cause the delete job to fail.
+* Resolved an issue where reconciliation of some items was skipped when reconciling multiple source projects to a single target project.
+  * Use case: If the reconciliation was stopped and then resumed, it interrupted the sequence of items in the queue, causing only items with id greater than the last reconciled one to be processed.
+* Resolved an issue where a processing error occurred while transforming events containing empty key tags in the source event XML.
 
-## Azure DevOps Server/Services
-* Resolved an issue where processing error observed with message "OH-TFS/AzureDevOps-0094: Error occurred while loading entity object using REST API for the URL `https://dev.azure.com/<org_name>/_apis/wit/workitems/-1?$expand=all&api-version=1.0` due to error 404 Not Found."
-  * Use case: This issue occurred when creating a work item in Azure DevOps Server/Services as the target system, where the comment included referenced attachments/documents at the creation time.
+## Broadcom Rally Software
+* Resolved an issue where a global error occurred when retrieving link information for a parent item that the service account could not access, resulting in the following NullPointerException: java.lang.NullPointerException: Cannot invoke 'com.opshub.eai.rally.common.RallyDevElement.getAttributes()' because 'portfolioItemObject' is null.
+  * Use case: A user story in Rally has a parent feature that the integration cannot access (for example, when the parent resides in a different project). In this scenario, a NullPointerException occurred while parsing link details from the user story response. 
 
-## Gerrit
-* Resolved an issue where synchronization failed to work as expected due to double encoding of the changeid field for the change entity. 
+## Database
+* Resolved an issue in the Database Connector where attachments were overwritten when multiple attachments with the same name were received from the same source entity.
+  * Use case: When adding data from a source system to the database, if a work item contained multiple attachments with the same name, the connector overwrote them and only kept the last occurrence as attachments were stored on the local machine where the <code class="expression">space.vars.SITENAME</code> was deployed.
 
-## GitHub
-* Resolved an issue where a global error occurred with the message: "com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize value of type java.lang.String from Object value (token JsonToken.START_OBJECT)".
-  * Use case: This occurred during pull request integration from GitHub when the auto_merge field contained data that caused a parsing error due to a type mismatch.
+## IBM Engineering Requirements Management DOORS Next
+* Resolved an issue where a global error occurred due to incorrect detection of inline content or documents in rich text fields or comments.
 
-## Jama
-* * Resolved an issue where the data for non-history field such as 'description' was cleared and then restored, causinf extra updates in the end system. 
+## IBM Engineering Test Management
+* Resolved an issue where retrieving external links from IBM Engineering Test Management returned a 400 error and caused synchronization to get stuck.
 
 ## ServiceNow Express
-* Resolved an issue that caused a processing error with the message: “java.lang.NullPointerException: Cannot invoke 'java.util.Map.get(Object)' because 'entityDetails' is null.”
-  * Use case: This occurred when ServiceNow was customized such that, after item creation, the default sys_id key in the response was replaced with a different identifier. 
-  * **Action**: Refer to the connector documentation for guidance on [configuring additional metadata for this specific use case](../connectors/servicenow-quick-connect.md#configure-additional-metadata-for-specific-use-cases). 
-* Resolved an issue that caused a processing error with the message: "OH-ServiceNow-1004: Incorrect date format for value 07/11/2025 07:40:00 AM. Expected date value should be in format yyyy-MM-dd HH:mm:ssXXX."
-  * **Action**: Refer to the connector documentation for guidance on [configuring additional metadata for date formats](../connectors/servicenow-quick-connect.md#1-configure-date-format).
-* Resolved an issue where the end system’s error message was not populated correctly when a 404 error code was received from the ServiceNow.
-
-## Verisium Manager
-* Resolved an issue where a processing failure occurred when a delete job was configured with soft-delete enabled while using Verisium Manager as the target system. 
+* Resolved an issue that caused an error when retrieving data from the `cmdb_ci` table using advanced methods such as `getEntityFieldValue`.
 
 {% endif %}  
 
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+
+# New Entities
+* **Azure DevOps Server**
+  * Release Pipeline**, Service Connection, Task Group : supported in versions 2018 and above
+  * Agent Pool : supported in versions 2020 and above
+* **Azure DevOps Services**
+  * Release Pipeline**, Agent Pool, Service Connection, Task Group
+
+# New Enhancements
+* License editions have been rebranded: Free is now Community, Premium is now Professional, and Platinum is now Ultimate.
+* Support for migrating Area Path and Iteration, previously available only in the Ultimate (formerly Platinum) edition, has now been added to the Professional (formerly Premium) edition.
 
 {% endif %}  
