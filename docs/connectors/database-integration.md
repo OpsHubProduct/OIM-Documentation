@@ -35,20 +35,20 @@ Here is the screenshot:
 
 ## Database System form details
 
-| **Field Name**            | **Description**                                                                                                                                                                                                                                         |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **System Name**           | Provide the system's name                                                                                                                                                                                                                               |
-| **Database Type**         | Select the database type for which you want to create a new database system. Currently supported databases are: 1. MySQL 2. MS SQL Server/Azure SQL 3. Oracle 4. PostgreSQL 5. MariaDB                                                                  |
-| **Database Host Name**    | The name of the host machine where the database server is deployed                                                                                                                                                                                      |
-| **Database Port**         | Port number on which database server is deployed. Generally, default ports for MySQL/MariaDB is 3306, MS SQL Server/Azure SQL is 1433, Oracle is 1521, and PostgreSQL is 5432                                                                           |
-| **Instance Name**         | Instance name of the MS SQL Server/Azure SQL, if it is a named instance. Applicable to MS SQL Server only                                                                                                                                               |
-| **Database Name**         | Name of the database to connect with                                                                                                                                                                                                                    |
-| **Schema Name**           | Default schema of the database to connect with. Mandatory for MS SQL Server/Azure SQL and PostgreSQL                                                                                                                                                    |
-| **Database User Name**    | Provide the user name of a dedicated user that will be used for communicating with database. User should have the read and write permission on database                                                                                                 |
-| **Database Password**     | Provide the password for the user provided in Database User Name                                                                                                                                                                                        |
-| **Timezone**              | Select the timezone for date and time values. If not selected, UTC timezone will be considered by default                                                                                                                                               |
-| **Hibernate Mapping XML** | XML mapping required to map the columns of database table with some properties. For more details, refer to [Understanding Hibernate XML Input](#understanding-hibernate-xml-input) section.                                                             |
-| **Metadata**              | Provide the table name and column which is used to configure links, comments, attachments, or additional fields. Refer to the [Understanding Metadata JSON Input](#understanding-metadata-json-input) section for details on format and JSON structure. |
+| **Field Name**            | **Description**                                                                                                                                                                                                          |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System Name**           | Provide the system's name                                                                                                                                                                                                |
+| **Database Type**         | Select the database type for which you want to create a new database system. Currently supported databases are: 1. MySQL 2. MS SQL Server/Azure SQL 3. Oracle 4. PostgreSQL 5. MariaDB                                   |
+| **Database Host Name**    | The name of the host machine where the database server is deployed                                                                                                                                                       |
+| **Database Port**         | Port number on which database server is deployed. Generally, default ports for MySQL/MariaDB is 3306, MS SQL Server/Azure SQL is 1433, Oracle is 1521, and PostgreSQL is 5432                                            |
+| **Instance Name**         | Instance name of the MS SQL Server/Azure SQL, if it is a named instance. Applicable to MS SQL Server only                                                                                                                |
+| **Database Name**         | Name of the database to connect with                                                                                                                                                                                     |
+| **Schema Name**           | Default schema of the database to connect with. Mandatory for MS SQL Server/Azure SQL and PostgreSQL                                                                                                                     |
+| **Database User Name**    | Provide the user name of a dedicated user that will be used for communicating with database. User should have the read and write permission on database                                                                  |
+| **Database Password**     | Provide the password for the user provided in Database User Name                                                                                                                                                         |
+| **Timezone**              | Select the timezone for date and time values. If not selected, UTC timezone will be considered by default                                                                                                                |
+| **Hibernate Mapping XML** | XML mapping required to map the columns of database table with some properties. For more details, refer to [Understanding Hibernate XML Input](#understanding-hibernate-xml-input) section.                              |
+| **Metadata**              | Provide Json to configure links, comments, attachments, or fields data overwrite. Refer to the [Understanding Metadata JSON Input](#understanding-metadata-json-input) section for details on format and JSON structure. |
 
 ## Understanding Hibernate XML Input
 
@@ -121,7 +121,7 @@ An example input for the metadata JSON:
 
 {% include "../.gitbook/includes/database_metadata_input.md" %}
 
-* User can configure additional field for each table, using OH_Additional_Field table. Refer to [OH_Additional_Fields Table](#OH_Additional_Fields-Table)
+* User can overwrite the existing field behavior or configure additional field for each table using additionalMeta input. Refer to [Field JSON Configuration](#json-configuration) for more details.
 
 # Mapping Configuration
 
@@ -203,6 +203,7 @@ Here is the screenshot:
 
 * For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the <code class="expression">space.vars.SITENAME</code> is installed.  
   For example, on Windows, characters such as `\ / : * ? " < > |` are not allowed in file names.
+* For Inline image synchronization, user need to configure a field with data type as `html` or `wiki`. Refer to [Field JSON Configuration Steps](#json-configuration)
 
 # Appendix
 
@@ -425,27 +426,58 @@ CREATE TABLE OH_Additional_Fields (
 
 
 ### JSON configuration
-
+* Users can override existing field metadata or add new fields using this JSON configuration.
 ```json
-"additionalMeta": [
+{
+  "additionalMeta": [
     {
-        "fields": {
-            "system": [
-                {
-                    "dataType": "number",
-                    "displayName": "Iteration",
-                    "internalName": "Iteration"
-                },
-                {
-                    "displayName": "Schedule State",
-                    "internalName": "schedule_state"
-                }
-            ]
-        },
-        "internalName": "workitem"
+      "fields": {
+        "system": [
+          {
+            "internalName": "name",
+            "displayName": "Work Item Title",
+            "dataType": "text",
+            "mandatory": true
+          },
+          {
+            "internalName": "custom_priority",
+            "displayName": "Priority (Custom)",
+            "dataType": "numeric",
+            "mandatory": false
+          }
+        ]
+      },
+      "internalName": "workitem"
     }
-]
+  ],
+  "link": {...},
+  "comment": {...},
+  "attachment": {...}
+}
 ```
+* Above JSON Example understanding
+  * Overwriting an existing mapped field
+    * When `internalName: "name"` matches column `name` in HBM XML.
+    * OpsHub overwrites metadata:
+      * displayName → "Work Item Title"
+      * dataType → TEXT
+      * mandatory → true
+      * all unspecified settings remain unchanged.
+  * Adding a field
+    * `internalName: "custom_priority"` does **not** exist in HBM XML.
+    * OpsHub treats this as a **new field**, and all values sent for this field are stored in **OH_Additional_Fields** table.
+* Use the following instruction to configure JSON as required
 * `internalName` of the entity must match the `entity-name` in HBM XML.
-* Only `internalName` is mandatory for defining a new additional field.
-* Data type defaults to **text** if not provided.
+  * When `internalName` in JSON matches an existing column from HBM XML, OpsHub **overwrites** metadata of that field.
+  * When `internalName` does not match any existing column, OpsHub treats it as a new field, and its values will be stored in the `OH_Additional_Fields` table.
+  * Available field parameter and configuration information.
+ 
+| Parameter      | Required    | Default Value  | Description                                                                                                                                                                             |
+|----------------|-------------|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `internalName` | Yes         |                | Unique identifier of the field; determines whether metadata is overwritten or a new field is created.                                                                                   |
+| `displayName`  | No          | `internalName` | User-visible name of the field. Defaults to `internalName` if not provided.                                                                                                             |
+| `multiselect`  | No          | false          | Indicates whether the field allows multiple values.                                                                                                                                     |
+| `mandatory`    | No          | false          | Marks the field as required during data entry.                                                                                                                                          |
+| `readOnly`     | No          | false          | Marks the field as non-editable.                                                                                                                                                        |
+| `dateFormat`   | Conditional | null           | Needed only when `dataType` is `date` or `date_string`.                                                                                                                                 |
+| `dataType`     | No          | `text`         | Controls storage and parsing of field values. Supported values: `text`, `numeric`, `boolean`, `date`, `date_string`, `html`, `wiki`, `link`, `test-step`, `test-run-iteration`, `user`. |
