@@ -5,7 +5,6 @@
   * In Pull Request comments are of two types : 1) system 2) text, by default both the type of comments will synchronize to the target. But we do have an option to select any specific type from the comments mapping.
   * The first default comment, i.e., **`<user>` created the pull request** won't sync to the target because they are not available through AzureDevOps/TFS APIs.
   * For Reviewers, Pull Request will have two fields **Required Reviewers** and **Optional Reviewers**. In AzureDevOps both the fields are visible but in TFS On-Premise only one field is visible i.e., **Reviewers**. To synchronize **Reviewers** field of TFS On-Premise map the field **Optional Reviewers** with the required target system field.
-  * Currently, entity mention is not supported with the two settings **Source entity URL (Default)** and **Mentioned target entity (if found) else redirection via OpsHub** when mentioning pull request entities. Mentions for other entity types are supported.
 
 ### Git Repositories Selection
 
