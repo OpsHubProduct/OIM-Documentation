@@ -20,7 +20,8 @@
 
 * Following fields are read-only, and can be synced from Azure DevOps to other systems.
    * Area Id, Attached File Count, Authorized As, Authorized Date, Board Lane, External Link Count, Hyperlink Count, ID, Iteration Id, Node Name, Related Link Count,Rev, Revised Date, Team Project, Work Item Type, Board Column, Board Column Done
-     
+* If a pull request is mentioned in any rich text field or comment of work items or test entities, it may lead to processing failures. In such cases, update the mention settings to use the **Source entity id**.
+
 {% include "/.gitbook/includes/read-write-field.md" %}
 
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
