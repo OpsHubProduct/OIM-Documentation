@@ -133,7 +133,7 @@ An example input for the metadata JSON:
 ## Inline File Support
 * Prerequisite: Configure the attachment table and ensure attachment configuration is enabled.
 * Inline files are supported for both read and write operations. It is supported for fields with data type `text`, `html` or `wiki`. Refer to [Field JSON Configuration](#json-configuration) to understand how to configure field's data type.
-* <code class="expression">space.vars.SITENAME</code> Store image references in following URI template `file:/{attachmentIdColumn value}` where `{attachmentIdColumn value}` is the id of the record in the attachment table.
+* <code class="expression">space.vars.SITENAME</code> stores image references in following URI template `file:/{attachmentIdColumn value}` where `{attachmentIdColumn value}` is the id of the record in the attachment table.
 Examples:
 ```html
 <img src="file:/12345" alt="Example image.png" />
@@ -211,8 +211,7 @@ Here is the screenshot:
 * If a table's username column mapped to `created_updated_by` is the same as the username in the database system form, records will be skipped during polling time.
 * For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the <code class="expression">space.vars.SITENAME</code> is installed.  
   For example, on Windows, characters such as `\ / : * ? " < > |` are not allowed in file names.
-* Only write operations are supported for the `OH_History` field and extra fields (i.e., fields stored in `OH_Additional_Fields`).
-  * These fields cannot be used to for criteria and target lookup.
+* Only write operations are supported for `OH_History` field and extra fields (stored in `OH_Additional_Fields`); they cannot be used in criteria or target lookup.
 
 # Appendix
 
