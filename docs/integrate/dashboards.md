@@ -36,7 +36,11 @@ In integration details window, the following information is shown:
   - **Last processed entity ID:** Last entity processed by integration.
   - **Health:** Shows failures, if any, logged in integration.
 
-> **Note** : Graph gives complete view of all integrations across folders.
+> **Note** : Graph gives a complete view of all integrations of the currently selected folder.
+> 
+> If "Include Parent Items" is enabled, integrations from parent folders are also included.
+
+
 
 # Filtering the Dashboard by Various Functions
 
@@ -51,10 +55,11 @@ Users can filter the integrations according to the system and integration status
 
 - Select the **systems** and click **Filter** button. All the integrations that use the selected systems will be displayed.
 - The available options for **integration status** are: All, Active, Inactive, and In error. Select one and click **Filter**.
-- You can try combinations — for example: set Jira as a system filter and Active as an integration status filter to view all active Jira integrations.
+- If “Include from child folders” is enabled, integrations from child folders are also included. This option is enabled by default.
+- You can try combinations — for example: set Jira as a system filter, Active as an integration status filter, and enable include from child folders to view all active Jira integrations of current folder and its child folders.
   
 <p align="center">
-  <img src="../assets/dashboard_filter_graph.PNG" width="1500"/>
+  <img src="../assets/dag-graph-with-filters.PNG" width="1500"/>
 </p>
 
 

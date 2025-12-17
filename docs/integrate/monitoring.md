@@ -22,5 +22,9 @@
       <td align="center"><strong>Using the Dashboard</strong></td>
       <td><a href="dashboards.md">Using the Dashboard</a></td>
     </tr>
+    <tr>
+      <td align="center"><strong>Using Trends & Metrics</strong></td>
+      <td><a href="trends-and-metrics.md">Using Trends & Metrics</a></td>
+    </tr>
   </tbody>
 </table>
