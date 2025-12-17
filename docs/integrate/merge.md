@@ -1,5 +1,5 @@
 This page explains the merge feature available from version 7.0 onwards.
-# When To Merge Integrations
+# When To Merge Integrations ?
 
 As the name says, this feature allows users to merge existing configurations such as mappings and integration groups for usability purpose. It also helps reduce the maintenance cost. Given below are some cases in which merge feature can be useful.
 
