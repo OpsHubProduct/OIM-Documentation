@@ -40,7 +40,7 @@ From child folder, a user can view all the config done in parent folders, using 
 - Integrations, mappings, and systems created under parent folder will be accessible to the child folder.
 - Parent folder cannot access its child folder integrations, mapping, and systems.
 - Systems and mappings created in parent folder can be re-used in child folders.
-- Dashboard will include complete view of all integrations across the folders.
+- The dashboard provides a comprehensive view of all integrations from the current folder and its parent folders.
 - The assests below show all systems created in Default folder and Folder 1, which is the child folder of Default folder. 
 
 <div align="center">

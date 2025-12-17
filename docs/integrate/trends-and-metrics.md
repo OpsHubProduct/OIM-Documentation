@@ -9,9 +9,9 @@ The Trends dashboard provides a quick view of synchronization activity, project 
   <img src="../assets/trends-and-metrics-tab.png" />
 </p>
 
-# Metrics
+## Metrics
 
-## Projects in sync
+### Projects in sync
 Shows the total number of configured projects including child projects in **<code class="expression">space.vars.SITENAME</code>** across all integrated systems.
 
 <p align="center">
@@ -20,7 +20,7 @@ Shows the total number of configured projects including child projects in **<cod
 
 Note: Child projects are not included in the count if the integration that contains child projects is not activated at least once.
 
-## Entities synchronized
+### Entities synchronized
 
 Shows the total number of entities synchronized by **<code class="expression">space.vars.SITENAME</code>** across all integrated systems.
 
@@ -28,7 +28,7 @@ Shows the total number of entities synchronized by **<code class="expression">sp
   <img src="../assets/synchronized-entities-kpi.png" />
 </p>
 
-## Entity sync count by system
+### Entity sync count by system
 
 Displays the total count of entities synchronized by **<code class="expression">space.vars.SITENAME</code>** across all systems, including both in-sync and deleted entities.
 
@@ -46,7 +46,7 @@ Click a bar to view the entity-type breakdown for the selected system.
   <img src="../assets/entity-sync-count-1.png" />
 </p>
 
-## Project pairs with high sync rate
+### Project pairs with high sync rate
 
 Shows the top 10 project pairs with the highest synchronization activity, helping teams quickly identify the most active integrations, focus monitoring and optimization efforts on critical data flows.
 
@@ -60,7 +60,7 @@ Click a pie slice to view the entity-type pair breakdown for the selected projec
   <img src="../assets/project-pairs-with-high-sync-rate-1.png" />
 </p>
 
-## Project growth across systems
+### Project growth across systems
 
 Displays project growth trends per system over time, helping teams understand adoption patterns, compare system usage, and identify periods of rapid growth or stagnation for better planning and decision-making.
 
@@ -68,7 +68,7 @@ Displays project growth trends per system over time, helping teams understand ad
   <img src="../assets/project-growth-across-systems.png" />
 </p>
 
-## Project pairs with low sync rate
+### Project pairs with low sync rate
 
 Highlights project pairs with low synchronization activity, drawing attention to possible issues such as sync failures, misconfiguration, decommissioned projects, or candidates for archival or cleanup, enabling timely investigation and corrective action.
 
@@ -82,7 +82,7 @@ Click a bar to view the entity-type pair breakdown for the selected project pair
   <img src="../assets/projects-with-low-sync-rate-1.png" />
 </p>
 
-## Top 10 recent integrations with global failures
+### Top 10 recent integrations with global failures
 
 Displays the top 10 most recent integrations with active global failures, helping teams quickly spot critical issues and take prompt action for sync stability.
 
@@ -96,7 +96,7 @@ Click a bar to view the job-level breakdown, including integration, and delete j
   <img src="../assets/top-10-integrations-with-global-failures-1.png" />
 </p>
 
-## Top 10 integrations with high processing failures
+### Top 10 integrations with high processing failures
 
 Displays the top 10 most recent integrations experiencing processing failures, helping teams quickly identify integrations with such failures, understand failure impact, and prioritize investigation 
 
@@ -112,7 +112,7 @@ Click a bar to view the project-wise breakdown.
 
 # Filtering the Dashboard
 
-### Date Range
+## Date Range
 
 Select the date range to filter metrics.
 

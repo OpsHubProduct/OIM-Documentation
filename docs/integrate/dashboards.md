@@ -59,7 +59,7 @@ Users can filter the integrations according to the system and integration status
 - You can try combinations — for example: set Jira as a system filter, Active as an integration status filter, and enable include from child folders to view all active Jira integrations of current folder and its child folders.
   
 <p align="center">
-  <img src="../assets/dag-graph-with-filters.PNG" width="1500"/>
+  <img src="../assets/dag-graph-with-filters.png" width="1500"/>
 </p>
 
 
