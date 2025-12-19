@@ -9,40 +9,40 @@
 
 The following permissions should be granted to the integration user:
 
-| **Permission Category** | **Permission Name** | **Requirements** |
-|-------------------------|---------------------|------------------|
-| **Read** | Read access for entity types | Read permission must be granted for the specific entity types that need to be synchronized (Incidents and Changes). |
-| **Read** | Read access for Users | Required to resolve user-related details such as reporter, assignee, or requester information during synchronization. |
-| **Write** | Manage access for entity types | Allows the connector to create, update, and delete records for Incidents and Changes. |
-| **Write** | Manage access for Users | Required to assign, update, or map user-related fields such as reporter, assignee, or requester during synchronization. |
-| **Setup** | Setup (with All option) | Required for API token generation. |
+| **Permission Name** | **Permission Category**       | **Requirements**                                                                                                                              |
+|---------------------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Read**            | Read access for entity types  | Read permission must be granted for the specific entity types that need to be synchronized (Incidents and Changes).                           |
+| **Read**            | Read access for Users         | Required to read user-related details such as user name, user email for the user fields like reporter, assignee etc. during synchronization.  |
+| **Manage**           | Write access for entity types | Allows the connector to create, update, and delete records for supported entity types by <code class="expression">space.vars.SITENAME</code>. |
+| **Manage**           | Write access for Users        | Required to read user-related details such as user name, user email for the user fields like reporter, assignee etc. during synchronization.  |
+| **Setup**           | Setup (with All option)       | Required to the user who is generating  API token of Integration User for <code class="expression">space.vars.SITENAME</code>.                |
 
 ## SolarWinds Service Desk Edition Guidelines
 
-- To ensure smooth integration without delays, it is recommended to use the **Advanced** or **Premier** edition.
+- To ensure smooth integration without delays, it is recommended to use the **Advanced** or **Premier** edition of SolarWinds Service Desk.
     - **Reason**: The API rate limit depends on your subscription plan:
-        - **Advanced Plan**: 1,000 API calls per user per minute.
-        - **Premier Plan**: 1,500 API calls per user per minute.
-- For optimal performance, set the item sync schedule to **15 minutes or more**.
-    - - **Reason**: Shorter sync intervals may cause sync delays due to API rate limiting, especially when synchronizing a large number of entities.
+        - **Advanced Plan**: 1,000 API calls user/minute.
+        - **Premier Plan**: 1,500 API calls user/minute.
+- For optimal performance, set the item sync schedule to **15 minutes or more** at <code class="expression">space.vars.SITENAME</code>.
+    - **Reason**: Shorter sync intervals may cause sync delays due to API rate limiting, especially when synchronizing a large number of entities.
 
 # Supported Entities
 
 - The following entity types are supported for synchronization: **Incidents** and **Changes**.
 - Example of an Incident:
-    - In the screenshot below an Incident in SolarWinds Service Desk is shown:
+    - An Incident of SolarWinds Service Desk is shown below:
       <p align="center">
         <img src="../assets/SolarWindsIncidentExample.png" width="858" alt=""/>
       </p>
 - Example of a Change:
-    - In the screenshot below,a Change in SolarWinds Service Desk is shown:
+    - A Change in SolarWinds Service Desk is shown below:
       <p align="center">
         <img src="../assets/SolarWindsChangeExample.png" width="858" alt=""/>
       </p>
 
 # System Configuration
 
-Before you continue with the integration, you must first configure the SolarWinds Service Desk system in OpsHub Integration Manager.
+Before you continue with the integration, you must first configure the SolarWinds Service Desk system in <code class="expression">space.vars.SITENAME</code>.
 
 Refer to [System Configuration](../integrate/system-configuration.md) for steps on how to configure the system.
 Refer to the screenshot below:
@@ -64,7 +64,7 @@ Refer to the screenshot below:
 
 # Mapping Configuration
 
-Map the fields between SolarWinds Service Desk and the other system to be integrated to ensure that the data between both systems synchronizes correctly.
+Map the fields between SolarWinds Service Desk and the other system to be integrated and ensure that the data between both systems synchronize correctly.
 Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for steps on configuring field mappings.
 
 <p align="center">
@@ -92,16 +92,14 @@ The following fields are available for Incidents and Changes:
 ## Relationship Configuration
 
 The user will be able to sync the following relationship types:
-- Links between Incidents and Changes
-- Links between Incidents and other Incidents
-- Links between Changes and other Changes
+- Bidirectional Links between Incidents and Changes
 
 The below screenshot shows how a Change entity is linked to another Change entity in SolarWinds Service Desk.
 <p align="center">
   <img src="../assets/SolarWindsLinkExample.png" width="800" alt=""/>
 </p>
 
-If the user wants to sync Incidents and their related Changes. Configure below links in link configuration:
+If the user wants to sync bidirectional link between Incidents and Changes. Configure the link type in link configuration as below:
 <p align="center">
   <img src="../assets/SolarWindsLinkConfiguration.png" width="500" alt=""/>
 </p>
@@ -164,44 +162,44 @@ Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s N
     - When configuring criteria or target lookup for lookup-type fields, user must use the internal field values rather than display values. Display values will not work in these configurations.
     - In Criteria and Target Lookup configurations, only Equals and Not Equals operators are supported. Range filters such as Less Than, Less Than or Equal To, Greater Than, and Greater Than or Equal To are not available due to API limitations.
 - **Metadata Configuration**:
-    - At present, there is no API available to fetch all field metadata details for lookup type of fields. The specific metadata according to the lookup fields present in user's instance must be defined through a JSON-based configuration during system creation. Refer to the [Metadata JSON Format](#metadata-json-format) section for details.
+    - At present, there is no API available to fetch all system level field metadata details. The specific metadata according to the system fields present in user's instance must be defined through a JSON-based configuration during system creation. Refer to the [Metadata JSON Format](#metadata-json-format) section for details.
 - **Attachments**:
-    - Attachments added directly to attachment type of fields cannot be read/write in SolarWinds Service Desk due to API limitations.
+    - Attachments added to the attachment type of fields cannot be read/write from SolarWinds Service Desk due to API limitations.
 - **API Rate Limiting**:
     - To avoid API rate limiting issues, it is recommended to set the sync schedule to 15 minutes or more, especially when frequent entity updates are performed.
 - **API Token Validation**:
-  - The API Token must be updated in the system configuration if any of the following occurs:
+  - The API Token must be updated in the system configuration if any of the following action performed:
     - Permissions are removed from the integration user in SolarWinds Service Desk
     - The API token is manually reset or regenerated in SolarWinds Service Desk
     - The API token is deleted from the SolarWinds Service Desk interface
-  - Failure to update the token in the system configuration will cause synchronization to fail.
+  - If token is not updated in the system configuration will cause synchronization to fail.
 # Appendix
 
 ## Get API Token 
-To get the API token for a user follow the below steps.
-1. Log in to your SolarWinds Service Desk account.
+To get the API token for the Integration User follow the steps:
+1. Login to SolarWinds Service Desk account.
 2. Navigate to the **Setup** > **Users & Groups** > **Users** section.
 
 <p align="center">
   <img src="../assets/SolarWindsSetup.png" width="400" alt=""/>
 </p>
 
-3. Navigate to your user and click on the username.
+3. Click on the username for which, need to generate the API token.
 <p align="center">
   <img src="../assets/SolarWindsUsers.png" width="600" alt=""/>
 </p>
 
-4. Click **Generate New Token** or if the token is already generated then click on **Reset JSON Web Token** to reset the token.
+4. Click on **Generate New Token** or if the token is already generated then click on **Reset JSON Web Token**.
 
 <p align="center">
   <img src="../assets/SolarWindsGenerateToken.png" width="600" alt=""/>
 </p>
 
-5. Once this is done copy the token value from Show Token option. Store this token securely, as it will be needed during system configuration.
+5. Once this is done copy the token value from **Show Token** option. Store this token securely, as it will be needed during system configuration.
 
 ## Metadata JSON Format
 
-When configuring your SolarWinds Service Desk system, you may need to provide metadata in JSON format for lookup fields specific to your instance. The JSON should follow this structure:
+When configuring SolarWinds Service Desk system in <code class="expression">space.vars.SITENAME</code>, you may need to provide metadata in JSON format for system fields specific to the instance. The Sample JSON structure provided as below:
 
 ```json
 {
@@ -293,6 +291,6 @@ When configuring your SolarWinds Service Desk system, you may need to provide me
 }
 ```
 
-This JSON structure defines the available values for lookup fields in your SolarWinds Service Desk instance. Ensure you use the correct internal names and IDs for your fields.
+This JSON structure defines the available values for system fields of SolarWinds Service Desk instance. Ensure the correct internal names and IDs are used for the fields.
 
 ---
