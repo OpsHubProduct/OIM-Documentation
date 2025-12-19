@@ -137,6 +137,7 @@
   * [ServiceNow Quick Connect](docs/connectors/servicenow-quick-connect.md)
   * [Slack](docs/connectors/slack.md)
   * [Snowflake](docs/connectors/snowflake.md)
+  * [SolarWinds Service Desk](docs/connectors/solarwinds-service-desk.md)
   * [Subversion](docs/connectors/svn.md)
   * [TestRail](docs/connectors/testrail.md)
   * [Trac](docs/connectors/trac.md)
