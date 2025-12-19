@@ -279,9 +279,9 @@ layout:
           <td><a href="snowflake.md">snowflake.md</a></td>
         </tr>
         <tr>
-        <td align="center"><mark style="color:#555555"><strong>SolarWinds Service Desk</strong></mark></td>
-        <td><a href="../assets/connector/124_solarwinds_service_desk.png">SolarWinds Service Desk</a></td>
-        <td><a href="solarwinds-service-desk.md">solarwinds-service-desk.md</a></td>
+          <td align="center"><mark style="color:#555555"><strong>SolarWinds Service Desk</strong></mark></td>
+          <td><a href="../assets/connector/124_solarwinds_service_desk.png">SolarWinds Service Desk</a></td>
+          <td><a href="solarwinds-service-desk.md">solarwinds-service-desk.md</a></td>
         </tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Subversion</strong></mark></td>

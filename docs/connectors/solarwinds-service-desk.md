@@ -1,10 +1,7 @@
 # Prerequisites
-
 ## User Privileges
-
 - Create one user in SolarWinds Service Desk that is dedicated to <code class="expression">space.vars.SITENAME</code>. This user should not perform any other action from SolarWinds Service Desk's user interface. This user is referred to as an 'Integration User' in the documentation.
 - For this integration user to perform operations in SolarWinds Service Desk, various permissions are required, as outlined in the [Required Permissions](#required-permissions) section.
-
 ## Required Permissions
 
 The following permissions should be granted to the integration user:
@@ -26,20 +23,6 @@ The following permissions should be granted to the integration user:
 - For optimal performance, set the item sync schedule to **15 minutes or more** at <code class="expression">space.vars.SITENAME</code>.
     - **Reason**: Shorter sync intervals may cause sync delays due to API rate limiting, especially when synchronizing a large number of entities.
 
-# Supported Entities
-
-- The following entity types are supported for synchronization: **Incidents** and **Changes**.
-- Example of an Incident:
-    - An Incident of SolarWinds Service Desk is shown below:
-      <p align="center">
-        <img src="../assets/SolarWindsIncidentExample.png" width="858" alt=""/>
-      </p>
-- Example of a Change:
-    - A Change in SolarWinds Service Desk is shown below:
-      <p align="center">
-        <img src="../assets/SolarWindsChangeExample.png" width="858" alt=""/>
-      </p>
-
 # System Configuration
 
 Before you continue with the integration, you must first configure the SolarWinds Service Desk system in <code class="expression">space.vars.SITENAME</code>.
@@ -53,14 +36,14 @@ Refer to the screenshot below:
 
 ## SolarWinds Service Desk System Form Details
 
-| Field Name           | When is the field visible | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|----------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **System Name**      | Always | Provide a unique name for the SolarWinds Service Desk system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **API URL**          | Always | Provide the REST API Endpoint for accessing your SolarWinds Service Desk cloud instance. The API Base URL is region-specific and mandatory for connecting to the SolarWinds Service Desk environment. You must enter the URL that corresponds to your organization's region:<br>- US Region: https://api.samanage.com<br>- EU Region: https://apieu.samanage.com<br>- Asia-Pacific/Japan Region: https://apiau.samanage.com<br><br>Using an incorrect endpoint will result in authentication and connection errors. Refer to [SolarWinds ITSM API Documentation](https://apidoc.samanage.com) for more details. |
-| **Server URL**       | Always | Provide Server URL of the SolarWinds Service Desk cloud instance. This URL will be used for communicating with end system. The format of the URL would be:  http://[your_domain_name]. Example: https://abc.samanage.com                                                                                                                                                                                                                                                                                                                                                                                       |
-| **User Email**       | Always | Provide the email address of the SolarWinds Service Desk user dedicated to OpsHub Integration Manager. This user should not be used for any other operations from the system's user interface and must have the [Required Permissions](#required-permissions) to access data in SolarWinds Service Desk.                                                                                                                                                                                                                                                                                                       |
-| **API Token**        | Always | Provide the API token generated for the user specified in the User Email field. This token must have sufficient permissions to enable communication with the SolarWinds Service Desk API. Refer to the [Get API Token](#get-api-token) section for details on how to generate the token.                                                                                                                                                                                                                                                                                                                       |
-| **Metadata Details** | Always | Provide additional metadata specific to your SolarWinds Service Desk instance in JSON format. This is used to define lookup field values for your environment. For the correct JSON format and examples, refer to the [Metadata JSON Format](#metadata-json-format) section.                                                                                                                                                                                                                                                                                                                  |
+| Field Name           | Field Visibility | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|----------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System Name**      | Always           | Provide a unique name for the SolarWinds Service Desk system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **API URL**          | Always           | Provide the REST API Endpoint for accessing your SolarWinds Service Desk cloud instance. The API Base URL is region-specific and mandatory for connecting to the SolarWinds Service Desk environment. You must enter the URL that corresponds to your organization's region:<br>- US Region: https://api.samanage.com<br>- EU Region: https://apieu.samanage.com<br>- Asia-Pacific/Japan Region: https://apiau.samanage.com<br><br>Using an incorrect endpoint will result in authentication and connection errors. Refer to [SolarWinds ITSM API Documentation](https://apidoc.samanage.com) for more details. |
+| **Server URL**       | Always           | Provide Server URL of the SolarWinds Service Desk cloud instance. This URL will be used for communicating with end system. The format of the URL would be:  http://[your_domain_name]. Example: https://abc.samanage.com                                                                                                                                                                                                                                                                                                                                                                                       |
+| **User Email**       | Always           | Provide the email address of the SolarWinds Service Desk user dedicated to OpsHub Integration Manager. This user should not be used for any other operations from the system's user interface and must have the [Required Permissions](#required-permissions) to access data in SolarWinds Service Desk.                                                                                                                                                                                                                                                                                                       |
+| **API Token**        | Always           | Provide the API token generated for the user specified in the User Email field. This token must have sufficient permissions to enable communication with the SolarWinds Service Desk API. Refer to the [Get API Token](#get-api-token) section for details on how to generate the token.                                                                                                                                                                                                                                                                                                                       |
+| **Metadata Details** | Always           | Provide additional metadata specific to your SolarWinds Service Desk instance in JSON format. This is used to define lookup field values for your environment. For the correct JSON format and examples, refer to the [Metadata JSON Format](#metadata-json-format) section.                                                                                                                                                                                                                                                                                                                  |
 
 # Mapping Configuration
 
@@ -71,49 +54,17 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
   <img src="../assets/SolarWindsMappingCreation.png" width="850" alt=""/>
 </p>
 
-## Field Configuration
+## Attachment Configuration
 
-The following fields are available for Incidents and Changes:
-
-### Common Fields (Both Incidents and Changes)
-
-- **Title**: Text field (Mandatory)
-- **Requester**: User field (Mandatory)
-- **Description**: Rich Text field with HTML support
-- **State**: Lookup field
-- **Assigned To**: User field
-- **Priority**: Lookup field
-- **Site**: Lookup field
-- **Department**: Lookup field
-- **Tags**: Text field (supports multiple values)
-
-####  Apart from this fields other system fields and custom fields are also available in the mapping configuration.
-
-## Relationship Configuration
-
-The user will be able to sync the following relationship types:
-- Bidirectional Links between Incidents and Changes
-
-The below screenshot shows how a Change entity is linked to another Change entity in SolarWinds Service Desk.
-<p align="center">
-  <img src="../assets/SolarWindsLinkExample.png" width="800" alt=""/>
-</p>
-
-If the user wants to sync bidirectional link between Incidents and Changes. Configure the link type in link configuration as below:
-<p align="center">
-  <img src="../assets/SolarWindsLinkConfiguration.png" width="500" alt=""/>
-</p>
-
-## Comments and Attachment Configuration
-
-- Entity-level attachments are supported for synchronization. Refer the below screenshot, showing the attachment added on Entity level in SolarWinds Service Desk's **Incident** entity.
+- Attachment which are added directly to the SolarWinds Service Desk entities will be synced. Refer the below screenshot, showing the attachment added on Entity level in SolarWinds Service Desk's **Incident** entity.
 <p align="center">
   <img src="../assets/SolarWindsAttachmentExample.png" width="800" alt=""/>
 </p>
 
+## Comments Configuration
 - The Incident entity type supports two comment types: **Public** and **Private**. Both types are supported for synchronization, and user can configure comment type mapping to maintain proper visibility settings. Refer to the screenshot below for the comment type mapping configuration.
 <p align="center">
-  <img src="../assets/SolarWindsCommentConfig.png" width="500" alt=""/>
+  <img src="../assets/SolarWindsCommentConfig.png" width="600" alt=""/>
 </p>
 
 # Integration Configuration
@@ -127,9 +78,10 @@ Refer to [Integration Configuration](../integrate/integration-configuration.md) 
 
 ## Criteria Configuration
 
-If the user wants to specify conditions for synchronizing an entity from SolarWinds Service Desk as source system to the other system, the criteria must be configured. Navigate to Criteria Configuration section on [Criteria Configuration](../integrate/integration-configuration.md/#criteria-configuration) page to learn in detail about Criteria Configuration.
+- If the user wants to specify conditions for synchronizing an entity from SolarWinds Service Desk as source system to the other system, the criteria must be configured. Navigate to Criteria Configuration section on [Criteria Configuration](../integrate/integration-configuration.md/#criteria-configuration) page to learn in detail about Criteria Configuration.
 
-Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s Native query format. While adding the criteria, user needs to add the internal names of the fields on which the criteria have to be applied. Given below are the sample snippets of how the SolarWinds Service Desk queries can be used as criteria query in <code class="expression">space.vars.SITENAME</code>:
+
+- Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s Native query format.Refer to [OpsHub Query Format](../integrate/opshub-query-format.md) for step-by-step instructions. While adding the criteria, user needs to add the internal names of the fields on which the criteria have to be applied.
 
 
 ### Sample criteria:
@@ -139,6 +91,8 @@ Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s N
 | Description | description         | Sync items where text description equals “sample” | [{"condition":"EQUALS","field":"description","value":"sample"}] |
 | Priority    | priority            | Sync items where Priority is Critical             | [{"condition":"EQUALS","field":"priority","value":"1"}]         |
 
+- For lookup-type fields, always use the internal field values.
+    - Display values will not work in Criteria. Refer to [Get Internal Name and ID For Fields](#get-internal-name-and-id-for-fields) section for details.
 
 ## Target Lookup Configuration
 
@@ -147,6 +101,9 @@ Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s N
 * To learn in detail about how to configure Target LookUp, refer to **Search in Target Before Sync** section on [Integration Configuration](../integrate/integration-configuration.md) page.
 
 * Overall, Target LookUp Query is similar to [Criteria configuration](#criteria-configuration), except that the value part contains a field name with '@' instead of static value.
+
+* For lookup-type fields, always use the internal field values.
+  * Display values will not work in Target Lookup. Refer to [Get Internal Name and ID For Fields](#get-internal-name-and-id-for-fields) section for details
 
 **Target LookUp query samples:**
 
@@ -157,22 +114,20 @@ Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s N
 
 # Known Behaviors and Limitations
 
-- **Field Search Limitations**:
-    - Certain fields such as State, Date type of fields and Custom fields cannot be searched using the available APIs. This limitation may affect criteria and target lookup configurations where these fields are used.
-    - When configuring criteria or target lookup for lookup-type fields, user must use the internal field values rather than display values. Display values will not work in these configurations.
-    - In Criteria and Target Lookup configurations, only Equals and Not Equals operators are supported. Range filters such as Less Than, Less Than or Equal To, Greater Than, and Greater Than or Equal To are not available due to API limitations.
-- **Metadata Configuration**:
-    - At present, there is no API available to fetch all system level field metadata details. The specific metadata according to the system fields present in user's instance must be defined through a JSON-based configuration during system creation. Refer to the [Metadata JSON Format](#metadata-json-format) section for details.
-- **Attachments**:
-    - Attachments added to the attachment type of fields cannot be read/write from SolarWinds Service Desk due to API limitations.
-- **API Rate Limiting**:
-    - To avoid API rate limiting issues, it is recommended to set the sync schedule to 15 minutes or more, especially when frequent entity updates are performed.
-- **API Token Validation**:
-  - The API Token must be updated in the system configuration if any of the following action performed:
-    - Permissions are removed from the integration user in SolarWinds Service Desk
-    - The API token is manually reset or regenerated in SolarWinds Service Desk
-    - The API token is deleted from the SolarWinds Service Desk interface
-  - If token is not updated in the system configuration will cause synchronization to fail.
+- User will not be able to put Criteria and Target Lookup on fields such as State, date-type fields, and custom fields due to API limitations.
+- In Criteria and Target Lookup configurations, only the following operators are supported: Equals & Not Equals. 
+  - Range filters such as Less Than, Less Than or Equal To, Greater Than, and Greater Than or Equal To are not available due to API limitations.
+- For some lookup and multi-lookup fields, the SolarWinds API does not return lookup values. In such cases, the required field metadata must be defined using a JSON configuration during system creation. Refer to the [Metadata JSON Format](#metadata-json-format) section for details.
+- Attachments added to attachment-type fields will not be synchronized due to API limitations.
+<p align="center">
+  <img src="../assets/SolarWindsFieldLevelAttachment.png" width="800" alt=""/>
+</p>
+
+- The API token must be updated in the SolarWinds Service Desk system configuration in OpsHub in the below cases to avoid the sync failures:
+  - If permissions are removed from the integration user in SolarWinds Service Desk.
+  - If the API token is manually reset or regenerated.
+  - If the API token is deleted from the SolarWinds Service Desk interface.
+
 # Appendix
 
 ## Get API Token 
@@ -197,9 +152,27 @@ To get the API token for the Integration User follow the steps:
 
 5. Once this is done copy the token value from **Show Token** option. Store this token securely, as it will be needed during system configuration.
 
+
+## Get Internal Name and ID for Fields
+Below are the steps to find the internal Name or ID for a specific field value:
+1. Log in to your SolarWinds Service Desk account and navigate to the module (e.g., Incidents) containing the lookup field.
+
+2. Click on Edit View and navigate to the Filter tab.
+
+3. Select the desired Field (e.g., Department) and choose the specific Value (e.g., Engineering) you wish to map.
+
+<p align="center"> <img src="../assets/SolarWindsEditView.png" width="600" alt="SolarWinds Edit View Filter"/> </p>
+
+4. Once the filter is applied, inspect the Browser URL.
+
+5. Locate the parameter corresponding to your field. The numeric value following the field name in the URL is the Internal ID for that specific display value.
+
+<p align="center"> <img src="../assets/SolarWindsFieldInternalValue.png" width="800" alt="SolarWinds Internal Field Value in URL"/> </p>
+
+6. Here in the above screenshot, **department** is the internal field name for the selected field **Department** and **1117661** is the internal field value for the lookup field value  **Engineering**.
 ## Metadata JSON Format
 
-When configuring SolarWinds Service Desk system in <code class="expression">space.vars.SITENAME</code>, you may need to provide metadata in JSON format for system fields specific to the instance. The Sample JSON structure provided as below:
+When configuring SolarWinds Service Desk in <code class="expression">space.vars.SITENAME</code>, user must provide a JSON structure for system fields. For Lookup-type fields, as their values cannot be retrieved via API therefore this fields must be manually defined here, to ensure proper integration.To get the internal field names and the internal ids for the lookup fields refer [Get Internal Names and Ids For Fields](#get-internal-name-and-id-for-fields) section. The Sample JSON structure provided as below:
 
 ```json
 {
