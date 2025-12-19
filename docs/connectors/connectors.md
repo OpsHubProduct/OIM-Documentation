@@ -278,6 +278,10 @@ layout:
           <td><a href="../assets/connector/116_snowflake.png">Snowflake</a></td>
           <td><a href="snowflake.md">snowflake.md</a></td>
         </tr>
+        <td align="center"><mark style="color:#555555"><strong>SolarWinds Service Desk</strong></mark></td>
+          <td><a href="../assets/connector/121_polarion.png">SolarWinds Service Desk</a></td>
+          <td><a href="solarwinds-service-desk.md">solarwinds-service-desk.md</a></td>
+        <tr>
         <tr>
           <td align="center"><mark style="color:#555555"><strong>Subversion</strong></mark></td>
           <td><a href="../assets/connector/9_subversion.png">Subversion</a></td>
