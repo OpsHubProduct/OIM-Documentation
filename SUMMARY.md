@@ -35,7 +35,7 @@
         * [Merge Integrations](docs/integrate/merge.md)
         * [Organize Integrations](docs/integrate/folder-management.md)
         * [Search and Navigation](docs/integrate/search.md)
-        * [Using the Dashboard](docs/integrate/dashboards.md)
+        * [Integration Landscape](docs/integrate/dashboards.md)
         * [Trends and Metrics](docs/integrate/trends-and-metrics.md)
     * [Best Practices](docs/integrate/best-practises.md)
     * [Limitations](docs/integrate/limitations.md)

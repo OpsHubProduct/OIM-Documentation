@@ -7,7 +7,10 @@ Here is a video on how to use the dashboard in OIM:
 # Graphical View
 
 - Login into **<code class="expression">space.vars.SITENAME</code>**.
-- Dashboard will appear on home page.
+- Dashboard will appear on home page under Integration Landscape tab.
+<p align="center">
+  <img src="../assets/integration-landscape.png" />
+</p>
 - Click on ![](../assets/rotate.png) at top right corner of dashboard to rotate graphical representation of integration.
 
 <p align="center">
@@ -36,13 +39,11 @@ In integration details window, the following information is shown:
   - **Last processed entity ID:** Last entity processed by integration.
   - **Health:** Shows failures, if any, logged in integration.
 
-> **Note** : Graph gives a complete view of all integrations of the currently selected folder.
-> 
-> If "Include Parent Items" is enabled, integrations from parent folders are also included.
-
 
 
 # Filtering the Dashboard by Various Functions
+
+> **Note**: The dashboard display data associated with the currently selected folder, including its child folders. To view data across all folders, select the Default Folder. You can also select any other folder that you have access to.
 
 Users can filter the integrations according to the system and integration status.
 

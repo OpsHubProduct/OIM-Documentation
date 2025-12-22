@@ -32,9 +32,9 @@ Shows the total number of entities synchronized by **<code class="expression">sp
 
 Displays the total count of entities synchronized by **<code class="expression">space.vars.SITENAME</code>** across all systems, including both in-sync and deleted entities.
 
-In sync entities include all active entities that are currently part of the synchronization.
+* In sync entities include all active entities that are currently part of the synchronization.
 
-Deleted entities include all entities that have been deleted, archived, or deprecated.
+* Deleted entities include all entities that have been deleted, archived, or deprecated - including entities deprecated due to project conversion, entity conversion, or both.
 
 <p align="center">
   <img src="../assets/entity-sync-count-0.png" />
@@ -112,8 +112,9 @@ Click a bar to view the project-wise breakdown.
 
 # Filtering the Dashboard
 
-## Date Range
+> **Note**: All charts display data associated with the currently selected folder, including its child folders. To view data across all folders, select the Default Folder. You can also select any other folder that you have access to.
 
+## Date Range
 Select the date range to filter metrics.
 
 Predefined options include – Last 1 Week, Last 1 Month, Last 3 Months, Last 6 Months and Last 1 Year. 
@@ -134,7 +135,23 @@ To ensure optimal performance and system reliability, chart data is aggregated a
 - Monthly granularity is applied when the selected date range extends beyond 3 months and up to 3 years.
 - Yearly granularity is applied when the selected date range extends beyond the last 3 years.
 
+Examples:
+
+Assume today’s date is 22 Dec 2025.
+### Example 1
+Selected date range: 09 Jan 2024 - 22 Dec 2025
+Since this date range extends beyond the last 3 months but is within 3 years, monthly granularity is applied.
+
+Data is displayed using the following actual date range: 01 Jan 2024 - 22 Dec 2025
+
+### Example 2
+Selected date range: 14 Mar 2006 - 22 Mar 2006
+Since this date range extends beyond the last 3 years, yearly granularity is applied.
+
+Data is displayed using the following actual date range: 01 Jan 2006 - 31 Dec 2006
+
 ## Filter options
+
 Click the funnel icon to view the filter options.
 
 <p align="center">
@@ -208,7 +225,7 @@ The Export feature allows you to download chart data in a single Excel file, mak
 
 - The exported Excel file is automatically saved to the Downloads folder and can be shared with anyone, such as management, stakeholders, or external teams, for reporting and decision-making.
 
-### Raw Data Limit
+## Raw Data Limit
 
 - To keep export operations fast and system performance optimal, raw data is limited to the top 10,000 records per chart.
 - Raw data is primarily intended for debugging and deeper analysis.
