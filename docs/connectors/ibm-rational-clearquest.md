@@ -67,6 +67,16 @@ Following are the required queries and their names are given with respect to 'De
 
 <div align="center"><img src="../assets/CQ_OpsHub_PollQueryDefect.png" alt=""></div>
 
+* **OpsHub_GetUsersByEmail**
+  * Create a query, `OpsHub_GetUsersByEmail` with the following configuration. This is required to poll users data on the basis of supplied email from the ClearQuest system.
+
+<div align="center"><img src="../assets/CQ_OpsHub_GetUsersByEmailQuery.png" alt=""></div>
+
+* **OpsHub_GetUsersByName**
+  * Create a query, `OpsHub_GetUsersByName` with the following configuration. This is required to poll users data on the basis of supplied name from the ClearQuest system.
+
+<div align="center"><img src="../assets/CQ_OpsHub_GetUsersByNameQuery.png" alt=""></div>
+
 **Queries required when IBM Rational ClearQuest is used as Target System**
 
 * **OpsHub_LastCreatedByIntegrationDefect**

@@ -427,3 +427,19 @@ Update the custom workflow as described below:
 **Reason**
 * From now on, updating the Remote Entity ID and Remote Entity Link to the source entity will be handled by a dedicated post-sync workflow.
 
+# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.214 or above
+
+## Addition of new Personal Queries for IBM ClearQuest system
+
+**Applicable When**
+* IBM ClearQuest is configured as an endpoint and the <code class="expression">space.vars.SITENAME</code> is upgraded to version 7.214 or later.
+
+**Actions**
+* User-related data is now fetched using Personal Queries instead of SimpleQuery calls.
+* After upgrading to 7.214, the sync user must create the following Personal Queries in ClearQuest:
+  1. `OpsHub_GetUsersByEmail`
+  2. `OpsHub_GetUsersByName`
+* Refer to the section: [ClearQuest_Queries_Configuration](../../connectors/ibm-rational-clearquest.md#queries-configuration) for detailed steps to create these queries.
+
+**Reason**
+* This change replaces the default SimpleQuery, which returned all users without filtering. Personal Queries enable fetching users based on specific criteria, improving filtering and performance.
