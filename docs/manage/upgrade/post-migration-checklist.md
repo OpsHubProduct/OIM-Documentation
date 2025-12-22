@@ -432,7 +432,7 @@ Update the custom workflow as described below:
 ## Addition of new Personal Queries for IBM ClearQuest system
 
 **Applicable When**
-* IBM ClearQuest is configured as an endpoint and the system is upgraded to version 7.214 or later.
+* IBM ClearQuest is configured as an endpoint and the <code class="expression">space.vars.SITENAME</code> is upgraded to version 7.214 or later.
 
 **Actions**
 * User-related data is now fetched using Personal Queries instead of SimpleQuery calls.
