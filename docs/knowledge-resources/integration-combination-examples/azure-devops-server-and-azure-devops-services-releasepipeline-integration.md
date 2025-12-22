@@ -20,7 +20,7 @@ This page covers the bidirectional integration of Release Pipelines and their de
 
 >**Note**: **Proxy parameters:** Before you proceed with the configuration, check whether the system is behind a proxy server. If yes, then set up [proxy parameters](../../manage/administrator/proxy-setting.md) in **<code class="expression">space.vars.SITENAME</code>**.
 
-* Since Release Pipeline may reference dependent artifacts such as **Agent Pools**, **Service Connections**, and **Task Groups**, we will configure mappings for these dependent artifacts as well, along with the Release Pipeline.
+* Since Release Pipeline may reference dependent artifacts such as **Agent Pools**, **Service Connections**, **Task Groups** and **Variable Groups**, we will configure mappings for these dependent artifacts as well, along with the Release Pipeline.
 
 * Click **Integrate** on the top right corner of the screen and then click the plus [+] icon.
 <p align="center">
@@ -76,7 +76,7 @@ This page covers the bidirectional integration of Release Pipelines and their de
 * Following details are automatically populated in the Mapping section: **Systems, Projects, Entities, and Mapping Name**. If you wish, change the name for the mapping in the **Name** field.
 * Now, either click **Create from Scratch** to define the mapping from scratch or click **Auto Map** to automatically map all fields with the same name.
 * Even if you select the **Auto Map**, **<code class="expression">space.vars.SITENAME</code>** will allow you to remove or add more fields before saving mapping.
-* Since a Release Pipeline may reference dependent artifacts, ensure that **Agent Pool**, **Service Connection**, and **Task Group** are mapped as reference fields.
+* Since a Release Pipeline may reference dependent artifacts, ensure that **Agent Pool**, **Service Connection**, **Task Group** and **Variable Group** are mapped as reference fields.
 * You can also import a mapping. Refer to [Release Pipeline field mapping](release-pipeline-field-mapping.xml) to import the default field mapping from Azure DevOps Services to Azure DevOps Server for the Release Pipeline entity.
   * You may further modify the imported mapping based on your use case.
 * Once the mapping is created, click the **Create Mapping** to create & save this mapping as well.
@@ -118,7 +118,16 @@ This page covers the bidirectional integration of Release Pipelines and their de
 <p align="center">
   <img src="../../assets/TFS_ADO9.png" width="1100"/>
 </p> 
- 
+
+#### Variable Group
+* Similar to selecting the **Release Pipeline** entity, select the **Variable Group** entity from the **Select Projects and Entities** section. Refer to [Select Projects and Entities](#select-projects-and-entities) and follow the steps below to create the mapping for this entity.
+* Now, either click **Create from Scratch** to define the mapping from scratch or click **Auto Map** to automatically map all fields with the same name.
+* You can also import a mapping. Refer to [Variable Group field mapping](variable-group-field-mapping.xml) to import the default field mapping from Azure DevOps Services to Azure DevOps Server for the Task Group entity.
+  * You may further modify the imported mapping based on your use case.
+
+<p align="center">
+  <img src="../../assets/TFS_ADO15.png" width="1100"/>
+</p> 
 
 
 ## Save Integration
