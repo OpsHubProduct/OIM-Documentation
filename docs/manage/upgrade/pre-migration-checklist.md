@@ -248,3 +248,16 @@ DELETE FROM reportsdb.ReportsDBVersion WHERE version='6.11.02.00.00';
 * In earlier versions, Gerrit sometimes could not uniquely identify changes across repositories or branches, which could lead to errors.  
 * From **7.205 onwards**, the <code class="expression">space.vars.SITENAME</code> uses an improved ID format to ensure changes are always uniquely identified, avoiding such issues.
 
+# Migrating <code class="expression">space.vars.SITENAME</code> 's version to 7.214 or above
+
+## New Entity type support in Azure DevOps Services or Azure DevOps Server 
+
+**Applicable When**
+* You are using **Azure DevOps Services** or **Azure DevOps Server** as one of the endpoints in your integration where the entity type is **Pipeline** or **Release Pipeline**.
+
+**Actions**
+* Resolve all the failures before upgrading <code class="expression">space.vars.SITENAME</code>.
+
+**Reason** 
+* Starting from version **7.214**, Variable Group is supported as a separate entity type for both **Azure DevOps Services** and **Azure DevOps Server**.
+* Due to this change, existing field mappings for Pipeline and Release Pipeline may be impacted. Therefore, any existing failures should be resolved before upgrading.
