@@ -443,3 +443,17 @@ Update the custom workflow as described below:
 
 **Reason**
 * This change replaces the default SimpleQuery, which returned all users without filtering. Personal Queries enable fetching users based on specific criteria, improving filtering and performance.
+
+## Changes in Field Mapping Configuration
+
+**Applicable When**
+* You are using **Azure DevOps Services** or **Azure DevOps Server** as one of the endpoints in your integration where the entity type is **Pipeline** or **Release Pipeline**.
+
+**Actions**
+* Remove the field mapping for **Variable group details**, if it is configured.
+* Map the **Variable Group** field, which is now supported as a reference field, to synchronize Pipelines with Variable Groups.
+
+**Reason**
+* In earlier versions, the **Variable group details** field mapping was used to support the check-and-create functionality for the **Variable Group** entity.
+* From **7.214** onwards, Variable Group is supported as a separate entity type for both **Azure DevOps Services** and **Azure DevOps Server**.
+
