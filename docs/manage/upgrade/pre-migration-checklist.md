@@ -260,4 +260,4 @@ DELETE FROM reportsdb.ReportsDBVersion WHERE version='6.11.02.00.00';
 
 **Reason** 
 * Starting from version **7.214**, **Variable Group** is supported as a separate entity type for both **Azure DevOps Services** and **Azure DevOps Server**.
-* Due to this change, existing field mappings for **Pipeline** and **Release Pipeline** may be impacted. Therefore, any existing failures should be resolved before upgrading.
+* Due to this change, existing field mappings for **Pipeline** and **Release Pipeline** will be impacted. Therefore, any existing failures should be resolved before upgrading.
