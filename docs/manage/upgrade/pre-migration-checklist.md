@@ -250,14 +250,14 @@ DELETE FROM reportsdb.ReportsDBVersion WHERE version='6.11.02.00.00';
 
 # Migrating <code class="expression">space.vars.SITENAME</code> 's version to 7.214 or above
 
-## New Entity type support in Azure DevOps Services or Azure DevOps Server 
+## New Entity type support in Azure DevOps Services and Azure DevOps Server 
 
 **Applicable When**
-* You are using **Azure DevOps Services** or **Azure DevOps Server** as one of the endpoints in your integration where the entity type is **Pipeline** or **Release Pipeline**.
+* You are using **Azure DevOps Services** or **Azure DevOps Server** as one of the endpoints in your integration where configured entity type is **Pipeline** or **Release Pipeline**.
 
 **Actions**
 * Resolve all the failures before upgrading <code class="expression">space.vars.SITENAME</code>.
 
 **Reason** 
-* Starting from version **7.214**, Variable Group is supported as a separate entity type for both **Azure DevOps Services** and **Azure DevOps Server**.
-* Due to this change, existing field mappings for Pipeline and Release Pipeline may be impacted. Therefore, any existing failures should be resolved before upgrading.
+* Starting from version **7.214**, **Variable Group** is supported as a separate entity type for both **Azure DevOps Services** and **Azure DevOps Server**.
+* Due to this change, existing field mappings for **Pipeline** and **Release Pipeline** may be impacted. Therefore, any existing failures should be resolved before upgrading.
