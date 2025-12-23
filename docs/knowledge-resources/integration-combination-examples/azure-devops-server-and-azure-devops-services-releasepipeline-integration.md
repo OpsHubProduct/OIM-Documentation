@@ -122,7 +122,7 @@ This page covers the bidirectional integration of Release Pipelines and their de
 #### Variable Group
 * Similar to selecting the **Release Pipeline** entity, select the **Variable Group** entity from the **Select Projects and Entities** section. Refer to [Select Projects and Entities](#select-projects-and-entities) and follow the steps below to create the mapping for this entity.
 * Now, either click **Create from Scratch** to define the mapping from scratch or click **Auto Map** to automatically map all fields with the same name.
-* You can also import a mapping. Refer to [Variable Group field mapping](variable-group-field-mapping.xml) to import the default field mapping from Azure DevOps Services to Azure DevOps Server for the Task Group entity.
+* You can also import a mapping. Refer to [Variable Group field mapping](variable-group-field-mapping.xml) to import the default field mapping from Azure DevOps Services to Azure DevOps Server for the Variable Group entity.
   * You may further modify the imported mapping based on your use case.
 
 <p align="center">
@@ -145,7 +145,7 @@ This page covers the bidirectional integration of Release Pipelines and their de
 </p>  
 
 ## Activate and Test the Integration
-*  First, activate the integration for dependent artifacts such as **Agent Pool**, **Service Connection**, and **Task Group**. Test the integration by synchronizing these dependent artifacts between the configured Azure DevOps Server (TFS) and Azure DevOps Service (ADO) projects.
+*  First, activate the integration for dependent artifacts such as **Agent Pool**, **Service Connection**, **Task Group** and **Variable Group**. Test the integration by synchronizing these dependent artifacts between the configured Azure DevOps Server (TFS) and Azure DevOps Service (ADO) projects.
 <p align="center">
    <img src="../../assets/TFS_ADO12.png" width="1100"/> 
 </p>
