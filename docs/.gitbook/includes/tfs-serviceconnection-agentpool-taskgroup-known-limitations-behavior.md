@@ -26,7 +26,7 @@ Following are the limitations and behaviors specific to the individual entities 
 **Variable Group Entity**
 
 **Known Behaviour and Limitations:**
-* Variable Groups of type **Azure Key Vault** cannot be synchronized from **Azure DevOps Services (Cloud)** to **Azure DevOps Server (TFS)**.
-    * Reason: Azure Key Vault–based Variable Groups require a reference to a Service Connection of type **Azure Resource Manager**. Since this type of Service Connection cannot be synchronized from Azure DevOps(Cloud) to TFS, the associated Variable Groups also cannot be synchronized.
+* Variable Groups of type **Azure Key Vault** will not be synchronized from **Azure DevOps Services (Cloud)** to **Azure DevOps Server (TFS)**.
+    * Reason: Azure Key Vault–based Variable Groups require a reference to a Service Connection of type **Azure Resource Manager**. Since this type of Service Connection will not be synchronized from Azure DevOps(Cloud) to TFS, the associated Variable   Groups also cannot be synchronized.
 
 
