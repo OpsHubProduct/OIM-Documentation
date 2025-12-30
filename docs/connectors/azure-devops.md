@@ -428,6 +428,48 @@ to this:
 ```
 {% endif %}
 
+## Perform check & create for Variable Groups in Pipeline
+
+* To perform check & create for **Variable Groups** in build pipeline or release pipeline, **Variable Group details** field should be mapped.
+* Advanced mapping is required for the same in <code class="expression">space.vars.SITENAME</code>. Below is the sample advanced mapping:
+
+```xml
+<Variable-space-group-space-details>
+  <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  select="SourceXML/updatedFields/Property/Variable-space-group-space-details/list">
+    <op_list>
+      <xsl:element name="variables">
+        <xsl:for-each select="Property/variables/Property/*">
+          <xsl:element name="{name()}">
+            <xsl:for-each select="./Property/*">
+              <xsl:element name="{name()}">
+                <xsl:value-of select="."/>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:element>
+        </xsl:for-each>
+      </xsl:element>
+      <xsl:element name="type">
+        <xsl:value-of select="Property/type"/>
+      </xsl:element>
+      <xsl:element name="name">
+        <xsl:value-of select="Property/name"/>
+      </xsl:element>
+      <xsl:element name="description">
+        <xsl:value-of select="Property/description"/>
+      </xsl:element>
+      <xsl:element name="id">
+        <xsl:value-of select="Property/id"/>
+      </xsl:element>
+    </op_list>
+  </xsl:for-each>
+</Variable-space-group-space-details>
+```
+
+* While configuring the integration for the Build Pipeline, select the **Default Integration Workflow Pipeline** to enable the check-and-create process for variable groups.
+* Similarly, for the Release Pipeline, ensure that the **Default Integration Workflow Release Pipeline** is selected to perform check-and-create for variable groups. For more details, refer to the [Workflow Association](../integrate/integration-configuration.md#workflow-association) section.
+> **Note**: If you are installing <code class="expression">space.vars.SITENAME</code> version 7.214 or later, no advanced workflow is required for Variable Group synchronization.
+> If you are migrating <code class="expression">space.vars.SITENAME</code> from a version earlier than 7.214 to 7.214 or later, and there are no processing failures in the Pipeline or Release Pipeline integrations, you can replace the existing advanced workflow with **Default Integration Workflow**.
+
 # Integration Configuration
 
 In this step, set a time to synchronize data between Azure DevOps and the other system to be integrated. Also, define parameters and conditions, if any, for integration.
