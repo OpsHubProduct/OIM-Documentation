@@ -467,8 +467,9 @@ to this:
 
 * While configuring the integration for the Build Pipeline, select the **Default Integration Workflow Pipeline** to enable the check-and-create process for variable groups.
 * Similarly, for the Release Pipeline, ensure that the **Default Integration Workflow Release Pipeline** is selected to perform check-and-create for variable groups. For more details, refer to the [Workflow Association](../integrate/integration-configuration.md#workflow-association) section.
-> **Note**: If you are installing <code class="expression">space.vars.SITENAME</code> version 7.214 or later, no advanced workflow is required for Variable Group synchronization.
-> If you are migrating <code class="expression">space.vars.SITENAME</code> from a version earlier than 7.214 to 7.214 or later, and there are no processing failures in the Pipeline or Release Pipeline integrations, you can replace the existing advanced workflow with **Default Integration Workflow**.
+> **Note**:
+> * If you are installing <code class="expression">space.vars.SITENAME</code> version 7.214 or later, no advanced workflow is required for Variable Group synchronization.
+> * If you are migrating <code class="expression">space.vars.SITENAME</code> from a version earlier than 7.214 to 7.214 or later, and there are no processing failures in the Pipeline or Release Pipeline integrations, you can replace the existing advanced workflow with **Default Integration Workflow**.
 
 # Integration Configuration
 
