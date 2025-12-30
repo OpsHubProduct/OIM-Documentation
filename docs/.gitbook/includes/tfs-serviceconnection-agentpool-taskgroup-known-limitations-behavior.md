@@ -5,13 +5,6 @@
 **Entity Specific:**
 Following are the limitations and behaviors specific to the individual entities in addition to the common:
 
-**Service Connection Entity**
-
-**Known Behaviour and Limitations:**
-* After a successful synchronization of the Service Connection, you need to enter the password manually in the target project as Microsoft API does not expose this sensitive data due to security concerns.
-* Service Connections of type **Azure Resource Manager** cannot be synchronized from **Azure DevOps Services** to **Azure DevOps Server**.
-    * Reason: There is a template mismatch in Azure Resource Manager between Azure DevOps Services (cloud) and Azure DevOps Server (TFS). Due to these template differences and API limitations, this service connection will not synced from ADO Cloud to TFS.
-
 **Agent Pool Entity**
 
 **Known Behaviour and Limitations:**
@@ -21,6 +14,14 @@ Following are the limitations and behaviors specific to the individual entities 
     <img src="../../assets/AgentPoolCollectionLevel.png"/>
   </p>
 * When this option is enabled, both project-level and collection-level Agent Pools will be synchronized.
+
+**Service Connection Entity**
+
+**Known Behaviour and Limitations:**
+* After a successful synchronization of the Service Connection, you need to enter the password manually in the target project as Microsoft API does not expose this sensitive data due to security concerns.
+* Service Connections of type **Azure Resource Manager** cannot be synchronized from **Azure DevOps Services** to **Azure DevOps Server**.
+  * Reason: There is a template mismatch in Azure Resource Manager between Azure DevOps Services (cloud) and Azure DevOps Server (TFS). Due to these template differences and API limitations, this service connection will not be synced from ADO Cloud to TFS.
+
 
 **Variable Group Entity**
 
