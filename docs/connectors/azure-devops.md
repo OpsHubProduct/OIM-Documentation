@@ -431,7 +431,7 @@ to this:
 ## Variable Groups in Pipeline
 
 * If you are **upgrading to <code class="expression">space.vars.SITENAME</code> version 7.214 or later**, the **existing advanced workflow will remain associated** with the Build Pipeline or Release Pipeline integrations after the upgrade.
-* After the upgrade, **if there are no processing failures and the integrations are in a clean state**, you may **switch to the Default Integration Workflow**. To associate the Default Integration Workflow, please refer to this section.
+* After the upgrade, **if there are no processing failures and the integrations are in a clean state**, you may **switch to the Default Integration Workflow**. To associate the Default Integration Workflow, refer to the [Workflow Association](../integrate/integration-configuration.md#workflow-association) section.
 * For **fresh installations of version 7.214 or later, no advanced workflow configuration is required**.
   * Reason: From version **7.214 onwards, Variable Groups are supported separate entities** and are handled as **reference fields in pipeline mappings**, eliminating the need for advanced workflow logic.
 
