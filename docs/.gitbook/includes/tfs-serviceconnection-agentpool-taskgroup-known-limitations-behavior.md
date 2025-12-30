@@ -5,7 +5,7 @@
 **Entity Specific:**
 Following are the limitations and behaviors specific to the individual entities in addition to the common:
 
-###### Service Connection Entity
+## Service Connection Entity
 
 **Known Behaviour and Limitations:**
 * After a successful synchronization of the Service Connection, you need to enter the password manually in the target project as Microsoft API does not expose this sensitive data due to security concerns.
