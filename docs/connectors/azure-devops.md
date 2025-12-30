@@ -435,10 +435,6 @@ to this:
 * For **fresh installations of version 7.214 or later, no advanced workflow configuration is required**.
   * Reason: From version **7.214 onwards, Variable Groups are supported separate entities** and are handled as **reference fields in pipeline mappings**, eliminating the need for advanced workflow logic.
 
-> **Note**:
-> * If you are installing <code class="expression">space.vars.SITENAME</code> version 7.214 or later, no advanced workflow is required for Variable Group synchronization.
-> * If you are migrating <code class="expression">space.vars.SITENAME</code> from a version earlier than 7.214 to 7.214 or later, and there are no processing failures in the Pipeline or Release Pipeline integrations, you can replace the existing advanced workflow with **Default Integration Workflow**.
-
 # Integration Configuration
 
 In this step, set a time to synchronize data between Azure DevOps and the other system to be integrated. Also, define parameters and conditions, if any, for integration.
