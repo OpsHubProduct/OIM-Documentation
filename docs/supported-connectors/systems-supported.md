@@ -222,7 +222,7 @@ Given below are the systems supported currently by <code class="expression">spac
         <tr>
             <td>28</td>
             <td>IBM Engineering Requirements Management DOORS Next</td>
-            <td>6.0.5, 6.0.6, 7.0.1, 7.0.2 to 7.0.2 IFix25, 7.0.3</td>
+            <td>6.0.x.*, 7.0.1, 7.0.2 to 7.0.2 IFix25, 7.0.3</td>
             <td>All Artifacts (Text + Collection)</td>
             <td>IBM DOORS NG</td>
         </tr>
