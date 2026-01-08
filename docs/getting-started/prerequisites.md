@@ -76,12 +76,12 @@ For successful installation/upgradation of <code class="expression">space.vars.S
 Choosing the right protocol depends on your network environment and security needs.
 
 1. **HTTP (Port 8989)**
-* **Usage:** Supported mainly for on-premise deployments where the <code class="expression">space.vars.SITENAME</code> is hosted within a trusted, customer-controlled network and protected by internal firewall rules or a reverse proxy.
-* **Security Consideration:** Network isolation, firewall enforcement, and controlled access are expected to be in place to mitigate exposure risks and vulnerable attacks.
+   * **Usage:** Supported mainly for on-premise deployments where the <code class="expression">space.vars.SITENAME</code> is hosted within a trusted, customer-controlled network and protected by internal firewall rules or a reverse proxy.
+   * **Security Consideration:** Network isolation, firewall enforcement, and controlled access are expected to be in place to mitigate exposure risks and vulnerable attacks.
 
 2. **HTTPS (Port 8443) – Recommended**
-* **Usage:** Required for cloud-based, or internet-facing public deployments of <code class="expression">space.vars.SITENAME</code>.
-* **Security Benefit:** HTTPS provides encrypted communication, ensuring data confidentiality, integrity, and authenticity.
+   * **Usage:** Required for cloud-based, or internet-facing public deployments of <code class="expression">space.vars.SITENAME</code>.
+   * **Security Benefit:** HTTPS provides encrypted communication, ensuring data confidentiality, integrity, and authenticity.
 ## Database Port
 
 * **9001**: If you are installing <code class="expression">space.vars.SITENAME</code> with HSQL database.
