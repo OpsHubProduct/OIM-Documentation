@@ -136,6 +136,13 @@ To reduce API calls and improve performance, it's recommended to set a longer ca
 | Infrequent updates (1–2 times/week)  | 24 – 48 hours        |
 | Stable environment with rare updates | 1 week               |
 
+
+
+# Security & Protocol Guidelines
+* Always prefer HTTPS (8443) over HTTP (8989) to comply with modern security standards and protect user credentials.
+* Ensure you have a valid SSL certificate (CA-signed is recommended for Production) before configuring the HTTPS port.
+* Only open the port you intend to use. If you choose HTTPS, keep port 8989 closed to reduce the "attack surface" of your server.
+* If your organization requires HTTP access, it is a best practice to configure a redirect from port 8989 to 8443 so all users are automatically upgraded to a secure connection.
 # Don'ts
 
 Here are the practices you must avoid while working with <code class="expression">space.vars.SITENAME</code>. While some exceptional cases may require specific operations, admins must not perform any of the following actions with the <code class="expression">space.vars.SITENAME</code> system without proper guidance.
