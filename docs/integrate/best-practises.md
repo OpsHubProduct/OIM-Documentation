@@ -138,11 +138,12 @@ To reduce API calls and improve performance, it's recommended to set a longer ca
 
 
 
-# Security & Protocol Guidelines
-* Always prefer HTTPS (8443) over HTTP (8989) to comply with modern security standards and protect user credentials.
-* Ensure you have a valid SSL certificate (CA-signed is recommended for Production) before configuring the HTTPS port.
-* Only open the port you intend to use. If you choose HTTPS, keep port 8989 closed to reduce the "attack surface" of your server.
-* If your organization requires HTTP access, it is a best practice to configure a redirect from port 8989 to 8443 so all users are automatically upgraded to a secure connection.
+# Secure Port & Protocol Standards
+* **HTTPS (port 8443) is the preferred option** and should be used for cloud-based, or any environment where the network is not fully controlled and secured.
+* **Use a valid SSL/TLS certificate** when configuring HTTPS. A CA-signed certificate is strongly recommended for production and cloud deployments.
+* **Expose only the required port**, if HTTPS is enabled, keep port 8989 closed to minimize the server’s attack surface.
+* **For environments that require HTTP**, ensure access is restricted to trusted internal networks. Where applicable, configure an automatic redirect from HTTP (8989) to HTTPS (8443) so users are seamlessly upgraded to a secure connection.
+
 # Don'ts
 
 Here are the practices you must avoid while working with <code class="expression">space.vars.SITENAME</code>. While some exceptional cases may require specific operations, admins must not perform any of the following actions with the <code class="expression">space.vars.SITENAME</code> system without proper guidance.
