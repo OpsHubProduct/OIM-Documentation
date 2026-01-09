@@ -72,7 +72,7 @@ Once you have downloaded the application and configured the pre-requisite, click
 
 For successful installation/upgradation of <code class="expression">space.vars.SITENAME</code>, following ports are required to be available as per the chosen configuration and database.
 
-### Protocol Selection: HTTP vs. HTTPS
+## Connection Protocol Selection
 Choosing the right protocol depends on your network environment and security needs.
 
 1. **HTTP (Port 8989)**
