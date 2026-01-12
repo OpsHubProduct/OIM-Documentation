@@ -1,65 +1,52 @@
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 
+# New Connector(s)  
+* [**SolarWinds Service Desk**](../connectors/solarwinds-service-desk.md)  
+  * Version: SaaS
+  * Supported Entities: Incidents, Changes
+
 # New Entities
-* **Azure DevOps Server**
-  * Release Pipeline**, Service Connection, Task Group : supported in versions 2018 and above
-  * Agent Pool : supported in versions 2020 and above
-* **Azure DevOps Services**
-  * Release Pipeline**, Agent Pool, Service Connection, Task Group
+* **Azure DevOps Server/Services** : Variable Groups
 
-# New Enhancements
+# New Enhancements  
 
-## Common
-* Improved search capability to help users quickly find Integrations, Mappings, Systems, Workflows, and other components across folders within <code class="expression">space.vars.SITENAME</code>.
-  * Additional details are available in the [Search and Navigate](../integrate/search.md) guide.
-
-## GitHub
-* Improved GitHub connector behavior by enforcing inclusion of the API version header on every outbound request, rather than relying on GitHub’s default versioning.
-  > Note: Note: At this time, only a single API version header is available from GitHub.
-  
-## Jira Cloud
-* Added documentation describing the permission requirements for the scoped base token used with Jira Cloud.
-  * For a full list of the minimum permissions the service-account user must have, see the Jira Connector [API Token](../connectors/jira.md#api-token) documentation.
+## Common  
+* Added support for the Trends and Metrics Dashboard.
+  * The Trends dashboard provides a quick view of synchronization activity, project configuration patterns, and failure insights across **<code class="expression">space.vars.SITENAME</code>**. 
+  * Users can monitor sync volume, identify high- or low-activity areas, track project growth across systems, and drill down into specific systems, integrations, projects, and entity types for deeper analysis.
+  * For more details, refer to the [trends and metrics](../integrate/trends-and-metrics.md) documentation.
+* Added support for OAuth 2.0 authentication in the SMTP system. 
+  * For setup instructions, refer to the [SMTP configuration](../help-center/troubleshooting/configure-post-failure-notification.md#smtp-configuration) section in the failure configuration guide.
 
 # Major Bugs
 
 ## Common
-* Resolved an issue where a global error occurred in the delete job synchronization when processing attachments on items that were deleted in the source.
-  * Use case: In <code class="expression">space.vars.SITENAME</code> version 7.196 and above, significant improvements were made to attachment and inline synchronization. After upgrading, if a source item was found to be deleted, its attachment and inline information was not processed to align with the new behavior, which could cause the delete job to fail.
-* Resolved an issue where reconciliation of some items was skipped when reconciling multiple source projects to a single target project.
-  * Use case: If the reconciliation was stopped and then resumed, it interrupted the sequence of items in the queue, causing only items with id greater than the last reconciled one to be processed.
-* Resolved an issue where a processing error occurred while transforming events containing empty key tags in the source event XML.
+* Resolved an issue where updating User Overwrite settings in the Integration configuration via REST APIs did not work as expected. 
+* Resolved an issue where updates from the source HTML field were skipped for the target plain text field when conflict handling was enabled and the conflict strategy was set to "Target wins".
+* Resolved an issue where a java.lang.NumberFormatException occurred when the source HTML field contained RGB values in percentage format.
 
-## Broadcom Rally Software
-* Resolved an issue where a global error occurred when retrieving link information for a parent item that the service account could not access, resulting in the following NullPointerException: java.lang.NullPointerException: Cannot invoke 'com.opshub.eai.rally.common.RallyDevElement.getAttributes()' because 'portfolioItemObject' is null.
-  * Use case: A user story in Rally has a parent feature that the integration cannot access (for example, when the parent resides in a different project). In this scenario, a NullPointerException occurred while parsing link details from the user story response. 
+## Azure DevOps Server
+* Resolved an issue where a job error occurred during widget synchronization.
+  * Use case: When a release pipeline was linked to widgets, an invalid URL was generated while fetching release pipeline details, resulting in a "connection timed out" error.
 
-## Database
-* Resolved an issue in the Database Connector where attachments were overwritten when multiple attachments with the same name were received from the same source entity.
-  * Use case: When adding data from a source system to the database, if a work item contained multiple attachments with the same name, the connector overwrote them and only kept the last occurrence as attachments were stored on the local machine where the <code class="expression">space.vars.SITENAME</code> was deployed.
+## GitHub
+* Resolved a job error where a 502 Bad Gateway was encountered while retrieving commits due to a large volume of data from GitHub.
+  * To change the amount of data fetched, update the "Fetch size for polling commits" field in the GitHub system configuration form.
+* Resolved an issue where commits were skipped due to rate limiting when the rate-limit headers were returned with HTTP 200 instead of 429 or 403.
 
-## IBM Engineering Requirements Management DOORS Next
-* Resolved an issue where a global error occurred due to incorrect detection of inline content or documents in rich text fields or comments.
-
-## IBM Engineering Test Management
-* Resolved an issue where retrieving external links from IBM Engineering Test Management returned a 400 error and caused synchronization to get stuck.
-
-## ServiceNow Express
-* Resolved an issue that caused an error when retrieving data from the `cmdb_ci` table using advanced methods such as `getEntityFieldValue`.
+## IBM ClearQuest
+* Resolved an issue where a job error occurred while retrieving user information from ClearQuest using a simple system query. 
+  * **Action:** Configure dedicated queries in IBM ClearQuest to prevent this issue. Refer to the [post-migration checklist](../manage/upgrade/post-migration-checklist.md#addition-of-new-personal-queries-for-ibm-clearquest-system) for details.
 
 {% endif %}  
 
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
 
 # New Entities
-* **Azure DevOps Server**
-  * Release Pipeline**, Service Connection, Task Group : supported in versions 2018 and above
-  * Agent Pool : supported in versions 2020 and above
-* **Azure DevOps Services**
-  * Release Pipeline**, Agent Pool, Service Connection, Task Group
+* **Azure DevOps Server/Services** : Variable Groups
 
-# New Enhancements
-* License editions have been rebranded: Free is now Community, Premium is now Professional, and Platinum is now Ultimate.
-* Support for migrating Area Path and Iteration, previously available only in the Ultimate (formerly Platinum) edition, has now been added to the Professional (formerly Premium) edition.
+# Major Bugs
+* Resolved an issue where a job error occurred during widget migration.
+  * Use case: When a release pipeline was linked to widgets, an invalid URL was generated while fetching release pipeline details, resulting in a “connection timed out” error.
 
 {% endif %}  
