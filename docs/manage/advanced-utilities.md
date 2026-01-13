@@ -15,3 +15,5 @@
 8. [Certificate Private Key Password Encryptor Utility](advanced-utilities/certificate-private-key-password-encryptor-utility.md)
 
 9. [Data Count Utility](advanced-utilities/data-count-utility.md)
+
+10. [Encrypt Password Utility](advanced-utilities/how-to-encrypt-password.md)
