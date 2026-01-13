@@ -56,14 +56,23 @@ Here is the screenshot:
 - The tables that are mapped in hibernate mapping XML will be visible in mapping and integration screens.
 - Properties that are mapped with column names of table will be visible as fields.
 - The column name of primary column can be anything but the property name must be `id`.
-- If no value needs to be mapped with the ID column and an auto-generated value is to be added to it, the generator class can be set to `'increment'`. The data type of the ID column must be an integer when the generator class is added.  
-  Example:
-  ```xml
-  <id name="id" type="integer">
-      <column name="sr_no"/>
-      <generator class="increment"/>
-  </id>
-  ```
+- If no value needs to be mapped with the ID column and an auto-generated value is to be added to it, the generator class can be set to either `'identity'` or `'native'`. These options are preferred over `'increment'` when multiple integrations are writing to the same table. The data type of the ID column must be an integer or another suitable type for auto-generation.
+
+  **Generator Options and Database Compatibility**:
+
+  | Generator   | Compatible Databases                     | Description                                                                                   |
+  |-------------|------------------------------------------|-----------------------------------------------------------------------------------------------|
+  | `identity`  | MySQL, MS SQL Server, PostgreSQL         | Uses the database's auto-increment or identity column feature.                                |
+  | `native`    | MySQL, MS SQL Server, PostgreSQL, Oracle | Automatically selects the best strategy for the database being used.                          |
+  | `increment` | All                                      | Hibernate-managed increment. Not recommended for multiple integrations writing to same table. |
+
+  **Example**:
+```xml
+<id name="id" type="integer">
+    <column name="sr_no"/>
+    <generator class="identity"/>
+</id>
+```
 * The column in the table which stores time of the last update on the record needs to be mapped with the 'updated_time' property. It is optional when there is no need to read data using database system.
 * The column in the table which stores time of the creation of the record needs to be mapped with 'created_time' property. It is required only when bi-directional sync needs to be set-up for the database system.
 * For the efficient recovery, the following columns need to be mapped correctly:
