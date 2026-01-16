@@ -925,6 +925,25 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
 
 <div align="center"><img src="../assets/Integration_Configuration_Image_1.png" alt="" width="1500"></div>
 
+## Suppress End System Notifications (Target System)
+
+When Jira is selected as the **target system**, you can control whether email notifications are sent when an issue is updated.
+
+* A field called **Suppress End System Notification** is available. 
+  * Set it to **True** to disable email notifications for issue updates. 
+  * Set it to **False** to allow email notifications as usual. 
+* To understand this option in more detail, see the **Suppress End System Notification** section on the [Integration Configuration](../integrate/integration-configuration.md) page.
+* This setting applies only to issue updates. Notifications will not be suppressed for:
+  * Creating a new issue 
+  * Adding attachments 
+  * Adding comments 
+  * Adding or updating links 
+    * Reason: These actions cannot be suppressed due to Jira API limitations. 
+* To successfully suppress notifications in Jira, the integration user must have either:
+  * Jira Administrator, or 
+  * Project Administrator permissions.
+* If the user does not have the required permissions, the request to suppress notifications will be ignored.
+
 ## Criteria Configuration
 
 If you want to specify conditions for synchronizing an entity between Jira and the other system to be integrated, you can use the Criteria Configuration feature. 
