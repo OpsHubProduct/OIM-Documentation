@@ -451,13 +451,14 @@ Update the custom workflow as described below:
 
 **Applicable When**
 * Database connector is configured as an endpoint and the <code class="expression">space.vars.SITENAME</code> is upgraded to version 7.216 or later.
+* Refer to [Understanding Metadata JSON Input](../../connectors/database-integration.md#understanding-metadata-json-input) section for more details.
+
 
 **Actions**
-* 
 * Verify the database schema to ensure the following columns are defined as `VARCHAR(36)`:
-  1. `comment_id`
-  2. `attachment_id`
-  3. `link_id`
+  1. `commentIdColumn`
+  2. `attachmentIdColumn`
+  3. `linkIdColumn`
 * Ensure these columns are not configured with numeric data types.
 
 **Reason**
