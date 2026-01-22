@@ -443,3 +443,23 @@ Update the custom workflow as described below:
 
 **Reason**
 * This change replaces the default SimpleQuery, which returned all users without filtering. Personal Queries enable fetching users based on specific criteria, improving filtering and performance.
+
+
+# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.216 or above
+
+## UUID-based ID support for Comments, Attachments, and Links
+
+**Applicable When**
+* Database connector is configured as an endpoint and the <code class="expression">space.vars.SITENAME</code> is upgraded to version 7.216 or later.
+
+**Actions**
+* 
+* Verify the database schema to ensure the following columns are defined as `VARCHAR(36)`:
+  1. `comment_id`
+  2. `attachment_id`
+  3. `link_id`
+* Ensure these columns are not configured with numeric data types.
+
+**Reason**
+* IDs for comments, attachments, and links are now generated using UUID.
+* UUID values require a minimum length of 36 characters and ensure practical uniqueness across records, preventing failures caused by duplicate identifiers.

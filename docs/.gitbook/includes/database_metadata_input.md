@@ -42,48 +42,48 @@
 
 **Links/Relationships**
 
-| **Field Name**           | **Expected Input Value**                                                                                                                                                                                                                                                                                                      |
-|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `tableName`              | Name of the table storing link information among different data records                                                                                                                                                                                                                                                      |
-| `linkIdColumn`           | Column name storing unique ID of the link record                                                                                                                                                                                                                                                                             |
-| `entityIdColumn`         | Column name storing entity Id (primary ID value of the record) having link information                                                                                                                                                                                                                                       |
-| `entityTypeColumn`       | Column name storing table name of the record mentioned in entityIdColumn                                                                                                                                                                                                                                                     |
-| `linkedRecordIdColumn`   | Column name storing linked entity Id (primary ID value of the linked record)                                                                                                                                                                                                                                                 |
-| `linkedEntityTypeColumn` | Column name storing linked table name of the record mentioned in linkedRecordIdColumn                                                                                                                                                                                                                                        |
-| `linkTypeColumn`         | Column name storing link type                                                                                                                                                                                                                                                                                                |
-| `linkCreatedTimeColumn`  | Column name storing link added time                                                                                                                                                                                                                                                                                          |
-| `linkCreatedByColumn`    | Column name storing username storing the link information                                                                                                                                                                                                                                                                    |
-| `supportedLinkTypes`     | Provide metadata for link types along with their corresponding reverse link types in a JSON sub-block. Each link type and its reverse counterpart will be supported for linking. <br>For example, if the JSON contains `"Parent": "Child"`, then both `Parent` and `Child` will be valid link types, with `Parent` being the reverse of `Child` and vice versa.<br>If a link type has no reverse, use an empty string (`""`) as its reverse link type. |
+| **Field Name**           | Data Type                       | **Expected Input Value**                                                                                                                                                                                                                                                                                                      |
+|--------------------------|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `tableName`              | VARCHAR                         | Name of the table storing link information among different data records                                                                                                                                                                                                                                                      |
+| `linkIdColumn`           | VARCHAR <br> Minimum Length: 36 | Column name storing unique ID of the link record                                                                                                                                                                                                                                                                             |
+| `entityIdColumn`         | VARCHAR                         | Column name storing entity Id (primary ID value of the record) having link information                                                                                                                                                                                                                                       |
+| `entityTypeColumn`       | VARCHAR                         | Column name storing table name of the record mentioned in entityIdColumn                                                                                                                                                                                                                                                     |
+| `linkedRecordIdColumn`   | VARCHAR                         | Column name storing linked entity Id (primary ID value of the linked record)                                                                                                                                                                                                                                                 |
+| `linkedEntityTypeColumn` | VARCHAR                         | Column name storing linked table name of the record mentioned in linkedRecordIdColumn                                                                                                                                                                                                                                        |
+| `linkTypeColumn`         | VARCHAR                         | Column name storing link type                                                                                                                                                                                                                                                                                                |
+| `linkCreatedTimeColumn`  | DATETIME                        | Column name storing link added time                                                                                                                                                                                                                                                                                          |
+| `linkCreatedByColumn`    | VARCHAR                         | Column name storing username storing the link information                                                                                                                                                                                                                                                                    |
+| `supportedLinkTypes`     | VARCHAR                         | Provide metadata for link types along with their corresponding reverse link types in a JSON sub-block. Each link type and its reverse counterpart will be supported for linking. <br>For example, if the JSON contains `"Parent": "Child"`, then both `Parent` and `Child` will be valid link types, with `Parent` being the reverse of `Child` and vice versa.<br>If a link type has no reverse, use an empty string (`""`) as its reverse link type. |
 
 **Comments**
 
-| **Field Name**          | **Expected Input Value**                                                                                   |
-|-------------------------|-------------------------------------------------------------------------------------------------------------|
-| `tableName`             | Name of the table storing comment information of data records                                               |
-| `commentIdColumn`       | Column name storing unique ID of the comment record                                                         |
-| `entityIdColumn`        | Column name storing entity Id (primary ID value of the record) having comment information                   |
-| `entityTypeColumn`      | Column name storing table name of the record mentioned in entityIdColumn                                    |
-| `commentBodyColumn`     | Column name storing comment body or content of the comment                                                   |
-| `commentAuthorColumn`   | Column name storing comment author                                                                          |
-| `commentAddedTimeColumn`| Column name storing comment added time                                                                      |
-| `commentTypeColumn`     | Column name storing comment type                                                                            |
-| `commentTitleColumn`    | Column name storing comment title                                                                           |
+| **Field Name**          | Data Type                       | **Expected Input Value**                                                                                   |
+|-------------------------|---------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `tableName`             | VARCHAR                         | Name of the table storing comment information of data records                                               |
+| `commentIdColumn`       | VARCHAR <br> Minimum Length: 36 | Column name storing unique ID of the comment record                                                         |
+| `entityIdColumn`        | VARCHAR                         | Column name storing entity Id (primary ID value of the record) having comment information                   |
+| `entityTypeColumn`      | VARCHAR                         | Column name storing table name of the record mentioned in entityIdColumn                                    |
+| `commentBodyColumn`     | VARCHAR                         | Column name storing comment body or content of the comment                                                   |
+| `commentAuthorColumn`   | VARCHAR                         | Column name storing comment author                                                                          |
+| `commentAddedTimeColumn`| DATETIME                        | Column name storing comment added time                                                                      |
+| `commentTypeColumn`     | VARCHAR                         | Column name storing comment type                                                                            |
+| `commentTitleColumn`    | VARCHAR                         | Column name storing comment title                                                                           |
 
 **Attachments**
 
-| **Field Name**             | **Expected Input Value**                                                                                      |
-|----------------------------|----------------------------------------------------------------------------------------------------------------|
-| `tableName`                | Name of the table storing attachments information of data records                                             |
-| `attachmentIdColumn`       | Column name storing unique ID of the attachment record                                                        |
-| `entityIdColumn`           | Column name storing entity Id (primary ID value of the record) having file attachment information             |
-| `entityTypeColumn`         | Column name storing table name of the record mentioned in entityIdColumn                                      |
-| `fileNameColumn`           | Column name storing file name attached to data record                                                         |
-| `fileContentLengthColumn`  | Column name storing file content length                                                                       |
-| `fileTypeColumn`           | Column name storing file type                                                                                 |
-| `fileURIColumn`            | Column name storing local file URI                                                                            |
-| `attachmentAddedByColumn`  | Column name storing attachment added by user name                                                             |
-| `attachmentAddedTimeColumn`| Column name storing attachment added time                                                                     |
-| `attachmentFolderPath`     | Local folder path (accessible to OIM user) where all attachment files will be stored                          |
+| **Field Name**             | Data Type                       | **Expected Input Value**                                                                                      |
+|----------------------------|---------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `tableName`                | VARCHAR                         | Name of the table storing attachments information of data records                                             |
+| `attachmentIdColumn`       | VARCHAR <br> Minimum Length: 36 | Column name storing unique ID of the attachment record                                                        |
+| `entityIdColumn`           | VARCHAR                         | Column name storing entity Id (primary ID value of the record) having file attachment information             |
+| `entityTypeColumn`         | VARCHAR                         | Column name storing table name of the record mentioned in entityIdColumn                                      |
+| `fileNameColumn`           | VARCHAR                         | Column name storing file name attached to data record                                                         |
+| `fileContentLengthColumn`  | VARCHAR                         | Column name storing file content length                                                                       |
+| `fileTypeColumn`           | VARCHAR                         | Column name storing file type                                                                                 |
+| `fileURIColumn`            | VARCHAR                         | Column name storing local file URI                                                                            |
+| `attachmentAddedByColumn`  | VARCHAR                         | Column name storing attachment added by user name                                                             |
+| `attachmentAddedTimeColumn`| DATETIME                        | Column name storing attachment added time                                                                     |
+| `attachmentFolderPath`     | VARCHAR                         | Local folder path (accessible to OIM user) where all attachment files will be stored                          |
 
 
 
