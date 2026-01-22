@@ -146,6 +146,71 @@ An example input for the metadata JSON:
   <img src="../assets/Database_Image_2a.png" width="900" />
 </p>
 
+### User Field Configuration
+
+* When the `OH_User` table is configured, all user-type fields require specific mapping configuration to ensure proper data storage and retrieval.
+* <code class="expression">space.vars.SITENAME</code> expects user data in a structured JSON format.
+
+#### Mapping Configuration for User Fields
+
+To write into user fields, use the following mapping configuration:
+
+```xml
+<assignedTo xmlns:utils="http://com.opshub.eai.core.utility.OIMCoreUtility" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:variable name="assignedTo" select="SourceXML/updatedFields/Property/author"/>
+    <xsl:value-of select="utils:createUserJsonFromArgs($assignedTo/userId,$assignedTo/userName,$assignedTo/userEmail,$assignedTo/userDisplayName)"/>
+</assignedTo>
+```
+
+**How it works:**
+* This mapping reads the `author` value from source and transforms it into the required JSON format for the `assignedTo` field.
+* The `utils:createUserJsonFromArgs` utility method generates the properly formatted JSON string.
+
+#### Expected User Data Format
+
+After the transformation, <code class="expression">space.vars.SITENAME</code> expects user data in the following JSON format:
+
+```json
+{"user_internal_id":"12345","username":"johndoe","user_email":"john.doe@example.com","user_display_name":"John Doe"}
+```
+
+**Note:**
+* This configuration is **mandatory** for all user-type fields when the `OH_User` table is configured.
+
+### Project Field Configuration
+
+* Project information can be stored and retrieved using the `OH_Project` field.
+* Project values can only be stored in fields named `OH_Project`, which can be configured as extra field.
+
+#### Mapping Configuration for Project Fields
+
+For project fields, use the following advanced configuration:
+
+```xml
+<OH_Project xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <project_internal_id><xsl:value-of select="SourceXML/opshubProjectKey"/></project_internal_id>
+    <project_name><xsl:value-of select="SourceXML/opshubProjectName"/></project_name>
+    <project_path><!-- Provide project path if available --></project_path>
+</OH_Project>
+```
+
+**How it works:**
+* Users can utilize `opshubProjectKey` and `opshubProjectName` from inside `SourceXML` to populate the corresponding project fields.
+* The `project_path` can be populated with additional project location or hierarchy information as needed.
+
+#### Expected Project Data Format
+
+* After the transformation, <code class="expression">space.vars.SITENAME</code> expects project data in the following format:
+
+```xml
+<OH_Project>
+    <project_internal_id>PROJECT-123</project_internal_id>
+    <project_name>Integration Project</project_name>
+    <project_path>/root/integration/project</project_path>
+</OH_Project>
+```
+
+* The system will return project values in a similar structured format when configured as source.
 
 > **Note** Field having foreign key constraint will be shown as Reference type of field. It should contain valid ID value of the table it refers to.  
 >
@@ -212,12 +277,13 @@ Here is the screenshot:
 
 * For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the <code class="expression">space.vars.SITENAME</code> is installed.  
   For example, on Windows, characters such as `\ / : * ? " < > |` are not allowed in file names.
+* `OH_History` field and extra fields (stored in `OH_Additional_Fields`) cannot be used in criteria or target lookup.
 
 # Appendix
 
 ## OH_History Table
 
-* The **OH_History** table stores field-level revision history for any work item.  
+* The **OH_History** table stores field-level revision history for any work item.
 
 ### Table configuration
 
@@ -233,10 +299,10 @@ Here is the screenshot:
 | `new_value`          | `TEXT`                  | Updated value                                                                                         |
 | `change_description` | `TEXT`                  | Description of revision change                                                                        |
 | `changed_by`         | `VARCHAR`               | Display name of user who made the change                                                              |
-| `changed_at`         | `VARCHAR` or `DATETIME` | Timestamp of change                                                                                   |
+| `changed_at`         | `DATETIME` or `TIMESTAMP` | Timestamp of change                                                                                 |
 
-**Note:**  
-* Users may add more columns; use that column as tags in `<op_list>` to store it in a database.  
+**Note:**
+* Users may add more columns; use that column as tags in `<op_list>` to store it in a database.
 * Users may choose any table or column names in their database, but they must not modify the `class:entity-name` and `property:name` in the provided HBM XML.
   * The `table` and `column` attributes may be adjusted to match the actual database schema created by user.
 
@@ -256,7 +322,7 @@ Here is the screenshot:
     <property name="new_value" column="new_value" type="text"/>
     <property name="change_description" column="change_description" type="text"/>
     <property name="changed_by" column="changed_by" type="string"/>
-    <property name="changed_at" column="changed_at" type="string"/>
+    <property name="changed_at" column="changed_at" type="timestamp"/>
 </class>
 ```
 ### Query for table creation
@@ -273,7 +339,7 @@ CREATE TABLE OH_History (
     new_value TEXT,
     change_description TEXT,
     changed_by VARCHAR(255),
-    changed_at VARCHAR(255)
+    changed_at DATETIME
 );
 ````
 
@@ -289,6 +355,40 @@ CREATE TABLE OH_History (
     old_value VARCHAR(MAX),
     new_value VARCHAR(MAX),
     change_description VARCHAR(MAX),
+    changed_by VARCHAR(255),
+    changed_at DATETIME2
+);
+```
+
+#### Oracle
+
+```sql
+CREATE TABLE OH_History (
+    workitem_change_id VARCHAR2(255) PRIMARY KEY,
+    workitem_id VARCHAR2(255),
+    workitem_type VARCHAR2(255),
+    revision_id VARCHAR2(255) NOT NULL,
+    field_name VARCHAR2(255),
+    old_value CLOB,
+    new_value CLOB,
+    change_description CLOB,
+    changed_by VARCHAR2(255),
+    changed_at VARCHAR2(255)
+);
+```
+
+#### Postgres
+
+```sql
+CREATE TABLE OH_History (
+    workitem_change_id VARCHAR(255) PRIMARY KEY,
+    workitem_id VARCHAR(255),
+    workitem_type VARCHAR(255),
+    revision_id VARCHAR(255) NOT NULL,
+    field_name VARCHAR(255),
+    old_value TEXT,
+    new_value TEXT,
+    change_description TEXT,
     changed_by VARCHAR(255),
     changed_at VARCHAR(255)
 );
@@ -309,7 +409,7 @@ CREATE TABLE OH_History (
         <new_value>New title</new_value>
         <change_description>Title updated</change_description>
         <changed_by>user1</changed_by>
-        <changed_at>2025-01-01T10:00:00Z</changed_at>
+        <changed_at source_format="yyyy-MM-dd'T'HH:mm:ss'Z'" target_format="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" op_type="Calendar">1704103200000</changed_at>
     </op_list>
     <op_list>
         <revision_id>1</revision_id>
@@ -318,7 +418,7 @@ CREATE TABLE OH_History (
         <new_value>Active</new_value>
         <change_description>Status Activated</change_description>
         <changed_by>user1</changed_by>
-        <changed_at>2025-01-01T10:00:00Z</changed_at>
+        <changed_at source_format="yyyy-MM-dd'T'HH:mm:ss'Z'" target_format="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" op_type="Calendar">1704103200000</changed_at>
     </op_list>
     <op_list>
         <revision_id>2</revision_id>
@@ -327,15 +427,16 @@ CREATE TABLE OH_History (
         <new_value>Update 2</new_value>
         <change_description>Title updated</change_description>
         <changed_by>user1</changed_by>
-        <changed_at>2025-01-01T11:00:00Z</changed_at>
+        <changed_at source_format="yyyy-MM-dd'T'HH:mm:ss'Z'" target_format="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" op_type="Calendar">1704106800000</changed_at>
     </op_list>
 </OH_History>
 ```
 - Only `revision_id` is mandatory in the mapping.
 - <code class="expression">space.vars.SITENAME</code> automatically sets `workitem_id` and `workitem_type`.
+- The `changed_at` field must use `op_type="Calendar"` and contain time in milliseconds or in the format that follows `source_format`. The `source_format` and `target_format` attributes define the date format conversion.
 
 #### Sample mapping
-* The following mapping can be used to, get data from source using utility method  ```utils:getEntityRevisions``` and use it for preparing history.
+* The following mapping can be used to get data from source using utility method  ```utils:getEntityRevisions``` and use it for preparing history.
 ```xml
 <OH_History xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
             xmlns:revision="http://com.opshub.eai.core.carriers.EntityRevisionDetails"
@@ -360,7 +461,9 @@ CREATE TABLE OH_History (
                 <new_value><xsl:value-of select="./newValue"/></new_value>
                 <change_description><xsl:value-of select="$changeDescription"/></change_description>
                 <changed_by><xsl:value-of select="$changedByDisplay"/></changed_by>
-                <changed_at><xsl:value-of select="$revisionTime"/></changed_at>
+                <changed_at source_format="yyyy-MM-dd'T'HH:mm:ss'Z'" target_format="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" op_type="Calendar">
+                  <xsl:value-of select="$revisionTime"/>
+                </changed_at>
             </op_list>
         </xsl:for-each>
     </xsl:for-each>
@@ -432,6 +535,172 @@ CREATE TABLE OH_Additional_Fields (
 );
 ```
 
+
+## OH_User Table
+
+* The **OH_User** table stores user information associated with entity with all attributes.
+
+### Table configuration
+
+#### Required Columns
+
+| Column               | Data Type | Description                                                                                           |
+|----------------------|-----------|-------------------------------------------------------------------------------------------------------|
+| `user_id`            | `VARCHAR` | Primary key for the user record                                                                       |
+| `user_internal_id`   | `VARCHAR` | Internal ID of the user from the source system                                                        |
+| `username`           | `VARCHAR` | Username of the user                                                                                  |
+| `user_email`         | `VARCHAR` | Email address of the user                                                                             |
+| `user_display_name`  | `VARCHAR` | Display name of the user                                                                              |
+
+**Note:**
+* Users may choose any table or column names in their database, but they must not modify the `class:entity-name` and `property:name` in the provided HBM XML.
+  * The `table` and `column` attributes may be adjusted to match the actual database schema created by user.
+
+### HBM XML
+
+```xml
+<class entity-name="OH_User" table="OH_User">
+    <id name="user_id" type="string">
+        <column name="user_id"/>
+        <generator class="assigned"/>
+    </id>
+    <property name="user_internal_id" column="user_internal_id" type="string"/>
+    <property name="username" column="username" type="string"/>
+    <property name="user_email" column="user_email" type="string"/>
+    <property name="user_display_name" column="user_display_name" type="string"/>
+</class>
+```
+
+### Query for table creation
+
+#### MySQL
+
+```sql
+CREATE TABLE OH_User (
+    user_id VARCHAR(255) PRIMARY KEY NOT NULL,
+    user_internal_id VARCHAR(255),
+    username VARCHAR(255),
+    user_email VARCHAR(255),
+    user_display_name VARCHAR(255)
+);
+```
+
+#### MSSQL
+
+```sql
+CREATE TABLE OH_User (
+    user_id VARCHAR(255) PRIMARY KEY NOT NULL,
+    user_internal_id VARCHAR(255),
+    username VARCHAR(255),
+    user_email VARCHAR(255),
+    user_display_name VARCHAR(255)
+);
+```
+
+#### Oracle
+
+```sql
+CREATE TABLE OH_User (
+    user_id VARCHAR2(255) PRIMARY KEY NOT NULL,
+    user_internal_id VARCHAR2(255),
+    username VARCHAR2(255),
+    user_email VARCHAR2(255),
+    user_display_name VARCHAR2(255)
+);
+```
+
+#### Postgres
+
+```sql
+CREATE TABLE OH_User (
+    user_id VARCHAR(255) PRIMARY KEY NOT NULL,
+    user_internal_id VARCHAR(255),
+    username VARCHAR(255),
+    user_email VARCHAR(255),
+    user_display_name VARCHAR(255)
+);
+```
+
+---
+
+## OH_Project Table
+
+* The **OH_Project** table stores project information associated with entity.
+
+### Table configuration
+
+#### Required Columns
+
+| Column                 | Data Type | Description                                                                                           |
+|------------------------|-----------|-------------------------------------------------------------------------------------------------------|
+| `project_id`           | `VARCHAR` | Primary key for the project record                                                                    |
+| `project_internal_id`  | `VARCHAR` | Internal ID of the project from the source system                                                     |
+| `project_name`         | `VARCHAR` | Name of the project                                                                                   |
+| `project_path`         | `VARCHAR` | Path or location identifier of the project                                                            |
+
+**Note:**
+* Users may choose any table or column names in their database, but they must not modify the `class:entity-name` and `property:name` in the provided HBM XML.
+  * The `table` and `column` attributes may be adjusted to match the actual database schema created by user.
+
+### HBM XML
+
+```xml
+<class entity-name="OH_Project" table="OH_Project">
+    <id name="project_id" type="string">
+        <column name="project_id"/>
+        <generator class="assigned"/>
+    </id>
+    <property name="project_internal_id" column="project_internal_id" type="string"/>
+    <property name="project_name" column="project_name" type="string"/>
+    <property name="project_path" column="project_path" type="string"/>
+</class>
+```
+
+### Query for table creation
+
+#### MySQL
+
+```sql
+CREATE TABLE OH_Project (
+    project_id VARCHAR(255) PRIMARY KEY NOT NULL,
+    project_internal_id VARCHAR(255),
+    project_name VARCHAR(255),
+    project_path VARCHAR(255)
+);
+```
+
+#### MSSQL
+
+```sql
+CREATE TABLE OH_Project (
+    project_id VARCHAR(255) PRIMARY KEY NOT NULL,
+    project_internal_id VARCHAR(255),
+    project_name VARCHAR(255),
+    project_path VARCHAR(255)
+);
+```
+
+#### Oracle
+
+```sql
+CREATE TABLE OH_Project (
+    project_id VARCHAR2(255) PRIMARY KEY NOT NULL,
+    project_internal_id VARCHAR2(255),
+    project_name VARCHAR2(255),
+    project_path VARCHAR2(255)
+);
+```
+
+#### Postgres
+
+```sql
+CREATE TABLE OH_Project (
+    project_id VARCHAR(255) PRIMARY KEY NOT NULL,
+    project_internal_id VARCHAR(255),
+    project_name VARCHAR(255),
+    project_path VARCHAR(255)
+);
+```
 
 ### JSON configuration
 
