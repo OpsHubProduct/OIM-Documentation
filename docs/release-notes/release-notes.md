@@ -2,7 +2,6 @@
 
 ---  
 
-
 # New Enhancements    
 
 ## Jira
@@ -32,6 +31,10 @@
 ## Jama
 * Resolved an issue where some updates were skipped due to delays in the Search API.
   * The probable cause appears to be indexing delays on the end system.
+
+## Monday.com
+* Resolved an issue where a processing error was observed due to improper escaping of newline and quotation characters in field values during item updates.
+  * Use case: Item updates fail when Monday.com is used as the target system and field values contain newline or quotation characters that are not properly escaped.
 
 ## ServiceNow
 * Resolved a processing failure encountered while unlinking associated Configuration Items (CIs) when only a single CI was present on an incident or change request.
