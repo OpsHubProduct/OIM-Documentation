@@ -1,5 +1,7 @@
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 
+---  
+
 # New Connector(s)  
 * [**SolarWinds Service Desk**](../connectors/solarwinds-service-desk.md)  
   * Version: SaaS
