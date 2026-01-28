@@ -12,3 +12,4 @@
 - [Jira Xray – Codebeamer Integration](jira-xray-and-codebeamer-integration.md)  
 - [ETM – Keyword Configuration](how-to-configure-keywords.md)  
 - [Jira Zephyr Shared Step Synchronization configuration](Jira-zephyr-shared-step-configuration.md)
+- [Micro Focus ALM - Azure DevOps Integration (Test Entities)](micro-focus-alm-and-azure-dev-ops-test-entities.md)

@@ -15,6 +15,7 @@
 | **Work Items**             | ❌                         | ❌                                         | ✅                                        |
 | **Test entities (Test Suite, Test Plan, Test Run and Test Result)** | ❌                         | ❌                                         | ✅                                        |
 | **Area and Iteration**    | ❌                         | ❌                                         | ✅                                        |
+| **Group, Team and User**    | ❌                         | ✅                                        | ✅                                        |
 | **Git Commit Information** | ❌                         | ❌                                         | ✅                                        |
 | **Pipeline**               | ❌                         | ❌                                         | ✅                                        |
 | **Build**                  | ❌                         | ❌                                         | ❌                                        |
