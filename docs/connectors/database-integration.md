@@ -220,7 +220,7 @@ Here is the screenshot:
 * If a table's username column mapped to `created_updated_by` is the same as the username in the database system form, records will be skipped during polling time.
 * For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the <code class="expression">space.vars.SITENAME</code> is installed.  
   For example, on Windows, characters such as `\ / : * ? " < > |` are not allowed in file names.
-* Only write operations are supported for `OH_History` field and extra fields (stored in `OH_Additional_Fields`); they cannot be used in criteria or target lookup.
+* `OH_History` field and extra fields (stored in `OH_Additional_Fields`) cannot be used in criteria or target lookup.
 
 # Appendix
 
@@ -242,7 +242,7 @@ Here is the screenshot:
 | `new_value`          | `TEXT`                  | Updated value                                                                                         |
 | `change_description` | `TEXT`                  | Description of revision change                                                                        |
 | `changed_by`         | `VARCHAR`               | Display name of user who made the change                                                              |
-| `changed_at`         | `VARCHAR` or `DATETIME` | Timestamp of change                                                                                   |
+| `changed_at`         | `DATETIME` or `TIMESTAMP` | Timestamp of change                                                                                 |
 
 **Note:**  
 * Users may add more columns; use that column as tags in `<op_list>` to store it in a database.  
@@ -265,7 +265,7 @@ Here is the screenshot:
     <property name="new_value" column="new_value" type="text"/>
     <property name="change_description" column="change_description" type="text"/>
     <property name="changed_by" column="changed_by" type="string"/>
-    <property name="changed_at" column="changed_at" type="string"/>
+    <property name="changed_at" column="changed_at" type="timestamp"/>
 </class>
 ```
 ### Query for table creation
@@ -282,9 +282,9 @@ CREATE TABLE OH_History (
     new_value TEXT,
     change_description TEXT,
     changed_by VARCHAR(255),
-    changed_at VARCHAR(255)
+    changed_at DATETIME
 );
-```
+````
 
 #### MSSQL
 
@@ -299,7 +299,7 @@ CREATE TABLE OH_History (
     new_value VARCHAR(MAX),
     change_description VARCHAR(MAX),
     changed_by VARCHAR(255),
-    changed_at VARCHAR(255)
+    changed_at DATETIME2
 );
 ```
 
@@ -352,7 +352,7 @@ CREATE TABLE OH_History (
         <new_value>New title</new_value>
         <change_description>Title updated</change_description>
         <changed_by>user1</changed_by>
-        <changed_at>2025-01-01T10:00:00Z</changed_at>
+        <changed_at source_format="yyyy-MM-dd'T'HH:mm:ss'Z'" target_format="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" op_type="Calendar">1704103200000</changed_at>
     </op_list>
     <op_list>
         <revision_id>1</revision_id>
@@ -361,7 +361,7 @@ CREATE TABLE OH_History (
         <new_value>Active</new_value>
         <change_description>Status Activated</change_description>
         <changed_by>user1</changed_by>
-        <changed_at>2025-01-01T10:00:00Z</changed_at>
+        <changed_at source_format="yyyy-MM-dd'T'HH:mm:ss'Z'" target_format="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" op_type="Calendar">1704103200000</changed_at>
     </op_list>
     <op_list>
         <revision_id>2</revision_id>
@@ -370,12 +370,13 @@ CREATE TABLE OH_History (
         <new_value>Update 2</new_value>
         <change_description>Title updated</change_description>
         <changed_by>user1</changed_by>
-        <changed_at>2025-01-01T11:00:00Z</changed_at>
+        <changed_at source_format="yyyy-MM-dd'T'HH:mm:ss'Z'" target_format="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" op_type="Calendar">1704106800000</changed_at>
     </op_list>
 </OH_History>
 ```
 - Only `revision_id` is mandatory in the mapping.
 - <code class="expression">space.vars.SITENAME</code> automatically sets `workitem_id` and `workitem_type`.
+- The `changed_at` field must use `op_type="Calendar"` and contain time in milliseconds or in the format that follows `source_format`. The `source_format` and `target_format` attributes define the date format conversion and they are required.
 
 #### Sample mapping
 * The following mapping can be used to, get data from source using utility method  ```utils:getEntityRevisions``` and use it for preparing history.
@@ -403,7 +404,9 @@ CREATE TABLE OH_History (
                 <new_value><xsl:value-of select="./newValue"/></new_value>
                 <change_description><xsl:value-of select="$changeDescription"/></change_description>
                 <changed_by><xsl:value-of select="$changedByDisplay"/></changed_by>
-                <changed_at><xsl:value-of select="$revisionTime"/></changed_at>
+                <changed_at source_format="yyyy-MM-dd'T'HH:mm:ss'Z'" target_format="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" op_type="Calendar">
+                  <xsl:value-of select="$revisionTime"/>
+                </changed_at>
             </op_list>
         </xsl:for-each>
     </xsl:for-each>
