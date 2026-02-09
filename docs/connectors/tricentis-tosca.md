@@ -91,7 +91,6 @@ To support multiple authentication mechanisms effectively:
 - It is recommended to **create separate Tosca system configurations** for each authentication type.
 - Each Tosca system should be configured with:
   - A single authentication mechanism (Basic, PAT, or Client Credentials)
-  - The corresponding repository type and credentials
 
 # System Configuration
 
@@ -99,28 +98,40 @@ Before you start with the integration configuration, you must first configure To
 
 Refer to [System Configuration](../integrate/system-configuration.md) page to learn the steps to configure a system.
 
-Refer to the screenshot below:  
+Refer to the following screenshot below with **Authentication Type** as Basic Authentication: 
 
 <p align="center">
-  <img src="../assets/Tosca_System_config_6.png" width="1500" />
+  <img src="../assets/Tosca_Basic_Auth_system_from.png" width="1500" />
+</p>
+
+Refer to the following screenshot below with **Authentication Type** as Personal Access Token Authentication:
+
+<p align="center">
+  <img src="../assets/Tosca_PAT_Auth_system_from.png" width="1500" />
+</p>
+
+Refer to the following screenshot below with **Authentication Type** as Client Credentials Authentication:
+
+<p align="center">
+  <img src="../assets/Tosca_Client_creds_Auth_system_from.png" width="1500" />
 </p>
 
 
-| **Field Name** | **When is the field visible**  | **Description**                                                                                                                                                                                                                                                                                    |
+| **Field Name** | **When is the field visible**  | **Description**                                                                                                                                                                                                                                                                                 |
 |----------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **System Name** | Always | Provide a unique name to Tosca system                                                                                                                                                                                                                                                              |
-| **Instance URL** | Always | Provide URL for Tosca instance. Example: <hostname>/rest/toscacommander                                                                                                                                                                                                                            |
-| **Authentication TypeL** | Always | Select the authentication type you would like to use for communicating with Tosca API.                                                                                                                                                                                                             |
-| **Username** | Authentication type is Basic authentication | Provide username of the dedicated user for <code class="expression">space.vars.SITENAME</code>. Ensure that the dedicated user has the necessary permissions                                                                                                                                       |
-| **Password** | Authentication type is Basic authentication | Provide password of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                     |
-| **client id** | Authentication type is Client credential based authentication | Provide client ID of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                    |
-| **client secret** | Authentication type is Client credential based authentication | Provide client secret of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                |
-| **personal access token** | Authentication type is PAT based authentication | Provide personal access token of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                        |
-| **Date Format For API** | Always | Provide the date format of Tosca instance in which date appears in API response for CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For API](#select-date-format-for-api) section in Appendix for more information)                                                                  |
-| **Date Format For UI** | Always | Provide date format of Tosca instance in which the date appears in CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For UI](#select-date-format-for-ui) section in Appendix for more information)                                                                                     |
-| **Instance Time Zone** | Always | Provide time zone of Tosca instance                                                                                                                                                                                                                                                                |
+| **System Name** | Always | Provide a unique name to Tosca system                                                                                                                                                                                                                                                           |
+| **Instance URL** | Always | Provide URL for Tosca instance. Example: <hostname>/rest/toscacommander                                                                                                                                                                                                                         |
+| **Authentication TypeL** | Always | Select the authentication type you would like to use for communicating with Tosca API (Supported Authentication types : Basic Authentication, Basic Authentication With Client Credentials, or Personal Access Token Authentication)                                                                                                                                      |
+| **Username** | Authentication type is Basic authentication | Provide username of the dedicated user for <code class="expression">space.vars.SITENAME</code>. Ensure that the dedicated user has the necessary permissions                                                                                                                                    |
+| **Password** | Authentication type is Basic authentication | Provide password of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                  |
+| **client id** | Authentication type is Client credential based authentication | Provide client ID of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                 |
+| **client secret** | Authentication type is Client credential based authentication | Provide client secret of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                             |
+| **personal access token** | Authentication type is PAT based authentication | Provide personal access token of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                     |
+| **Date Format For API** | Always | Provide the date format of Tosca instance in which date appears in API response for CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For API](#select-date-format-for-api) section in Appendix for more information)                                                               |
+| **Date Format For UI** | Always | Provide date format of Tosca instance in which the date appears in CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For UI](#select-date-format-for-ui) section in Appendix for more information)                                                                                  |
+| **Instance Time Zone** | Always | Provide time zone of Tosca instance                                                                                                                                                                                                                                                             |
 | **Metadata Details** | Always | This data is pre-populated in JSON format based on system metadata (entity type, field names, etc.). You can edit entity types based on your Tosca instance's details for system metadata. Refer to [Understanding JSON Input](#understanding-json-input) section for format and JSON form details |
-| **Workspace Refresh Time** | Always | Enter the time in seconds for the workspace refresh interval. <code class="expression">space.vars.SITENAME</code> will update the cloned workspace according to this interval.                                                                                                                     |
+| **Workspace Refresh Time** | Always | Enter the time in seconds for the workspace refresh interval. <code class="expression">space.vars.SITENAME</code> will update the cloned workspace according to this interval.                                                                                                                  |
 
 ## Understanding JSON Input
 
@@ -363,8 +374,31 @@ Example:
   <img src="../assets/Tosca_UI_Date_Format.PNG" width="900" />
 </p>
 
+## Generate Client Credentials and Personal Access Token (PAT)
 
+Tosca Server provides support for generating **Client Credentials** and **Personal Access Tokens (PAT)**, which are required for alternate authentication when using **Tosca Server Repository (TSR)**.
 
+### Generate Client Credentials and Personal Access Token (PAT)
+
+The steps to generate **Client Credentials (Client ID and Client Secret)** and **Personal Access Tokens (PAT)** in Tosca Server are largely the same.
+
+1. Log in to **Tosca Server** using a dedicated service account user.
+2. Navigate to **User Administration** → **My Account**.
+3. Click on **Add new**.
+4. Provide a meaningful name for the credential.
+5. Generate the token.
+6. Copy and securely store the generated credentials:
+  - For **Client Credentials**:
+    - **Client ID**
+    - **Client Secret**
+  - For **Personal Access Token (PAT)**:
+    - **Personal Access Token**
+
+> **Note:**
+> - The **Client Secret** and **Personal Access Token** are displayed only once at the time of generation.
+> - If the credential is lost, it must be regenerated. Ensure all credentials are stored securely.
+
+---
 
 
 
