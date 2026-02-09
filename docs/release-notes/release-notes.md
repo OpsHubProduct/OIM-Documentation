@@ -1,65 +1,45 @@
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 
-# New Entities
-* **Azure DevOps Server**
-  * Release Pipeline**, Service Connection, Task Group : supported in versions 2018 and above
-  * Agent Pool : supported in versions 2020 and above
-* **Azure DevOps Services**
-  * Release Pipeline**, Agent Pool, Service Connection, Task Group
+---  
 
-# New Enhancements
+# New Enhancements    
 
-## Common
-* Improved search capability to help users quickly find Integrations, Mappings, Systems, Workflows, and other components across folders within <code class="expression">space.vars.SITENAME</code>.
-  * Additional details are available in the [Search and Navigate](../integrate/search.md) guide.
+## Azure DevOps Server/Service
+* Eliminated the dependency on TFS Services for User, Group, and Team synchronization in Azure DevOps Services.
 
-## GitHub
-* Improved GitHub connector behavior by enforcing inclusion of the API version header on every outbound request, rather than relying on GitHub’s default versioning.
-  > Note: Note: At this time, only a single API version header is available from GitHub.
-  
-## Jira Cloud
-* Added documentation describing the permission requirements for the scoped base token used with Jira Cloud.
-  * For a full list of the minimum permissions the service-account user must have, see the Jira Connector [API Token](../connectors/jira.md#api-token) documentation.
+## Jira
+* Added support for step-level results in Zephyr Scale for Jira Cloud.
 
 # Major Bugs
 
 ## Common
-* Resolved an issue where a global error occurred in the delete job synchronization when processing attachments on items that were deleted in the source.
-  * Use case: In <code class="expression">space.vars.SITENAME</code> version 7.196 and above, significant improvements were made to attachment and inline synchronization. After upgrading, if a source item was found to be deleted, its attachment and inline information was not processed to align with the new behavior, which could cause the delete job to fail.
-* Resolved an issue where reconciliation of some items was skipped when reconciling multiple source projects to a single target project.
-  * Use case: If the reconciliation was stopped and then resumed, it interrupted the sequence of items in the queue, causing only items with id greater than the last reconciled one to be processed.
-* Resolved an issue where a processing error occurred while transforming events containing empty key tags in the source event XML.
+* Resolved an issue where duplicate links/relationships were created during reconciliation.
+* Resolved an issue where projects with slashes in the name (e.g., Test / Test2 / Test3) were incorrectly treated as child projects, even when the target system does not support child project synchronization.
+* Resolved an issue where Excel files were not updated when uploaded via the REST (Admin) API.
+* Resolved an issue where searching for integrations across folders did not work as expected when the integration name contained special characters treated as wildcards in the database, in environments where <code class="expression">space.vars.SITENAME</code> is installed on MSSQL.
+* Resolved an issue where the sample response body was missing from Swagger endpoints for <code class="expression">space.vars.SITENAME</code> REST APIs.
 
-## Broadcom Rally Software
-* Resolved an issue where a global error occurred when retrieving link information for a parent item that the service account could not access, resulting in the following NullPointerException: java.lang.NullPointerException: Cannot invoke 'com.opshub.eai.rally.common.RallyDevElement.getAttributes()' because 'portfolioItemObject' is null.
-  * Use case: A user story in Rally has a parent feature that the integration cannot access (for example, when the parent resides in a different project). In this scenario, a NullPointerException occurred while parsing link details from the user story response. 
+## Azure DevOps Server/Service
+* Resolved an issue where a job error occurred while retrieving test runs due to a NullPointerException when the test suite had been deleted, causing OIMEventGenerator::process to fail.
+* Resolved an issue where a job error with the message “No content to map due to end-of-input” occurred while retrieving release pipelines when revision IDs were not in a continuous sequence (e.g., revision ID 18 appearing after 16).
+* Resolved an issue where integrations skipped certain items even though they met the sync criteria when <code class="expression">space.vars.SITENAME</code> version was above 7.206.
 
-## Database
-* Resolved an issue in the Database Connector where attachments were overwritten when multiple attachments with the same name were received from the same source entity.
-  * Use case: When adding data from a source system to the database, if a work item contained multiple attachments with the same name, the connector overwrote them and only kept the last occurrence as attachments were stored on the local machine where the <code class="expression">space.vars.SITENAME</code> was deployed.
+## Broadcom Clarity
+* Resolved an issue where mentioned users were not synchronized as expected to Broadcom Clarity as the target system for Project and Task entity fields, due to limitations in end-system support.
 
-## IBM Engineering Requirements Management DOORS Next
-* Resolved an issue where a global error occurred due to incorrect detection of inline content or documents in rich text fields or comments.
+## Jira
+* Resolved an issue where an intermittent temporary error with the message com.opshub.exceptions.eai.OIMRunTimeException: java.util.ConcurrentModificationException occurred when plugin details were provided in the Jira system form.
 
-## IBM Engineering Test Management
-* Resolved an issue where retrieving external links from IBM Engineering Test Management returned a 400 error and caused synchronization to get stuck.
-
-## ServiceNow Express
-* Resolved an issue that caused an error when retrieving data from the `cmdb_ci` table using advanced methods such as `getEntityFieldValue`.
+## OpenText IT Operations Cloud
+* Resolved an issue where a job error occurred when multiple projects were added in a single integration with OpenText IT Operations Cloud (formerly Serena Business Manager) as the source system.
 
 {% endif %}  
 
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
 
-# New Entities
-* **Azure DevOps Server**
-  * Release Pipeline**, Service Connection, Task Group : supported in versions 2018 and above
-  * Agent Pool : supported in versions 2020 and above
-* **Azure DevOps Services**
-  * Release Pipeline**, Agent Pool, Service Connection, Task Group
-
-# New Enhancements
-* License editions have been rebranded: Free is now Community, Premium is now Professional, and Platinum is now Ultimate.
-* Support for migrating Area Path and Iteration, previously available only in the Ultimate (formerly Platinum) edition, has now been added to the Professional (formerly Premium) edition.
+# Major Bugs
+* Resolved an issue where a job error occurred while retrieving test runs due to a NullPointerException when the test suite had been deleted, causing OIMEventGenerator::process to fail.
+* Resolved an issue where a job error with the message “No content to map due to end-of-input” occurred while retrieving release pipelines when revision IDs were not in a continuous sequence (e.g., revision ID 18 appearing after 16).
+* Resolved an issue where migration skipped certain items even though they were eligible for sync when <code class="expression">space.vars.SITENAME</code> version was above 7.206.
 
 {% endif %}  
