@@ -273,28 +273,6 @@ For Issue Relationship configuration for a given entity type (e.g. incident), on
 * For example, if you are generating mapping for **Incident** entity type then **Problem** will be available under the section system entity types in Issue Relationship because in **Incident**, there is a field of reference type which refers to **Problem**. But if you are generating mapping for **Problem** then **Incident** won't be available under the section system entity types in Issue Relationship, because in **Problem**, there is no field of reference type that refers to 'Incident'.
 * From UI related incidents. list will be visible for a given **Problem**, but that's not considered as field.
 
-For ServiceNow as a source system, any event pertaining to attachment (add/delete), it is imperative to update at least one field for that particular entity for it to reflect in the sys\_audit (history) table and to ascertain event change.
-
-* To overcome manual overhead of updating entity to reflect attachment changes immediately then, it is require to configure following business rule which will generate an audit(s) on the particular field whenever attachment being added or deleted.
-  * Navigate to **System Definition** > **Business Rules** and click on new to define the business rule for attachment.
-  * **For Add Attachment Business Rule**: Create a Business Rule on the "sys_attachment" table. This will update the particular field (custom field in this sample) in the record upon the attachment add.
-    * Name: "Insert Attachment - Update Record"
-    * When: After
-    * Insert: true
-    * Advance: enable advance setting to define the script to update the particular field upon add operation. Refer following sample business rule script.
-  * **For Delete Attachment Business Rule**: Create a Business Rule on the "sys_attachment" table. This will update the particular field (custom field in this sample) in the record upon the attachment delete.
-    * Name: "Delete Attachment - Update Record"
-    * When: After
-    * Delete: true
-    * Advance: enable advance setting to define the script to update the particular field upon add operation. Refer following sample business rule script.
-  *   **Sample Business Rule Script**
-
-      <p align="center">
-          <img src="../assets/Snow_rule_audit_attachment.png" width="900" />
-      </p>
-
-  * >**Note**:  Refer to [Business Rules](https://docs.servicenow.com/bundle/quebec-application-development/page/script/business-rules/concept/c_BusinessRules.html) for more information about the ServiceNow's business rule configuration.
-  * >**Note**:  Refer to [Community Blog](https://community.servicenow.com/community?id=community_blog\&sys_id=ee6e22eddbd0dbc01dcaf3231f96196c) for more information about how to generate audit on field/notes upon attachment operation.
 
 ## Target LookUp Configuration
 
