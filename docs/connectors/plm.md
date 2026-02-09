@@ -29,26 +29,22 @@ These permissions should be granted for all products and entities that you plan 
 
 ### User Impersonation
 
-To enable user impersonation in Windchill PLM via <code class="expression">space.vars.SITENAME</code>, specific configuration and access prerequisites must be completed.
+When synchronizing data from source system X to Windchill PLM, user impersonation must be enabled in <code class="expression">space.vars.SITENAME</code> to impersonate the *Creator* or *Modifier* fields. To enable user impersonation in Windchill PLM via <code class="expression">space.vars.SITENAME</code>, specific configuration and access prerequisites must be completed.
 
-1.  Required Permissions for Impersonated Users
-User impersonation does not override Windchill’s authorization model. The user being impersonated must already have sufficient permissions in Windchill PLM.
+1. User Impersonation Does Not Bypass Authorization
 
-Example:
-* If the source system indicates that an object is created by *user1*, then:
-    * *user1* must exist in Windchill PLM.
-    * *user1* must have permission to create or modify that object in Windchill PLM.
-
-If permissions are missing, the operation will fail even though impersonation is correctly configured.
+   *   User impersonation does not override Windchill’s authorization model. The user being impersonated must already have sufficient permissions in Windchill PLM.
+   * Example: If the source system indicates that an object is created by *userX*, then:
+       * *userX* must exist in Windchill PLM.
+       * *userX* must have permission to create or modify that object in Windchill PLM.
+   * If permissions are missing, the operation will fail even though impersonation is correctly configured.
 
 2. Configure <code class="expression">space.vars.SITENAME</code> Host as a Trusted Host in Windchill PLM
-Windchill PLM allows user impersonation only from trusted host machines. Therefore, the machine where <code class="expression">space.vars.SITENAME</code> is hosted must be explicitly trusted by the Windchill PLM instance. High-level steps are given below:
-
-* Identify the IP address of the machine where <code class="expression">space.vars.SITENAME</code> is hosted. (Refer to [Verifying the IP Address of the OIM Host Machine](#verifying-the-ip-address-of-the-oim-host-machine))
-* Add this IP address to the Windchill trusted hosts configuration.
-* Apply the configuration changes and restart Windchill services.
-
-Refer to [Configuring Trusted Hosts in Windchill PLM](#configuring-trusted-hosts-in-windchill-plm) for detailed steps.
+   * Windchill PLM allows user impersonation only from trusted host machines. Therefore, the machine where <code class="expression">space.vars.SITENAME</code> is hosted must be explicitly trusted by the Windchill PLM instance. High-level steps are given below:
+     * Identify the IP address of the machine where <code class="expression">space.vars.SITENAME</code> is hosted. (Refer to [Verifying the IP Address of the OIM Host Machine](#verifying-the-ip-address-of-the-oim-host-machine))
+     * Add this IP address to the Windchill trusted hosts configuration.
+     * Apply the configuration changes and restart Windchill services.
+   * Refer to [Configuring Trusted Hosts in Windchill PLM](#configuring-trusted-hosts-in-windchill-plm) for detailed steps.
 
 ---
 # System Configuration
