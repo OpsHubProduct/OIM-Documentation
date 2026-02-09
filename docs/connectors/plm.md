@@ -27,6 +27,25 @@ The integration user must have the following Windchill PLM permissions:
 
 These permissions should be granted for all products and entities that you plan to synchronize as part of the integration.
 
+### User Impersonation
+
+When synchronizing data from source system X to Windchill PLM, user impersonation must be enabled in <code class="expression">space.vars.SITENAME</code> to impersonate the *Creator* or *Modifier* fields. To enable user impersonation in Windchill PLM via <code class="expression">space.vars.SITENAME</code>, specific configuration and access prerequisites must be completed.
+
+1. User Impersonation Does Not Bypass Authorization
+
+   *   User impersonation does not override Windchill’s authorization model. The user being impersonated must already have sufficient permissions in Windchill PLM.
+   * Example: If the source system indicates that an object is created by *userX*, then:
+       * *userX* must exist in Windchill PLM.
+       * *userX* must have permission to create or modify that object in Windchill PLM.
+   * If permissions are missing, the impersonation operation will fail.
+
+2. Configure <code class="expression">space.vars.SITENAME</code> Host as a Trusted Host in Windchill PLM
+   * Windchill PLM allows user impersonation only from trusted host machines. Therefore, the machine where <code class="expression">space.vars.SITENAME</code> is hosted must be explicitly trusted by the Windchill PLM instance. High-level steps are given below:
+     * Identify the IP address of the machine where <code class="expression">space.vars.SITENAME</code> is hosted. (Refer to [Verifying the IP Address of the OIM Host Machine](#verifying-the-ip-address-of-the-oim-host-machine))
+     * Add this IP address to the Windchill trusted hosts configuration.
+     * Apply the configuration changes and restart Windchill services.
+   * Refer to [Configuring Trusted Hosts in Windchill PLM](#configuring-trusted-hosts-in-windchill-plm) for detailed steps.
+
 ---
 # System Configuration
 As you kickstart the integration, the user must first configure Windchill PLM system in <code class="expression">space.vars.SITENAME</code>.  Click [System Configuration](../integrate/system-configuration.md) to learn step-by-step process to configure a system. Refer to the following screenshot:
@@ -35,15 +54,17 @@ As you kickstart the integration, the user must first configure Windchill PLM sy
 
 ### Windchill PLM System Form Details
 
-| **Field Name**               | **When is the field visible** | **What to Enter**                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|------------------------------|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **System**                   | Always                        | Select **Windchill PLM** from the dropdown list                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| **System Name**              | Always                        | Give this configuration a unique name (e.g., "Production Windchill" or "Windchill Main"). This helps you identify this connection later                                                                                                                                                                                                                                                                                                                                                   |
-| **Instance URL**             | Always                        | Provide Server URL of the Windchill PLM instance. This URL will be used for communicating with PLM system API. The format of the URL would be: `http://hostname:port/` or `https://hostname:port/`. Example: `https://windchill.yourcompany.com/`                                                                                                                                                                                                                                         |
-| **Username**                 | Always                        | Provide the username of the PLM user dedicated to <code class="expression">space.vars.SITENAME</code>. This user should not be used for any other operations from Windchill PLM's user interface and must have the required privileges to access data. For more details, refer to [User privileges](#permissions-Required-for-integration-user-in-windchill-plm) section.                                                                                                                 |
-| **Password**                 | Always                        | Provide the password of the user added in **Username** field.                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Metadata Details**         | Always                        | Provides the link types' metadata, and  define synchronization behaviour for fields where applicable. This data is pre-populated in JSON format according to the system metadata (Entity type, field attributes, relationships, etc.). See the [Advanced Configuration](#advanced-configuration-metadata-details) section for details.                                                                                                                                                    |
+| **Field Name**               | **When is the field visible** | **What to Enter**                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|------------------------------|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System**                   | Always                        | Select **Windchill PLM** from the dropdown list                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **System Name**              | Always                        | Give this configuration a unique name (e.g., "Production Windchill" or "Windchill Main"). This helps you identify this connection later                                                                                                                                                                                                                                                                                                                                                  |
+| **Instance URL**             | Always                        | Provide Server URL of the Windchill PLM instance. This URL will be used for communicating with PLM system API. The format of the URL would be: `http://hostname:port/` or `https://hostname:port/`. Example: `https://windchill.yourcompany.com/`                                                                                                                                                                                                                                        |
+| **Username**                 | Always                        | Provide the username of the PLM user dedicated to <code class="expression">space.vars.SITENAME</code>. This user should not be used for any other operations from Windchill PLM's user interface and must have the required privileges to access data. For more details, refer to [User privileges](#permissions-Required-for-integration-user-in-windchill-plm) section.                                                                                                                |
+| **Password**                 | Always                        | Provide the password of the user added in **Username** field.                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Metadata Details**         | Always                        | Provides the link types' metadata, and  define synchronization behaviour for fields where applicable. This data is pre-populated in JSON format according to the system metadata (Entity type, field attributes, relationships, etc.). See the [Advanced Configuration](#advanced-configuration-metadata-details) section for details.                                                                                                                                                   |
+| **Enable Impersonation**     | Optional                      | Select 'Yes' to enable user impersonation for fields "creator" and "modifier". By default, user impersonation will not be performed. Refer to the [User Impersonation Prerequisites](#user-impersonation) section for detailed configuration requirements.                                                                                                                                                                                                                                                  |
 | **Base URL for Remote Link** | Always                        | This URL is used to generate links that open the related item in Windchill PLM.<br>When to use this: If your Windchill PLM has different URLs for internal use (API) versus external access (user interface), enter the user-facing URL here.<br>Example: If your API URL is `https://api.windchill.com/` but users access Windchill PLM at `https://windchill.yourcompany.com/`, enter the second URL here.<br>If left empty, the system will use the Instance URL for generating links. |
+
 
 
 ### Advanced Configuration: Metadata Details
@@ -221,6 +242,12 @@ Map the fields between Windchill PLM and the other system to be integrated to en
 
 <p align="center"><img alt="Windchill PLM Mapping Configuration Screenshot" src="../assets/PLMMappingConfiguration.png" width="1500"/></p>
 
+## User Impersonation
+When Windchill PLM is the target system and user impersonation is required, update the field mappings as follows:
+
+* Map the Created By field from the source system to the **Impersonated Creator** field in Windchill PLM.
+* Map the Updated By field from the source system to the **Impersonated Modifier** field in Windchill PLM.
+  * Select overwrite source system value option for this field mapping. Refer [this](../integrate/mapping-configuration.md#overwrite) to knwo about overwrite option.
 ---
 
 # Integration Configuration
@@ -351,3 +378,43 @@ To determine the exact internal names of Entity and Fields for your Windchill PL
 * The following mappings can be determined:
   * `entities[].internalName` will be `PTC.ChangeMgmt.Issue`
   * `fields.system[].internalName` will be `State`
+
+### Configuring Trusted Hosts in Windchill PLM
+Follow the steps below to add the host machine IP address to the trusted hosts configuration in Windchill PLM.
+1. Locate the *site.xconf* file
+   1. Navigate to the following path on the Windchill server: *{PLM installation folder}/Windchill/site.xconf* . Example: *E:\ptc\Windchill_13.0\Windchill\site.xconf*
+2. Update the trusted hosts configuration
+   1. Open the *site.xconf* file in a text editor.
+   2. Add the property **wt.auth.trustedHosts** inside the \<Configuration> and \</Configuration> tags.
+   3. Add the IP address of the machine where <code class="expression">space.vars.SITENAME</code> is hosted.
+   4. Example, if IP of <code class="expression">space.vars.SITENAME</code> machine is "127.0.0.1":
+        ```
+      <Property name="wt.auth.trustedHosts"
+          overridable="true"
+          targetFile="codebase/wt.properties"
+          value="127.0.0.1"/>
+      ```
+3. Apply the configuration changes
+   1. Launch **Windchill Shell** with Administrator privileges.
+   2. Execute the following command:
+        ```xconfmanager -p```
+4. Restart Windchill services
+   1. Open Windows Services.
+   2. Locate the WindChill service.
+   3. Restart the service to apply the changes.
+
+### Verifying the IP Address of the OIM Host Machine
+In environments where a VPN or dynamic network configuration is used, the IP address of the machine hosting <code class="expression">space.vars.SITENAME</code> may change. To ensure the correct IP address is configured as a trusted host in Windchill PLM, follow the steps below.
+
+1. Initiate a request from the <code class="expression">space.vars.SITENAME</code> host machine
+   1. On the machine where <code class="expression">space.vars.SITENAME</code> is hosted, open a web browser.
+   2. Access the Windchill PLM application by navigating to the Windchill URL.
+2. Access Windchill server logs
+   1. Log in to the machine where Windchill PLM is installed.
+   2. Navigate to the Windchill HTTP server logs directory: *{PLM installation folder}/HTTPServer/logs/access.log* .
+3. Identify the originating IP address
+   1. Open the *access.log* file.
+   2. Locate the most recent log entries generated immediately after accessing Windchill from the <code class="expression">space.vars.SITENAME</code> host machine.
+   3. Identify the client IP address recorded in these entries.
+   4. The IP address associated with the request represents the current IP of the host machine.
+
