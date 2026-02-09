@@ -58,6 +58,41 @@ Based on our observations of the timeout behavior from the Tosca server, we reco
 
 8. Restart both the **Tricentis.GatewayService** and **Tricentis.Tosca.RestApiService** for the changes to take effect.
 
+## PAT and Client Credentials Authentication in Tosca
+
+In addition to **Basic Authentication**, the Tosca connector supports **alternate authentication mechanisms** when Tosca is configured with a **Tosca Server Repository (TSR)**.
+
+### Supported Authentication Types
+
+The following authentication types are supported **only when using Tosca Server Repository (TSR)**:
+
+### 1. Personal Access Token (PAT)
+
+- Tosca allows authentication using a **Personal Access Token (PAT)** generated from Tosca Server.
+- PAT-based authentication is supported **only for Tosca Server repositories**.
+- File-based and database-based repositories (Oracle, MSSQL, PostgreSQL, etc.) **do not support** PAT authentication.
+
+### 2. Client Credentials (Client ID and Client Secret)
+
+- Tosca supports **OAuth-style Client Credentials authentication** when connected to Tosca Server Repository.
+- Similar to PAT, this authentication method is supported **only for Tosca Server Repository**.
+
+### Authentication Constraints
+
+- **Basic Authentication is not supported when using Tosca Server Repository (TSR).**
+- When TSR is configured, authentication must be performed using one of the following methods:
+  - **Personal Access Token (PAT)**
+  - **Client Credentials (Client ID and Client Secret)**
+
+### Recommended Configuration Approach
+
+To support multiple authentication mechanisms effectively:
+
+- It is recommended to **create separate Tosca system configurations** for each authentication type.
+- Each Tosca system should be configured with:
+  - A single authentication mechanism (Basic, PAT, or Client Credentials)
+  - The corresponding repository type and credentials
+
 # System Configuration
 
 Before you start with the integration configuration, you must first configure Tosca.
@@ -71,17 +106,21 @@ Refer to the screenshot below:
 </p>
 
 
-| **Field Name** | **Description** |
-|----------------|-----------------|
-| **System Name** | Provide a unique name to Tosca system |
-| **Instance URL** | Provide URL for Tosca instance. Example: <hostname>/rest/toscacommander |
-| **Username** | Provide username of the dedicated user for <code class="expression">space.vars.SITENAME</code>. Ensure that the dedicated user has the necessary permissions |
-| **Password** | Provide password of the dedicated user for <code class="expression">space.vars.SITENAME</code> |
-| **Date Format For API** | Provide the date format of Tosca instance in which date appears in API response for CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For API](#select-date-format-for-api) section in Appendix for more information) |
-| **Date Format For UI** | Provide date format of Tosca instance in which the date appears in CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For UI](#select-date-format-for-ui) section in Appendix for more information) |
-| **Instance Time Zone** | Provide time zone of Tosca instance |
-| **Metadata Details** | This data is pre-populated in JSON format based on system metadata (entity type, field names, etc.). You can edit entity types based on your Tosca instance's details for system metadata. Refer to [Understanding JSON Input](#understanding-json-input) section for format and JSON form details |
-| **Workspace Refresh Time** | Enter the time in seconds for the workspace refresh interval. <code class="expression">space.vars.SITENAME</code> will update the cloned workspace according to this interval. |
+| **Field Name** | **When is the field visible**  | **Description**                                                                                                                                                                                                                                                                                    |
+|----------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System Name** | Always | Provide a unique name to Tosca system                                                                                                                                                                                                                                                              |
+| **Instance URL** | Always | Provide URL for Tosca instance. Example: <hostname>/rest/toscacommander                                                                                                                                                                                                                            |
+| **Authentication TypeL** | Always | Select the authentication type you would like to use for communicating with Tosca API.                                                                                                                                                                                                             |
+| **Username** | Authentication type is Basic authentication | Provide username of the dedicated user for <code class="expression">space.vars.SITENAME</code>. Ensure that the dedicated user has the necessary permissions                                                                                                                                       |
+| **Password** | Authentication type is Basic authentication | Provide password of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                     |
+| **client id** | Authentication type is Client credential based authentication | Provide client ID of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                    |
+| **client secret** | Authentication type is Client credential based authentication | Provide client secret of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                |
+| **personal access token** | Authentication type is PAT based authentication | Provide personal access token of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                        |
+| **Date Format For API** | Always | Provide the date format of Tosca instance in which date appears in API response for CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For API](#select-date-format-for-api) section in Appendix for more information)                                                                  |
+| **Date Format For UI** | Always | Provide date format of Tosca instance in which the date appears in CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For UI](#select-date-format-for-ui) section in Appendix for more information)                                                                                     |
+| **Instance Time Zone** | Always | Provide time zone of Tosca instance                                                                                                                                                                                                                                                                |
+| **Metadata Details** | Always | This data is pre-populated in JSON format based on system metadata (entity type, field names, etc.). You can edit entity types based on your Tosca instance's details for system metadata. Refer to [Understanding JSON Input](#understanding-json-input) section for format and JSON form details |
+| **Workspace Refresh Time** | Always | Enter the time in seconds for the workspace refresh interval. <code class="expression">space.vars.SITENAME</code> will update the cloned workspace according to this interval.                                                                                                                     |
 
 ## Understanding JSON Input
 
