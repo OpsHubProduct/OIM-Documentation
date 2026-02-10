@@ -149,7 +149,7 @@ Here is how the mapping will look like:
 
 ## Quick Search for Lookup Values
 
-Lookup Type fields can contain a large number of values. To ensure faster loading and a smooth user experience, **OpsHub Integration Manager** initially displays a limited set of values and provides an easy way to search and fetch additional values when needed.
+Lookup Type fields can contain a large number of values. To keep the experience fast and smooth, **OpsHub Integration Manager** shows values quickly and provides an easy search option to find more values whenever needed.
 
 ---
 
