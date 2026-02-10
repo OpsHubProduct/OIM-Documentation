@@ -37,7 +37,7 @@ When synchronizing data from source system X to Windchill PLM, user impersonatio
    * Example: If the source system indicates that an object is created by *userX*, then:
        * *userX* must exist in Windchill PLM.
        * *userX* must have permission to create or modify that object in Windchill PLM.
-   * If permissions are missing, the operation will fail even though impersonation is correctly configured.
+   * If permissions are missing, the impersonation operation will fail even though it is correctly configured.
 
 2. Configure <code class="expression">space.vars.SITENAME</code> Host as a Trusted Host in Windchill PLM
    * Windchill PLM allows user impersonation only from trusted host machines. Therefore, the machine where <code class="expression">space.vars.SITENAME</code> is hosted must be explicitly trusted by the Windchill PLM instance. High-level steps are given below:
