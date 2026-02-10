@@ -147,30 +147,23 @@ Here is how the mapping will look like:
 <!-- This is a NEW section added for large lookup handling -->
 <!-- ===================================================== -->
 
-## Search in Lookup Value Mapping
+## Quick Search for Lookup Values
 
-<!-- NOTE:
-This section explains how users can search for lookup values
-when all values are not visible in the Value Mapping pop-up.
--->
-
-When working with **Lookup Type** fields, the number of available values can be large.  
-To ensure faster loading and a smooth experience, **<code class="expression">space.vars.SITENAME</code>** shows a limited set of values initially and allows you to search for additional values when needed.
+Lookup Type fields can contain a large number of values. To ensure faster loading and a smooth user experience, **OpsHub Integration Manager** initially displays a limited set of values and provides an easy way to search and fetch additional values when needed.
 
 ---
 
 ### Viewing Lookup Values
 
-* When the **Value Mapping** pop-up opens:
-  * Only the **first 5,000 values** are displayed.
-  * Values are shown in **alphabetical order**.
+When the **Value Mapping** pop-up opens:
 
-* An informational message is shown at the bottom of the list:
+* The **first 5,000 values** are displayed by default.
+* Values are listed in **alphabetical order** for easy browsing.
+* An informational message appears at the bottom of the list:
 
 > **Showing the initial 5,000 values.  
-> If you don’t see what you’re looking for, click the Search icon to find more results.
-Still can’t find it? Try refining your search with a more specific keyword.**
-
+> If you don’t see what you’re looking for, click the Search icon to find more results.  
+> Still can’t find it? Try refining your search with a more specific keyword.**
 
 <p align="center">
   <img src="../assets/value_mapping_note.png" width="700">
@@ -178,14 +171,13 @@ Still can’t find it? Try refining your search with a more specific keyword.**
 
 
 ---
-
 ### Searching for a Lookup Value
 
 * Start typing in the search box to **filter the initially loaded values**.
-* If you find the required value in the filtered list, select it directly.
-* If you do not find the expected value in the filtered results, click the **Search icon** to retrieve additional values.
+* If the required value appears in the filtered list, select it directly.
+* If the value is not found, click the **Search icon** to retrieve additional values beyond the initial list.
 
-> 💡 **Tip:** Use specific keywords to narrow down your search results.
+> 💡 **Tip:** Using more specific keywords helps narrow down results and improves search accuracy.
 
 <p align="center">
   <img src="../assets/value_mapping_search.png" width="700">
@@ -195,22 +187,22 @@ Still can’t find it? Try refining your search with a more specific keyword.**
 
 ### Search Results
 
-* The search retrieves values beyond the initially displayed 5,000 values.
-* If you don’t find the expected value, refine your search using a more specific keyword.
+* The search retrieves values beyond the initially displayed **5,000 values**.
+* If the expected value is still not found, refine the search using a more specific keyword.
 
 ---
 
 ### Clearing the Search
 
-* When you clear the search text:
-  * The list resets to show the **initial 5,000 values** again.
+When the search text is cleared:
+
+* The list resets and displays the **initial 5,000 values** again.
 
 ---
 
 ### Notes
 
-> * This feature is available for all **Lookup Type** fields.
-
+>* This feature is available for all **Lookup Type** fields and works consistently across all supported systems.
 
 <!-- END: Search in Lookup Value Mapping -->
 
