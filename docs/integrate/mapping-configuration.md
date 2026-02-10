@@ -142,6 +142,79 @@ Here is how the mapping will look like:
 
 * Click **Save** button to save your selection.
 
+<!-- ===================================================== -->
+<!-- USER GUIDE ADDITION: Search in Lookup Value Mapping -->
+<!-- This is a NEW section added for large lookup handling -->
+<!-- ===================================================== -->
+
+## Search in Lookup Value Mapping
+
+<!-- NOTE:
+This section explains how users can search for lookup values
+when all values are not visible in the Value Mapping pop-up.
+-->
+
+When working with **Lookup Type** fields, the number of available values can be large.  
+To ensure faster loading and a smooth experience, **<code class="expression">space.vars.SITENAME</code>** shows a limited set of values initially and allows you to search for additional values when needed.
+
+---
+
+### Viewing Lookup Values
+
+* When the **Value Mapping** pop-up opens:
+  * Only the **first 5,000 values** are displayed.
+  * Values are shown in **alphabetical order**.
+
+* An informational message is shown at the bottom of the list:
+
+> **Showing the initial 5,000 values.  
+> If you don’t see what you’re looking for, click the Search icon to find more results.
+Still can’t find it? Try refining your search with a more specific keyword.**
+
+
+<p align="center">
+  <img src="../assets/value_mapping_note.png" width="700">
+</p>
+
+
+---
+
+### Searching for a Lookup Value
+
+* Start typing in the search box to **filter the initially loaded values**.
+* If you find the required value in the filtered list, select it directly.
+* If you do not find the expected value in the filtered results, click the **Search icon** to retrieve additional values.
+
+> 💡 **Tip:** Use specific keywords to narrow down your search results.
+
+<p align="center">
+  <img src="../assets/value_mapping_search.png" width="700">
+</p>
+
+---
+
+### Search Results
+
+* The search retrieves values beyond the initially displayed 5,000 values.
+* If you don’t find the expected value, refine your search using a more specific keyword.
+
+---
+
+### Clearing the Search
+
+* When you clear the search text:
+  * The list resets to show the **initial 5,000 values** again.
+
+---
+
+### Notes
+
+> * This feature is available for all **Lookup Type** fields.
+
+
+<!-- END: Search in Lookup Value Mapping -->
+
+
 ## Value mapping using the Same As Integration option
 
 * This option is available only for the "Projects" field.
