@@ -29,7 +29,8 @@ These permissions should be granted for all products and entities that you plan 
 
 ### User Impersonation
 
-When synchronizing data from source system X to Windchill PLM, user impersonation must be enabled in <code class="expression">space.vars.SITENAME</code> to impersonate the *Creator* or *Modifier* fields. To enable user impersonation in Windchill PLM via <code class="expression">space.vars.SITENAME</code>, specific configuration and access prerequisites must be completed.
+When synchronizing data from a source system to Windchill PLM, if you want to **preserve the original “Created By” and “Modified By” users from the source system in the PLM**, then you must **enable user impersonation in OpsHub Integration Manager.**
+This requires **[specific configuration](#user-impersonation-1) and prerequisite setup** to be completed before synchronization.
 
 1. User Impersonation Does Not Bypass Authorization
 
