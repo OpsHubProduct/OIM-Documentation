@@ -42,6 +42,7 @@ Refer to the screenshot below:
 | **User Name**                | Always                     | Provide the username of the dedicated user for Polarion API communication.                                                                                                                                                                                     |
 | **Personal Access Token**    | Always                     | Provide the **Personal Access Token** for the user specified in the "User Name" field. <br> Refer to [Access API Token](#get-api-token) section for details.                                                                                                   |
 | **Instance Time Zone**       | Always                     | Provide the time zone of the host machine where Polarion is installed.                                                                                                                                                                                         |
+| **Link Metadata JSON**       | Always                     | Provide link metadata for Polarion entity types in JSON format. For more details refer to [Link Metadata Configuration](#link-metadata-configuration).                                                                                                         |
 | **Base URL for Remote Link** | Always                     | Provide a different instance URL of the Polarion instance. This URL will be used for generating the Remote Link. <br> Note: If "Base URL for Remote Link" is empty, it will use default **Instance URL** to generate remote link if configured on integration. |
 
 # Mapping Configuration
@@ -103,12 +104,17 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
 
 # Known Behaviors and Limitations
 
+- History based synchronization is not supported due to API unavailability.
 - **Comments**:
   - Replies to comments or edits in Polarion will be synced as separate comments by <code class="expression">space.vars.SITENAME</code>.
 - **Project Groups**:
   - Project Groups are not visible in the Project mapping list due to API limitations; projects are listed individually.
 - **Test cases and Unit test cases in Work item**:
     - Test Steps and relation with Test Records are not supported currently.
+- **Links**
+  - For link synchronization it is required to provide link metadata for Polarion entity types in JSON format in OpsHub Integration Manager.
+    - Reason: API unavailability.
+  - The Suspect and Revision properties of a link will not be explicitly synchronized due to API limitations as these properties are auto-populated by Polarion when links are added.
 
 # Appendix
 
@@ -214,3 +220,89 @@ To get the field internal names:
     <p align="center">
       <img src="../assets/PolarionAppendix_FieldInternalName3.png" width="936"  alt=""/>
     </p>
+
+## Link Metadata Configuration
+This section includes a sample Link Metadata JSON template used for configuring links in Polarion. Modify the template according to your requirements
+<br>
+Link Metadata JSON Example:
+```json
+{
+   "entities": [
+      {
+         "internalName": "task",
+         "relationship": {
+            "linkTypes": [
+               {
+                  "linkType": "has parent",
+                  "linkTypeInternalName": "parent",
+                  "linkTypeDirection": "FORWARD",
+                  "reverseLinkType": "is parent of",
+                  "supportedAsSource": true,
+                  "supportedAsTarget": true,
+                  "mandatory": false
+               },
+               {
+                  "linkType": "is parent of",
+                  "linkTypeInternalName": "parent",
+                  "linkTypeDirection": "BACKWARD",
+                  "reverseLinkType": "has parent",
+                  "supportedAsSource": true,
+                  "supportedAsTarget": true,
+                  "mandatory": false
+               }
+            ]
+         }
+      },
+      {
+         "internalName": "epic",
+         "relationship": {
+            "linkTypes": [
+               {
+                  "linkType": "has parent",
+                  "linkTypeInternalName": "parent",
+                  "linkTypeDirection": "FORWARD",
+                  "reverseLinkType": "is parent of",
+                  "supportedAsSource": true,
+                  "supportedAsTarget": true,
+                  "mandatory": false
+               },
+               {
+                  "linkType": "is parent of",
+                  "linkTypeInternalName": "parent",
+                  "linkTypeDirection": "BACKWARD",
+                  "reverseLinkType": "has parent",
+                  "supportedAsSource": true,
+                  "supportedAsTarget": true,
+                  "mandatory": false
+               }
+            ]
+         }
+      }
+   ]
+}
+```
+<br>
+The following steps describe how to populate the Link JSON metadata values for 'linkType', 'linkTypeInternalName', 'linkTypeDirection' and other related link properties. 
+Steps:
+1. Log in to your Polarion account.
+2. Navigate to the 'Administration' section by clicking on the settings icon in the top left-hand corner of the screen. Refer to the screenshot below:
+   <p align="center">
+      <img src="../assets/PolarionAppendix_FieldInternalName1.png" width="936"  alt=""/>
+    </p>
+   <br>
+3. Navigate to 'Work Items' → 'Enumerations', open 'workitem-link-role-enum.xml', and select 'Edit'. Refer to the screenshot below for guidance.
+    <p align="center">
+      <img src="../assets/PolarionAppendix_Link_Names.png" width="936"  alt=""/>
+    </p>
+   <br>
+4. Within the enumeration file:
+   - The values listed under 'ID' represent the internal names of the links and should be mapped to the 'linkTypeInternalName' property in the JSON metadata.
+   - The values under 'Name' and 'Opposite Name' correspond to the display names of the links and should be mapped to the 'linkType' property in the JSON metadata.
+   - For entries under 'Name', the 'linkTypeDirection' property should be set to 'FORWARD', while for entries under 'Opposite Name', it should be set to 'BACKWARD'.
+   - The values of 'supportedAsSource' and 'supportedAsTarget' must be set to 'true' because Polarion supports links in both directions.
+   - The 'mandatory' property should be set to 'true' if the link is required, otherwise, it should be set to 'false'.
+    <p align="center">
+      <img src="../assets/PolarionAppendix_LinkInternalName.png" width="936"  alt=""/>
+    </p>
+   <br>
+   

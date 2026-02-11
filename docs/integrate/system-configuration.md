@@ -195,6 +195,8 @@ You can also directly go to the System Configuration screen by clicking the Syst
         "linkTypes": [
           {
             "linkType": "Parent Initiative",
+            "linkTypeInternalName": "parent",
+            "linkTypeDirection": "FORWARD",
             "linkCardinality": "OneToOne",
             "reverseLinkType": null,
             "mandatory": true,
@@ -287,6 +289,8 @@ You can also directly go to the System Configuration screen by clicking the Syst
         "linkTypes": [
           {
             "linkType": "Program Increments",
+            "linkTypeInternalName": "program",
+            "linkTypeDirection": "FORWARD",
             "linkCardinality": "OneToOne",
             "reverseLinkType": null,
             "mandatory": false,
@@ -295,6 +299,8 @@ You can also directly go to the System Configuration screen by clicking the Syst
           },
           {
             "linkType": "Programs",
+            "linkTypeInternalName": "program",
+            "linkTypeDirection": "BACKWARD",
             "linkCardinality": "OneToOne",
             "reverseLinkType": null,
             "mandatory": false,
