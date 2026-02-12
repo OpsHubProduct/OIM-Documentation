@@ -35,7 +35,7 @@
 
 **Backward Compatible Changes**
 - [Entity Type-Get API](entity-type-get.md#api-uri)
-  - [Response Structure](entity-type-get.md#response-payload):
+  - [Response payload](entity-type-get.md#response-payload):
     - Within **links.linkTypes** attribute `linkTypeInternalName` and `linkTypeDirection` properties have been added.
     - In **links.fieldNameInfo** attribute `linkTypeDirectionFieldName` is added.
 
