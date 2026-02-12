@@ -407,6 +407,10 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
       {
 
         "linkType": "",
+ 
+        "linkTypeInternalName": "Applicable only if end system returns or expects internal name of the link.",
+        
+        "linkTypeDirection": "FORWARD/BACKWARD Applicable only if end system supports directions in links.",
 
         "reverseLinkType": "",
 
@@ -422,25 +426,27 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
 
     ],
 
-    "fieldNameinfo": {
+    "fieldNameInfo": {
 
-      "linkTypeFieldName": " Field name of link type (parent, child, related etc.) as it is received in API by end system ",
+      "linkTypeFieldName": "Field name of link type (parent, child, related etc.) as it is received in API by end system ",
 
-      "linkedEntityIdFieldName": " Field name of linked entity id as it is received in API by end system ",
+      "linkTypeDirectionFieldName": "Field name of link direction(FORWARD, BACKWARD). Applicable only if link direction is supported by end system.",
+      
+      "linkedEntityIdFieldName": "Field name of linked entity id as it is received in API by end system ",
 
-      "linkedEntityTypeFieldName": " Field name of linked entity type as it is received in API by end system ",
+      "linkedEntityTypeFieldName": "Field name of linked entity type as it is received in API by end system ",
 
       "linkedEntityScopeIdFieldName": "linkedEntityScopeId | TODO: Revisit this",
 
-      "createdDateFieldName": " Field name of link created date as it is received in API by end system ",
+      "createdDateFieldName": "Field name of link created date as it is received in API by end system ",
 
-      "createdByFieldName": " Field name of link created by user as it is received in API by end system ",
+      "createdByFieldName": "Field name of link created by user as it is received in API by end system ",
 
-      "linkCommentFieldName": " Field name of link comment as it is received in API by end system ",
+      "linkCommentFieldName": "Field name of link comment as it is received in API by end system ",
 
-      "externalLinkUrlFieldName": " Field name of link external URL as it is received in API by end system ",
+      "externalLinkUrlFieldName": "Field name of link external URL as it is received in API by end system ",
 
-      "isExternalLinkFieldName": " Field name of field which says if it’s an external link or not, as it is received in API by end system "
+      "isExternalLinkFieldName": "Field name of field which says if it’s an external link or not, as it is received in API by end system "
 
     }
 
@@ -658,19 +664,21 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
 | |**inlineFileUrlPrefix** | True | List&lt;String&gt; | What is the prefix of inline files?<br>This is used to identify if an inline file or image URL is the URL to some external site or the system's URL.<br><br>Provide the common initial part of the inline files URL. E.g., If the system has inline file URLs like these:<br>- https://media.example-system.com/files/file1.png<br>- https://media.example-system.com/files/file2.docx<br>- https://media.example-system.com/files/file3.pdf<br><br>In this case, the inline file URL prefix is: "https://media.example-system.com/files" |
 
 
-| Parent Parameter | Name | Required | Type | Description |
-|-----------|------|----------|------|-------------|
-| **link** | | False |  |Pass this parameter if you want to integrate entity relationship for a given entity type. Otherwise, do not send this parameter at all. Links APIs must be implemented to integrate links |
-|  |**fieldNameInfo** | True | Object | <pre>{<br>&nbsp;&nbsp;"linkTypeFieldName":&nbsp;"linkType",<br>&nbsp;&nbsp;"linkedEntityIdFieldName":&nbsp;"linkedEntityId",<br>&nbsp;&nbsp;"linkedEntityTypeFieldName":&nbsp;"linkedEntityType",<br>&nbsp;&nbsp;"linkedEntityScopeIdFieldName":&nbsp;"linkedEntityScopeId",<br>&nbsp;&nbsp;"createdDateFieldName":&nbsp;"createdDate",<br>&nbsp;&nbsp;"createdByFieldName":&nbsp;"createdBy",<br>&nbsp;&nbsp;"linkCommentFieldName":&nbsp;"linkComment",<br>&nbsp;&nbsp;"externalLinkUrlFieldName":&nbsp;"externalLinkUrl",<br>&nbsp;&nbsp;"isExternalLinkFieldName":&nbsp;"isExternalLink"<br>}</pre>|
-|  | deleteSupported | True | Boolean | Does the system allow to delete link? |
-| | historySupported | True | Boolean | Does the system support history for link? |
-|  |createUpdateDateFormat | True | String | Date format for created and updated dates of link |
-|  |**linkTypes** | True |  |  |
-|  |linkType | True | String | Name of link type: Parent, Child, Relates To, Blocked By, etc |
-|  |reverseLinkType | True | String | Name of its reverse link. E.g., if the link type is Parent, then the opposite linkType is Child, i.e. Entity E1 is the parent of entity E2, and E2 is the child of E1 |
-|  |isMultiLinkAllowed | True | Boolean | True: If multiple links of this type can be created. False: if only one link of this type can be created. For example: Adding only one parent is allowed to be added for any entity, so set multiLinkAllowed to false for Parent Type. On the other hand, for the ‘Related’ link type, any number of links can be added, so send true |
-|  |isLinkMandatory | True | Boolean | True: If link of this type is mandatory for entity create or update. False: If link of this type is not mandatory for entity create or update. For example, it might be mandatory to have a Parent link to another work item for sub-task or task entity type. In this case, send true for the Parent link type for Task |
-|  |isBulkLinkingSupported | True | Boolean | True: If bulk linking is supported via API. False: If bulk linking is not supported via API. For example, Bug and task can be linked by relates link type. Multiple tasks (with link type - relates) can be added and removed via a single API. In this case, send true for relates link type for Bug |
+| Parent Parameter | Name | Required | Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|-----------|------|----------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **link**         | | False |  | Pass this parameter if you want to integrate entity relationship for a given entity type. Otherwise, do not send this parameter at all. Links APIs must be implemented to integrate links                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|  |**fieldNameInfo** | True | Object | <pre>{<br>&nbsp;&nbsp;"linkTypeFieldName":&nbsp;"linkType",<br>&nbsp;&nbsp;"linkTypeDirectionFieldName":&nbsp;"linkDirection",<br>&nbsp;&nbsp;"linkedEntityIdFieldName":&nbsp;"linkedEntityId",<br>&nbsp;&nbsp;"linkedEntityTypeFieldName":&nbsp;"linkedEntityType",<br>&nbsp;&nbsp;"linkedEntityScopeIdFieldName":&nbsp;"linkedEntityScopeId",<br>&nbsp;&nbsp;"createdDateFieldName":&nbsp;"createdDate",<br>&nbsp;&nbsp;"createdByFieldName":&nbsp;"createdBy",<br>&nbsp;&nbsp;"linkCommentFieldName":&nbsp;"linkComment",<br>&nbsp;&nbsp;"externalLinkUrlFieldName":&nbsp;"externalLinkUrl",<br>&nbsp;&nbsp;"isExternalLinkFieldName":&nbsp;"isExternalLink"<br>}</pre> |
+|                  | deleteSupported | True | Boolean | Does the system allow to delete link?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|                  | historySupported | True | Boolean | Does the system support history for link?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|                  |createUpdateDateFormat | True | String | Date format for created and updated dates of link                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|                  |**linkTypes** | True |  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|                  |linkType | True | String | Name of link type: Parent, Child, Relates To, Blocked By, etc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|                  | linkTypeInternalName | False | Sring | Specifies the unique system identifier for the link relationship: parent, relates_to etc. This value is used for interactions with end system and is not intended for display purposes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|                  | linkTypeDirection | False | String | Direction of the link: FORWARD or BACKWARD.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   
+|                  |reverseLinkType | True | String | Name of its reverse link. E.g., if the link type is Parent, then the opposite linkType is Child, i.e. Entity E1 is the parent of entity E2, and E2 is the child of E1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|                  |isMultiLinkAllowed | True | Boolean | True: If multiple links of this type can be created. False: if only one link of this type can be created. For example: Adding only one parent is allowed to be added for any entity, so set multiLinkAllowed to false for Parent Type. On the other hand, for the ‘Related’ link type, any number of links can be added, so send true                                                                                                                                                                                                                                                                                                                                      |
+|                  |isLinkMandatory | True | Boolean | True: If link of this type is mandatory for entity create or update. False: If link of this type is not mandatory for entity create or update. For example, it might be mandatory to have a Parent link to another work item for sub-task or task entity type. In this case, send true for the Parent link type for Task                                                                                                                                                                                                                                                                                                                                                   |
+|                  |isBulkLinkingSupported | True | Boolean | True: If bulk linking is supported via API. False: If bulk linking is not supported via API. For example, Bug and task can be linked by relates link type. Multiple tasks (with link type - relates) can be added and removed via a single API. In this case, send true for relates link type for Bug                                                                                                                                                                                                                                                                                                                                                                      |
 
 
 | Parent Parameter | Name | Required | Type | Description |
