@@ -48,7 +48,7 @@ Given below are the systems supported currently by <code class="expression">spac
             <td>3</td>
             <td>Azure DevOps Server</td>
             <td> 2010, 2012, 2013, 2015 (up to Update 3), 2017, 2017 Update 2, 2018, 2019, 2020, 2022  </td>
-            <td> Work items such as Bug, Requirement, Task, Test Case, User Story, Shared Steps and All Custom Entity Types <br>Test Entities such as Test Plan, Test Result, Test Run, Test Suite <br>Iteration, Area Path, User Group, Team and User: 2010 and above <br>Git Commit Information (only read): 2016 and above<br>Dashboard, Query, Widget: 2017 and above <br>Pull Request (only read), Build Pipeline**, Release Pipeline**, Service Connection, Task Group, Variable Group : 2018 and above <br>Build* (only read): 2019 and above <br>  Agent Pool : 2020 and above</td>
+            <td> Work items such as Bug, Requirement, Task, Test Case, User Story, Shared Steps and All Custom Entity Types <br>Test Entities such as Test Plan, Test Result, Test Run, Test Suite <br>Iteration, Area Path, User Group, Team and User: 2010 and above <br>Git Commit Information (only read): 2016 and above<br>Dashboard, Query, Widget: 2017 and above <br>Pull Request (only read), Build Pipeline**, Release Pipeline**, Service Connection, Task Group : 2018 and above <br>Agent Pool : 2020 and above<br>Build* (only read): 2019 and above </td>
             <td>Team Foundation Server (TFS)</td>
         </tr>
         <tr>
@@ -62,7 +62,7 @@ Given below are the systems supported currently by <code class="expression">spac
             <td>5</td>
             <td>Azure DevOps Services</td>
             <td>All</td>
-            <td> Work items such as Bug, Requirement, Task, Test Case, User Story, Shared Steps and All custom workitem types <br>Test entities such as Test Plan, Test Result, Test Run, Test Suite<br>Iteration, Area Path, Group, Team, User, Dashboard, Query, Widget, Pipeline**, Release Pipeline**, Agent Pool, Service Connection, Task Group, Variable Group  <br> Git Commit Information(only read), Pull Request(only read), Build* (only read) </td>
+            <td> Work items such as Bug, Requirement, Task, Test Case, User Story, Shared Steps and All custom workitem types <br>Test entities such as Test Plan, Test Result, Test Run, Test Suite<br>Iteration, Area Path, Group, Team, User, Dashboard, Query, Widget, Pipeline**, Release Pipeline**, Agent Pool, Service Connection, Task Group  <br> Git Commit Information(only read), Pull Request(only read), Build* (only read) </td>
             <td>Visual Studio Team Services (VSTS)</td>
         </tr>
         <tr>
@@ -222,7 +222,7 @@ Given below are the systems supported currently by <code class="expression">spac
         <tr>
             <td>28</td>
             <td>IBM Engineering Requirements Management DOORS Next</td>
-            <td>6.0.x*, 7.0.1, 7.0.2 to 7.0.2 IFix25, 7.0.3</td>
+            <td>6.0.5, 6.0.6, 7.0.1, 7.0.2 to 7.0.2 IFix25, 7.0.3</td>
             <td>All Artifacts (Text + Collection)</td>
             <td>IBM DOORS NG</td>
         </tr>
@@ -501,69 +501,62 @@ Given below are the systems supported currently by <code class="expression">spac
         </tr>
         <tr>
             <td>68</td>
-            <td>SolarWinds Service Desk</td>
-            <td>SaaS</td>
-            <td>Incidents, Changes</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>69</td>
             <td>Subversion*</td>
             <td>1.5, 1.6.3, 1.6.17, 1.7.9</td>
             <td>Commit Information</td>
             <td></td>
         </tr>
         <tr>
-            <td>70</td>
+            <td>69</td>
             <td>TestRail**</td>
             <td>7.2.1, 7.8.0, 8.0.1</td>
             <td>Tests, Test Cases, Test Plans, Test Results, Test Runs, Test Suites, Sections, Milestones</td>
             <td></td>
         </tr>
         <tr>
-            <td>71</td>
+            <td>70</td>
             <td>Trac*</td>
             <td>0.12.0, 0.11.5, 1.0</td>
             <td>Trac Ticket</td>
             <td></td>
         </tr>
         <tr>
-            <td>72</td>
+            <td>71</td>
             <td>Tricentis qTest</td>
             <td>Cloud (All)<br/>On-prem: 8.4.2–2023.x.x</td>
             <td>Defect, Requirement, Testcase, Testlog, Release, Test Suite, Test Run, Module, Test Cycle, Build (read only)</td>
             <td>QA Symphony</td>
         </tr>
         <tr>
-            <td>73</td>
+            <td>72</td>
             <td>Tricentis Tosca</td>
             <td>2023.2.x, 2024.2.x (x64)</td>
             <td>TestCase, ExecutionTestCaseLog (read), ExecutionEntry, TCFolder, Requirement, RequirementSet, Issue, Module</td>
             <td></td>
         </tr>
         <tr>
-            <td>74</td>
+            <td>73</td>
             <td>Verisium Manager**</td>
             <td>20.x–25.x (up to 25.01)</td>
             <td>Section, Metrics Port, Reference [from 21.01+]<br/>Supported for vPlan in DB only</td>
             <td>vManager</td>
         </tr>
         <tr>
-            <td>75</td>
+            <td>74</td>
             <td>Windchill</td>
             <td>2009–13.3</td>
             <td>Change Order, Change Request, Defect, Document, Model, Portfolio, Product, Project, Requirement, Test, Specification, Work Item, Custom Entities</td>
             <td>PTC, Windchill RV&S</td>
         </tr>
         <tr>
-            <td>76</td>
+            <td>75</td>
             <td>Windchill PLM*</td>
             <td>13.x</td>
             <td>Issue [Soft type/Subtype of Problem Reports]</td>
             <td>PDM Link</td>
         </tr>
         <tr>
-            <td>77</td>
+            <td>76</td>
             <td>Zendesk</td>
             <td>Cloud</td>
             <td>Zendesk Ticket</td>

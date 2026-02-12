@@ -602,29 +602,6 @@ By default, OIM fetches complete entity details from the end system. When **Fetc
 * Conflict detection will not work as expected in the following scenario:
   * A field was initially mapped and field data was synced using OIM. Now that field is removed from the mapping and updates are synced. Later on, if that same field is mapped again, conflict detection will not work as expected and false conflict might be detected.
 
-## Suppress End System Notification
-
-This feature allows you to stop notifications from being sent to the target system (such as Jira) when records are created or updated through synchronization.
-
-If the target system supports this option, you can choose:
-
-* **True** – Notifications (emails, alerts, etc.) will not be sent for create/update events.
-
-* **False** – Notifications will be sent as usual.
-
-This is useful when you want to avoid triggering unnecessary emails or alerts during automated sync operations.
-
-<p align="center">
-  <img src="../assets/Suppress_End_System_Notification.png" width="300" />
-</p>
-
-Given feature is available only for selected connectors:
-
-| Systems Supported                                       | Supported Actions |
-|---------------------------------------------------------|-------------------|
-| [Jira](../connectors/jira.md#integration-configuration) | Issue Updates     |
-
-> **Note** : If you want to request for this feature, please contact your sales/support.
 
 # Managing Integrations
 

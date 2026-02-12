@@ -39,19 +39,9 @@ This is the URI, OpsHub will execute to call this API:
     "key": "customParam2",
     "value": "param2Value",
     "sensitive": false
-  },
-  {
-    "key": "suppressNotification",
-    "value": "1",
-    "sensitive": false
   }
 ]
 ```
-
-> **Note**: If Suppress End System Notification is enabled on the Integration Configuration page, the selected option is passed in the request payload using the key suppressNotification. 
-> * When set to True, suppressNotification = "1", meaning notifications are suppressed. 
-> * When set to False, suppressNotification = "2", meaning notifications will be sent as usual. 
-> * For more details, see [**Suppress End System Notification**](../integrate/integration-configuration.md#suppress-end-system-notification). 
 
 # Request Body
 

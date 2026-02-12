@@ -40,7 +40,7 @@ Refer the screenshot given below for reference.
 | **Private Key**           | Deployment type is On-Cloud & Authentication mode is Service Principal - Client Certificate                                      | Provide the Private Key of a certificate uploaded in Azure Active Directory for the application given in "Application ID" input.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | **Thumbprint**            | Deployment type is On-Cloud & Authentication mode is Service Principal - Client Certificate                                      | Provide the Thumbprint of a certificate uploaded in Azure Active Directory for the application given in "Application ID" input. This can be found in the Microsoft Entra (Azure Active Directory) in "Certificates & secrets" section.                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **Team Collection Name**  | Deployment type is On-Premises                                                                                                   | Enter the Collection name. For example, PrimaryCollection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **Service URL**           | Always                                                                                                                           | Provide the Service URL where the Service is installed. For example: `http://<service_host>:<port>/TFSService`. The Service URL is mandatory for all versions of Azure DevOps Server below 2020, regardless of the work item being integrated. For Azure DevOps Server 2020 and later and Azure DevOps Service, the Service URL is required when integrating Query, Dashboard, Widget, or Pull Request, and additionally Team, Group, and User for Azure DevOps Server.                                                                                                                                                                        |
+| **Service URL**           | Always                                                                                                                           | Provide the Service URL where the Service is installed. For example: `http://<service_host>:<port>/TFSService`. The Service URL is mandatory for all versions of Azure DevOps Server below 2020, regardless of the work item being integrated. For 2020 and above versions of Azure DevOps Server and Azure DevOps Service, the Service URL is mandatory for these work items: Team, Group, User, Query, Dashboard, Widget, and Pull Request.                                                                                                                                                                        |
 | **Bypass rules**          | Always                                                                                                                           | Setting Bypass Rules to 'Yes' means disabling the rules while writing the changes to the system. This change will allow users to write invalid value(s) to any field in the system. For over writing, 'Changed By', 'Changed Date', etc. fields, enable the Bypass rules. Refer [Bypass Rule with User Impersonation](azure-devops.md#bypass-rule-with-user-impersonation) in the appendix section to learn in detail about User Impersonation and ByPass Rule. **Note** If Bypass Rules is set to 'Yes' in the system configuration, make sure the user or Service Principal has the 'Bypass rules on work item updates permission' set to Allow at the project level in Azure DevOps. |
 
 # Mapping Configuration
@@ -428,12 +428,46 @@ to this:
 ```
 {% endif %}
 
-## Variable Groups in Pipeline
+## Perform check & create for Variable Groups in Pipeline
 
-* If you are **upgrading to <code class="expression">space.vars.SITENAME</code> version 7.214 or later**, the **existing advanced workflow will remain associated** with the Build Pipeline or Release Pipeline integrations after the upgrade.
-* After the upgrade, **if there are no processing failures and the integrations are in a clean state**, you may **switch to the Default Integration Workflow**. To associate the Default Integration Workflow, refer to the [Workflow Association](../integrate/integration-configuration.md#workflow-association) section.
-* For **fresh installations of version 7.214 or later, no advanced workflow configuration is required**.
-  * Reason: From version **7.214 onwards, Variable Groups are supported separate entities** and are handled as **reference fields in pipeline mappings**, eliminating the need for advanced workflow logic.
+* To perform check & create for **Variable Groups** in build pipeline or release pipeline, **Variable Group details** field should be mapped.
+* Advanced mapping is required for the same in <code class="expression">space.vars.SITENAME</code>. Below is the sample advanced mapping:
+
+```xml
+<Variable-space-group-space-details>
+  <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  select="SourceXML/updatedFields/Property/Variable-space-group-space-details/list">
+    <op_list>
+      <xsl:element name="variables">
+        <xsl:for-each select="Property/variables/Property/*">
+          <xsl:element name="{name()}">
+            <xsl:for-each select="./Property/*">
+              <xsl:element name="{name()}">
+                <xsl:value-of select="."/>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:element>
+        </xsl:for-each>
+      </xsl:element>
+      <xsl:element name="type">
+        <xsl:value-of select="Property/type"/>
+      </xsl:element>
+      <xsl:element name="name">
+        <xsl:value-of select="Property/name"/>
+      </xsl:element>
+      <xsl:element name="description">
+        <xsl:value-of select="Property/description"/>
+      </xsl:element>
+      <xsl:element name="id">
+        <xsl:value-of select="Property/id"/>
+      </xsl:element>
+    </op_list>
+  </xsl:for-each>
+</Variable-space-group-space-details>
+```
+
+* While configuring the integration for the Build Pipeline, select the **Default Integration Workflow Pipeline** to enable the check-and-create process for variable groups.
+* Similarly, for the Release Pipeline, ensure that the **Default Integration Workflow Release Pipeline** is selected to perform check-and-create for variable groups. For more details, refer to the [Workflow Association](../integrate/integration-configuration.md#workflow-association) section.
+
 
 # Integration Configuration
 
@@ -555,14 +589,6 @@ Refer to [Microsoft API documentation](https://{instance}/{collection}/_apis/dis
 | Name           | Synchronize all entities with the name 'TestTaskGroup' | `[{\"condition\":\"EQUALS\",\"field\":\"name\",\"value\":\"TestTaskGroup\"}]` |
 | Category       | Synchronize all entities with the category of 'Deploy' | `[{\"condition\":\"EQUALS\",\"field\":\"category\",\"value\":\"Deploy\"}]`    |
 
-### Sample Criteria Examples for 'Variable Group' entity
-
-| **Field Name** | **Criteria Description**                                   | **Criteria Snippet**                                                              |
-|----------------|------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| Name           | Synchronize all entities with the name 'TestVariableGroup' | `[{\"condition\":\"EQUALS\",\"field\":\"name\",\"value\":\"TestVariableGroup\"}]` |
-| Type           | Synchronize all entities with the type of 'Vsts'           | `[{\"condition\":\"EQUALS\",\"field\":\"type\",\"value\":\"Vsts\"}]`              |
-
-
 
 You can find more Criteria Configuration details on [Integration Configuration](Integration_Configuration/) page.
 
@@ -616,13 +642,13 @@ The query must be in the format:
 ### Supported Target Lookup Query for Agent Pool Entity
 
 The query must be in the format:
-`agentName=@name@`
+`agentName=@name`
 - This retrieves Agent Pools based on the **agent name** provided.
 
-### Supported Target Lookup Query for Task Group and Variable Group Entities
+### Supported Target Lookup Query for Task Group Entity
 
 The query must be in the format:
-`[{\"condition\":\"EQUALS\",\"field\":\"name\",\"value\":\"@name@"}]`
+`[{\"condition\":\"EQUALS\",\"field\":\"name\",\"value\":\"@name"}]`
 - `field` specifies that the lookup is performed on the **name** field
 - `condition: EQUALS` ensures an exact name match
 - `value` is the Task Group name to be searched

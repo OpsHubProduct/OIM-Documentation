@@ -16,32 +16,15 @@ Failure Notification requires SMTP mail client systems to be created which can s
 This section shows SMTP Mail Client System Configuration steps in detail.
 
 <p align="center">
-  <img src="../../assets/SMTP_Basic_Auth.png" width="800"/>
-</p>
-
-<p align="center">
-  <img src="../../assets/SMTP_OAuth.png" width="800"/>
+  <img src="../../assets/Configure-Failure-Notification-Image-3.png" width="800"/>
 </p>
 
 1. Set **System Name** to **SMTP Mail client**.  
 2. Set **Version** to **N/A** as it is not required  
 3. Set **SMTP Server** to outgoing server name. All notification mails will be sent through this server.  
-4. Select **Authentication Type** as **Basic Auth** or **OAuth 2.0**, if SMTP Server requires authentication credentials for sending mails. If no authentication is required and sending anonymous mails is supported by SMTP Server, then set it to **No Auth**.  
-5. Set the value of **Sender Email-id** as it is a **mandatory** field irrespective of any value of field **Authentication Type**. Give a name of a valid email account which can be used for sending e-mails.  
-6. **Authentication type:**
-   1. If Authentication Type is set to **Basic Auth** then **Password** will appear, give email login password for user in **Sender Email-id**.  
-   2. If Authentication Type is set to **OAuth 2.0** then below fields will be visible.
-      1. **Token URL:** The endpoint of the OAuth provider used to obtain the access token. Your SMTP client will send authentication requests to this URL (e.g., Microsoft: https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token, Google: https://oauth2.googleapis.com/token)
-      2. **Client Id:** The unique application identifier issued by your OAuth provider. It tells the provider which application is requesting authentication.
-      3. **Client Secret:** The confidential key issued by the OAuth provider for your application. Used together with the Client ID to securely authenticate during token generation. Keep it private.
-      4. **Scope:** Permissions your application is requesting from the OAuth provider. Determines what resources the generated token can access (e.g., https://outlook.office.com/.default, https://mail.google.com/).
-      5. **Response parameter:** Defines how to extract the access token from the token response. Used to parse fields like access_token and expires_in from the OAuth provider’s JSON response format. Default value is given as below:
-        ```json
-      {
-           “accessTokenKey”: “access_token",
-           “expiresInKey”: "expires_in"
-      }
-      
+4. Select **Is Authentication Required** to **Yes** if SMTP Server requires authentication credentials for sending mails. If no authentication is required and sending anonymous mails is supported by SMTP Server, then set it to **No**.  
+5. Set the value of **Sender Email-id** as it is a **mandatory** field irrespective of the value of field **Is Authentication Required** being **Yes or No**. Give a name of a valid email account which can be used for sending e-mails.  
+6. If **Is Authentication Required** is set to **Yes** then **Password** will appear, give email login password for user in **Sender Email-id**.  
 7. **TimeOut** is optional field, it is maximum time for which <code class="expression">space.vars.SITENAME</code> will try to send email, after time out period that specific mail will not be sent.  
 8. Give email id of recipient of notifications in **To Email-Id**.  
 9. Click **Save** to save the configuration.

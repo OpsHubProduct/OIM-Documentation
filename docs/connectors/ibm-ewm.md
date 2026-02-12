@@ -290,7 +290,7 @@ For getting EWM version, follow the steps given below:
 
 * To obtain the project's key, fetch all project details from {User EWM Instance URL}/ccm/oslc/workitems/catalog api endpoint. Look at the value of rdf:resource inside oslc_disc:details/oslc:details. It contains the URL of the project and its id.
 * Possible keywords that can be used to mention an entity in EWM include the name of the entity type and its alias.
-* If the above field input is not provided, only those Entities Mentions will be detected that are mentioned using keywords (workitem, work item, item) or a specific workitem's type ID (e.g., defect).
+* If the above field input is not provided, only those Entities Mentions will be detected that are mentioned using workitem, work item, and item keywords.
 
 ## Understanding Metadata Detail Input
 
