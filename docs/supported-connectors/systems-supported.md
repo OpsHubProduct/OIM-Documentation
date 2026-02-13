@@ -243,7 +243,7 @@ Given below are the systems supported currently by <code class="expression">spac
         <tr>
             <td>31</td>
             <td>IBM Rational ClearQuest</td>
-            <td>8.x</td>
+            <td>8.x*, 10.x</td>
             <td>Defect / Any Stateful Record Type</td>
             <td></td>
         </tr>

@@ -20,11 +20,11 @@ Given below is the list of libraries required to put in `<OpsHub_Installation>/A
 * commons-httpclient.jar
 * commons-codec.jar
 * cqjni.jar
-* You can find all the above jar(s) files in the IBM installation directory. For complete guidance to locate these jars, refer to [IBM Rational ClearQuest document](https://www.ibm.com/docs/bg/rational-clearquest/8.0.1?topic=tutorial-setting-up-installing-clearquest-cm-api). If jar(s) are not found with these documentation steps, search for jar(s) on the following path. These jar(s) could be found in one of the following locations:
-  * `C:\Program Files (x86)\IBM\RationalSDLC\ClearQuest`
-  * `C:\Program Files (x86)\IBM\RationalSDLC\ClearQuest\cqweb`
-  * `C:\Program Files (x86)\IBM\RationalSDLC\ClearQuest\common`
-  * `C:\Program Files (x86)\IBM\RationalSDLC\ClearQuest\cqweb\cqwebprofile\installedApps\dfltCell\TeamEAR.ear\cqweb.war\WEB-INF\lib`
+* You can find all the above jar(s) files below.
+
+  {% file src="../../assets/Files/ClearQuest/CQ_LIB.zip" %}
+  ClearQuest Jar files
+  {% endfile %}
 * Copy above required libraries to `<OpsHub_Installation>\AppData\bundle_config\CQ_LIB` directory.
 * Restart <code class="expression">space.vars.SITENAME</code> server after copy.
 
@@ -289,7 +289,9 @@ Below is the JSON syntax for the criteria query: {"query":"Personal Queries/", "
 * Comments will be synchronized only for the default **Notes** fields in IBM Rational ClearQuest end system.
   * The comments will be read from the Notes field having the name, **Notes\_Log** and written to the Notes field having the name, **Note\_Entry**.
   * If any other comment field enabled with different name, those will not be part of comments synchronization of <code class="expression">space.vars.SITENAME</code>.
-
+* For ClearQuest as the target system, 
+  * If the attachment file name contains this file name characters (%,:) or non-ascii characters like (样,品,テ,ス,ト,フ,ァ,イ,ル,★,✓,♛,Ω), then the file will not be added in ClearQuest. Consequently, the user will encounter a Processing Failure. To avoid this Processing Failure, it is recommended to use the valid file naming conventions. 
+  * Additionally, if the user still wants to synchronize attachments having this file name characters, then the user needs to add advance mapping for attachments to replace special characters with any of the supported characters. Refer [Attachment naming convention related errors](../help-center/troubleshooting/errors/common/attachment-naming-convention-related-errors.md)
 ***
 
 # Appendix
