@@ -327,6 +327,7 @@
                 * [OH-Connector-06200](docs/help-center/troubleshooting/errors/common/oh-connector-06200.md)
                 * [OH-Connector-06201](docs/help-center/troubleshooting/errors/common/opshub-020404.md)
                 * [Incompatible-Password-Hash-Algorithm](docs/help-center/troubleshooting/errors/common/incompatible-password-hash-algorithm.md)
+                * [Attachment-naming-convention-related-errors](docs/help-center/troubleshooting/errors/common/attachment-naming-convention-related-errors.md)
             * [Enterprise Architect](docs/help-center/troubleshooting/errors/ea-error-solutions.md)
                 * [OH-EA-0002](docs/help-center/troubleshooting/errors/ea/oh-ea-0002.md)
             * [IBM Rational Doors Next Generation](docs/help-center/troubleshooting/errors/ibm-rational-doors-next-generation-error-solutions.md)
