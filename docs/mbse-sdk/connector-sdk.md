@@ -1,6 +1,6 @@
-[Getting Started](getting-started.md)
+[Getting Started](getting-started/getting-started.md)
 
-[Build Your Own Connector](build-your-own-connector.md)
+[Build Your Own Connector](getting-started/mbse-sdk-connector-apis.md)
 
 [Register Connectors](register-connectors.md)
 

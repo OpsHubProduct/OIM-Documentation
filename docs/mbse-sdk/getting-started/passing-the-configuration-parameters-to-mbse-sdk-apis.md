@@ -1,0 +1,6 @@
+# Passing the Configuration Parameters to MBSE SDK APIs
+* OpsHub Integration Manager assumes that MBSE Connector SDK API implementation will be stateless. MBSE SDK is not required to have a database to persist any data(though, if MBSE SDK implementation wants to use a database to store something, they can do it)
+* OpsHub Integration Manager will capture all the required parameters at the time of system configuration. OpsHub will pass all these parameters to the connector MBSE SDK APIs in Request Header for each API call.
+* Though if the connector want to cache some data for a session, they can use the session id passed in the header to maintain a cache for that session. This session id will be same for all the API calls for a given system configuration.
+  * In the [Initialize API](../authentication/session-initialize.md), OpsHub will pass all the parameters captured at the time of system configuration in the request body. MBSE SDK can return any of these parameters in the response, and OpsHub will pass them in the header for all subsequent API calls.
+    * If the MBSE SDK implementation wants to keep some data in cache for a session and doesn't want it to be passed as header in every request, it can do so.
