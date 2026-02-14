@@ -194,6 +194,38 @@
         * [SDK Best Practices](docs/mbse-sdk/sdk-best-practices.md)
         * [APIs Required for Each Feature](docs/mbse-sdk/apis-required-for-each-feature.md)
     * [Build Your Own Connector](docs/mbse-sdk/sdk-connector-apis.md)
+        * Registration APIs
+          * [Connector Metadata]()
+          * [Discover SDK]()
+        * Authentication APIs
+          * [Initialize]()
+          * [Cleanup]()
+        * Metadata APIs
+          * [Server Info]()
+          * [Get All Projects]()
+          * [Get All Workspaces]()
+          * [Get Element Type]()
+          * [Get Stereotypes]()
+          * [Get Properties]()
+          * [Get Enumeration Literals]()
+        * Multi Element Revision APIs
+          * [Get Revisions]()
+          * [Get Elements Changed In Revision]()
+          * [Get Elements At Revision]()
+        * Element APIs
+          * [Element Get](docs/mbse-sdk/element-get.md)
+          * [Element Add](docs/mbse-sdk/element-add.md)
+          * [Element Update](docs/mbse-sdk/element-update.md)
+          * [Element Query](docs/mbse-sdk/element-query.md)
+        * Relation APIs
+          * [Add Relation]()
+          * [Delete Relation]()
+        * Branch APIs
+          * [Get Branch]()
+          * [Add Branch]()
+          * [Delete Branch]()
+          * [Merge Branch]()
+        <!--
         * [Add Comments](docs/mbse-sdk/add-comments.md)
         * [Attachment Content Get](docs/mbse-sdk/attachment-content-get.md)
         * [Attachment Create](docs/mbse-sdk/attachment-create.md)
@@ -204,13 +236,9 @@
         * [Connector Metadata Get](docs/mbse-sdk/connector-metadata-get.md)
         * [Discovery API Get](docs/mbse-sdk/discovery-api-get.md)
         * [Dynamic Substeps Get](docs/mbse-sdk/dynamic-substeps-get.md)
-        * [Entity Create](docs/mbse-sdk/entity-create.md)
         * [Entity Delete](docs/mbse-sdk/entity-delete.md)
-        * [Entity Get](docs/mbse-sdk/entity-get.md)
-        * [Entity List](docs/mbse-sdk/entity-list.md)
         * [Entity Type Get](docs/mbse-sdk/entity-type-get.md)
         * [Entity Types List](docs/mbse-sdk/entity-types-list.md)
-        * [Entity Update](docs/mbse-sdk/entity-update.md)
         * [Error Handling](docs/mbse-sdk/error-handling.md)
         * [File Name Get](docs/mbse-sdk/file-name-get.md)
         * [Get Comments](docs/mbse-sdk/get-comments.md)
@@ -229,6 +257,7 @@
         * [Session Initialize](docs/mbse-sdk/session-initialize.md)
         * [Session Logout](docs/mbse-sdk/session-logout.md)
         * [Users List](docs/mbse-sdk/users-list.md)
+      -->
     * [Register Connectors](docs/mbse-sdk/register-connectors.md)
     * [Developer Notes](docs/mbse-sdk/developer-notes.md)
 * [Release Notes](docs/release-notes/release-notes.md)
