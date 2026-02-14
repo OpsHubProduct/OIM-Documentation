@@ -179,7 +179,7 @@ Following are some search criteria that OpsHub will call **Entity – List API**
 The list of entities matching the selection criteria sent as part of the request payload should be returned.
 
 > **Note:**  
-> Fields provided in [fieldNameInfo in response payload for Entity Type-Get API](../entity-type-get.md#response-payload) and any field which can be configured for end system criteria storage should be part of the response payload.  
+> Fields provided in [fieldNameInfo in response payload for Entity Type-Get API](../metadata/entity-type-get.md#response-payload) and any field which can be configured for end system criteria storage should be part of the response payload.  
 > For more details regarding end system criteria storage, refer to [Criteria Configuration](../../integrate/integration-configuration.md#criteria-configuration).
 
 ```json

@@ -34,20 +34,20 @@
 ## Enhanced link support to include link internal name and link direction
 
 **Backward Compatible Changes**
-- [Entity Type-Get API](entity-type-get.md#api-uri)
-  - [Response payload](entity-type-get.md#response-payload):
+- [Entity Type-Get API](metadata/entity-type-get.md#api-uri)
+  - [Response payload](metadata/entity-type-get.md#response-payload):
     - Within **links.linkTypes** attribute `linkTypeInternalName` and `linkTypeDirection` properties have been added.
     - In **links.fieldNameInfo** attribute `linkTypeDirectionFieldName` is added.
 
 - [Link Create or Update API](relation/link-create-or-update.md#api-uri) 
   - [Request payload](relation/link-create-or-update.md#request-payload) and [Response payload](relation/link-create-or-update.md#response-payload) 
     - The payloads have been extended to support the link direction property.
-    - The `linkType` will contain the link internal name when `linkTypeInternalName` is configured in the [Entity Type-Get API](entity-type-get.md#response-payload).
+    - The `linkType` will contain the link internal name when `linkTypeInternalName` is configured in the [Entity Type-Get API](metadata/entity-type-get.md#response-payload).
     
 - [Link Delete API](relation/link-delete.md#api-uri)
   - [Request payload](relation/link-delete.md#request-payload) and [Response payload](relation/link-create-or-update.md#response-payload)
     - The payloads have been extended to support the link direction property.
-    - The `linkType` will contain the link internal name when `linkTypeInternalName` is configured in the [Entity Type-Get API](entity-type-get.md#response-payload).
+    - The `linkType` will contain the link internal name when `linkTypeInternalName` is configured in the [Entity Type-Get API](metadata/entity-type-get.md#response-payload).
 
 
 # SDK Release 1.17.0
@@ -60,8 +60,8 @@
   - [Request payload](relation/link-delete.md#request-payload) has been enhanced to support deleting multiple links for a given link type in a single API call.
 
 **Backward Compatible Changes**  
-- [Entity Type-Get API](entity-type-get.md#api-uri)  
-  - In [Response Structure](entity-type-get.md#response-payload):  
+- [Entity Type-Get API](metadata/entity-type-get.md#api-uri)  
+  - In [Response Structure](metadata/entity-type-get.md#response-payload):  
     - In **links.linkTypes**, attribute `isBulkLinkingSupported` is added.  
     - In **links.rank.supportedRankOperations**, `MOVE_BULK_AFTER` is added.
 
@@ -82,8 +82,8 @@
 ## Added support for adding multiple inline url prefix.
 
 **Breaking Changes**  
-- [Entity Type-Get API](entity-type-get.md#api-uri)  
-  - In [Response Parameters](entity-type-get.md#response-parameters):  
+- [Entity Type-Get API](metadata/entity-type-get.md#api-uri)  
+  - In [Response Parameters](metadata/entity-type-get.md#response-parameters):  
     - Changed the datatype of `inlineFile.inlineFileUrlPrefix` from `String` to `List<String>`.
 
 ---
@@ -92,8 +92,8 @@
 ## Added support for Rank synchronization
 
 **Backward Compatible Changes**  
-- [Entity Type-Get API](entity-type-get.md#api-uri)  
-  - In [Response Structure](entity-type-get.md#response-payload):  
+- [Entity Type-Get API](metadata/entity-type-get.md#api-uri)  
+  - In [Response Structure](metadata/entity-type-get.md#response-payload):  
     - Field `rank` is added.
 
 ---
@@ -102,7 +102,7 @@
 ## Added support for attachment file comment
 
 **Backward Compatible Changes**  
-- [Attachment Create API](attachment-create.md#request-body) and [Attachment Update API](attachment-update.md#request-body)  
+- [Attachment Create API](archieve/attachment-create.md#request-body) and [Attachment Update API](archieve/attachment-update.md#request-body)  
   - In request body `fileComment` field, an optional attachment file comment is added.  
   - For example, if the attachment "Image.jpg" needs to add with the file comment "Sample trace image," we can use this file comment.
 
@@ -112,8 +112,8 @@
 ## Added support for forming Remote Link using different base URL
 
 **Breaking Changes**  
-- [Entity Type-Get API](entity-type-get.md#api-uri)  
-  - In [Response Structure](entity-type-get.md#response-payload):  
+- [Entity Type-Get API](metadata/entity-type-get.md#api-uri)  
+  - In [Response Structure](metadata/entity-type-get.md#response-payload):  
     - In **entityWebUrl** field, a new field `baseUrl` is added and `urlTemplate` attribute is renamed to `trailingTemplate`.  
     - These changes will be used to form a link.  
       - Example: if the original `urlTemplate` is `https://example.com/{0}/{1}/{2}`, it will now be split into:  
@@ -145,8 +145,8 @@
     - This will be used in return field values for a given entity id without filter on entityTypeId or projectId in case it is sent as null.
 
 **Backward Compatible Changes**  
-- [Entity Types-List API](entity-types-list.md#api-uri)  
-  - In [Response Payload](entity-types-list.md#response-payload):  
+- [Entity Types-List API](metadata/entity-types-list.md#api-uri)  
+  - In [Response Payload](metadata/entity-types-list.md#response-payload):  
     - New metadata for `belongsToCategories` and `projectMovementSupported` is introduced.  
     - These metadata will be used in entity type and project movement.  
       - `belongsToCategories` will help to determine in which category given entity Type belongs.  
@@ -155,21 +155,21 @@
 ## Added support for filtering comments after specified time
 
 **Backward Compatible Changes**  
-- [Get_Comments](get-comments.md#api-uri)  
-  - In [URI Parameters](get-comments.md#uri-parameters):  
+- [Get_Comments](archieve/get-comments.md#api-uri)  
+  - In [URI Parameters](archieve/get-comments.md#uri-parameters):  
     - New parameter `afterTime` is introduced, which can be used when end system supports time based filtering on comments.
 
 ## Added archive support for entity
 
 **Breaking Changes**  
-- [Entity – Delete API](entity-delete.md#api-uri)  
-  - In [URI Parameters](entity-delete.md#uri-parameters), added param `deletionType`.
+- [Entity – Delete API](archieve/entity-delete.md#api-uri)  
+  - In [URI Parameters](archieve/entity-delete.md#uri-parameters), added param `deletionType`.
 
 **Backward Compatible Changes**  
-- [Entity Types – List API](entity-types-list.md#api-uri)  
-  - In [Response Payload](entity-types-list.md#response-payload), added field `isArchiveSupported`.  
-- [Entity Type – Get API](entity-type-get.md#api-uri)  
-  - In [Response Payload](entity-type-get.md#response-payload), added field `archiveMetadata`.
+- [Entity Types – List API](metadata/entity-types-list.md#api-uri)  
+  - In [Response Payload](metadata/entity-types-list.md#response-payload), added field `isArchiveSupported`.  
+- [Entity Type – Get API](metadata/entity-type-get.md#api-uri)  
+  - In [Response Payload](metadata/entity-type-get.md#response-payload), added field `archiveMetadata`.
 
 ---
 
@@ -179,7 +179,7 @@
 **Backward Compatible Changes**  
 - [Entity-List API](entity-list.md#overview)  
   - In [Response Payload](entity-list.md#response-payload):  
-    - Fields provided in [fieldNameInfo in response payload for Entity Type-Get API](entity-type-get.md#response-payload) and any field which can be configured for end system storage should be part of response payload.
+    - Fields provided in [fieldNameInfo in response payload for Entity Type-Get API](metadata/entity-type-get.md#response-payload) and any field which can be configured for end system storage should be part of response payload.
 
 ---
 
@@ -190,12 +190,12 @@
 - [Entity-Update API](entity-update.md#api-uri)  
   - In [URI Parameters](entity-update.md#uri-parameters):  
     - New parameter is introduced for `subStepNumber`.  
-    - Only consider the `subStepNumber` change in the updateEntity if the `multiStepUpdate` field provided in the [multiStepUpdate](entity-type-get.md#response_parameters) is either `STATIC_SUB_STEPS` or `DYNAMIC_SUB_STEPS`.  
+    - Only consider the `subStepNumber` change in the updateEntity if the `multiStepUpdate` field provided in the [multiStepUpdate](metadata/entity-type-get.md#response_parameters) is either `STATIC_SUB_STEPS` or `DYNAMIC_SUB_STEPS`.  
     - This parameter allows users to detect which API call to make based on Step number in which the field/fields came. Useful when there is separate API to transition Status from one state to another and all other fields can be updated in single update request to end system.
 
 **Backward Compatible Changes**  
-- [Connector_Metadata–Get](connector-metadata-get.md#api-uri)  
-  - In [Response Payload](connector-metadata-get.md#response-payload):  
+- [Connector_Metadata–Get](registration/connector-metadata-get.md#api-uri)  
+  - In [Response Payload](registration/connector-metadata-get.md#response-payload):  
     - New metadata for `additionalMetadata` is introduced.  
     - This will be used to know if the connector supports user search based on `userName` and user search on `email`.
 
@@ -205,12 +205,12 @@
 ## Added support for Dynamic Retrieval of lookup fields in integration advance setting screens.
 
 **Breaking Changes**  
-- [History-List API](history-list.md#api-uri), [Attachment_History-List](attachment-history-list.md#uri-parameters), [Comment_History-List](comment-history-list.md#uri-parameters), [Link_History-List](link-history-list.md#uri-parameters)  
+- [History-List API](archieve/history-list.md#api-uri), [Attachment_History-List](archieve/attachment-history-list.md#uri-parameters), [Comment_History-List](archieve/comment-history-list.md#uri-parameters), [Link_History-List](archieve/link-history-list.md#uri-parameters)  
   - In corresponding URI Parameters:  
     - New parameter `orderByDirection` is introduced.  
     - This parameter gives direction for sorting to all the fields listed in history metadata `sortableFields` set.  
-- [Lookup_Field_Values-Get](lookup-field-value-get.md#api-uri)  
-  - In [URI Parameters](lookup-field-value-get.md#uri-parameters):  
+- [Lookup_Field_Values-Get](metadata/lookup-field-value-get.md#api-uri)  
+  - In [URI Parameters](metadata/lookup-field-value-get.md#uri-parameters):  
     - New parameter `fieldScope` is introduced.  
     - This parameter gives the Scope where Lookup values for a field are to be displayed.
 
@@ -220,8 +220,8 @@
 ## Added support for searching mention in HTML data type using regex
 
 **Backward Compatible Changes**  
-- [Entity Type-Get API](entity-type-get.md#api-uri)  
-  - In [Response Parameters](entity-type-get.md#response-parameters):  
+- [Entity Type-Get API](metadata/entity-type-get.md#api-uri)  
+  - In [Response Parameters](metadata/entity-type-get.md#response-parameters):  
     - New parameter introduced for `fieldDataType` field of `userMention` and `entityMention`.  
     - This parameter will allow user to detect mention from html data type using regex. This is useful when it's not possible to detect all the mention using html selector.
 
@@ -231,8 +231,8 @@
 ## Added Support for Reference Fields
 
 **Backward Compatible Changes**  
-- [Entity Type-Get API](entity-type-get.md#api-uri)  
-  - In [Response Structure](entity-type-get.md#response-payload):  
+- [Entity Type-Get API](metadata/entity-type-get.md#api-uri)  
+  - In [Response Structure](metadata/entity-type-get.md#response-payload):  
     - In `fields`, `referenceFieldMetadata` field is added.  
     - In `fieldNameInfo`, `entityNameFieldName` field is added.  
 

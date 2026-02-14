@@ -2,7 +2,7 @@
 **Get Siblings Under Parent Order By Rank**
 
 ## Overview
-Applicable only when the end system supports [Rank](../integrate/mapping-configuration.md#overview-1).
+Applicable only when the end system supports [Rank](../../integrate/mapping-configuration.md#overview-1).
 
 Get all the siblings of an entity identified by the given entity id and under the given parent entity.
 

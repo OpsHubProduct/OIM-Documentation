@@ -3,7 +3,7 @@ MBSE SDK can use this API to connect to end system. OpsHub will send all the con
 
 - API will return the parameters which it will need for all subsequent API calls.  
 - All the response parameters returned by this, will be passed by OpsHub in subsequent APIs, as Request Headers.  
-- When token gets expired, MBSE SDK need to pass the appropriate HTTP status code (Refer to [Error Handling](../error-handling.md) page). On receiving this error code, OpsHub will again call initialize API to renew the token.
+- When token gets expired, MBSE SDK need to pass the appropriate HTTP status code (Refer to [Error Handling](../getting-started/error-handling.md) page). On receiving this error code, OpsHub will again call initialize API to renew the token.
 
 # Recommendations
 - When initialize API is called, all the system configuration details are passed in the request. Connector should do necessary validation for the configuration fields. e.g., If a field's value is expected to be a JSON, the JSON value can be validated in this API call.

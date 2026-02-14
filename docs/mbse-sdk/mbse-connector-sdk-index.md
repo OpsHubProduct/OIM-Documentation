@@ -8,11 +8,11 @@
   <tbody>
     <tr>
       <td align="center">🚀 <strong>Getting Started</strong></td>
-      <td><a href="getting-started.md">Getting Started</a></td>
+      <td><a href="getting-started/getting-started.md">Getting Started</a></td>
     </tr>
     <tr>
       <td align="center">🧩 <strong>Build Your Own Connector</strong></td>
-      <td><a href="sdk-connector-apis.md">Build Your Own Connector</a></td>
+      <td><a href="getting-started/sdk-connector-apis.md">Build Your Own Connector</a></td>
     </tr>
     <tr>
       <td align="center">🔗 <strong>Register Connectors</strong></td>
