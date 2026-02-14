@@ -1,0 +1,240 @@
+# API Name
+
+API Name: Revision – Get Elements at Revision
+
+---
+
+# Overview
+
+This API returns the state of given elements at a specific revision.
+
+It provides a snapshot of elements as they existed at `revisionId`.
+
+MBSE Core uses this API when:
+
+- Field-level diff is not provided by the Revision – Diff API.
+- Full element reconstruction is required.
+- Snapshot-based synchronization is implemented.
+
+Connector responsibility:
+
+- This API is **not mandatory** if detailed property/tag diff is already provided in the Revision – Diff API.
+- If detailed diff is not provided, connector must implement this API.
+- Connector must return element state exactly as it existed at the specified revision.
+
+---
+
+## API URI
+
+```bash
+GET: /mbse/api/1.0/revisions/{revisionId}/elements
+    ?projectId={projectId}
+    &elementIds={elementIds}
+    &branchId={branchId}
+    &expand=PROPERTIES,TAGS,FILES,RELATIONS
+    &tags={tags}
+    &properties={properties}
+```
+
+---
+
+## Path Parameters
+
+| Name        | Mandatory | Type   | Description |
+|------------|-----------|--------|-------------|
+| revisionId | True      | String | ID of the revision at which element state must be retrieved. |
+
+---
+
+## URI Parameters
+
+| Name       | Mandatory | Type          | Description |
+|------------|-----------|--------------|-------------|
+| projectId  | True      | String       | ID of the project. |
+| elementIds | True      | List<String> | List of element IDs whose state is required. |
+| branchId   | False     | String       | ID of the branch. If omitted, default branch behavior of the end system should apply. |
+| expand     | False     | List<String> | Controls which additional information should be included in the response. Possible values: `PROPERTIES`, `TAGS`, `FILES`, `RELATIONS`. |
+| tags       | False     | List<String> | List of tag IDs to be included in the response. Applicable only if `TAGS` is included in `expand`. |
+| properties | False     | List<String> | List of property IDs to be included in the response. Applicable only if `PROPERTIES` is included in `expand`. |
+
+---
+
+## Expand Parameter Behavior
+
+The `expand` parameter determines which additional fields are included:
+
+- `PROPERTIES`
+    - Include element properties.
+    - If `properties` parameter is provided, return only those properties.
+    - If not provided, return all properties.
+
+- `TAGS`
+    - Include tagged values.
+    - If `tags` parameter is provided, return only those tags.
+    - If not provided, return all tags.
+
+- `FILES`
+    - Include files attached to the element.
+
+- `RELATIONS`
+    - Include relations of the element.
+
+If `expand` is omitted, only base element metadata must be returned.
+
+---
+
+## Behavior Rules
+
+1. Element state must reflect the exact state at `revisionId`.
+2. Only elements specified in `elementIds` must be returned.
+3. If an element does not exist at the specified revision, it must not be returned.
+4. Filtering by `properties` and `tags` must be respected when provided.
+5. If `expand` is not specified, properties, tags, files, and relations must not be returned.
+6. Response must not include data beyond what is requested.
+
+---
+
+## Response Payload
+
+The API returns a list of element objects.
+
+### Sample Response
+
+```json
+[
+  {
+    "elementId": "block_101",
+    "name": "System Block",
+    "elementTypeId": "Block",
+    "qualifiedName": "Model::System::Block",
+    "projectId": "123",
+    "createdBy": "john.doe",
+    "updatedBy": "jane.smith",
+    "createdDate": "2026-02-14T08:15:30.000Z",
+    "updatedDate": "2026-02-14T10:10:15.000Z",
+    "parentElementId": "package_1",
+    "properties": {
+      "status": "Approved",
+      "version": "1.2"
+    },
+    "tags": {
+      "criticality": "High"
+    },
+    "relations": [
+      {
+        "relationType": "dependency",
+        "targetElementId": "requirement_55",
+        "targetElementTypeId": "Requirement",
+        "projectId": "123"
+      }
+    ],
+    "files": [
+      {
+        "fileId": "file_001",
+        "fileName": "block-diagram.png",
+        "filePath": "/attachments/block-diagram.png",
+        "downloadUrl": "https://example.com/download/file_001",
+        "label": "Diagram",
+        "contentType": "image/png",
+        "contentLength": 204800,
+        "author": "john.doe",
+        "fileType": "IMAGE",
+        "lastModifiedDate": "2026-02-14T09:00:00.000Z"
+      }
+    ]
+  }
+]
+```
+
+---
+
+## Element Object Structure
+
+| Name            | Required | Type              | Description |
+|----------------|----------|-------------------|-------------|
+| elementId      | True     | String            | Unique identifier of the element. |
+| name           | False    | String            | Name of the element. |
+| elementTypeId  | True     | String            | ID of the element type. |
+| qualifiedName  | False    | String            | Fully qualified name of the element. |
+| projectId      | True     | String            | Project ID. |
+| createdBy      | False    | String            | User who created the element. |
+| updatedBy      | False    | String            | User who last updated the element. |
+| createdDate    | False    | String (ISO-8601) | Creation timestamp. |
+| updatedDate    | False    | String (ISO-8601) | Last modification timestamp. |
+| parentElementId| False    | String            | Parent element ID. |
+| properties     | False    | Map<String,Object>| Element properties (if expanded). |
+| tags           | False    | Map<String,Object>| Tagged values (if expanded). |
+| relations      | False    | List<Relation>    | Element relations (if expanded). |
+| files          | False    | List<File>        | Files attached to element (if expanded). |
+
+---
+
+## Relation Object Structure
+
+| Name               | Required | Type   | Description |
+|--------------------|----------|--------|-------------|
+| relationType       | True     | String | Type of relation (association, dependency, realization, etc.). |
+| targetElementId    | True     | String | Target element ID. |
+| targetElementTypeId| True     | String | Target element type ID. |
+| projectId          | True     | String | Project ID. |
+| author             | False    | String | Creator of the relation. |
+| createdDate        | False    | String | Relation creation timestamp (ISO-8601). |
+
+---
+
+## File Object Structure
+
+| Name             | Required | Type   | Description |
+|------------------|----------|--------|-------------|
+| fileId           | True     | String | Unique file identifier. |
+| fileName         | True     | String | Name of the file. |
+| filePath         | False    | String | Path of the file. |
+| downloadUrl      | False    | String | URL to download the file. |
+| label            | False    | String | File label. |
+| contentType      | False    | String | MIME type. |
+| contentLength    | False    | Long   | File size in bytes. |
+| author           | False    | String | User who uploaded the file. |
+| fileType         | False    | String | Type/category of the file. |
+| lastModifiedDate | False    | String | Last modification timestamp (ISO-8601). |
+
+---
+
+## Example Use Case
+
+### Get Elements at Specific Revision with Properties and Tags
+
+```bash
+GET /mbse/api/1.0/revisions/rev_20260214_002/elements?
+projectId=123
+&elementIds=block_101,requirement_55
+&expand=PROPERTIES,TAGS
+```
+
+---
+
+## Implementation Guidelines
+
+1. If detailed property/tag diff is already provided in Revision – Diff API, this API does not need to be implemented.
+2. If diff is not provided, connector must:
+    - Retrieve full element state at revision.
+    - Return only requested elements.
+3. Connector must ensure:
+    - Revision-consistent state.
+    - No mixing of data from other revisions.
+    - Accurate filtering of properties and tags.
+
+---
+
+## Design Rationale
+
+This API enables snapshot-based synchronization when:
+
+- Field-level diff is unavailable.
+- File-based systems do not support granular diff.
+- Full element reconstruction is required.
+
+This keeps the revision layer clean and separates:
+
+- Revision metadata retrieval
+- Element-level change detection
+- Element snapshot reconstruction
