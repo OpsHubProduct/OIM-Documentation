@@ -191,9 +191,9 @@
     * [Developer Notes](docs/connector-sdk/developer-notes.md) 
 * [MBSE SDK](docs/mbse-sdk/mbse-connector-sdk-index.md)
     * [Getting Started](docs/mbse-sdk/getting-started/getting-started.md)
-        * [MBSE SDK Best Practices](docs/mbse-sdk/getting-started/sdk-best-practices.md)
-        * [APIs Required for Each Feature](docs/mbse-sdk/getting-started/apis-required-for-each-feature.md)
-    * [Build Your Own Connector](docs/mbse-sdk/getting-started/sdk-connector-apis.md)
+        * [MBSE SDK Best Practices](docs/mbse-sdk/getting-started/mbse-sdk-best-practices.md)
+        * [APIs Required for Each Feature](docs/mbse-sdk/getting-started/mbse-apis-required-for-each-feature.md)
+    * [Build Your Own Connector](docs/mbse-sdk/getting-started/mbse-sdk-connector-apis.md)
         * Registration APIs
           * [Connector Metadata](docs/mbse-sdk/registration/connector-metadata-get.md)
           * [Discover SDK](docs/mbse-sdk/registration/discovery-api-get.md)
