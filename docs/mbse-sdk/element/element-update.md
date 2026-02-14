@@ -1,64 +1,199 @@
-
 # API Name
 
-API Name: Entity – Update
+API Name: Element – Update
 
-## Overview
+---
 
-This API is supposed to update an existing entity in the end system and return the entity object as a response. As part of the request payload, OpsHub will send all the field details with which entity needs to be updated. API must update only the fields that are coming and shouldn’t modify any other field.
+# Overview
+
+This API updates an existing element in the specified project (and optional branch).
+
+MBSE Core uses this API to:
+
+- Modify element metadata
+- Update properties
+- Update tagged values
+- Update parent hierarchy
+- Establish required relations during update
+
+Connector responsibility:
+
+- Retrieve the element within the provided context.
+- Prepare the update request according to end system requirements.
+- Update only the fields provided in the request body.
+- Create or update supplied tags using connector-supported tag APIs.
+- Create required relations if provided.
+- Convert the updated element into `MbseElement` format and return it.
+
+---
 
 ## API URI
 
-This is the URI, OpsHub will execute to call this API
-
 ```bash
-PUT: /entities/{entityTypeId}/{entityId}? 
-      projectId=<projectId>
-      &subStepNumber=<subStepNumber>
+PUT: /mbse/api/1.0/elements/{elementId}
+    ?projectId={projectId}
+    &elementTypeId={elementTypeId}
+    &branchId={branchId}
 ```
 
+---
+
+## Path Parameters
+
+| Name       | Mandatory | Type   | Description |
+|------------|-----------|--------|-------------|
+| elementId  | True      | String | ID of the element to update. |
+
+---
 
 ## URI Parameters
 
-| Name          | In    | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ------------- | ----- | -------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| entityTypeId  | path  | True     | String | ‘id’ of the entity type for the given entityId                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| entityId      | path  | True     | String | ‘id’ of the entity that needs to be updated                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| projectId     | query | True     | String | Project in which the entity exists                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| subStepNumber | query | True     | String | <p>Step number in which the field/fields can be updated.<br><br>Consider the following if the entity type and project movement is supported and the <code>multiStepUpdate</code> field provided in the <a href="Entity_Type_%E2%80%93_Get/#response_parameters">multiStepUpdate</a> is either <code>STATIC_SUB_STEPS</code> or <code>DYNAMIC_SUB_STEPS</code>:<br><br><strong>"-2"</strong>: Project should be updated to the project passed in the Request Payload corresponding to fields, provided <code>{projectIdFieldName}</code> key.<br><strong>"-3"</strong>: Entity Type should be updated to the Entity Type passed in the Request Payload corresponding to fields, provided <code>{entityTypeIdFieldName}</code> key.<br><strong>"-6"</strong>: Both Project and EntityType should be updated to the Entity Type and project passed respectively in the fields, <code>{entityTypeIdFieldName}</code> and <code>{projectIdFieldName}</code> keys.</p> |
+| Name          | Mandatory | Type   | Description |
+|---------------|-----------|--------|-------------|
+| projectId     | True      | String | ID of the project in which the element exists. |
+| elementTypeId | True      | String | ID of the element type. |
+| branchId      | False     | String | ID of the branch. If omitted, default branch behavior applies. |
 
-## Request Payload
+---
+
+## Request Body
 
 ```json
 {
-  "fields": {
-    "<field1>": "field1_value",
-    "<field2>": [
-      "<field2_Value1>",
-      "<field2_value2>"
-    ],
-    "<field3>": true,
-    "<field4": 1000,
-    "<fieldUser>": "userName"
+  "name": "Updated System Block",
+  "parentElementId": "package_2",
+  "properties": {
+    "status": "Approved"
   },
-  "mandatoryLinks": [
+  "tags": {
+    "criticality": "Medium"
+  },
+  "requiredRelations": [
     {
-      "<linkTypeField>": "",
-      "<linkedEntityIdField>": "",
-      "<linkedEntityTypeField>": "",
-      "<linkedEntityScopeIdFieldName>": ""
+      "relationType": "realization",
+      "targetElementId": "requirement_60",
+      "targetElementTypeId": "Requirement",
+      "projectId": "123"
     }
   ]
 }
 ```
 
-## Request Body
+---
 
-| **Name**       | **Required** | **Type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| -------------- | ------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fields         | True         | Object   | <p>It will contain a name: value pair for all fields that need to be set while updating entity in the end system, where (name) is the field id of the field to be set and (value) contains the value that needs to be set. For multi-select fields, the value will be a list of strings. For example, for user-type fields, OpsHub will send a username or email, depending on the data type specified for that field in entity-types API. On the other hand, the value will be a string for other fields like text, number, etc.<br>API must only update the values that are coming and shouldn’t modify or add any more fields while updating an entity in the end system.</p> |
-| mandatoryLinks | False        | Object   | <p>It will contain only mandatory links that need to be set as part of updating an entity.<br>Note: It won’t contain non-mandatory links. For adding non-mandatory links, a separate add-link API will be called.<br>Note: API must only link to mandatory links coming as part of the request payload and should not add any other link.</p>                                                                                                                                                                                                                                                                                                                                    |
+## Request Body Parameters
+
+| Name              | Mandatory | Type                   | Description |
+|-------------------|-----------|------------------------|-------------|
+| name              | False     | String                 | Updated name of the element. |
+| parentElementId   | False     | String                 | Updated parent element ID. |
+| properties        | False     | Map<String,Object>     | Properties to update. |
+| tags              | False     | Map<String,Object>     | Tagged values to update. |
+| requiredRelations | False     | List<Relation>         | Relations to establish during update. |
+
+---
+
+## Behavior Rules
+
+1. The element must exist within the context of:
+    - `projectId`
+    - `elementTypeId`
+    - Optional `branchId`
+2. Only fields provided in the request body must be updated.
+3. Fields not present in the request body must not be modified.
+4. Parent update:
+    - If `parentElementId` is provided, update hierarchy accordingly.
+5. Properties:
+    - Update only provided properties.
+    - Do not remove unspecified properties unless explicitly required by system logic.
+6. Tags:
+    - If tag exists → update it.
+    - If tag does not exist → create it.
+    - MBSE Core may provide utilities for tag lifecycle handling.
+7. Required relations:
+    - Must be created if provided.
+    - Must not remove existing relations unless explicitly supported.
+8. If element does not exist:
+    - Return HTTP `404 Not Found`.
+
+---
 
 ## Response Payload
 
-Please refer to the [Response Payload](entity-get.md#response-payload) section of the Entity-Get API.
+The response must return the fully updated element in `MbseElement` format.
+
+### Sample Response
+
+```json
+{
+  "elementId": "block_200",
+  "name": "Updated System Block",
+  "elementTypeId": "Block",
+  "qualifiedName": "Model::System::UpdatedBlock",
+  "projectId": "123",
+  "createdBy": "john.doe",
+  "updatedBy": "jane.smith",
+  "createdDate": "2026-02-14T12:00:00.000Z",
+  "updatedDate": "2026-02-14T13:00:00.000Z",
+  "parentElementId": "package_2",
+  "properties": {
+    "status": "Approved"
+  },
+  "tags": {
+    "criticality": "Medium"
+  }
+}
+```
+
+---
+
+## Response Parameters
+
+The response must conform to the `MbseElement` structure defined in the Element – Get API.
+
+| Name            | Required | Type              | Description |
+|----------------|----------|-------------------|-------------|
+| elementId      | True     | String            | Unique element identifier. |
+| elementTypeId  | True     | String            | ID of the element type. |
+| projectId      | True     | String            | Project ID. |
+| updatedBy      | False    | String            | User who performed the update. |
+| updatedDate    | False    | String (ISO-8601) | Last modification timestamp. |
+| properties     | False    | Map<String,Object>| Updated properties. |
+| tags           | False    | Map<String,Object>| Updated tagged values. |
+
+---
+
+## Error Handling
+
+| HTTP Status | Description |
+|------------|-------------|
+| 400        | Invalid request parameters. |
+| 404        | Element not found in the specified project. |
+| 409        | Update conflict or constraint violation. |
+| 500        | Internal server error during element update. |
+
+---
+
+## Implementation Guidelines
+
+- Validate element existence before update.
+- Avoid full overwrite unless required by end system.
+- Do not silently ignore invalid fields.
+- Ensure updates are atomic where supported.
+- Maintain ISO-8601 timestamp format.
+- Return the updated element state.
+
+---
+
+## Design Rationale
+
+This API enforces controlled partial updates.
+
+By:
+
+- Updating only provided fields
+- Supporting tag lifecycle management
+- Maintaining strict scoping
+- Avoiding unintended data removal
+
+The MBSE integration layer remains predictable, safe, and system-agnostic.

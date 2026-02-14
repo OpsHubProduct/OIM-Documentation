@@ -1,130 +1,247 @@
+# API Name
+
+API Name: Element – Get
+
+---
+
 # Overview
 
-API needs to return field values for a given `entityId`.  
-If the `entityTypeId` or `projectId` is passed as `"null"`, then the API must search across the scope and return field values for the given `entityId`.  
+This API retrieves a single element from the end system.
 
-OpsHub will call this API to retrieve the **current field values** of a given entity in the end system.
+MBSE Core uses this API to:
+
+- Fetch element details
+- Perform on-demand synchronization
+- Retrieve full element state
+- Support relation and file expansion
+
+Connector responsibility:
+
+- Retrieve the element using the end system API with the given `elementId`.
+- Respect project and branch scoping.
+- Based on `expand` options:
+    - Load properties
+    - Load tags
+    - Load relations
+    - Load files
+- For tags, connector may need to:
+    - Extract tag GUIDs from element metadata
+    - Fetch tag details separately
+- Fetch relations and files if requested.
+- Convert all retrieved data into `MbseElement` format.
 
 ---
 
 ## API URI
 
 ```bash
-GET: /entities/{entityId}?
-     entityTypeId={entityTypeId}&
-     projectId=<projectId>
-     expand=ATTACHMENTS,LINKS (optional)
-     fieldList=[fieldList] (optional)
+GET: /mbse/api/1.0/elements/{elementId}
+    ?projectId={projectId}
+    &elementTypeId={elementTypeId}
+    &branchId={branchId}
+    &expand=PROPERTIES,TAGS,FILES,RELATIONS
+    &properties={properties}
+    &tags={tags}
 ```
+
+---
+
+## Path Parameters
+
+| Name       | Mandatory | Type   | Description |
+|------------|-----------|--------|-------------|
+| elementId  | True      | String | ID of the element to retrieve. |
+
+---
 
 ## URI Parameters
 
-| Name          | In     | Required | Type         | Description |
-|---------------|--------|----------|--------------|-------------|
-| **entityId**  | Path   | Yes      | String       | ID of the entity for which the field data needs to be returned. |
-| **entityTypeId** | Query | Yes      | String       | `id` of the entity type returned from the Entity Type – List API. |
-| **projectId** | Query  | Yes      | String       | Project ID for which the list of entity types is available. Same as the `id` returned by `/projects`. |
-| **expand**    | Query  | No       | String       | Controls whether attachments and/or links are included.<br>- If omitted: attachments and links are not loaded.<br>- `expand=ATTACHMENTS`: only attachments returned.<br>- `expand=LINKS`: only links returned. |
-| **fieldList** | Query  | No       | List\<String\> | When the connector enables the **MAPPED_DATA_RETRIEVAL** feature, specifies the list of fields to fetch. If omitted or empty, all fields must be fetched. |
+| Name           | Mandatory | Type          | Description |
+|----------------|-----------|--------------|-------------|
+| projectId      | True      | String       | ID of the project. |
+| elementTypeId  | True      | String       | ID of the element type. |
+| branchId       | False     | String       | ID of the branch. If omitted, default branch behavior applies. |
+| expand         | False     | List<String> | Controls which additional information is included. Possible values: `PROPERTIES`, `TAGS`, `FILES`, `RELATIONS`. |
+| properties     | False     | List<String> | List of property IDs to include. Applicable only if `PROPERTIES` is included in `expand`. |
+| tags           | False     | List<String> | List of tag IDs to include. Applicable only if `TAGS` is included in `expand`. |
+
+---
+
+## Expand Parameter Behavior
+
+The `expand` parameter controls what additional data is returned:
+
+### PROPERTIES
+- Include element properties.
+- If `properties` is provided, return only those properties.
+- If omitted, return all properties.
+
+### TAGS
+- Include tagged values.
+- If `tags` is provided, return only those tags.
+- If omitted, return all tags.
+
+### FILES
+- Include files attached to the element.
+
+### RELATIONS
+- Include element relations.
+
+If `expand` is omitted, only base element metadata must be returned.
+
+---
+
+## Behavior Rules
+
+1. The element must be retrieved within the scope of:
+    - `projectId`
+    - `elementTypeId`
+    - Optional `branchId`
+2. If element does not exist:
+    - Return HTTP `404 Not Found`.
+3. If `expand` is not provided:
+    - Do not return properties, tags, files, or relations.
+4. Respect filtering parameters (`properties`, `tags`).
+5. Do not return unrelated data.
+6. Response must strictly follow `MbseElement` structure.
 
 ---
 
 ## Response Payload
 
-> **Note:** This is just a *sample* response payload. All the key names under `fields`, `attachments`, and `links` will differ depending on the field IDs defined in `/entity-types/{entity-type-id}` for the given connector.
+### Sample Response
 
 ```json
 {
-  "fields": {
-    "<field1>": "field1_value",
-    "<field2>": [
-      "field2_Value1",
-      "field2_value2"
-    ],
-    "<field3>": true,
-    "<field4>": 1000,
-    "<userField>": "userName",
-    "<entityIdField>": "",
-    "<entityDisplayIdField>": "",
-    "<entityTypeIdField>": "",
-    "<projectIdField>": "// required if project based structure",
-    "<createdDateField>": "",
-    "<updatedDateField>": "",
-    "<createdByField>": "",
-    "<updatedByField>": ""
+  "elementId": "block_101",
+  "name": "System Block",
+  "elementTypeId": "Block",
+  "qualifiedName": "Model::System::Block",
+  "projectId": "123",
+  "createdBy": "john.doe",
+  "updatedBy": "jane.smith",
+  "createdDate": "2026-02-14T08:15:30.000Z",
+  "updatedDate": "2026-02-14T10:10:15.000Z",
+  "parentElementId": "package_1",
+  "properties": {
+    "status": "Approved",
+    "version": "1.2"
   },
-  "attachments": [
+  "tags": {
+    "criticality": "High"
+  },
+  "relations": [
     {
-      "<idField>": "",
-      "<contentUriField>": "",
-      "<renderUriField>": "",
-      "<fileNameField>": "",
-      "<contentTypeField>": "",
-      "<contentLengthField>": "",
-      "<createdDateField>": "",
-      "<createdByField>": "",
-      "<updatedDateField>": "// Either createdDate or updatedDate is required",
-      "<updatedByField>": "",
-      "<fileCommentField>": ""
+      "relationType": "dependency",
+      "targetElementId": "requirement_55",
+      "targetElementTypeId": "Requirement",
+      "projectId": "123"
     }
   ],
-  "links": [
+  "files": [
     {
-      "<linkTypeField>": "",
-      "<linkedEntityIdField>": "",
-      "<linkedEntityTypeField>": "",
-      "<linkedEntityScopeIdFieldName>": "",
-      "<createdDateField>": "",
-      "<createdByField>": ""
+      "fileId": "file_001",
+      "fileName": "block-diagram.png",
+      "filePath": "/attachments/block-diagram.png",
+      "downloadUrl": "https://example.com/download/file_001",
+      "label": "Diagram",
+      "contentType": "image/png",
+      "contentLength": 204800,
+      "author": "john.doe",
+      "fileType": "IMAGE",
+      "lastModifiedDate": "2026-02-14T09:00:00.000Z"
     }
   ]
 }
 ```
-# Response Parameters
 
-| **Name**      | **Required** | **Type** | **Description** |
-|---------------|--------------|----------|-----------------|
-| Fields        | True         | Object   | Current field values for all the fields for the entity. E.g., the current value of entity title, summary, status, priority, description, etc.<br>Notes:<br>*All field names should be field id (as sent from `/entity-types/<entity-type-id>` API. Do not use display name of the fields in the API response*<br>*For multi-valued fields, it should only contain list of strings* |
-| Attachments   | False        | Object   | Details of the current files attached to the entity |
-| Links         | False        | Object   | Details of the entities currently linked to the given entity |
+---
 
-## Examples
+## Response Parameters
 
-1) Sample response for priority field:  
-```json
-[
-  {
-    "id": "1",
-    "value": "High"
-  },
-  {
-    "id": "2",
-    "value": "Medium"
-  },
-  {
-    "id": "3",
-    "value": "Low"
-  }
-]
+### Element Object
+
+| Name            | Required | Type              | Description |
+|----------------|----------|-------------------|-------------|
+| elementId      | True     | String            | Unique element identifier. |
+| name           | False    | String            | Name of the element. |
+| elementTypeId  | True     | String            | ID of the element type. |
+| qualifiedName  | False    | String            | Fully qualified name. |
+| projectId      | True     | String            | Project ID. |
+| createdBy      | False    | String            | User who created the element. |
+| updatedBy      | False    | String            | User who last updated the element. |
+| createdDate    | False    | String (ISO-8601) | Creation timestamp. |
+| updatedDate    | False    | String (ISO-8601) | Last update timestamp. |
+| parentElementId| False    | String            | Parent element ID. |
+| properties     | False    | Map<String,Object>| Element properties (if expanded). |
+| tags           | False    | Map<String,Object>| Tagged values (if expanded). |
+| relations      | False    | List<Relation>    | Element relations (if expanded). |
+| files          | False    | List<File>        | Attached files (if expanded). |
+
+---
+
+## Relation Object
+
+| Name               | Required | Type   | Description |
+|--------------------|----------|--------|-------------|
+| relationType       | True     | String | Type of relation (association, dependency, etc.). |
+| targetElementId    | True     | String | Target element ID. |
+| targetElementTypeId| True     | String | Target element type ID. |
+| projectId          | True     | String | Project ID. |
+| author             | False    | String | Creator of relation. |
+| createdDate        | False    | String | Relation creation timestamp (ISO-8601). |
+
+---
+
+## File Object
+
+| Name             | Required | Type   | Description |
+|------------------|----------|--------|-------------|
+| fileId           | True     | String | Unique file identifier. |
+| fileName         | True     | String | File name. |
+| filePath         | False    | String | File path. |
+| downloadUrl      | False    | String | File download URL. |
+| label            | False    | String | File label. |
+| contentType      | False    | String | MIME type. |
+| contentLength    | False    | Long   | File size in bytes. |
+| author           | False    | String | File uploader. |
+| fileType         | False    | String | File category/type. |
+| lastModifiedDate | False    | String | Last modified timestamp (ISO-8601). |
+
+---
+
+## Example Use Case
+
+### Get Element with Properties and Tags
+
+```bash
+GET /mbse/api/1.0/elements/block_101?
+projectId=123
+&elementTypeId=Block
+&expand=PROPERTIES,TAGS
 ```
 
-2) Sample response for priority field with same id and value:
+---
 
-```json
-[
-  {
-    "id": "High",
-    "value": "High"
-  },
-  {
-    "id": "Medium",
-    "value": "Medium"
-  },
-  {
-    "id": "Low",
-    "value": "Low"
-  }
-]
+## Implementation Guidelines
 
-```
+- Always scope element retrieval to project and branch.
+- Validate element type consistency.
+- Fetch tags separately if end system stores them independently.
+- Do not over-fetch data if `expand` is not specified.
+- Convert all data strictly into `MbseElement` format.
+- Ensure consistent timestamp formatting (ISO-8601).
 
+---
+
+## Design Rationale
+
+This API provides controlled and expandable element retrieval.
+
+By:
+
+- Supporting selective expansion
+- Supporting property/tag filtering
+- Maintaining strict scoping
+
+The API ensures performance efficiency and predictable synchronization behavior across heterogeneous MBSE systems.
