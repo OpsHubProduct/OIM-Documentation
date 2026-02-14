@@ -39,13 +39,13 @@
     - Within **links.linkTypes** attribute `linkTypeInternalName` and `linkTypeDirection` properties have been added.
     - In **links.fieldNameInfo** attribute `linkTypeDirectionFieldName` is added.
 
-- [Link Create or Update API](link-create-or-update.md#api-uri) 
-  - [Request payload](link-create-or-update.md#request-payload) and [Response payload](link-create-or-update.md#response-payload) 
+- [Link Create or Update API](relation/link-create-or-update.md#api-uri) 
+  - [Request payload](relation/link-create-or-update.md#request-payload) and [Response payload](relation/link-create-or-update.md#response-payload) 
     - The payloads have been extended to support the link direction property.
     - The `linkType` will contain the link internal name when `linkTypeInternalName` is configured in the [Entity Type-Get API](entity-type-get.md#response-payload).
     
-- [Link Delete API](link-delete.md#api-uri)
-  - [Request payload](link-delete.md#request-payload) and [Response payload](link-create-or-update.md#response-payload)
+- [Link Delete API](relation/link-delete.md#api-uri)
+  - [Request payload](relation/link-delete.md#request-payload) and [Response payload](relation/link-create-or-update.md#response-payload)
     - The payloads have been extended to support the link direction property.
     - The `linkType` will contain the link internal name when `linkTypeInternalName` is configured in the [Entity Type-Get API](entity-type-get.md#response-payload).
 
@@ -54,10 +54,10 @@
 ## Added support for bulk linking and link ordering
 
 **Breaking Changes**  
-- [Link Create or Update API](link-create-or-update.md#api-uri)  
-  - [Request payload](link-create-or-update.md#request-payload) has been enhanced to support adding multiple links for a given link type, and ordering in a single API call.  
-- [Link Delete API](link-delete.md#api-uri)  
-  - [Request payload](link-delete.md#request-payload) has been enhanced to support deleting multiple links for a given link type in a single API call.
+- [Link Create or Update API](relation/link-create-or-update.md#api-uri)  
+  - [Request payload](relation/link-create-or-update.md#request-payload) has been enhanced to support adding multiple links for a given link type, and ordering in a single API call.  
+- [Link Delete API](relation/link-delete.md#api-uri)  
+  - [Request payload](relation/link-delete.md#request-payload) has been enhanced to support deleting multiple links for a given link type in a single API call.
 
 **Backward Compatible Changes**  
 - [Entity Type-Get API](entity-type-get.md#api-uri)  
@@ -71,11 +71,11 @@
 ## Added support for systemId to store system-specific cache and cleanupGlobalCache flag to control cache cleanup.
 
 **Backward Compatible Changes**  
-- [Session Initialize API](session-initialize.md#api-uri)  
-  - In [URI Parameters](session-initialize.md#uri-parameterss):  
+- [Session Initialize API](authentication/session-initialize.md#api-uri)  
+  - In [URI Parameters](authentication/session-initialize.md#uri-parameterss):  
     - Added query parameter of the `systemId`.  
-- [Session Logout API](session-logout.md#api-uri)  
-  - In [URI Parameters](session-logout.md#uri-parameterss):  
+- [Session Logout API](authentication/session-logout.md#api-uri)  
+  - In [URI Parameters](authentication/session-logout.md#uri-parameterss):  
     - Added query parameter of the `systemId`.  
     - Added query parameter of the `cleanupGlobalCache`.
 

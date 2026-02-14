@@ -3,7 +3,7 @@ MBSE SDK can use this API to connect to end system. OpsHub will send all the con
 
 - API will return the parameters which it will need for all subsequent API calls.  
 - All the response parameters returned by this, will be passed by OpsHub in subsequent APIs, as Request Headers.  
-- When token gets expired, MBSE SDK need to pass the appropriate HTTP status code (Refer to [Error Handling](error-handling.md) page). On receiving this error code, OpsHub will again call initialize API to renew the token.
+- When token gets expired, MBSE SDK need to pass the appropriate HTTP status code (Refer to [Error Handling](../error-handling.md) page). On receiving this error code, OpsHub will again call initialize API to renew the token.
 
 # Recommendations
 - When initialize API is called, all the system configuration details are passed in the request. Connector should do necessary validation for the configuration fields. e.g., If a field's value is expected to be a JSON, the JSON value can be validated in this API call.
@@ -51,7 +51,7 @@ This is the URI, OpsHub will execute to call this API:
 > **Note**: If Suppress End System Notification is enabled on the Integration Configuration page, the selected option is passed in the request payload using the key suppressNotification. 
 > * When set to True, suppressNotification = "1", meaning notifications are suppressed. 
 > * When set to False, suppressNotification = "2", meaning notifications will be sent as usual. 
-> * For more details, see [**Suppress End System Notification**](../integrate/integration-configuration.md#suppress-end-system-notification). 
+> * For more details, see [**Suppress End System Notification**](../../integrate/integration-configuration.md#suppress-end-system-notification). 
 
 # Request Body
 

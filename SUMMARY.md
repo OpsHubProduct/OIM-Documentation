@@ -198,8 +198,8 @@
           * [Connector Metadata](docs/mbse-sdk/connector-metadata-get.md)
           * [Discover SDK](docs/mbse-sdk/discovery-api-get.md)
         * Authentication APIs
-          * [Initialize]()
-          * [Cleanup]()
+          * [Initialize](docs/mbse-sdk/authentication/session-initialize.md)
+          * [Cleanup](docs/mbse-sdk/authentication/session-logout.md)
         * Metadata APIs
           * [Get Server Info]()
           * [Get All Projects]()
@@ -209,22 +209,22 @@
           * [Get Properties]()
           * [Get Enumeration Literals]()
         * Multi Element Revision APIs
-          * [Get Revisions]()
-          * [Get Elements Changed In Revision]()
-          * [Get Elements At Revision]()
+          * [Get Revisions](docs/mbse-sdk/revision/get-revisions.md)
+          * [Get Elements Changed In Revision](docs/mbse-sdk/revision/get-elements-changed-in-revision.md)
+          * [Get Elements At Revision](docs/mbse-sdk/revision/get-elements-at-revision.md)
         * Element APIs
           * [Get Element](docs/mbse-sdk/element/element-get.md)
           * [Add Element](docs/mbse-sdk/element/element-add.md)
           * [Update Element](docs/mbse-sdk/element/element-update.md)
           * [Query Elements](docs/mbse-sdk/element/element-query.md)
         * Relation APIs
-          * [Add Relation]()
-          * [Delete Relation]()
+          * [Add Relation](docs/mbse-sdk/relation/create-relation.md)
+          * [Delete Relation](docs/mbse-sdk/relation/delete-relation.md)
         * Branch APIs
-          * [Get Branch]()
-          * [Add Branch]()
-          * [Delete Branch]()
-          * [Merge Branch]()
+          * [Get Branch](docs/mbse-sdk/branch/get-branch.md)
+          * [Create Branch](docs/mbse-sdk/branch/create-branch.md)
+          * [Delete Branch](docs/mbse-sdk/branch/delete-branch.md)
+          * [Merge Branch](docs/mbse-sdk/branch/merge-branch.md)
         <!--
         * [Add Comments](docs/mbse-sdk/add-comments.md)
         * [Attachment Content Get](docs/mbse-sdk/attachment-content-get.md)
@@ -242,8 +242,6 @@
         * [Get Comments](docs/mbse-sdk/get-comments.md)
         * [Get Siblings Under Parent Order By Rank](docs/mbse-sdk/get-siblings-under-parent-order-by-rank.md)
         * [History List](docs/mbse-sdk/history-list.md)
-        * [Link Create or Update](docs/mbse-sdk/link-create-or-update.md)
-        * [Link Delete](docs/mbse-sdk/link-delete.md)
         * [Link History List](docs/mbse-sdk/link-history-list.md)
         * [Lookup Field Value Get](docs/mbse-sdk/lookup-field-value-get.md)
         * [Objects and Enums Copy](docs/mbse-sdk/objects-and-enums-copy.md)
@@ -252,8 +250,6 @@
         * [Projects List](docs/mbse-sdk/projects-list.md)
         * [SDK API URI Structure](docs/mbse-sdk/sdk-api-uri-structure.md)
         * [Server Info](docs/mbse-sdk/server-info.md)
-        * [Session Initialize](docs/mbse-sdk/session-initialize.md)
-        * [Session Logout](docs/mbse-sdk/session-logout.md)
         * [Users List](docs/mbse-sdk/users-list.md)
       -->
     * [Register Connectors](docs/mbse-sdk/register-connectors.md)
