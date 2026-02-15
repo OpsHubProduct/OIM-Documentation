@@ -1,52 +1,59 @@
 # API Name
-**Link – Delete**
 
-## Overview
-Deletes links between two entities from the end system.
+API Name: Element – Delete Relation
 
+---
+
+# Overview
+
+This API deletes an existing relation between a source element and a target element.
+
+MBSE Core uses this API to:
+
+- Remove structural links
+- Remove dependencies
+- Remove associations
+- Maintain model consistency during synchronization
+
+Connector responsibility:
+
+- For the given source element and relation details:
+    - Delete the corresponding relation in the end system.
+- If the end system models relations as elements:
+    - Delete the relation element.
+- If the end system models relations implicitly:
+    - Remove the link using the appropriate API.
+- Ensure deletion is scoped to the given project and branch.
+
+---
 
 ## API URI
+
 ```bash
-POST: /entities/{entityTypeId}/{entityId}/links/delete?projectId=<projectId>
+DELETE: /mbse/api/1.0/elements/{elementId}/relations
+    ?projectId={projectId}
+    &elementTypeId={elementTypeId}
+    &branchId={branchId}
+    &relationType={relationType}
+    &targetElementId={targetElementId}
+    &targetElementTypeId={targetElementTypeId}
 ```
+
+---
+
+## Path Parameters
+
+| Name       | Mandatory | Type   | Description |
+|------------|-----------|--------|-------------|
+| elementId  | True      | String | ID of the source element in the relation. |
+
+---
 
 ## URI Parameters
 
-| Name         | In     | Required | Type   | Description |
-|--------------|--------|----------|--------|-------------|
-| entityTypeId | path   | True     | String | `id` of the entity type for the given entity id. |
-| entityId     | path   | True     | String | `id` of the entity in which links need to be deleted. |
-| projectId    | query  | True     | String | Project in which the given entity exists. |
-
-
-## Request Payload
-
-| Name      | Required | Type   | Description |
-|-----------|----------|--------|-------------|
-| linkType  | True     | String | The type of link for which links are to be deleted. Example: `Parent`, `Child`, `Related`. <br><br>**If connector supports rank:**<br>If `links.rank.orderType` from [Entity Type – Get](../metadata/entity-type-get.md) API is either `HIERARCHY_SINGLE` or `HIERARCHY_MULTIPLE`, handle additional link types `Hierarchy Parent` and `Hierarchy Child`. |
-| **linkTypeDirection** | False    | String | Specifies the direction of the link. Valid values include `FORWARD`and `BACKWARD`. Applicable only if end system supports link direction. Otherwise, it will be empty. |
-| links     | True     | List   | List of links to be deleted. Each link in the list has the following structure:<br><br> [<br> { `"<linkedEntityIdField>"`: "The name will be the field name in which entity of the linked entity will come, and the value will be the entity id to which entityId coming in request URI need to be deleted", <br>  `"<linkedEntityTypeField>"`: "The name will be the field name in which entity type of linked entity will come, and the value will be the entity type of linked entity id that needs to be deleted" <br> } <br>] |
-
-**Example**
-```json
-{
-  "linkType": "Parent",
-  "linkTypeDirection": "FORWARD",
-  "links": [
-    {
-      "linkedEntityId": "1234",
-      "linkedEntityType": "Task"
-    },
-    {
-      "linkedEntityId": "5678",
-      "linkedEntityType": "Story"
-    }
-  ]
-}
-```
-
-## Response Payload
-Only HTTP status `204`.
-
-
-
+| Name                | Mandatory | Type   | Description |
+|---------------------|-----------|--------|-------------|
+| projectId           | True      | String | ID of the project. |
+| elementTypeId       | True      | String | ID of the source element type. |
+| branchId            | False     | String | ID of the branch. If omitted, default branch behavior applies. |
+| relationType        | True      | String | Type of relation (e.g., Satisfied By, Verifies, Abstraction, dependency, r

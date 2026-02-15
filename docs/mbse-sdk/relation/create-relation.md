@@ -1,117 +1,182 @@
 # API Name
-**Link – Create or Update**
 
-## Overview
-Adds a new link in the given entity ID or updates an existing link.  
-"Update link" will happen only for **mandatory links** or for **link types** where only one entity can be linked (for example, Parent).
+API Name: Element – Add Relation
+
+---
+
+# Overview
+
+This API creates a relation from a source element to a target element.
+
+MBSE Core uses this API to:
+
+- Establish structural relationships
+- Create dependencies
+- Create realizations
+- Create associations and other modeling links
+
+Connector responsibility:
+
+- For the given `elementId` and context:
+    - Create a relation in the end system.
+- If the end system treats relations as elements:
+    - No special implementation may be required beyond standard element creation.
+- If the end system represents relations as separate relation elements:
+    - Connector may need multiple API calls.
+    - Create relation element.
+    - Set relation properties or tagged values if required.
+- Convert request into end system-specific relation format.
 
 ---
 
 ## API URI
+
 ```bash
-POST: /entities/{entityTypeId}/{entityId}/links?projectId=<projectId>
+POST: /mbse/api/1.0/elements/{elementId}/relations
+    ?projectId={projectId}
+    &elementTypeId={elementTypeId}
+    &branchId={branchId}
 ```
+
+---
+
+## Path Parameters
+
+| Name       | Mandatory | Type   | Description |
+|------------|-----------|--------|-------------|
+| elementId  | True      | String | ID of the source element in the relation. |
+
+---
 
 ## URI Parameters
 
-| Name         | In    | Required | Type   | Description                                                        |
-|--------------|-------|----------|--------|--------------------------------------------------------------------|
-| entityTypeId | path  | True     | String | ‘id’ of the entity type for the given entity id                    |
-| entityId     | path  | True     | String | ‘id’ of the entity in which links need to be added                 |
-| projectId    | query | True     | String | Project in which the given entity exists                           |
+| Name          | Mandatory | Type   | Description |
+|---------------|-----------|--------|-------------|
+| projectId     | True      | String | ID of the project. |
+| elementTypeId | True      | String | ID of the element type of the source element. |
+| branchId      | False     | String | ID of the branch. If omitted, default branch behavior applies. |
 
 ---
-
-## Request Payload
-
-```json
-{
-  "linkType": "",
-  "linkTypeDirection": "FORWARD/BACKWARD",
-  "links": [
-    {
-      "<linkedEntityIdField>": "",
-      "<linkedEntityTypeField>": "",
-      "<linkCommentField>": "",
-      "<externalLinkUrlField>": "",
-      "<isExternalLinkField>": "true / false String",
-      "<property1>": "value1",
-      "<property2>": "value2"
-    },
-    {
-      "<linkedEntityIdField>": "",
-      "<linkedEntityTypeField>": "",
-      "<linkCommentField>": "",
-      "<externalLinkUrlField>": "",
-      "<isExternalLinkField>": "true / false String",
-      "<property1>": "value1",
-      "<property2>": "value2"
-    }
-  ],
-  "rankInfo": {
-    "siblingEntity": {
-      "internalId": "",
-      "entityType": "",
-      "scopeId": ""
-    },
-    "rankOperation": ""
-  }
-}
-```
 
 ## Request Body
 
-| Name     | Required | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|----------|----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **linkType** | True     | String | The type of link for which links are to be added. E.g., `Parent`, `Child`, `Related`.<br><br>**Note:** This is only applicable when connector supports rank feature:<br> - If connector supports rank and rank order type (given in [Entity Type – Get](../metadata/entity-type-get.md) API's `links.rank.orderType`) is either `HIERARCHY_SINGLE` or `HIERARCHY_MULTIPLE`, connector will need to handle additional link types `Hierarchy Parent` and `Hierarchy Child`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **linkTypeDirection** | False    | String | Specifies the direction of the link. Valid values include `FORWARD`and `BACKWARD`. Applicable only if end system supports link direction. Otherwise, it will be empty.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **links** | True     | List | List of links to be added.<br>Each link in the list will have its properties as described below:<br> {<br>  `"<linkedEntityIdField>"`: "The name will be the field name in which entity of the linked entity will come,and the value will be the entity id to which entityId coming in request URI need to be linked",<br>  `"<linkedEntityTypeField>"`: "The name will be the field name in which entity type of linked entity will come,and the value will be the entity type of linked entity id", <br>  `"<linkCommentField>"`: "Any comment that needs to be added in the link section.<br>Note: This is not a regular entity comment.Some connectors support having a separate note, i.e., a field with each link",<br>  `"<externalLinkUrlField>"`: "The name will be the field name in which the external URL will come.<br>The value will be the URL of the external link that needs to be added",<br>  `"<isExternalLinkField>"`: "The name will be a field name describing whether a link is internal or external.The value will be True if an external link needs to be added,<br>in which case, the connector only needs to add the link coming in the externalLinkUrlField field.If false, then a regular link to linkedEntityId needs to be added",<br> `"<property1>"`: "Any additional property that connector wants to set while adding or updating the link.<br>Such properties can be passed from the mapping interface in OpsHub",<br> `"<property2>"`: "Any additional property that connector wants to set while adding or updating the link.<br>Such properties can be passed from the mapping interface in OpsHub"<br> } |
-| **rankInfo** | False    | Object | Only applicable when connector supports rank feature.<br>For move operations `MOVE_BEFORE`, `MOVE_AFTER`, and `MOVE_BULK_AFTER`, `siblingEntity` will also be provided.<br><br>Consider sibling entity as a reference entity to move the current entity before or after that.<br> `{"siblingEntity": { "internalId: "", "entityType": "", "scopeId" : ""}, "rankOperation":"MOVE_BEFORE/MOVE_AFTER/LAST_IN_LIST/MOVE_BULK_AFTER" }`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+```json
+{
+  "relationType": "dependency",
+  "targetElementId": "requirement_55",
+  "targetElementTypeId": "Requirement"
+}
+```
 
 ---
 
-## Response Payload
+## Request Body Parameters
 
-Returns all the details of links added by the connector.
+| Name                | Mandatory | Type   | Description |
+|---------------------|-----------|--------|-------------|
+| relationType        | True      | String | Type of relation (association, dependency, generalization, realization, etc.). |
+| targetElementId     | True      | String | ID of the target element. |
+| targetElementTypeId | True      | String | ID of the target element type. |
 
-```json
-[
-  {
-    "<linkTypeField>": "",
-    "<linkTypeDirection>": "FORWARD/BACKWARD",
-    "<linkedEntityIdField>": "",
-    "<linkedEntityTypeField>": "",
-    "<createdDateField>": "",
-    "<createdByField>": "",
-    "<linkCommentField>": "",
-    "<externalLinkUrlField>": "",
-    "<isExternalLinkField>": "true / false String",
-    "<property1>": "value1",
-    "<property2>": "value2"
-  },
-  {
-    "<linkTypeField>": "",
-    "<linkTypeDirection>": "FORWARD/BACKWARD",
-    "<linkedEntityIdField>": "",
-    "<linkedEntityTypeField>": "",
-    "<createdDateField>": "",
-    "<createdByField>": "",
-    "<linkCommentField>": "",
-    "<externalLinkUrlField>": "",
-    "<isExternalLinkField>": "true / false String",
-    "<property1>": "value1",
-    "<property2>": "value2"
-  }
-]
+---
 
+## Behavior Rules
+
+1. The source element must exist within:
+    - `projectId`
+    - `elementTypeId`
+    - Optional `branchId`
+2. The target element must exist within the same project (unless cross-project relations are supported).
+3. Only one relation must be created per request.
+4. Connector must:
+    - Call the appropriate end system API to establish the relation.
+5. If the relation already exists:
+    - Either ignore gracefully or return `409 Conflict` depending on end system behavior.
+6. If source or target element does not exist:
+    - Return HTTP `404 Not Found`.
+
+---
+
+## Response
+
+This API does not return a response body.
+
+### Successful Creation
+
+HTTP Status: `201 Created` or `204 No Content`
+
+---
+
+## Error Handling
+
+| HTTP Status | Description |
+|------------|-------------|
+| 400        | Invalid input parameters. |
+| 404        | Source or target element not found. |
+| 409        | Relation already exists or constraint violation. |
+| 500        | Internal server error during relation creation. |
+
+---
+
+## Example Use Case
+
+### Add Dependency Relation
+
+```bash
+POST /mbse/api/1.0/elements/block_200/relations?
+projectId=123
+&elementTypeId=Block
 ```
 
+Request Body:
 
+```json
+{
+  "relationType": "dependency",
+  "targetElementId": "requirement_55",
+  "targetElementTypeId": "Requirement"
+}
+```
 
+---
 
+## Implementation Guidelines
 
+- Validate source element existence before relation creation.
+- Validate target element existence before relation creation.
+- Ensure branch consistency.
+- If relation requires additional metadata:
+    - Create relation.
+    - Then update additional properties/tags.
+- Avoid duplicate relation creation.
+- Keep implementation idempotent if possible.
 
+---
 
+## Design Considerations
 
+Different MBSE systems model relations differently:
 
+### Case 1: Relation is implicit
+- System directly supports linking elements.
+- Single API call required.
 
+### Case 2: Relation is a separate element
+- Create relation element.
+- Set relation attributes.
+- Associate source and target elements.
+
+Connector must abstract these differences and always return consistent behavior.
+
+---
+
+## Design Rationale
+
+This API ensures:
+
+- Controlled relation establishment
+- System-agnostic modeling
+- Clear source-target mapping
+- Flexible implementation for heterogeneous MBSE tools
+
+By isolating relation creation into a dedicated API, the integration layer remains clean, predictable, and extensible.
