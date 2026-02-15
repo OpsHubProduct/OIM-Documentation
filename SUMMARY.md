@@ -209,9 +209,9 @@
         * [Get All Projects](docs/mbse-sdk/metadata/projects-list.md)
         * [Get All Workspaces](docs/mbse-sdk/metadata/workspaces-list.md)
         * [Get Element Type](docs/mbse-sdk/metadata/element-type-get.md)
-        * [Get Stereotypes](docs/mbse-sdk/metadata/entity-types-list.md)
-        * [Get Properties]()
-        * [Get Enumeration Literals](docs/mbse-sdk/metadata/lookup-field-value-get.md)
+        * [Get Stereotypes](docs/mbse-sdk/metadata/stereotype-details.md)
+        * [Get Properties](docs/mbse-sdk/metadata/properties-list.md)
+        * [Get Enumeration Literals](docs/mbse-sdk/metadata/enumeration-literals.md)
       * Multi Element Revision APIs
         * [Get Revisions](docs/mbse-sdk/revision/get-revisions.md)
         * [Get Elements Changed In Revision](docs/mbse-sdk/revision/get-elements-changed-in-revision.md)
