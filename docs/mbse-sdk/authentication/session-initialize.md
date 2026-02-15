@@ -11,6 +11,11 @@ MBSE SDK can use this API to connect to end system. OpsHub will send all the con
 # API URI
 This is the URI, OpsHub will execute to call this API:
 
+
+```http
+POST: /initialize/{sdkSessionId}?systemId=<systemId>
+```
+
 # Request Payload
 
 ```json
