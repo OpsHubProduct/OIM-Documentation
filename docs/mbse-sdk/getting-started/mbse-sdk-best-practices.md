@@ -4,5 +4,5 @@
       - [https://jsonformatter.org/json-to-java](https://jsonformatter.org/json-to-java)  
       - [https://www.baeldung.com/java-generate-class-from-json](https://www.baeldung.com/java-generate-class-from-json)
 
-- The required static response for [Entity Type – Get](../metadata/entity-type-get.md) or [Connector Metadata – Get](../registration/connector-metadata-get.md) APIs can be stored in JSON format. Additionally, JSON can be converted to programming objects for adding dynamic fields to the response.  
+- The required static response for [Element Type – Get](../metadata/element-type-get.md) or [Connector Metadata – Get](../registration/connector-metadata-get.md) APIs can be stored in JSON format. Additionally, JSON can be converted to programming objects for adding dynamic fields to the response.  
   - Therefore, it will be easier to prepare a JSON file instead of preparing the objects.

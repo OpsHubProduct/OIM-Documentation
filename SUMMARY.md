@@ -208,7 +208,7 @@
         * [Get Server Info](docs/mbse-sdk/metadata/server-info.md)
         * [Get All Projects](docs/mbse-sdk/metadata/projects-list.md)
         * [Get All Workspaces](docs/mbse-sdk/metadata/workspaces-list.md)
-        * [Get Element Type](docs/mbse-sdk/metadata/entity-type-get.md)
+        * [Get Element Type](docs/mbse-sdk/metadata/element-type-get.md)
         * [Get Stereotypes](docs/mbse-sdk/metadata/entity-types-list.md)
         * [Get Properties]()
         * [Get Enumeration Literals](docs/mbse-sdk/metadata/lookup-field-value-get.md)
