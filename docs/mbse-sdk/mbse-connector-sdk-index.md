@@ -12,7 +12,7 @@
     </tr>
     <tr>
       <td align="center">🧩 <strong>Build Your Own Connector</strong></td>
-      <td><a href="getting-started/sdk-connector-apis.md">Build Your Own Connector</a></td>
+      <td><a href="getting-started/mbse-sdk-connector-apis.md">Build Your Own Connector</a></td>
     </tr>
     <tr>
       <td align="center">🔗 <strong>Register Connectors</strong></td>

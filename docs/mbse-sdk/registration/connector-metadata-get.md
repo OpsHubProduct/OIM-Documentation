@@ -1,300 +1,291 @@
-# Overview
-Returns connector metadata information using which OpsHub will register this connector in OpsHub. The features and fields provided here are what users will see on OpsHub UI when configuring integration with this connector.
+# API Name
 
-# API URI
-This is the URI, OpsHub will execute to call this API:
+API Name: Connector Metadata – Get
+
+---
+
+# Overview
+
+This API returns connector metadata information used by MBSE Core to register the connector.
+
+The metadata returned by this API defines:
+
+- Supported connector features
+- Configuration fields shown in MBSE UI
+- Validation rules
+- Dynamic lookup behavior
+- Screen-level visibility
+
+Connector responsibility:
+
+- Prepare all configuration fields required for connector registration.
+- Define supported features.
+- Provide UI configuration metadata.
+
+---
+
+## API URI
+
 ```bash
-GET: /connector-metadata
+GET: /mbse/api/1.0/connector-metadata
 ```
 
-# Response Payload
+---
+
+## Response Payload
+
 ```json
-{ 
-
-  "enableFeatures": [ 
-
-    "CURRENT_STATE_SYNC_FLAG", 
-
-    "REMOTE_ID_LINK", 
-
-    "TARGET_LOOKUP", 
-
+{
+  "enableFeatures": [
+    "CURRENT_STATE_SYNC_FLAG",
+    "REMOTE_ID_LINK",
+    "TARGET_LOOKUP",
     "CRITERIA",
-
-    "MAPPED_DATA_RETRIEVAL",
-    
-    "SUPPRESS_END_SYSTEM_NOTIFICATION"
-
+    "MAPPED_DATA_RETRIEVAL"
   ],
-
-  "additionalMetadata":
-
-      {
-
-        "userSearchOnUserNameSupported": "<Does the connector support searching for users by username>",
-
-        "userSearchOnEmailSupported": "<Does the connector support searching for users by email>"
-
-      }
-
-    ,
-
-
+  "additionalMetadata": {
+    "userSearchOnUserNameSupported": true,
+    "userSearchOnEmailSupported": true,
+    "multiEntityTypePollingSupported": true,
+    "multiEntityWritingSupported": false
+  },
   "fields": [
-
     {
-
-      "internalName": "<user input field internal name>",
-
-      "displayName": "<user input field display name>",
-
-      "tooltip": "<tool tip>",
-
+      "internalName": "authType",
+      "displayName": "Authentication Type",
+      "tooltip": "Select authentication type",
       "required": true,
-
-      "fieldType": "ENUM",
-
+      "fieldType": "DROP_DOWN",
       "lookup": {
-
         "staticValues": [
-
           {
-
-            "internalName": "<internal name or id of lookup value>",
-
-            "displayName": "<display name>"
-
+            "internalName": 1,
+            "displayName": "Basic Authentication"
           }
-
         ],
-
         "dynamicLookupKey": null
-
       },
-
       "defaultValue": null,
-
       "validation": null,
-
       "fieldOrder": 1,
-
       "parent": null,
-
       "screens": [
-
         "SYSTEM_CONFIG",
-
         "INTEGRATION_SOURCE_CONFIG",
-
         "INTEGRATION_TARGET_CONFIG"
-
       ]
-
     }
-
   ]
-
 }
 ```
 
+---
+
 # Response Parameters
 
-| Parent Parameter       | Name                           | Required | Type             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|------------------------|--------------------------------|---------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|  | enableFeatures   | True    | ENUM   | List of features to be enabled in OIM:<br><br>**CURRENT_STATE_SYNC_FLAG**: A flag to enable integration sync only latest entity state. Applies only for entity types with `"pollerType": "ENTITY_WISE_HISTORY"`. Refer to [Sync only current state](../../integrate/integration-configuration.md#sync-only-current-state) for details.<br>**REMOTE_ID_LINK**: Stores id and link of an entity of other system. To form the link using a URL other than connector's server URL, enter in "Base URL for Remote Link" field. See [Remote Id and Link](../../integrate/integration-configuration.md#tracking-id-and-link-of-entities-across-systems).<br>**TARGET_LOOKUP**: Search entity in target system before sync. See [Target Lookup](../../integrate/integration-configuration.md#search-in-target-before-sync).<br>**CRITERIA**: Sync only subset of entities meeting criteria/condition. See [Criteria Configuration](../../integrate/integration-configuration.md#criteria-configuration).<br>**MAPPED_DATA_RETRIEVAL**: Enables "fetch mapped data only" feature if end system supports fetching specific fields.<br>**SUPPRESS_END_SYSTEM_NOTIFICATION**: Enables "suppressing end system notification" feature on create or update events for the target system, if end system supports it.User can select True or False according to requirement for suppressing end system notification. See [Suppress End System Notification](../../integrate/integration-configuration.md#suppress-end-system-notification). |
-| additionalMetadata     | | False | |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| | userSearchOnUserNameSupported  | False   | boolean          | Does the connector support user search based on userName?<br>Default is false. If connector allows search by username, provide as true.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| | userSearchOnEmailSupported     | False   | boolean          | Does the connector support user search based on email?<br>Default is false. If connector allows search by email, provide as true.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| fields                 | | True | |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|  | internalName                   | True    | string           | Internal name of the user input. Must be unique. E.g., `authType`, `userName`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|  | displayName                    | True    | string           | Display name shown in OpsHub UI. E.g., `Authentication Type`, `User Name`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|  | tooltip                        | False   | string           | Help text for the field. E.g., “Provide a URL to connect to end system. Format: https://host/ Example: https://www.example.com/”.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|  | required                       | True    | boolean          | Is the user input mandatory? `true` / `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|  | fieldType                      | True    | ENUM             | Input types:<br>- TEXT_BOX<br>- TEXT_AREA<br>- DROP_DOWN<br>- PASSWORD<br>- RADIO_BUTTON<br>- CHECKBOX<br>- URL<br>- EMAIL<br>- NUMERIC<br>- MULTI_SELECT_DROP_DOWN_WITH_CHECKBOX<br>- JSON<br>- XML                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Fields.lookup | | False | | For any DROP_DOWN type inputs. The user needs to provide lookup values to show the options in drop down                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|  | staticValues                   | Conditional | List of Objects | Static values for dropdown. E.g., “1=Basic,2=Token Based”. Order determines UI display order.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|  | staticValues.internalName      |         | string           | Internal id of lookup. E.g., 1, 2, 3.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|  | staticValues.displayName       |         | string           | Display name in dropdown. E.g., Basic, Token Based.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|  | dynamicLookupKey               | Conditional | ENUM            | Dynamic lookup options:<br>- ALL_SYSTEM: List of all the systems that exists in OIM<br>- ALM_SYSTEM: List of all the ALM systems created by user in OIM. This will not fetch any SCM system <br>- TIME_ZONE: Pre-defined list of available time zones<br>- ENTITY_FIELDS:  Dynamically displays the list of available fields of an entity from end system API. This type of dynamic lookup is used when list of available fields for an entity is to be displayed.<br>- DATABASE_TYPE: List of all database types supported in Database System.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Fields. validation| | False | | Validation to be applied on any textual field                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|  | name                           | False   | string           | Name of validation. E.g., “System Version Validation”.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|  | regex                          | False   | string           | Regex to validate field value. E.g., `[1-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|  | failureMessage                 | False   | string           | Message shown if validation fails. E.g., “Please provide valid version in form of x.y.z”.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| fields | | | | 
-| fields                 | fieldOrder                     | True    | number           | UI order of field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| parent | | False | | It’s to support hierarchy of the fields. <br>E.g., ‘authType’ can be parent of ‘userName’, ‘password’ and ‘token’                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|  | internalName                   | False   | string           | Internal name of the parent field.<br>E.g., `'issueType'` is a built-in field. There is no need to provide metadata configuration for `'issueType'` field in JSON.<br>E.g., For username or password field, `auth_type` can be the internalName for parent field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|  | fieldValues                    | False   | string           | Internal value of the parent field. Current field will only be loaded if parent field’s value matches the given value.<br>E.g., If `authType` has values “1=Basic,2=Token Based”, provide `1` to select Basic as parent field value.<br><br>Some fields can be loaded only if a particular parent field value is selected.<br>E.g., If `authType` is parent of `userName`, `password`, and `token` fields:<br>- `password` will only be loaded if `authType` value is `Basic`.<br>- `token` will only be loaded if `authType` value is `Token Based`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|  | fieldRegex                     | False   | string           | Regex controlling visibility of current field based on parent field value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| fields | | | |  
-|                  | screens  | True    | ENUM  | List of screens where this field should be visible:<br>- SYSTEM_CONFIG: System configuration screen <br>- INTEGRATION_SOURCE_CONFIG: Advanced integration config when connector is source <br>- INTEGRATION_TARGET_CONFIG: Advanced integration config when connector is target                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+## Root Level
 
-Example:
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| enableFeatures | Yes | List\<ENUM\> | List of features supported by the connector. |
+| additionalMetadata | No | Object | Additional capabilities supported by the connector. |
+| fields | Yes | List\<MetadataField\> | List of configuration fields displayed in MBSE UI. |
+
+---
+
+## enableFeatures
+
+Supported feature values:
+
+- `CURRENT_STATE_SYNC_FLAG`
+- `REMOTE_ID_LINK`
+- `TARGET_LOOKUP`
+- `CRITERIA`
+- `MAPPED_DATA_RETRIEVAL`
+
+### Feature Description
+
+| Feature | Description |
+|----------|------------|
+| CURRENT_STATE_SYNC_FLAG | Enables syncing only the latest element state when using entity-wise history polling. |
+| REMOTE_ID_LINK | Stores remote element ID and link mapping across systems. |
+| TARGET_LOOKUP | Enables searching target system before writing data. |
+| CRITERIA | Enables filtering elements based on configured criteria. |
+| MAPPED_DATA_RETRIEVAL | Enables fetching only mapped fields if supported by the end system. |
+
+---
+
+## additionalMetadata
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| userSearchOnUserNameSupported | No | Boolean | Whether user search by username is supported. |
+| userSearchOnEmailSupported | No | Boolean | Whether user search by email is supported. |
+| multiEntityTypePollingSupported | No | Boolean | Whether multiple element types can be polled in a single request. |
+| multiEntityWritingSupported | No | Boolean | Whether multiple element types can be written in a single request. |
+
+---
+
+## fields (MetadataField)
+
+Each field represents a configuration input shown in MBSE UI.
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| internalName | Yes | String | Unique internal identifier. |
+| displayName | Yes | String | Label shown in UI. |
+| tooltip | No | String | Help text for the field. |
+| required | Yes | Boolean | Whether field is mandatory. |
+| fieldType | Yes | ENUM | Type of UI input control. |
+| lookup | Conditional | Object | Lookup configuration for dropdown types. |
+| defaultValue | No | String | Default value of field. |
+| validation | No | Object | Validation configuration. |
+| fieldOrder | Yes | Integer | Display order in UI. |
+| parent | No | Object | Parent field dependency configuration. |
+| screens | Yes | List\<ENUM\> | Screens where field should appear. |
+
+---
+
+## Supported Field Types
+
+- `TEXT_BOX`
+- `TEXT_AREA`
+- `DROP_DOWN`
+- `PASSWORD`
+- `RADIO_BUTTON`
+- `CHECKBOX`
+- `URL`
+- `EMAIL`
+- `JSON`
+- `XML`
+- `NUMERIC`
+- `MULTI_SELECT_DROP_DOWN_WITH_CHECKBOX`
+
+---
+
+## Lookup Configuration
+
+### Static Lookup
+
 ```json
-{
-
-  "enableFeatures": [
-
-    "CURRENT_STATE_SYNC_FLAG",
-
-    "REMOTE_ID_LINK",
-
-    "TARGET_LOOKUP",
-
-    "CRITERIA",
-
-    "MAPPED_DATA_RETRIEVAL",
-
-    "SUPPRESS_END_SYSTEM_NOTIFICATION"
-
-  ], 
-
-  "fields": [ 
-
-    { 
-
-      "internalName": "authType", 
-
-      "displayName": "Authentication Type", 
-
-      "tooltip": "Authentication Type", 
-
-      "required": true, 
-
-      "fieldType": "DROP_DOWN", 
-
-      "lookup": { 
-
-        "staticValues": [ 
-
-          { 
-
-            "internalName": "1", 
-
-            "displayName": "Basic Authentication" 
-
-          } 
-
-        ], 
-
-        "dynamicLookupKey": null 
-
-      }, 
-
-      "defaultValue": null, 
-
-      "validation": null, 
-
-      "fieldOrder": 1, 
-
-      "parent": null, 
-
-      "screens": [ 
-
-        "SYSTEM_CONFIG", 
-
-        "INTEGRATION_SOURCE_CONFIG", 
-
-        "INTEGRATION_TARGET_CONFIG" 
-
-      ] 
-
-    }, 
-
-    { 
-
-      "internalName": "userName", 
-
-      "displayName": "Authentication User", 
-
-      "tooltip": "Authentication User", 
-
-      "required": true, 
-
-      "fieldType": "TEXT_BOX", 
-
-      "lookup": null, 
-
-      "defaultValue": null, 
-
-      "validation": null, 
-
-      "fieldOrder": 2, 
-
-      "parent": { 
-
-        "internalName": "authType", 
-
-        "fieldValues": [ 
-
-          "1" 
-
-        ], 
-
-        "fieldRegex": null 
-
-      }, 
-
-      "screens": [ 
-
-        "SYSTEM_CONFIG", 
-
-        "INTEGRATION_SOURCE_CONFIG", 
-
-        "INTEGRATION_TARGET_CONFIG" 
-
-      ] 
-
-    }, 
-
-    { 
-
-      "internalName": "password", 
-
-      "displayName": "Authentication Password", 
-
-      "tooltip": "Authentication Password", 
-
-      "required": true, 
-
-      "fieldType": "PASSWORD", 
-
-      "lookup": null, 
-
-      "defaultValue": null, 
-
-      "validation": null, 
-
-      "fieldOrder": 3, 
-
-      "parent": { 
-
-        "internalName": "authType", 
-
-        "fieldValues": [ 
-
-          "1" 
-
-        ], 
-
-        "fieldRegex": null 
-
-      }, 
-
-      "screens": [ 
-
-        "SYSTEM_CONFIG", 
-
-        "INTEGRATION_SOURCE_CONFIG", 
-
-        "INTEGRATION_TARGET_CONFIG" 
-
-      ] 
-
-    } 
-
-  ] 
-
-} 
+"lookup": {
+  "staticValues": [
+    {
+      "internalName": 1,
+      "displayName": "Basic"
+    }
+  ],
+  "dynamicLookupKey": null
+}
 ```
 
+### Dynamic Lookup Keys
+
+- `ALL_SYSTEM`
+- `ALM_SYSTEM`
+- `TIME_ZONE`
+- `ENTITY_FIELDS`
+- `CONFIG_FIELDS`
+- `DATABASE_TYPE`
+
+---
+
+## Validation Configuration
+
+| Name | Description |
+|------|-------------|
+| name | Name of validation rule |
+| regex | Regex pattern |
+| failureMessage | Error message shown on failure |
+
+Example:
+
+```json
+{
+  "name": "Version Validation",
+  "regex": "[1-9]{1,2}\\.[0-9]{1,2}\\.[0-9]{1,2}",
+  "failureMessage": "Please provide valid version in form x.y.z"
+}
+```
+
+---
+
+## Parent Field Configuration
+
+Used to control field visibility.
+
+| Name | Description |
+|------|-------------|
+| internalName | Parent field internal name |
+| fieldValues | Field is visible only if parent value matches |
+| fieldRegex | Regex-based visibility control |
+
+---
+
+## Screens
+
+Defines where the field is visible:
+
+- `SYSTEM_CONFIG`
+- `INTEGRATION_SOURCE_CONFIG`
+- `INTEGRATION_TARGET_CONFIG`
+
+---
+
+# Behavior Rules
+
+1. All fields must have unique `internalName`.
+2. `fieldOrder` must define UI order.
+3. `lookup` must be provided for dropdown types.
+4. Validation rules must be syntactically correct.
+5. Parent-child dependencies must not create circular references.
+6. The connector must return complete metadata in a single response.
+
+---
+
+# Example (Multiple Fields)
+
+```json
+{
+  "enableFeatures": [
+    "CURRENT_STATE_SYNC_FLAG",
+    "REMOTE_ID_LINK"
+  ],
+  "additionalMetadata": {
+    "userSearchOnUserNameSupported": true,
+    "userSearchOnEmailSupported": true,
+    "multiEntityTypePollingSupported": true,
+    "multiEntityWritingSupported": false
+  },
+  "fields": [
+    {
+      "internalName": "serverUrl",
+      "displayName": "Server URL",
+      "tooltip": "Provide base server URL",
+      "required": true,
+      "fieldType": "URL",
+      "lookup": null,
+      "defaultValue": null,
+      "validation": null,
+      "fieldOrder": 1,
+      "parent": null,
+      "screens": ["SYSTEM_CONFIG"]
+    }
+  ]
+}
+```
+
+---
+
+# Design Rationale
+
+This API defines:
+
+- Connector capability model
+- UI configuration schema
+- Feature flags
+- Dynamic behavior support
+
+Without this API, the connector cannot be registered or configured.
+
+This API must be stable, deterministic, and backward-compatible.

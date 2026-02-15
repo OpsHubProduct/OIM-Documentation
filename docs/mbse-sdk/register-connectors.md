@@ -19,7 +19,7 @@ The following page appears which requires two inputs as shown in the image below
 Fill the form with relevant details:  
 
 - **System Type Name**: The name that you want to assign to the connector you are registering. This name will be shown in the system type list on the "Configure Systems" page.  
-- **SDK API Base URLs**: Base URL of the Connector SDK where it is hosted. E.g., `http://<hostname>:<port>/sdk-api/api/1.0`. You can add more than one SDK URL for a given connector using the "+" icon on the right side of the text box. The first URL entered will be used for fetching the metadata of the connector. All the SDK API calls will be made by appending the resource path to this URL.  
+- **SDK API Base URLs**: Base URL of the Connector SDK where it is hosted. E.g., `http://<hostname>:<port>/sdk-api/mbse/api/1.0`. You can add more than one SDK URL for a given connector using the "+" icon on the right side of the text box. The first URL entered will be used for fetching the metadata of the connector. All the SDK API calls will be made by appending the resource path to this URL.  
 
 All the URLs entered will be checked if they are implemented with the same connector's name and version or not.  
 
