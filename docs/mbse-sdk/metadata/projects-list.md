@@ -8,8 +8,8 @@ This is the URI OpsHub will execute to call this API:
 
 ```bash
 GET: /projects?
-startIndex=<startIndex>
-maxResults=<maxResults>
+    startIndex=<startIndex>
+    maxResults=<maxResults>
 ```
 
 # URI Parameters
@@ -78,24 +78,24 @@ maxResults=<maxResults>
 ```json
 [
   {
-    "id": "root",
-    "name": "Main Project",
-    "parentWorkSpaceId": "Main Workspace"
-  },
-  {
     "id": "1",
-    "name": "Sample Project",
-    "parentWorkSpaceId": "Demo Workspace"
+    "name": "Main Project",
+    "parentWorkSpaceId": "ws-1"
   },
   {
     "id": "2",
-    "name": "Demo Project",
-    "parentWorkSpaceId": "1"
+    "name": "Sample Project",
+    "parentWorkSpaceId": "ws-1"
   },
   {
     "id": "3",
+    "name": "Demo Project",
+    "parentWorkSpaceId": "ws-2"
+  },
+  {
+    "id": "4",
     "name": "Trial Project",
-    "parentWorkSpaceId": "1"
+    "parentWorkSpaceId": "ws-2"
   }
 ]
 
