@@ -65,7 +65,9 @@ GET: /entities/{entityId}?
       "<createdByField>": "",
       "<updatedDateField>": "// Either createdDate or updatedDate is required",
       "<updatedByField>": "",
-      "<fileCommentField>": ""
+      "<fileCommentField>": "",
+      "<attachmentTypeField>": "",
+      "<typeItemIdField>": ""
     }
   ],
   "links": [

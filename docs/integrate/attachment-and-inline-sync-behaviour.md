@@ -86,33 +86,60 @@
   * Now, even if the comment is deleted in the source end system, the image/ file will persist in the target comment and also as an attachment on the entity in case it is an entity storage end system.
 
 # Attachment and Inline Image Synchronization with Field Storage
+### Applicable to following systems:
+* Jira Xray cloud, Jama and Codebeamer
 
-* While synchronizing test-step type fields, no additional customization is required in the mapping or workflow to handle step level attachments, inline images, or files for these systems: Jira Xray cloud, Jama and Codebeamer. Other systems may require additional customization to handle step level attachments, inline images, or files. Please refer to connector documentation for more details.
+Other systems may require additional customization to handle step level attachments and inline images. Please refer to connector documentation for more details.
+
+## Pre-requisite
+* Attachment mapping must be enabled in <code class="expression">space.vars.SITENAME</code> to synchronize step level attachments.
+  * Attachment type will be auto-mapped based on field configuration in mapping, for more details, refer [Auto-mapping of Attachment type](#auto-mapping-of-attachment-type).
+
+There is no pre-requisite to synchronize step level inline images.
+
+## General Behaviors:
+
 * Format conversion of step-level fields (except additional step-level fields) is automatically managed by the system.
 * Only the additional step-level fields (which may vary from system to system) need to be handled explicitly in the mapping XSLT, as done earlier.
 * When a test-step type field with attachments is synced from a field storage system (Jira Xray Cloud) to an entity/server storage system (Jama or Codebeamer), the attachment is stored at the entity level in Jama/Codebeamer.
-* To properly sync step attachment deletion from entity/server storage (i.e. Jama or Codebeamer) to field level (Jira Xray cloud), attachment mapping must be enabled.
 
-## General Behaviors:
+### Step field data synchronization based on mapping configuration
+| Mapping Configuration                                    | Behavior                                                                                                                                                                                                                                                                                                                                                                      |
+|----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 'Step' field is mapped & 'Attachment' mapping is enabled | Steps with attachment and inline images will be synchronized.                                                                                                                                                                                                                                                                                                                 |
+| Only 'Step' field is mapped                              | Steps with inline images will be synchronized. Attachments will not be synchronized.                                                                                                                                                                                                                                                                                          |
+| Only 'Attachment' mapping is enabled                     | Only step attachments will be synchronized to entity. <br/><br/>If previously 'Step' field mapping was configured & now removed from mapping, then step attachments will be synchronized based on attachment type mapping. If attachment type mapping is provided and step exists in target system, then attachment will be added to step, else attachment is added to entity |
+
+
+### Auto-mapping of Attachment type
+
+* Fields, which provide field level storage for attachments, will be shown as attachment type while mapping configuration.
+* Auto-mapping of attachment types will be performed if attachment mapping is enabled and both, source and target, fields exist in their respective attachment type list. 
+* There are 2 triggering events: (1) configuring 'Step' field mapping (2) enabling 'Attachment' mapping
+* In cases where a single source field is mapped to multiple target fields, and all these fields exist in their respective attachment type lists, the attachment type will be auto-mapped for the first field mapping; the rest will be discarded.
+* For example:
+  * Source field: TestSteps
+  * Target fields: Step1, Step2
+  * Field mapping: TestSteps <-> Step1
+                   TestSteps -> Step2
+  * For above-mentioned mapping configuration, following attachment types will be auto-mapped
+    * TestSteps <-> Step1
+* It is recommended to validate the attachment type mapping for any complex use case.
+
+
 ### Attachment Synchronization
 
-| Source Storage | Target Storage | Behavior |
-|----------------|----------------|----------|
-| Field Storage | Field Storage | Attachment is added to the field. |
-| Field Storage | Entity/Server Storage | Attachment is added to the entity only. |
+| Source Storage | Target Storage | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|----------------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Field Storage | Field Storage | Attachment is added to the field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Field Storage | Entity/Server Storage | Attachment is added to the entity. <br/>As field level attachment is not possible for end-system, attachments associated with a particular step are included in the Description sub-field of that step. This is plain text data, not a link to the attachments. <br/><br/>For example: 2 attachments are added for step 1 & 1 attachment is added for step 2 to the entity, step content will be as followed:<br/> Step 1 description: “step 1 text data <Attachments: image1.png, file1.pdf>”<br/>Step 2 description: “step 2 text data <Attachments: file2.txt>”<br/><br/>It is suggested to keep <code class="expression">space.vars.SITENAME</code> added content at the end of original content during modification; however, synchronization will not be impacted regardless of its placement. |
 
 ### Inline Image/File Synchronization
 
-| Source Storage | Target Storage | Behavior |
-|----------------|----------------|----------|
-| Field Storage | Field Storage | Attachment is added to the field and its reference is added in the field content. |
-| Field Storage | Entity/Server Storage | Attachment is added to the entity and its reference is added in the field content. |
-
-### Overwrite Behavior
-
-| Scenario                                                                                                                                                      | Expected | Actual Behavior | Explanation |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|----------------|-------------|
-| Sync from field storage → entity storage (Overwrite enabled for entity storage), attachment deleted in field system, and sync triggered in backward direction | Attachment should be re-added to the field | Attachment is added at the entity level in Xray | Jama stores attachments at the entity level and does not retain field-level association details, so during reverse sync the attachment is restored at the entity level only not at field level |
+| Source Storage | Target Storage | Behavior                                                                                     |
+|----------------|----------------|----------------------------------------------------------------------------------------------|
+| Field Storage | Field Storage | Attachment is added to the field and its reference is added in the field content.            |
+| Field Storage | Entity/Server Storage | Attachment is added to the entity or server and its reference is added in the field content. |
 
 # Synchronization Behavior
 
