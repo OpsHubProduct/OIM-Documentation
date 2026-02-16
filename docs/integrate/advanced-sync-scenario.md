@@ -15,8 +15,8 @@
       <td><a href="entity-move-synchronization.md">"Entity Type" and/or "Project" Change Synchronization</a></td>
     </tr>
     <tr>
-      <td align="center"><strong>Inline Image or File Synchronization</strong></td>
-      <td><a href="inline-image-sync-behaviour.md">Inline Image or File Synchronization</a></td>
+      <td align="center"><strong>Attachment & Inline Image/ File Synchronization</strong></td>
+      <td><a href="attachment-and-inline-sync-behaviour.md">Attachment & Inline Image/ File Synchronization</a></td>
     </tr>
     <tr>
       <td align="center"><strong>Source Delete Synchronization</strong></td>

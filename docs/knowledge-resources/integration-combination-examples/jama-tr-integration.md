@@ -293,87 +293,93 @@ Click **Create from Scratch** button to define the mapping from scratch.
 
 * Click ![Advanced XSL](../../assets/TR-Jama_Image_32.png) against the field name toward the right end corner to amend the default XSL. Replace the default XSL with the XSL given below:
 
-```json
-<testRunSteps> <br>
-  <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="SourceXML/updatedFields/Property/custom__steps__separated/com.opshub.eai.TestStep"><br>
-    <xsl:element name="{concat('_',order)}"><br>
-      <xsl:element name="order"><br>
-        <xsl:value-of select="order"/><br>
-      </xsl:element><br>
-      <xsl:element name="step"><br>
-        <xsl:value-of select="step"/><br>
-      </xsl:element><br>
-      <xsl:element name="expected"><br>
-        <xsl:value-of select="expected"/><br>
-      </xsl:element><br>
-      <xsl:element name="description"><br>
-        <xsl:value-of select="description"/><br>
-      </xsl:element><br>
-      <xsl:element name="calledTestCaseId"><br>
-        <xsl:value-of select="calledTestCaseId"/><br>
-      </xsl:element><br>
-      <xsl:element name="additionalFields"><br>
-		<xsl:element name="status"><br>
-			<xsl:variable name="xPathVariable" select="/SourceXML/updatedFields/Property/status__id"/><br>
-		<xsl:choose><br>
-		<xsl:when test="$xPathVariable='passed'"><br>
-			<xsl:value-of select="'PASSED'"/><br>
-			</xsl:when><br>
-			<xsl:when test="$xPathVariable='failed'"><br>
-			<xsl:value-of select="'FAILED'"/><br>
-			</xsl:when><br>
-          <xsl:when test="$xPathVariable='blocked'"><br>
-			<xsl:value-of select="'FAILED'"/><br>
-			</xsl:when><br>
-          <xsl:when test="$xPathVariable='retest'"><br>
-			<xsl:value-of select="'FAILED'"/><br>
-			</xsl:when><br>
-          <xsl:when test="$xPathVariable='untested'"><br>
-			<xsl:value-of select="'FAILED'"/><br>
-			</xsl:when><br>
-		</xsl:choose><br>
-		</xsl:element><br>
-	  </xsl:element><br>
-      <OHAttachments><br>
-        <xsl:for-each select="SourceXML/updatedFields/Property/OHAttachments/OHAttachment"><br>
-          <xsl:element name="{concat('attachment_',position())}"><br>
-            <filename><br>
-              <xsl:value-of select="fileName"/><br>
-            </filename><br>
-            <addedByUser><br>
-              <xsl:value-of select="addedByUser"/><br>
-            </addedByUser><br>
-            <contentLength><br>
-              <xsl:value-of select="contentLength"/><br>
-            </contentLength><br>
-            <contentType><br>
-              <xsl:value-of select="contentType"/><br>
-            </contentType><br>
-            <contentBase64><br>
-              <xsl:value-of select="contentBase64"/><br>
-            </contentBase64><br>
-            <attachmentURI><br>
-              <xsl:value-of select="attachmentURI"/><br>
-            </attachmentURI><br>
-            <updateTimeStamp><br>
-              <xsl:value-of select="updateTimeStamp"/><br>
-            </updateTimeStamp><br>
-            <label><br>
-              <xsl:value-of select="label"/><br>
-            </label><br>
-            <fileComment><br>
-              <xsl:value-of select="fileComment"/><br>
-            </fileComment><br>
-            <attachmentType><br>
-              <xsl:variable name="xPathVariable" select="attachmentType"/><br>
-              <xsl:value-of select="attachmentType"/><br>
-            </attachmentType><br>
-          </xsl:element><br>
-        </xsl:for-each><br>
-      </OHAttachments><br>
-    </xsl:element><br>
-  </xsl:for-each><br>
-</testRunSteps><br>
+```xml
+<testRunSteps op_type="TestSteps">
+  <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="SourceXML/updatedFields/Property/custom__steps__separated/com.opshub.eai.TestStep">
+    <com.opshub.eai.TestStep>
+      <order>
+        <xsl:value-of select="order"/>
+      </order>
+      <associationId>
+        <xsl:value-of select="associationId"/>
+      </associationId>
+      <id>
+        <xsl:value-of select="id"/>
+      </id>
+      <step>
+        <xsl:value-of select="step"/>
+      </step>
+      <expected>
+        <xsl:value-of select="expected"/>
+      </expected>
+      <description>
+        <xsl:value-of select="description"/>
+      </description>
+      <calledTestCaseId>
+        <xsl:value-of select="calledTestCaseId"/>
+      </calledTestCaseId>
+      <additionalFields>
+		<xsl:element name="status">
+			<xsl:variable name="xPathVariable" select="/SourceXML/updatedFields/Property/status__id"/>
+		<xsl:choose>
+		<xsl:when test="$xPathVariable='passed'">
+			<xsl:value-of select="'PASSED'"/>
+			</xsl:when>
+			<xsl:when test="$xPathVariable='failed'">
+			<xsl:value-of select="'FAILED'"/>
+			</xsl:when>
+          <xsl:when test="$xPathVariable='blocked'">
+			<xsl:value-of select="'FAILED'"/>
+			</xsl:when>
+          <xsl:when test="$xPathVariable='retest'">
+			<xsl:value-of select="'FAILED'"/>
+			</xsl:when>
+          <xsl:when test="$xPathVariable='untested'">
+			<xsl:value-of select="'FAILED'"/>
+			</xsl:when>
+		</xsl:choose>
+		</xsl:element>
+	  </additionalFields>
+      <OHAttachments>
+        <xsl:for-each select="SourceXML/updatedFields/Property/OHAttachments/OHAttachment">
+          <xsl:element name="{concat('attachment_',position())}">
+            <filename>
+              <xsl:value-of select="fileName"/>
+            </filename>
+            <addedByUser>
+              <xsl:value-of select="addedByUser"/>
+            </addedByUser>
+            <contentLength>
+              <xsl:value-of select="contentLength"/>
+            </contentLength>
+            <contentType>
+              <xsl:value-of select="contentType"/>
+            </contentType>
+            <contentBase64>
+              <xsl:value-of select="contentBase64"/>
+            </contentBase64>
+            <attachmentURI>
+              <xsl:value-of select="attachmentURI"/>
+            </attachmentURI>
+            <updateTimeStamp>
+              <xsl:value-of select="updateTimeStamp"/>
+            </updateTimeStamp>
+            <label>
+              <xsl:value-of select="label"/>
+            </label>
+            <fileComment>
+              <xsl:value-of select="fileComment"/>
+            </fileComment>
+            <attachmentType>
+              <xsl:variable name="xPathVariable" select="attachmentType"/>
+              <xsl:value-of select="attachmentType"/>
+            </attachmentType>
+          </xsl:element>
+        </xsl:for-each>
+      </OHAttachments>
+    </com.opshub.eai.TestStep>
+  </xsl:for-each>
+</testRunSteps>
 ```
 >**Note**: **TestRail and Jama Model Mismatch for Steps field:**  
 In Jama, the information about the **"Steps"** of **TestRun Entity** cannot be updated after its creation, except for the **"status"** information of the Steps field. In TestRail, the information about the **"Steps"** in **Test Entity** can be updated after creation.  
@@ -388,143 +394,144 @@ To avoid this failure, below are the two possible approaches:
 - Another solution is to use the sample advanced mapping below, which synchronizes the updated **"status"** information of the Steps field of TestRail to Jama on update in TestRail.  
 - **Note:** In the sample mapping, replace `<<source_project_key>>` and `<<target_project_key>>` with the actual source project key and target project key, respectively, for which the integration is configured. The `<<target_entity_id>>` should be replaced with the XPath of the field of TestRail which contains the entity ID of Jama.
 
-```json
-<testRunSteps xmlns:map="http://java.util.Map" xmlns:str="http://java.lang.String" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"><br>
-	<xsl:variable name="xPathVariable" select="SourceXML/opshubProjectKey" /><br>
-   	<xsl:variable name="targetProjectKey"><br>
-		<xsl:choose><br>
-			<xsl:when test="$xPathVariable='<<source_project_key>>'"><br>
-				<xsl:value-of select="'<<target_project_key>>'"/><br>
-			</xsl:when><br>
-		</xsl:choose><br>
-	</xsl:variable><br>
-	<xsl:choose><br>
-		<xsl:when test="SourceXML/opshubEventType='Update'"><br>
-			<xsl:variable name="statusVar" select="SourceXML/updatedFields/Property/status__id"/><br>
-			<xsl:variable name="stepsMap" select="utils:getEntityFieldValueAsObject($workflowId,$targetSystemId,$targetProjectKey,'TSTRN','<<target_entity_id>>','testRunSteps')"/><br>
-			<xsl:if test="stepsMap != ''"><br>
-				<xsl:for-each select="map:keySet($stepsMap)"><br>
-					<xsl:variable name="stepData" select="map:get($stepsMap, concat('',position()))"/><br>
-					<xsl:variable name="descr" select="map:get($stepData,'description')"/><br>
-					<xsl:variable name="expectedR" select="map:get($stepData,'expected')"/><br>
-					<xsl:variable name="stepN" select="map:get($stepData,'order')"/><br>
-					<xsl:element name="{concat('_',$stepN)}"><br>
-						<xsl:element name="order"><br>
-							<xsl:value-of select="$stepN"/><br>
-						</xsl:element><br>
-						<xsl:element name="expected"><br>
-							<xsl:value-of select="$expectedR"/><br>
-						</xsl:element><br>
-						<xsl:element name="description"><br>
-							<xsl:value-of select="$descr"/><br>
-						</xsl:element><br>
-						<xsl:element name="additionalFields"><br>
-							<xsl:element name="status"><br>
-								<xsl:choose><br>
-									<xsl:when test="$statusVar='passed'"><br>
-										<xsl:value-of select="'PASSED'"/><br>
-									</xsl:when><br>
-									<xsl:when test="$statusVar='failed'"><br>
-										<xsl:value-of select="'FAILED'"/><br>
-									</xsl:when><br>
-									<xsl:when test="$statusVar='blocked'"><br>
-										<xsl:value-of select="'FAILED'"/><br>
-									</xsl:when><br>
-									<xsl:when test="$statusVar='retest'"><br>
-										<xsl:value-of select="'FAILED'"/><br>
-									</xsl:when><br>
-									<xsl:when test="$statusVar='untested'"><br>
-										<xsl:value-of select="'FAILED'"/><br>
-									</xsl:when><br>
-								</xsl:choose><br>
-							</xsl:element><br>
-						</xsl:element><br>
-					</xsl:element><br>
-				</xsl:for-each><br>
-			</xsl:if><br>
-		</xsl:when><br>
-		<xsl:otherwise><br>
-			<xsl:for-each select="SourceXML/updatedFields/Property/custom__steps__separated/com.opshub.eai.TestStep"><br>
-				<xsl:element name="{concat('_',order)}"><br>
-					<xsl:element name="order"><br>
-						<xsl:value-of select="order"/><br>
-					</xsl:element><br>
-					<xsl:element name="step"><br>
-						<xsl:value-of select="step"/><br>
-					</xsl:element><br>
-					<xsl:element name="expected"><br>
-						<xsl:value-of select="expected"/><br>
-					</xsl:element><br>
-					<xsl:element name="description"><br>
-						<xsl:value-of select="description"/><br>
-					</xsl:element><br>
-					<xsl:element name="calledTestCaseId"><br>
-						<xsl:value-of select="calledTestCaseId"/><br>
-					</xsl:element><br>
-					<xsl:element name="additionalFields"><br>
-						<xsl:element name="status"><br>
-							<xsl:variable name="xstatusVar" select="/SourceXML/updatedFields/Property/status__id"/><br>
-							<xsl:choose><br>
-								<xsl:when test="$xstatusVar='passed'"><br>
-									<xsl:value-of select="'PASSED'"/><br>
-								</xsl:when><br>
-								<xsl:when test="$xstatusVar='failed'"><br>
-									<xsl:value-of select="'FAILED'"/><br>
-								</xsl:when><br>
-								<xsl:when test="$xstatusVar='blocked'"><br>
-									<xsl:value-of select="'FAILED'"/><br>
-								</xsl:when><br>
-								<xsl:when test="$xstatusVar='retest'"><br>
-									<xsl:value-of select="'FAILED'"/><br>
-								</xsl:when><br>
-								<xsl:when test="$xstatusVar='untested'"><br>
-									<xsl:value-of select="'FAILED'"/><br>
-								</xsl:when><br>
-							</xsl:choose><br>
-						</xsl:element><br>
-					</xsl:element><br>
-					<OHAttachments><br>
-						<xsl:for-each select="SourceXML/updatedFields/Property/OHAttachments/OHAttachment"><br>
-							<xsl:element name="{concat('attachment_',position())}"><br>
-								<filename><br>
-									<xsl:value-of select="fileName"/><br>
-								</filename><br>
-								<addedByUser><br>
-									<xsl:value-of select="addedByUser"/><br>
-								</addedByUser><br>
-								<contentLength><br>
-									<xsl:value-of select="contentLength"/><br>
-								</contentLength><br>
-								<contentType><br>
-									<xsl:value-of select="contentType"/><br>
-								</contentType><br>
-								<contentBase64><br>
-									<xsl:value-of select="contentBase64"/><br>
-								</contentBase64><br>
-								<attachmentURI><br>
-									<xsl:value-of select="attachmentURI"/><br>
-								</attachmentURI><br>
-								<updateTimeStamp><br>
-									<xsl:value-of select="updateTimeStamp"/><br>
-								</updateTimeStamp><br>
-								<label><br>
-									<xsl:value-of select="label"/><br>
-								</label><br>
-								<fileComment><br>
-									<xsl:value-of select="fileComment"/><br>
-								</fileComment><br>
-								<attachmentType><br>
-									<xsl:variable name="xPathVariable" select="attachmentType"/><br>
-									<xsl:value-of select="attachmentType"/><br>
-								</attachmentType><br>
-							</xsl:element><br>
-						</xsl:for-each><br>
-					</OHAttachments><br>
-				</xsl:element><br>
-			</xsl:for-each><br>
-		</xsl:otherwise><br>
-	</xsl:choose><br>
-</testRunSteps><br>
+```xml
+<testRunSteps op_type="TestSteps" xmlns:map="http://java.util.Map" xmlns:str="http://java.lang.String" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:Step="http://com.opshub.eai.TestStep">
+	<xsl:variable name="xPathVariable" select="SourceXML/opshubProjectKey" />
+   	<xsl:variable name="targetProjectKey">
+		<xsl:choose>
+			<xsl:when test="$xPathVariable='<<source_project_key>>'">
+				<xsl:value-of select="'<<target_project_key>>'"/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:variable>
+	<xsl:choose>
+		<xsl:when test="SourceXML/opshubEventType='Update'">
+			<xsl:variable name="statusVar" select="SourceXML/updatedFields/Property/status__id"/>
+			<xsl:variable name="stepsList" select="utils:getEntityFieldValueAsObject($workflowId,$targetSystemId,$targetProjectKey,'TSTRN','<<target_entity_id>>','testRunSteps')"/>
+                <xsl:for-each select="$stepsList">
+                  <xsl:variable name="stepData" select="."/>
+                  <com.opshub.eai.TestStep>
+                      <order>
+                          <xsl:value-of select="Step:getOrder($stepData)"/>
+                      </order>
+                      <expected>
+                          <xsl:value-of select="Step:getExpected($stepData)"/>
+                      </expected>
+                      <description>
+                          <xsl:value-of select="Step:getDescription($stepData)"/>
+                      </description>
+                      <additionalFields>
+                          <xsl:element name="status">
+                              <xsl:choose>
+                                  <xsl:when test="$statusVar='passed'">
+                                      <xsl:value-of select="'PASSED'"/>
+                                  </xsl:when>
+                                  <xsl:when test="$statusVar='failed'">
+                                      <xsl:value-of select="'FAILED'"/>
+                                  </xsl:when>
+                                  <xsl:when test="$statusVar='blocked'">
+                                      <xsl:value-of select="'FAILED'"/>
+                                  </xsl:when>
+                                  <xsl:when test="$statusVar='retest'">
+                                      <xsl:value-of select="'FAILED'"/>
+                                  </xsl:when>
+                                  <xsl:when test="$statusVar='untested'">
+                                      <xsl:value-of select="'FAILED'"/>
+                                  </xsl:when>
+                              </xsl:choose>
+                          </xsl:element>
+                      </additionalFields>
+                  </com.opshub.eai.TestStep>
+                </xsl:for-each>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:for-each select="SourceXML/updatedFields/Property/custom__steps__separated/com.opshub.eai.TestStep">
+				<com.opshub.eai.TestStep>
+					<order>
+						<xsl:value-of select="order"/>
+					</order>
+                                        <associationId>
+                                          <xsl:value-of select="associationId"/>
+                                        </associationId>
+                                        <id>
+                                          <xsl:value-of select="id"/>
+                                        </id>
+					<step>
+						<xsl:value-of select="step"/>
+					</step>
+					<expected>
+						<xsl:value-of select="expected"/>
+					</expected>
+					<description>
+						<xsl:value-of select="description"/>
+					</description>
+					<calledTestCaseId>
+						<xsl:value-of select="calledTestCaseId"/>
+					</calledTestCaseId>
+					<additionalFields>
+						<xsl:element name="status">
+							<xsl:variable name="xstatusVar" select="/SourceXML/updatedFields/Property/status__id"/>
+							<xsl:choose>
+								<xsl:when test="$xstatusVar='passed'">
+									<xsl:value-of select="'PASSED'"/>
+								</xsl:when>
+								<xsl:when test="$xstatusVar='failed'">
+									<xsl:value-of select="'FAILED'"/>
+								</xsl:when>
+								<xsl:when test="$xstatusVar='blocked'">
+									<xsl:value-of select="'FAILED'"/>
+								</xsl:when>
+								<xsl:when test="$xstatusVar='retest'">
+									<xsl:value-of select="'FAILED'"/>
+								</xsl:when>
+								<xsl:when test="$xstatusVar='untested'">
+									<xsl:value-of select="'FAILED'"/>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:element>
+					</additionalFields>
+					<OHAttachments>
+						<xsl:for-each select="SourceXML/updatedFields/Property/OHAttachments/OHAttachment">
+							<xsl:element name="{concat('attachment_',position())}">
+								<filename>
+									<xsl:value-of select="fileName"/>
+								</filename>
+								<addedByUser>
+									<xsl:value-of select="addedByUser"/>
+								</addedByUser>
+								<contentLength>
+									<xsl:value-of select="contentLength"/>
+								</contentLength>
+								<contentType>
+									<xsl:value-of select="contentType"/>
+								</contentType>
+								<contentBase64>
+									<xsl:value-of select="contentBase64"/>
+								</contentBase64>
+								<attachmentURI>
+									<xsl:value-of select="attachmentURI"/>
+								</attachmentURI>
+								<updateTimeStamp>
+									<xsl:value-of select="updateTimeStamp"/>
+								</updateTimeStamp>
+								<label>
+									<xsl:value-of select="label"/>
+								</label>
+								<fileComment>
+									<xsl:value-of select="fileComment"/>
+								</fileComment>
+								<attachmentType>
+									<xsl:variable name="xPathVariable" select="attachmentType"/>
+									<xsl:value-of select="attachmentType"/>
+								</attachmentType>
+							</xsl:element>
+						</xsl:for-each>
+					</OHAttachments>
+				</com.opshub.eai.TestStep>
+			</xsl:for-each>
+		</xsl:otherwise>
+	</xsl:choose>
+</testRunSteps>
 
 ```
 

@@ -53,27 +53,27 @@ Refer the screenshot given below for reference.
 * Custom field of test steps will be synced with additional fields as bellow:
 
 ```xml
-<OH_Test_Steps>
+<OH_Test_Steps op_type="TestSteps">
 	<xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="SourceXML/updatedFields/Property/OH__Test__Steps/com.opshub.eai.TestStep">
-		<xsl:element name="{concat('_',order)}">
-			<xsl:element name="order">
+		<com.opshub.eai.TestStep>
+			<order>
 				<xsl:value-of select="order"/>
-			</xsl:element>
-			<xsl:element name="id">
+			</order>
+			<id>
 				<xsl:value-of select="id"/>
-			</xsl:element>
-			<xsl:element name="step">
+			</id>
+			<step>
 				<xsl:value-of select="step"/>
-			</xsl:element>
-			<xsl:element name="expected">
+			</step>
+			<expected>
 				<xsl:value-of select="expected"/>
-			</xsl:element>
-			<xsl:element name="description">
+			</expected>
+			<description>
 				<xsl:value-of select="description"/>
-			</xsl:element>
-			<xsl:element name="calledTestCaseId">
+			</description>
+			<calledTestCaseId>
 				<xsl:value-of select="calledTestCaseId"/>
-			</xsl:element>
+			</calledTestCaseId>
 			<OHAttachments>
 				<xsl:for-each select="attachments/OHAttachment">
 					<xsl:element name="{concat('attachment_',position())}">
@@ -129,7 +129,7 @@ Refer the screenshot given below for reference.
 					</xsl:element>
 				</xsl:for-each>
 			</OHAttachments>
-			<xsl:element name="additionalFields">
+			<additionalFields>
 				<xsl:element name="customCheckBox">
 					<xsl:value-of select="additionalFields/customFields/customCheckBox"/>
 				</xsl:element>
@@ -175,11 +175,10 @@ Refer the screenshot given below for reference.
 				<xsl:element name="customDate">
 					<xsl:value-of select="additionalFields/customFields/customDate"/>
 				</xsl:element>
-			</xsl:element>
-		</xsl:element>
+			</additionalFields>
+		</com.opshub.eai.TestStep>
 	</xsl:for-each>
 </OH_Test_Steps>
-</pre>
 ```
 
 # Integration Configuration

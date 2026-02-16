@@ -3,7 +3,10 @@ Adds an attachment to the given entity id.
 
 ## API URI
 ```bash
-POST: /entities/{entityTypeId}/{entityId}/attachments?projectId={projectId}
+POST: /entities/{entityTypeId}/{entityId}/attachments?
+projectId={projectId}&
+attachmentContainer={attachmentContainer}&
+containerItemId={containerItemId}
 ```
 
 ## URI Parameters
@@ -13,6 +16,8 @@ POST: /entities/{entityTypeId}/{entityId}/attachments?projectId={projectId}
 | entityTypeId  | path  | True     | String | ID of the entity type for which attachment content needs to be added |
 | entityId      | path  | True     | String | ID of the entity in which attachment needs to be added      |
 | projectId     | query | True     | String | Project in which the given entity exists                    |
+| attachmentContainer | query | False    | String | Name of the container (field) on which the attachment content needs to be added.<br>For example, if the attachment is to be added on 'Steps' field,<br>attachmentContainer="Steps" |
+| containerItemId     | query | False    | String | Id of the container (field) on which the attachment content needs to be added.<br>For example, if the attachment is to be added on 'Steps' field, provide step id,<br>containerItemId="10409526" |
 
 ## Request Payload
 Content-type: `multipart/form-data`

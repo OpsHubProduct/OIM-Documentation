@@ -169,12 +169,14 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
       "canBeSetAtEntityCreateTime": "true/false | datatype:boolean",
 
       "updateStepNumber": "// Number starting with 1,2,3",
+
+      "inlineFileMetadataForComplexFields": "FIELD_LEVEL_STORAGE",
   
       "referenceFieldMetadata": {
 	
-		"referencedEntityTypeId: "id of the entity type which is referenced through field"
+		"referencedEntityTypeId": "id of the entity type which is referenced through field",
 
-		"idFieldName": "id field name which stores id or URL of the referenced entity in Entity - GET API and History - List API for base entity"
+		"idFieldName": "id field name which stores id or URL of the referenced entity in Entity - GET API and History - List API for base entity",
 
 		"referenceUrl": {
 
@@ -190,11 +192,18 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
 
     			}
 
-		}
+		},
 
 		"titleFieldName": "title field name which stores title or equivalent field of the referenced entity in the Entity - GET API and History - List API for base entity"        
 
-       }
+       },
+      
+      "additionalFieldMetaData": {
+        
+        "richTextDataType": "An additional meta of field to determine rich text data type of field.",
+        
+        "stepExecutionType": "An additional meta of field to store execution behavior of Test Step field"
+      }
 
     },
 
@@ -223,16 +232,18 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
       "canBeSetAtEntityCreateTime": "true/false | datatype:boolean",
 
       "updateStepNumber": "// Number starting with 1,2,3",
+
+      "inlineFileMetadataForComplexFields": "FIELD_LEVEL_STORAGE",
   
       "referenceFieldMetadata": {
 	
-		"referencedEntityTypeId: "id of the entity type which is referenced through field"
+		"referencedEntityTypeId": "id of the entity type which is referenced through field",
 
-		"idFieldName": "id field name which stores id or URL of the referenced entity in Entity - GET API and History - List API for base entity"
+		"idFieldName": "id field name which stores id or URL of the referenced entity in Entity - GET API and History - List API for base entity",
 
 		"referenceUrl": {
 
-			 "baseUrl": "https://example.com/"
+			 "baseUrl": "https://example.com/",
 
 			 "trailingTemplate": "browse/{0}/{1}",
 
@@ -244,13 +255,19 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
 
     			}
 
-		}
+		},
 
 		"titleFieldName": "title field name which stores title or equivalent field of the referenced entity in the Entity - GET API and History - List API for base entity"        
 
-       }
-
-
+       },
+      
+      "additionalFieldMetaData": {
+        
+        "richTextDataType": "An additional meta of field to determine rich text data type of field.",
+        
+        "stepExecutionType": "An additional meta of field to store execution behavior of Test Step field"
+      }
+      
     }
 
   ],
@@ -617,8 +634,8 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
 | **fieldNameInfo.fields**|  | True |  | Details of all the fields that user want to integrate via SDK |
 | | **id** | True | String | Internal name of the field. Always pass internal name only even if field meta is different across projects. OIM will handle the different internal names for the field having the same display name in different projects |
 | | **name** | True | String | Display name of the field |
-| |**dataType** | True | Enum | Data Type of the field which OIM understands. TEXT, HTML, WIKI, LOOKUP, DATE, DATE_TIME, DATE_STRING, BOOLEAN, NUMBER, USERNAME_AS_USER, TIME_UNIT, EMAIL_AS_USER, RTF, HYPERLINK, TEST_STEP, PARAMETER, REFERENCE, IMAGE, HIERARCHY<br>For example, the end system data type is 'string' but for OIM it's 'TEXT'. So, set dataType as 'TEXT' |
-| | **additionalFieldMetaData** | False | Object | This property can be used to set additional meta data of field.<br>For example, the 'Test Step' field is a complex field with nested fields, such as 'Description,' 'Expected Result,' etc. If the 'Description' is of the 'HTML' type, then set the richTextDataType of the 'Test Step' field to 'HTML' inside 'additionalFieldMetaData'.<br><pre>"additionalFieldMetaData" : {<br>&nbsp;&nbsp;"richTextDataType" : "An additional meta of field to determine rich text data type of field."<br>}<br><br>Example:<br>{<br>&nbsp;&nbsp;...,<br>&nbsp;&nbsp;"additionalFieldMetaData":{<br>&nbsp;&nbsp;&nbsp;&nbsp;"richTextDataType":"HTML"<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;...,<br>}</pre> |
+| |**dataType** | True | Enum | Data Type of the field which OIM understands. TEXT, HTML, WIKI, LOOKUP, DATE, DATE_TIME, DATE_STRING, BOOLEAN, NUMBER, USERNAME_AS_USER, TIME_UNIT, EMAIL_AS_USER, RTF, HYPERLINK, TEST_STEP, PARAMETER, REFERENCE, IMAGE, HIERARCHY<br>For example, the end system data type is 'string' but for OIM it's 'TEXT'. So, set dataType as 'TEXT'<br><br>If a field contains sub-fields that can have attachments, inline images, or files at the sub-field level, then it is classified as 'Complex Field' and the data type of this field is considered a 'Complex Data Type'.<br>For example, the Test Step field contains multiple sub-fields, and these sub-fields can have attachments, inline images or files. Hence, TEST_STEP is considered a 'Complex Data Type'.<br><br>Current Complex Data Types: TEST_STEP |
+| | **additionalFieldMetaData** | False | Object | This property can be used to set additional meta data of field.<br>For example, the 'Test Step' field is a complex field with nested fields, such as 'Description,' 'Expected Result,' etc. If the 'Description' is of the 'HTML' type, then set the richTextDataType of the 'Test Step' field to 'HTML' inside 'additionalFieldMetaData'.<br><pre>"additionalFieldMetaData" : {<br>&nbsp;&nbsp;"richTextDataType" : "An additional meta of field to determine rich text data type of field."<br>&nbsp;&nbsp;"stepExecutionType" : "An additional meta of field to store execution behavior of Test Step field."<br>}<br><br>Possible values of stepExecutionType:<br>1) ALL_STEP: provide if all the steps are required in request body while editing steps <br>2) SINGLE_STEP: provide if the request can be executed for a single step (other steps remain un-changed)<br><br>Example 1: If all steps are required in request body,<br>{<br>&nbsp;&nbsp;...,<br>&nbsp;&nbsp;"additionalFieldMetaData":{<br>&nbsp;&nbsp;&nbsp;&nbsp;"richTextDataType":"HTML"<br>&nbsp;&nbsp;&nbsp;&nbsp;"stepExecutionType":"ALL_STEP"<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;...,<br>}<br><br>Example 2: If the request can be executed for a single step (other steps remain un-changed),<br>{<br>&nbsp;&nbsp;...,<br>&nbsp;&nbsp;"additionalFieldMetaData":{<br>&nbsp;&nbsp;&nbsp;&nbsp;"richTextDataType":"HTML"<br>&nbsp;&nbsp;&nbsp;&nbsp;"stepExecutionType":"SINGLE_STEP"<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;...,<br>}</pre> |
 | |**timeUnit** | True |  | If the dataType is TIME_UNIT, this field is required. "MILLISECOND, SECOND, MINUTE, HOUR, DAY" |
 | | **dateFormat** | True |  | If the dataType is DATE, this field should only have the date format. E.g., yyyy-MM-dd<br>If dataType is DATE_TIME, this field should have date time format. E.g., yyyy-MM-dd HH:mm:ss.SSS z |
 | |**isMandatory** | True | Boolean | Send true if the field is mandatory, otherwise send false |
@@ -628,6 +645,7 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
 | | **userMentionSupported** | False | Boolean | Send true if users can be mentioned (@Smith) in the given field, otherwise return false |
 | | **entityMentionSupported** | False | Boolean | Send true if entities can be mentioned (@entity) in the given field, otherwise return false |
 | | **canBeSetAtEntityCreateTime** | True | Boolean | Send true if the field value can be set at the time of entity creation, otherwise false |
+| |**inlineFileMetadataForComplexFields** | False    | Enum    | set FIELD_LEVEL_STORAGE if the field stores attachment at field level; otherwise, the storage type mentioned in inline file data will be used by default. |
 | | **updateStepNumber** | False | Number | Required only if you are returning ‘STATIC_SUB_STEPS’ in ‘multiStepUpdate’ from this API. Step number in which the field can be updated. Field group number – where group is for update groups. Number starting with 1,2,3....<br>For example, if there is separate API to transition Status from one state to another and all other fields can be updated in single update request to the end system, then send 1 for all fields except Status. For Status, send 2. For any update request, OpsHub will call update entity SDK API twice, once with payload for all other fields and second time only with Status field<br><br>If the end System allows the Entity Type movement and Project movement then this will be required if you are returning 'STATIC_SUB_STEPS' or 'DYNAMIC_SUB_STEPS' in 'multiStepUpdate' from this API:<br><br>**updateStepNumber for entityTypeIdFieldName:**<br>- "-3": In case the end system have different API for Entity Type and Project Movement. Or the end system doesn't support Project Movement.<br>- "-6": In case the end system have same API for Entity Type and Project Movement.<br><br>**updateStepNumber for projectIdFieldName:**<br>- "-2": In case the end system have different API for Project and Entity Type Movement. Or the end system doesn't support Entity Type Movement.<br>- "-6": In case the end system have same API for Entity Type and Project Movement.<br><br>*If no metadata for the updateStepNumber for either entityTypeIdFieldName or projectIdFieldName is provided then by default they will be treated as having separate API for Entity Type and Project Movement.*<br>*In case of different updateStepNumber of entityType and project, If both entityType and project movement is found supported then the order for update operation will first be Project Movement and then Entity Type movement.* |
 | |**referenceFieldMetadata** | False | Object | Pass this metadata if the field is to be synchronized as reference field.<br><pre>referenceFieldMetadata: {<br>&nbsp;&nbsp;referencedEntityTypeId: id of the entity type which is referenced through field. For e.g., if in Bug Entity, release is a reference field, provide id of the release entity type.<br><br>&nbsp;&nbsp;idFieldName: Provide the field name which stores id or URL of the referenced entity in Entity - GET API and History - List API for base entity. If end system provides both id and url of the referenced entity, provide the name of the field which stores id.<br><br>&nbsp;&nbsp;Example 1: If the response of the getting Bug API is as follows:<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"id": "391",<br>&nbsp;&nbsp;&nbsp;&nbsp;"fields": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"release": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"releaseId": "100",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "This release addresses major customer escalations and some critical defects",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"releaseName": "Release 1",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"archived": false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;Here, id field name of the referenced entity is "releaseId".<br><br>&nbsp;&nbsp;Example 2: If the response of getting base entity API is as follows:<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"bugRef": "https://example.com/bug/391",<br>&nbsp;&nbsp;&nbsp;&nbsp;"fields": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"release": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"releaseRef": "https://example.com/project1/release/100",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "This release addresses major customer escalations and some critical defects",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"releaseName": "Release 1",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"archived": false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;Here, id field name of the referenced entity is "releaseRef".<br><br>&nbsp;&nbsp;referenceUrl: Provide this input if end system's API provides link to url of the referenced entity instead of id. If end system provides both id and url of the referenced entity, do not include referenceUrl in response.<br>&nbsp;&nbsp;For example 2, if link to url is: "https://example.com/{0}/{1}/{2}" then referenceURl.baseUrl: https://example.com/,  referenceURl.trailingTemplate: {0}/{1}/{2}<br>&nbsp;&nbsp;And referenceUrl.substitutes would be {0, "projectIdFieldName", 1, "entityTypeIdFieldName", 2, "entityIdFieldName"}<br><br>&nbsp;&nbsp;titleFieldName: Provide the field name which stores title or equivalent field of the referenced entity in the Entity - GET API and History - List API for base entity. If end system's APIs' do not have name of the referenced entity in Entity - GET API and History - List API, set this input to null.<br>&nbsp;&nbsp;For example 2, titleFieldName would be releaseName.<br>}</pre> |
 
@@ -660,7 +678,7 @@ GET: /entity-types/{entityTypeId}?projectId=<projectId>
 |-----------|------|----------|------|--------------|
 |**inlineFile** | | False |  | Pass this parameter if you want to integrate inline files for a given entity type. Otherwise, do not send this parameter at all.<br>Attachment APIs must be implemented to integrate inline files. |
 | |**deleteSupported** | True | Boolean | Does the system allow deleting inline files? |
-| |**inlineFileStorageType** | True | Enum | Is the inline file/attachment stored at the entity or global level in the system?<br><br>Possible values:<br>1) ENTITY_LEVEL_STORAGE: When inline files are stored in the entity itself<br>2) EXTERNAL_STORAGE: When inline files are stored at the system level |
+| |**inlineFileStorageType** | True | Enum | Is the inline file/attachment stored at the entity or global level in the system?<br><br>Possible values:<br>1) ENTITY_LEVEL_STORAGE: When inline files are stored in the entity itself<br>2) EXTERNAL_STORAGE: When inline files are stored at the system level<br>3) FIELD_LEVEL_STORAGE: When inline files are stored in the field itself |
 | |**inlineFileUrlPrefix** | True | List&lt;String&gt; | What is the prefix of inline files?<br>This is used to identify if an inline file or image URL is the URL to some external site or the system's URL.<br><br>Provide the common initial part of the inline files URL. E.g., If the system has inline file URLs like these:<br>- https://media.example-system.com/files/file1.png<br>- https://media.example-system.com/files/file2.docx<br>- https://media.example-system.com/files/file3.pdf<br><br>In this case, the inline file URL prefix is: "https://media.example-system.com/files" |
 
 
