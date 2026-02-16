@@ -443,3 +443,14 @@ Update the custom workflow as described below:
 
 **Reason**
 * This change replaces the default SimpleQuery, which returned all users without filtering. Personal Queries enable fetching users based on specific criteria, improving filtering and performance.
+
+# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.217 or above
+
+**Applicable When**
+* If one of the integration endpoints is Jira Xray (Cloud), Jama, or Codebeamer, and the integration is using a customized workflow to synchronize step field [Test Assets] attachments and inline images/files.
+
+**Actions**
+* The existing workflow must be updated to remove all handling related to step attachments and inline images/files synchronization. Otherwise, sync discrepancies may be observed at the step-level attachment/image sync. Kindly reach out to OpsHub Support for assistance.
+
+**Reason**
+* From version 7.217 onwards, step attachments and inline images/files are handled automatically between these systems, hence no workflow customization is required.

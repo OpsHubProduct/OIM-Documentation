@@ -27,7 +27,7 @@
     * [Advanced Synchronization Scenarios](docs/integrate/advanced-sync-scenario.md)
       * [Comment Author Impersonation](docs/integrate/comment-author-impersonation.md)
       * ["Entity Type" and/or "Project" Change Synchronization](docs/integrate/entity-move-synchronization.md)
-      * [Inline Image or File Synchronization](docs/integrate/inline-image-sync-behaviour.md)
+      * [Inline Image or File Synchronization](docs/integrate/attachment-and-inline-sync-behaviour.md)
       * [Source Delete Synchronization](docs/integrate/source-delete-synchronization.md)
       * [Rule Based Routing](docs/integrate/rule-based-routing.md)
     * [Integration Reconciliation](docs/integrate/reconcile.md)

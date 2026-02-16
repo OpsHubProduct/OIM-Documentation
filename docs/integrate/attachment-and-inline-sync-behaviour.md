@@ -19,6 +19,15 @@
    * Example: If image/ file is added to rich text field in Broadcom Clarity, image/ file will not be uploaded anywhere. Also, it will not be added as attachment on the entity.
    * Base64 Storage Systems: Broadcom Clarity
 
+4. **Field Storage:**
+    * Upon adding an image/ file to a rich text field (such as the Test Step field), it is stored only within that specific field. It is not stored at the entity level or server level.
+      * This means the attachment is linked directly to the field where it is added (field-level storage).
+    * Example: If an image/ file is added to the Test Step field of a Test entity in Jira Xray (Cloud), it will be visible only in the attachment section of that Test Step field.
+    * Field Storage System: Jira Xray (Cloud) – Test Step field of Test entity
+
+  <p align="center"><img alt="Step with Attachment" src="../assets/FieldStorage.png" width="500"/></p>
+ 
+
 # Image/ File Synchronization Behavior with Storage Combinations
 
 ## Server/ Base64 Storage System Combinations
@@ -75,6 +84,35 @@
 
 * If a comment has been synchronized by <code class="expression">space.vars.SITENAME</code> with an inline image/ file, the target comment will also have the image/ file.
   * Now, even if the comment is deleted in the source end system, the image/ file will persist in the target comment and also as an attachment on the entity in case it is an entity storage end system.
+
+# Attachment and Inline Image Synchronization with Field Storage
+
+* While synchronizing test-step type fields, no additional customization is required in the mapping or workflow to handle step level attachments, inline images, or files for these systems: Jira Xray cloud, Jama and Codebeamer. Other systems may require additional customization to handle step level attachments, inline images, or files. Please refer to connector documentation for more details.
+* Format conversion of step-level fields (except additional step-level fields) is automatically managed by the system.
+* Only the additional step-level fields (which may vary from system to system) need to be handled explicitly in the mapping XSLT, as done earlier.
+* When a test-step type field with attachments is synced from a field storage system (Jira Xray Cloud) to an entity/server storage system (Jama or Codebeamer), the attachment is stored at the entity level in Jama/Codebeamer.
+* To properly sync step attachment deletion from entity/server storage (i.e. Jama or Codebeamer) to field level (Jira Xray cloud), attachment mapping must be enabled.
+
+## General Behaviors:
+### Attachment Synchronization
+
+| Source Storage | Target Storage | Behavior |
+|----------------|----------------|----------|
+| Field Storage | Field Storage | Attachment is added to the field. |
+| Field Storage | Entity/Server Storage | Attachment is added to the entity only. |
+
+### Inline Image/File Synchronization
+
+| Source Storage | Target Storage | Behavior |
+|----------------|----------------|----------|
+| Field Storage | Field Storage | Attachment is added to the field and its reference is added in the field content. |
+| Field Storage | Entity/Server Storage | Attachment is added to the entity and its reference is added in the field content. |
+
+### Overwrite Behavior
+
+| Scenario                                                                                                                                                      | Expected | Actual Behavior | Explanation |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|----------------|-------------|
+| Sync from field storage → entity storage (Overwrite enabled for entity storage), attachment deleted in field system, and sync triggered in backward direction | Attachment should be re-added to the field | Attachment is added at the entity level in Xray | Jama stores attachments at the entity level and does not retain field-level association details, so during reverse sync the attachment is restored at the entity level only not at field level |
 
 # Synchronization Behavior
 

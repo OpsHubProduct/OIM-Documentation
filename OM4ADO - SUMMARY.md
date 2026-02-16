@@ -26,7 +26,7 @@
     * Advanced Synchronization Scenarios
       * [Comment Author Impersonation](docs/integrate/comment-author-impersonation.md)
       * ["Entity Type" and/or "Project" Change Synchronization](docs/integrate/entity-move-synchronization.md)
-      * [Inline Image or File Synchronization](docs/integrate/inline-image-sync-behaviour.md)
+      * [Inline Image or File Synchronization](docs/integrate/attachment-and-inline-sync-behaviour.md)
       * [Source Delete Synchronization](docs/integrate/source-delete-synchronization.md)
     * [Integration Reconciliation](docs/integrate/reconcile.md)
     * Monitoring and Organization

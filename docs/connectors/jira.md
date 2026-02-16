@@ -708,24 +708,30 @@ If you have enabled either Zephyr or Xray Plugin for Jira either as source or ta
 1.  Given below is a **sample advanced mapping** from Jira to RALLY for synchronizing **Manual Steps** of **Xray entity** along with formatting:
 
     ```xml
-    <Steps xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="http://com.opshub.eai.core.utility.OIMCoreUtility">
+    <Steps op_type="TestSteps" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="http://com.opshub.eai.core.utility.OIMCoreUtility">
       <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="SourceXML/updatedFields/Property/Manual-space-Test-space-Steps/com.opshub.eai.TestStep">
-        <xsl:element name="{concat('_',order)}">
-          <xsl:element name="order">
+        <com.opshub.eai.TestStep>
+          <order>
             <xsl:value-of select="order"/>
-          </xsl:element>
-          <xsl:element name="step">
+          </order>
+          <associationId>
+            <xsl:value-of select="associationId"/>
+          </associationId>
+          <id>
+        	<xsl:value-of select="id"/>
+          </id>
+          <step>
             <xsl:value-of select="step"/>
-          </xsl:element>
-          <xsl:element name="expected">
+          </step>
+          <expected>
             <xsl:value-of select="utils:convertWikiToHTML(expected)"/>
-          </xsl:element>
-          <xsl:element name="description">
+          </expected>
+          <description>
             <xsl:value-of select="utils:convertWikiToHTML(description)"/>
-          </xsl:element>
-          <xsl:element name="calledTestCaseId">
+          </description>
+          <calledTestCaseId>
             <xsl:value-of select="calledTestCaseId"/>
-          </xsl:element>
+          </calledTestCaseId>
           <OHAttachments>
             <xsl:for-each select="SourceXML/updatedFields/Property/OHAttachments/OHAttachment">
               <xsl:element name="{concat('attachment_',position())}">
@@ -769,7 +775,7 @@ If you have enabled either Zephyr or Xray Plugin for Jira either as source or ta
               </xsl:element>
             </xsl:for-each>
           </OHAttachments>
-        </xsl:element>
+        </com.opshub.eai.TestStep>
       </xsl:for-each>
     </Steps>
     ```
@@ -779,24 +785,30 @@ If you have enabled either Zephyr or Xray Plugin for Jira either as source or ta
 2. Given below is a **sample advanced mapping** from Jira to RALLY for synchronizing **Zephyr Test Steps** of **Zephyr entities** along with formatting:
 
 ```xml
-<Steps xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="http://com.opshub.eai.core.utility.OIMCoreUtility">
+<Steps op_type="TestSteps" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="http://com.opshub.eai.core.utility.OIMCoreUtility">
   <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="SourceXML/updatedFields/Property/Zephyr-space-Teststep/com.opshub.eai.TestStep">
-    <xsl:element name="{concat('_',order)}">
-      <xsl:element name="order">
+    <com.opshub.eai.TestStep>
+      <order>
         <xsl:value-of select="order"/>
-      </xsl:element>
-      <xsl:element name="step">
+      </order>
+      <associationId>
+        <xsl:value-of select="associationId"/>
+      </associationId>
+      <id>
+        <xsl:value-of select="id"/>
+      </id>
+      <step>
         <xsl:value-of select="step"/>
-      </xsl:element>
-      <xsl:element name="expected">
+      </step>
+      <expected>
         <xsl:value-of select="utils:convertWikiToHTML(expected)"/>
-      </xsl:element>
-      <xsl:element name="description">
+      </expected>
+      <description>
         <xsl:value-of select="utils:convertWikiToHTML(description)"/>
-      </xsl:element>
-      <xsl:element name="calledTestCaseId">
+      </description>
+      <calledTestCaseId>
         <xsl:value-of select="calledTestCaseId"/>
-      </xsl:element>
+      </calledTestCaseId>
       <OHAttachments>
         <xsl:for-each select="SourceXML/updatedFields/Property/OHAttachments/OHAttachment">
           <xsl:element name="{concat('attachment_',position())}">
@@ -840,35 +852,38 @@ If you have enabled either Zephyr or Xray Plugin for Jira either as source or ta
           </xsl:element>
         </xsl:for-each>
       </OHAttachments>
-    </xsl:element>
+    </com.opshub.eai.TestStep>
   </xsl:for-each>
 </Steps>
 ````
 
-3. Given below is a **sample advanced mapping** from RALLY to Jira for synchronizing **Steps** of **RallyDev Test Case** to **steps** of **Xray Test entity** along with formatting:
+3. Given below is a **sample advanced mapping** from RALLY to Jira (cloud) for synchronizing **Steps** of **RallyDev Test Case** to **steps** of **Xray Test entity** along with formatting:
 
 ```xml
-<steps>
+<steps op_type="TestSteps">
   <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="SourceXML/updatedFields/Property/Steps/com.opshub.eai.TestStep">
-    <xsl:element name="{concat('_',order)}">
-      <xsl:element name="order">
+    <com.opshub.eai.TestStep>
+      <order>
         <xsl:value-of select="order"/>
-      </xsl:element>
-      <xsl:element name="id">
+      </order>
+      <associationId>
+        <xsl:value-of select="associationId"/>
+      </associationId>
+      <id>
         <xsl:value-of select="id"/>
-      </xsl:element>
-      <xsl:element name="step">
+      </id>
+      <step>
         <xsl:value-of select="step"/>
-      </xsl:element>
-      <xsl:element name="expected">
+      </step>
+      <expected>
         <xsl:value-of select="utils:convertHTMLToWiki(expected)"/>
-      </xsl:element>
-      <xsl:element name="description">
+      </expected>
+      <description>
         <xsl:value-of select="utils:convertHTMLToWiki(description)"/>
-      </xsl:element>
-      <xsl:element name="calledTestCaseId">
+      </description>
+      <calledTestCaseIdcalledTestCaseId>
         <xsl:value-of select="calledTestCaseId"/>
-      </xsl:element>
+      </calledTestCaseId>
       <OHAttachments>
         <xsl:for-each select="attachments/OHAttachment">
           <xsl:element name="{concat('attachment_',position())}">
@@ -912,7 +927,7 @@ If you have enabled either Zephyr or Xray Plugin for Jira either as source or ta
           </xsl:element>
         </xsl:for-each>
       </OHAttachments>
-    </xsl:element>
+    </com.opshub.eai.TestStep>
   </xsl:for-each>
 </steps>
 ```
@@ -1502,42 +1517,44 @@ For Target Lookup Configuration of Zephyr entities, refer to [Target lookup for 
 * Given below is a sample advance mapping from Jira to Jira for synchronizing Zephyr Teststep field, including its custom fields:
 
 ```xml
-<Zephyr-space-Teststep>
+<Zephyr-space-Teststep op_type="TestSteps">
 	<xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="SourceXML/updatedFields/Property/Zephyr-space-Teststep/com.opshub.eai.TestStep">
-		<xsl:element name="{concat('_',order)}">
-			<xsl:element name="order">
+		<com.opshub.eai.TestStep>
+			<order>
 				<xsl:value-of select="order"/>
-			</xsl:element>
-			<xsl:element name="step">
+			</order>
+			<step>
 				<xsl:value-of select="step"/>
-			</xsl:element>
-			<xsl:element name="expected">
+			</step>
+			<expected>
 				<xsl:value-of select="expected"/>
-			</xsl:element>
-			<xsl:element name="description">
+			</expected>
+			<description>
 				<xsl:value-of select="description"/>
-			</xsl:element>
-			<xsl:element name="calledTestCaseId">
+			</description>
+			<calledTestCaseId>
 				<xsl:value-of select="calledTestCaseId"/>
-			</xsl:element>
-			<xsl:element name="customFieldValues"> <!-- create an element named "customFieldValues" -->
-				<xsl:element name="_OHPaddingForInitialInvalidChar_44304f57-1bd4-4fae-9001-f711ae962033">  <!-- If the first character of the custom field id is not an alphabet, "_OHPaddingForInitialInvalidChar_" keyword needs to be added in front of the custom field id. -->
-					<xsl:value-of select="additionalFields/__OHPaddingForInitialInvalidChar__44304f57-1bd4-4fae-9001-f711ae962033"/> <!-- This is to get value of the custom field value from source. Here, "__OHPaddingForInitialInvalidChar__" is required. -->
-				</xsl:element>
-				<xsl:element name="d19ecc14-03a9-4756-ba73-3d66cec71aae">
-					<xsl:value-of select="additionalFields/d19ecc14-03a9-4756-ba73-3d66cec71aae"/>
-				</xsl:element>
-				<xsl:element name="_OHPaddingForInitialInvalidChar_429c5df3-2b3a-479e-bb8f-ee6bf6b694bf">
-					<xsl:for-each select="additionalFields/__OHPaddingForInitialInvalidChar__429c5df3-2b3a-479e-bb8f-ee6bf6b694bf/string"> <!-- This block is needed for the custom multi-select and checkbox fields. -->
-						<fieldvalue>
-							<xsl:value-of select="text()"/>
-						</fieldvalue>
-					</xsl:for-each>
-				</xsl:element>
-			</xsl:element>
-			<xsl:element name="multiSelectFields">
-				080251ff-b328-491c-8dc1-bc9f45641dbe,429c5df3-2b3a-479e-bb8f-ee6bf6b694bf    <!-- Provide comma separated custom multi select and checkbox field ids. -->
-			</xsl:element>
+			</calledTestCaseId>
+                        <additionalFields>
+                            <xsl:element name="customFieldValues"> <!-- create an element named "customFieldValues" -->
+                                <xsl:element name="_OHPaddingForInitialInvalidChar_44304f57-1bd4-4fae-9001-f711ae962033">  <!-- If the first character of the custom field id is not an alphabet, "_OHPaddingForInitialInvalidChar_" keyword needs to be added in front of the custom field id. -->
+                                    <xsl:value-of select="additionalFields/__OHPaddingForInitialInvalidChar__44304f57-1bd4-4fae-9001-f711ae962033"/> <!-- This is to get value of the custom field value from source. Here, "__OHPaddingForInitialInvalidChar__" is required. -->
+                                </xsl:element>
+                                <xsl:element name="d19ecc14-03a9-4756-ba73-3d66cec71aae">
+                                    <xsl:value-of select="additionalFields/d19ecc14-03a9-4756-ba73-3d66cec71aae"/>
+                                </xsl:element>
+                                <xsl:element name="_OHPaddingForInitialInvalidChar_429c5df3-2b3a-479e-bb8f-ee6bf6b694bf">
+                                    <xsl:for-each select="additionalFields/__OHPaddingForInitialInvalidChar__429c5df3-2b3a-479e-bb8f-ee6bf6b694bf/string"> <!-- This block is needed for the custom multi-select and checkbox fields. -->
+                                        <fieldvalue>
+                                            <xsl:value-of select="text()"/>
+                                        </fieldvalue>
+                                    </xsl:for-each>
+                                </xsl:element>
+                            </xsl:element>
+                            <xsl:element name="multiSelectFields">
+                                080251ff-b328-491c-8dc1-bc9f45641dbe,429c5df3-2b3a-479e-bb8f-ee6bf6b694bf    <!-- Provide comma separated custom multi select and checkbox field ids. -->
+                            </xsl:element>
+                        </additionalFields>
 			<OHAttachments>
 				<xsl:for-each select="SourceXML/updatedFields/Property/OHAttachments/OHAttachment">
 					<xsl:element name="{concat('attachment_',position())}">
@@ -1581,7 +1598,7 @@ For Target Lookup Configuration of Zephyr entities, refer to [Target lookup for 
 					</xsl:element>
 				</xsl:for-each>
 			</OHAttachments>
-		</xsl:element>
+		</com.opshub.eai.TestStep>
 	</xsl:for-each>
 </Zephyr-space-Teststep>
 ```
