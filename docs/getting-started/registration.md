@@ -120,7 +120,7 @@ Once you select **Use an Existing Verification Code** option, you will see the s
 Once you select **Registration After Installation**, the following screen will appear after installation:
 
 <p align="center">
-  <img src="../assets/Post_Install_Registration_Home.png" width="1000"/>
+   <img src="../assets/Post_Install_Registration_Home.png" width="1000"/>
 </p>
 
 On selecting **Next**, <code class="expression">space.vars.SITENAME</code> will have you register with the registration server. On successful registration, you will get a verification code on your registered email id. Enter the verification code as shown in the screenshot below:
