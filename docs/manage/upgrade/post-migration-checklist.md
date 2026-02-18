@@ -468,4 +468,5 @@ Update the custom workflow as described below:
 * Refer to the section: [ClearQuest_Queries_Configuration](../../connectors/ibm-rational-clearquest.md#queries-configuration) for detailed steps to change these query.
 
 **Reason**
-* As per the database collation of the ClearQuest, casing for the query is changing. To handle that user needs to update the query.
+* If the ClearQuest database uses a case-sensitive collation, the casing of table and column names in the query must exactly match the database schema. 
+* If you notice the query failing due to case differences, update the table and column names in the SQL statement to match the exact casing defined in your ClearQuest database.
