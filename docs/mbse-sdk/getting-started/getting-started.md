@@ -28,7 +28,7 @@ a quick start package is available with:
 - Various utilities
 
 <!-- TODO: Change the link -->
-Click **[here: link will be added shortly]()** to download the documentation for the MBSE Connector SDK Bootstrap Package.
+Click **[1.0.0](https://opshubtrial-my.sharepoint.com/:f:/g/personal/support_opshub_com/IgB2GwvZGsFzTb8G8eOLDsoHAVGOfcyUg0Z-XDYSNM-6ZdY?e=YQ7PWC)** to download the documentation for the MBSE Connector SDK Bootstrap Package.
 
 The bootstrap package can be downloaded from the table below.
 
