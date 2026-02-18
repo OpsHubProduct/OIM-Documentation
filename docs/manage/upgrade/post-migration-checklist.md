@@ -454,3 +454,18 @@ Update the custom workflow as described below:
 
 **Reason**
 * From version 7.217 onwards, step attachments and inline images/files are handled automatically between these systems, hence no workflow customization is required.
+
+# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.218 or above
+
+## Change in Personal Query for IBM ClearQuest system
+
+**Applicable When**
+* IBM ClearQuest is configured as an endpoint and the <code class="expression">space.vars.SITENAME</code> is upgraded to version 7.218 or later.
+
+**Actions**
+* After upgrading to 7.218, the sync user must edit the following Personal Query in ClearQuest:
+    1. `OpsHub_emptyQuery`
+* Refer to the section: [ClearQuest_Queries_Configuration](../../connectors/ibm-rational-clearquest.md#queries-configuration) for detailed steps to change these query.
+
+**Reason**
+* As per the database collation of the ClearQuest, casing for the query is changing. To handle that user needs to update the query.

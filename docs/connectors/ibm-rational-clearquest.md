@@ -58,7 +58,23 @@ Following are the required queries and their names are given with respect to 'De
 <div align="center"><img src="../assets/CQ_OpsHub_MaxTime.png" alt=""></div>
 
 * **OpsHub_emptyQuery**
-  * Create a query, `OpsHub_emptyQuery`. Do not select any field or filters for this query.
+  * Create a query, `OpsHub_emptyQuery`. 
+  * Do not select any field or filters for this query. 
+  * Directly provide the below query in the SQL editor.
+  
+  ```sql
+    select next_request_id from dbglobal where site_name='auto'
+  ```
+  
+  * Important Note for Case-Sensitive Databases:
+    * If the ClearQuest database uses a case-sensitive collation, ensure the table and column names exactly match the database schema:
+    * Table name: `dbglobal`
+    * Column names: `next_request_id` & `site_name`
+    * You can verify the exact case by checking the database associated with ClearQuest. 
+    * In this example, auto is the ClearQuest database name. Replace it with your ClearQuest database.
+
+  
+<div align="center"><img src="../assets/CQ_OpsHub_EmptyQuery.png" alt=""></div>
 
 **Queries required when IBM Rational ClearQuest is used as Source System**
 
