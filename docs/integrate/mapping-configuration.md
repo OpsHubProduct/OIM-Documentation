@@ -550,28 +550,6 @@ To solve this problem, <code class="expression">space.vars.SITENAME</code> allow
   <img src="../assets/Mapping_Configuration_Image_32.PNG" width="900" />
 </p>
 
-
-* Given below is the template for Advance Transition XSL.
-
-**Workflow transition** is a feature supported by <code class="expression">space.vars.SITENAME</code> wherein the user can configure <code class="expression">space.vars.SITENAME</code> to automatically handle workflow transition of an entity as per requirement.
-
-For example, consider a system in which Transition Workflow exists, a certain state is only accessible from a certain specific state or a new item can only exist in a new default state. Another example can be a requirement in which a state a field has to be assigned a value. If the value for that field is not assigned in that specific state, then it will result into error. In such circumstances, synchronizing entities from a system that does not enforce Transition Workflow to the target system is cumbersome.
-
-To solve this problem, <code class="expression">space.vars.SITENAME</code> allows the user to configure Workflow Transition Handling. Some systems provide workflow transition information through API. For these systems, the workflow transition information is picked from the API by default. Irrespective of the availability of the workflow transition through API, user can configure Workflow Transition by providing the information through XSL.
-
-* Slide the button adjacent to **Workflow Transition** to the right.
-* Click the (</>) icon to edit the workflow transition XSL. A default sample XSL is loaded using which a user can build his own XSL as per his requirement.
-
-**Workflow Behaviour for Workflow Transition when the reference field is added as a dependent field:**
-
-* If the dependent field added in the workflow transition is the reference field type, then by default, the lookup for the target entity will be done based on a name basis.
-* If the user wants to perform target lookup based on the target entity id, they can achieve this by specifying the attribute `"lookupBy"` in the dependent field. For more details, refer to [Reference Field Working](mapping-configuration.md#reference-field)
-
-<p align="center">
-  <img src="../assets/Mapping_Configuration_Image_32.PNG" />
-</p>
-
-
 * Given below is the template for Advance Transition XSL.
 
 ```xml
@@ -593,6 +571,7 @@ To solve this problem, <code class="expression">space.vars.SITENAME</code> allow
     <dependentFields>
       <dependentField>
         <fieldName>dependent field 1</fieldName>
+        <executionOrder>BEFORE</executionOrder>
         <possibleTargetValues>
           <possibleValue>value A1</possibleValue>
           <possibleValue>value B1</possibleValue>
@@ -625,12 +604,18 @@ To solve this problem, <code class="expression">space.vars.SITENAME</code> allow
     * `<dependentField>` : These fields have to be changed when the `<toField>` is changed to a particular value.
       * `lookupBy="defaultTargetId"` : This attribute is used to perform lookup by using Id of the target entity.
       * `<fieldName>` : field internal name that is a dependent field.
-        &#xNAN;_&#x49;f Comment is mandatory for the transition, user can mention `OH_Dependent_Comments` as a dependent field in XML._
+        * If Comment is mandatory for the transition, user can mention `OH_Dependent_Comments` as a dependent field in XML.
       * `<possibleTargetValues>` : These values are the values that are available after the field is transformed to `<targetValue>`.
         * `<possibleValue>` : Used for pre-validation of the possible values available in the target end system. Optional. If specified, <code class="expression">space.vars.SITENAME</code> will validate and fail if incoming value is not in this list.
       * `<defaultValue>` : Default value that is to be selected from the list of possible values. If this is not defined then the first `<possibleValue>` is selected.
       * `<defaultValues>` : Default values that are to be selected when the field type is multi-valued.
         * `<string>` : When your field type is multi-valued, provide multiple values as: `<string>value</string>`
+      * `<executionOrder>` : The `<executionOrder>` attribute determines the execution sequence of dependent field operations during workflow state transition. It specifies when dependent field updates are applied relative to the transition.
+        * Possible Values for the `<executionOrder>` attribute are:
+          * BEFORE : Dependent fields with this value are updated before the state transition occurs.
+          * WITH : Dependent fields with this value are updated as part of the state transition.
+          * AFTER : Dependent fields with this value are updated after the state transition is completed.
+        * If the `<executionOrder>` attribute is not specified for a dependent field, the execution order defaults to WITH.
 
 **Example of multi-valued type field:**
 
@@ -719,6 +704,7 @@ Below is workflow transition XML configuration sample for <code class="expressio
 ## Known Behavior and Limitations
 
 * If comment is mandatory on state/status transitions and user has configured the `OH_Dependent_Comments` in workflow transition XML, the N number of comment from source will be processed with N number of transition in target. If there is no comment coming from the source, default comment [mentioned in the Workflow transition XML] will be synced to the target system.
+* `OH_Dependent_Comments` in workflow transition XML will work for `WITH` execution order because of API limitations.
 
 **E.g.,**
 
