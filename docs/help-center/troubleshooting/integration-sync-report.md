@@ -62,12 +62,36 @@ Enter the details in the field that you want to use for filtering the data. Then
 # Glossary
 
 ## State
+- Represents the synchronization status of the entity with respect to the configured integration in <code class="expression">space.vars.SITENAME</code>.
+- The possible values are as follows:
 
-- It represents the status of the existence of the entity in reference to the configured integration in <code class="expression">space.vars.SITENAME</code>  
-- It typically has below possible values:  
-  1. **Active:** Entity is accessible in the end system  
-  2. **Not Accessible:** Entity is not accessible in the end system  
-  3. **Deleted By Sync:** Entity is Logically deleted/Soft deleted by <code class="expression">space.vars.SITENAME</code> in the end system as per details given on [Source Delete Synchronization](../../integrate/source-delete-synchronization.md) page.
+1. **Active:** The entity is accessible to <code class="expression">space.vars.SITENAME</code>.
+2. **Not Accessible:** The entity is not accessible to <code class="expression">space.vars.SITENAME</code>.
+3. **Not Applicable:** The entity is not eligible for synchronization due to its type and/or project conversion, as described in the [Source Delete Synchronization](../../integrate/source-delete-synchronization.md) documentation.
+4. **Archived:** The entity is archived in the source system.
+5. **Deleted by Sync:** The entity is logically/soft deleted in the end system by <code class="expression">space.vars.SITENAME</code>, as described in the [Source Delete Synchronization](../../integrate/source-delete-synchronization.md) documentation.
+6. **Type Converted:** The entity type has been converted in the source or target system, as described in the ["Entity Type" and/or "Project" Change Synchronization](../../integrate/entity-move-synchronization.md) documentation.
+7. **Project Converted:** The entity’s project has been converted in the source or target system, as described in the ["Entity Type" and/or "Project" Change Synchronization](../../integrate/entity-move-synchronization.md) documentation.
+8. **Type and Project Converted:** Both the entity type and project have been converted in the source or target system, as described in the ["Entity Type" and/or "Project" Change Synchronization](../../integrate/entity-move-synchronization.md) documentation.
+9. **Deprecated due to Type Conversion:** The entity is deprecated in the target system due to type conversion in the source system, as described in the ["Entity Type" and/or "Project" Change Synchronization](../../integrate/entity-move-synchronization.md) documentation.
+10. **Deprecated due to Project Conversion:** The entity is deprecated in the target system due to project conversion in the source system, as described in the ["Entity Type" and/or "Project" Change Synchronization](../../integrate/entity-move-synchronization.md) documentation.
+11. **Deprecated due to Type and Project Conversion:** The entity is deprecated in the target system due to both type and project conversion in the source system, as described in the ["Entity Type" and/or "Project" Change Synchronization](../../integrate/entity-move-synchronization.md) documentation.
+12. **Archived by Sync:** The entity is archived in the end system by <code class="expression">space.vars.SITENAME</code>, as described in the [Source Delete Synchronization](../../integrate/source-delete-synchronization.md) documentation.
+13. **Sync Queued:** The entity is queued for synchronization. Applicable only for integrations with systems for which <code class="expression">space.vars.SITENAME</code> supports batch writing.
+14. **Sync Started:** Synchronization of the entity has started. Applicable only for integrations with systems for which <code class="expression">space.vars.SITENAME</code> supports batch writing.
+
+
+# Appendix
+
+## Viewing Queued Entities for Synchronization
+
+To ensure consistency and reliable processing, <code class="expression">space.vars.SITENAME</code> temporarily stores changes queued for batch writing in its database. You can view the details of the queued changes as follows:
+
+1. Open the **Sync Report** for the integration where the changes are under synchronization.
+2. Click on the **"Sync Queued"** or **"Sync Started"** status.
+3. The pop-up lists all changes currently queued for synchronization for the selected entity as follows:
+   ![SyncQueuedData](../../assets/SyncQueuedData.PNG)
+4. Click on ![editruleicon](../../assets/editruleicon.png) to view the details of the changes.
 
 
 
