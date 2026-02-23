@@ -27,20 +27,7 @@ a quick start package is available with:
 - Sample REST client
 - Various utilities
 
-<!-- TODO: Change the link -->
-Click **[1.0.0](https://opshubtrial-my.sharepoint.com/:f:/g/personal/support_opshub_com/IgB2GwvZGsFzTb8G8eOLDsoHAVGOfcyUg0Z-XDYSNM-6ZdY?e=YQ7PWC)** to download the documentation for the MBSE Connector SDK Bootstrap Package.
-
-The bootstrap package can be downloaded from the table below.
-
-
-## SDK Server Bootstrap Package vs OIM Version Compatibility Matrix
-
-<!-- TODO: Change the link -->
-
-| SDK Server                                                                                                                                                            | OIM Version Range    | Remarks                                                                                |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|----------------------------------------------------------------------------------------|
-| [1.0.0 - link will be added shortly]() | \>= 7.218 | Initial version. <br> OIM supports MBSE SDK connector registration from 7.218 onwards. |
-
+The bootstrap package can be downloaded from the compatibility matrix given in [Developer Notes](../developer-notes.md).
 
 # Some Useful SDK Pages
  * [APIs Required for Each Feature](mbse-apis-required-for-each-feature.md)
