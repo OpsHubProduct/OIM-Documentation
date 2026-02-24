@@ -12,7 +12,7 @@ Following are the Operating System (OS) and hardware pre-requisites for server o
 
 ## Windows
 
-* Windows Server 2008 R2 and above (64 bit)
+* Windows 11 and Windows Server 2016 and above (64 bit)
 * For Windows specific configuration, refer [Windows specific configuration](prerequisites.md#windows-specific-configuration)
 
 ## Linux
@@ -31,6 +31,7 @@ Following are the Operating System (OS) and hardware pre-requisites for server o
 # Database Prerequisites
 
 <code class="expression">space.vars.SITENAME</code> can be deployed with an embedded database; however, for production deployment or anything other than functional testing, our experts highly recommend using an external database. <code class="expression">space.vars.SITENAME</code> supports the following database.
+Note: If the database is hosted on a separate Windows machine, the operating system must be Windows 11 or Windows Server 2016 and later.
 
 ## 1. MySQL Server
 
