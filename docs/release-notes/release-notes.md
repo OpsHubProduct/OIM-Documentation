@@ -1,5 +1,7 @@
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}
 
+***
+
 # Critical Updates & Actions Required
 * Due to security requirements, Windows Server versions earlier than 2016 (i.e., Windows Server 2012 and older) are no longer supported operating systems for <code class="expression">space.vars.SITENAME</code>.
   * **Action:** Before attempting to upgrade <code class="expression">space.vars.SITENAME</code>, ensure that the operating system is upgraded to a supported version. Please refer to the [Pre-Migration Checklist](../manage/upgrade/pre-migration-checklist.md#windows-server-versions-earlier-than-2016-are-no-longer-supported).
