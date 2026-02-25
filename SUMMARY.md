@@ -231,6 +231,9 @@
         * [Merge Branch](docs/mbse-sdk/branch/merge-branch.md)
     * [Register Connectors](docs/mbse-sdk/register-connectors.md)
     * [Developer Notes](docs/mbse-sdk/developer-notes.md)
+    * OIM Configuration for MBSE
+      * [Package Selection Criteria](docs/mbse-sdk/oim-config/package-selection-criteria.md)
+      * [Criteria Configuration](docs/mbse-sdk/oim-config/criteria-configuration.md)
 * [Release Notes](docs/release-notes/release-notes.md)
 * [Knowledge Resources](docs/knowledge-resources/knowledge-resource-index.md)
     *  [Integration Combination Examples](docs/knowledge-resources/integration-combination-examples/integration-combination-examples.md)
