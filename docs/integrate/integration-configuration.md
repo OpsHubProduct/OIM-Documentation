@@ -333,14 +333,18 @@ In the given pop-up, the **Entity Id Field Name**, the **Link Field Name**, and 
 * **Sync Field Name:** Set this to a custom text property in the end system. Ensure it is available in all entity types in the integration. 
   If set, the integration will maintain the time of the last successful sync for every entity in the selected text field. 
   The time represents the audit time until which changes have been successfully synced to the target.
-
+* Applicable when <code class="expression">space.vars.SITENAME</code> supports writing multiple changes together: 
+    * **Batch Update Size:** This input defines the number of changes that will be written together in a single batch to the target system. When the target system supports batch writing, <code class="expression">space.vars.SITENAME</code> temporarily stores the changes read from the source system in its database. Once the number of stored changes becomes greater than or equal to the value specified in this field, it processes the changes one by one to determine the required updates for the target system. After processing, all derived updates are written together to the target system in a single batch. For example, if 100 changes are made in the source system and the **Batch Update Size** is set to 50, then <code class="expression">space.vars.SITENAME</code> will write 50 changes together in one batch to the target system. This field is optional. By default, all changes read during one cycle are processed and written together in a single batch.
+* Applicable when <code class="expression">space.vars.SITENAME</code> supports reading multiple entity types together:
+  * **Sync only current state:** Set this value to true to synchronize only the current state of the entity. This field is optional. By default, the complete audit history is synchronized to the target system.
 ## Common Sections
 
 * **Max Retry Count:** Set the maximum number of times the failed events should be retried. The default value is 3.
 *   **Associate Schedule:** Set an interval at which the data between the source and the target systems should be synchronized. 
     The default schedule is 1 Minute Schedule.
-
-   <p align="center">
+* **Delete Events Sync Schedule:** Set the interval at which the ['Delete Sync'](integration-configuration.md#Enable-Delete-Sync) configuration looks for sync-abandoned source entities and updates the corresponding target entities.
+  
+  <p align="center">
     <img src="../assets/Global_Level_Confg.png" width="600" />
    </p>
 

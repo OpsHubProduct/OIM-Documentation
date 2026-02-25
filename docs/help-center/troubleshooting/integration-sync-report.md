@@ -63,12 +63,80 @@ Enter the details in the field that you want to use for filtering the data. Then
 
 ## State
 
-- It represents the status of the existence of the entity in reference to the configured integration in <code class="expression">space.vars.SITENAME</code>  
-- It typically has below possible values:  
-  1. **Active:** Entity is accessible in the end system  
-  2. **Not Accessible:** Entity is not accessible in the end system  
-  3. **Deleted By Sync:** Entity is Logically deleted/Soft deleted by <code class="expression">space.vars.SITENAME</code> in the end system as per details given on [Source Delete Synchronization](../../integrate/source-delete-synchronization.md) page.
+- Represents the current synchronization status of the entity for the configured integration in <code class="expression">space.vars.SITENAME</code>.
 
+- The possible values are as follows:
 
+### 1. General State
+
+1. **Active:** The entity is available and accessible to <code class="expression">space.vars.SITENAME</code>.
+
+### 2. When *Source Delete Synchronization* Is Enabled
+
+The following states are applicable when deletion or archival changes in the source system are synchronized to the target system for an integration where [Source Delete Synchronization](../../integrate/source-delete-synchronization.md) is configured.
+
+1. **Not Accessible:** The entity is no longer accessible to <code class="expression">space.vars.SITENAME</code>.
+
+2. **Not Applicable:** The entity is not eligible for synchronization due to its type and/or project change, as no integration configuration matches the updated type and/or project.
+
+3. **Archived:** The entity has been archived in the source system.
+
+4. **Deleted by Sync:** The entity has been logically/soft deleted in the target system by <code class="expression">space.vars.SITENAME</code> as part of source delete synchronization.
+
+5. **Archived by Sync:** The entity has been archived in the target system by <code class="expression">space.vars.SITENAME</code> as part of source delete synchronization.
+
+### 3. When *Entity Type and/or Project Change Synchronization* Occurs
+
+The following states are applicable when entity type and/or project changes in the source system are synchronized to the target system. For more details, refer to ["Entity Type" and/or "Project" Change Synchronization](../../integrate/entity-move-synchronization.md).
+
+#### Conversion States
+
+1. **Type Converted:** The entity's type has been changed in either the source or the target system.
+
+2. **Project Converted:** The entity has been moved to a different project in either the source or the target system.
+
+3. **Type and Project Converted:** Both the entity type and the project have been changed.
+
+#### Deprecation States
+
+4. **Deprecated due to Type Conversion:** The entity has been marked as deprecated in the target system because the type of the corresponding source entity was changed in the source system.
+
+5. **Deprecated due to Project Conversion:** The entity has been marked as deprecated in the target system because the project of the corresponding source entity was changed in the source system.
+
+6. **Deprecated due to Type and Project Conversion:** The entity has been marked as deprecated in the target system because both the type and project of the corresponding source entity were changed in the source system.
+
+### 4. Applicable When Batch Writing Is Supported in the Target System
+
+These states are applicable only for integrations with systems for which <code class="expression">space.vars.SITENAME</code> supports batch writing.
+
+1. **Sync Queued:** The source changes are scheduled in a synchronization queue for batch writing. <code class="expression">space.vars.SITENAME</code> first collects all changes read by the integrations configured within the same group before applying them to the target system. At this stage, the changes are waiting in the queue and have not yet been written.
+2. **Sync Started:** The processing of the queued changes has started. <code class="expression">space.vars.SITENAME</code> evaluates the queued updates one by one to determine the changes to be applied to the target system. Once all processing is completed, the consolidated updates are written to the target system.
+
+> *Note:* To view queued changes for batch processing, refer to [Viewing Queued Entities for Synchronization](integration-sync-report.md#viewing-queued-entities-for-synchronization).
+## Viewing Queued Entities for Synchronization
+
+<code class="expression">space.vars.SITENAME</code> temporarily stores changes queued for batch writing in its database to ensure consistency and reliable processing.
+
+Entities whose data is in the synchronization queue will have the **Sync Queued** or **Sync Started** state. Otherwise, they will have the **Active** state, which indicates that synchronization has either been completed for that entity or that no pending changes remain in the synchronization queue.
+
+Follow the steps below to view them:
+1. Open the **Sync Report** for the integration where the changes are under synchronization.
+2. Click on the **"Sync Queued"** or **"Sync Started"** status.
+
+  <p align="center">
+    <img src="../../assets/SyncReport.png" width="600" />
+   </p>
+
+3. The pop-up lists all changes currently queued for synchronization for the selected entity as follows:
+  
+  <p align="center">
+    <img src="../../assets/SyncQueuedData.PNG" width="600" />
+   </p>
+
+4. Click on ![editruleicon](../../assets/editruleicon.png) to view the details of the changes.
+
+  <p align="center">
+    <img src="../../assets/AccumulatedEvent.png" width="600" />
+   </p>
 
 
