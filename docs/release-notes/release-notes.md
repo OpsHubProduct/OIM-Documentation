@@ -1,6 +1,6 @@
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}
 
-***
+***  
 
 # Critical Updates & Actions Required
 * Due to security requirements, Windows Server versions earlier than 2016 (i.e., Windows Server 2012 and older) are no longer supported operating systems for <code class="expression">space.vars.SITENAME</code>.
@@ -17,6 +17,9 @@
 * Enhanced the workflow transition XML framework to support updating dependent fields either before or after a transition is executed.
   * For detailed configuration steps, refer to the [Workflow Transition XML](../integrate/configure-integrations.md/mapping-configuration#workflow-transition) documentation.
 * Added CAPTCHA validation to the post-registration process to enhance security.
+
+## Azure DevOps Server/Service
+* Enhanced widget synchronization to prevent collision issues.
 
 # Major Bugs
 
@@ -54,6 +57,9 @@
 # Critical Updates & Actions Required
 * Due to security requirements, Windows Server versions earlier than 2016 (i.e., Windows Server 2012 and older) are no longer supported operating systems for <code class="expression">space.vars.SITENAME</code>.
   * **Action:** Before attempting to upgrade <code class="expression">space.vars.SITENAME</code>, ensure that the operating system is upgraded to a supported version. Please refer to the [Pre-Migration Checklist](../manage/upgrade/pre-migration-checklist.md#windows-server-versions-earlier-than-2016-are-no-longer-supported).
+
+# New Enhancement(s)
+* Enhanced widget migration to prevent collision issues.
 
 # Major Bugs
 * Resolved an issue where queue details were not retrieved during Release Pipeline migration.
