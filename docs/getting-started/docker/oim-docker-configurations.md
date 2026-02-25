@@ -66,7 +66,7 @@ The variable values need to be added in `Input.json` to configure OIM as Docker.
 
 ---
 
-## YAML Inputs
+## YAML Inputs For Linux
 
 - `docker-compose-OIM.yml` file is used to get required inputs and starts the docker container using docker-compose.
 - The path of updated `Input.json` file in [Input Variables](#input-variables) needs to be mentioned before the colon(:) in `volumes` section of `oim` service in the `services` section. Keep this as it is if YAML file and `Input.json` are in same directory:
@@ -92,3 +92,31 @@ The variable values need to be added in `Input.json` to configure OIM as Docker.
       <Volume_Name>:
         external: true
     ```
+## YAML Inputs for Windows
+
+- <code class="expression">space.vars.SITENAME</code> also supports containerized ReadyOne Service and MBSE SDK service on windows base docker deployment. 
+- `docker-compose-OIM-windows.yml` file is used to get required inputs and starts the docker container using docker-compose.
+- The path of directory in which updated `Input.json` file in [Input Variables](#input-variables) , database connector jar needs to be mentioned in place of <Path_Input_Directory> before the colon(:) in `volumes` section of `oim` service in the `services` section.
+- User needs to put the database connector jar in the directory whose path is provided in place of <Path_Input_Directory>.
+  ```
+  - "<Path_Input_Directory>:C:/InputDataForOIM"
+  ```
+  
+- An example of directory mount:
+  ```
+  - "C:/download/oimInputData:C:/InputDataForOIM"
+  ```
+
+- If docker volume is created in [Docker Volume Creation](#docker-volume-creation-optional) section:
+  - User needs to update the volume name by docker volume (already created) in volumes section of YAML file:
+    ```yaml
+    - <Volume_Name>:C:/OpsHub_OIM/OIM
+    ```
+- If you want to start MBSE service along with OIM
+  * Provide the path of directory in which the compiled code jar is present for MBSE. Configure path in place of <Jar_Directory_Path> 
+  ```yaml
+  - "<Jar_Directory_Path>:C:/MBSE_OIM/MBSE_sdk"
+  ```
+  * If you do not want to start mbse_sdk service, Just remove the mbse_sdk section from the `services`.
+- If you do not want to start ReadOne service along with OIM, otherwise keep as it is to run.
+  * Just remove the readyOne section from the `services` and `volums`.
