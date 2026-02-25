@@ -247,3 +247,22 @@ DELETE FROM reportsdb.ReportsDBVersion WHERE version='6.11.02.00.00';
 **Reason**  
 * In earlier versions, Gerrit sometimes could not uniquely identify changes across repositories or branches, which could lead to errors.  
 * From **7.205 onwards**, the <code class="expression">space.vars.SITENAME</code> uses an improved ID format to ensure changes are always uniquely identified, avoiding such issues.
+
+
+# Migrating <code class="expression">space.vars.SITENAME</code> 's version to 7.218 or above
+## Windows Server Versions Earlier Than 2016 Are No Longer Supported
+
+**Applicable When**
+
+* You are running <code class="expression">space.vars.SITENAME</code> on Windows Server versions earlier than 2016 (i.e., Windows Server 2012 or older).
+* Any associated database is hosted on these Windows Server versions.
+
+**Actions**
+* Upgrade the operating system to Windows Server 2016 or later. Refer to the [Supported Operating System](https://docs.opshub.com/getting-started/prerequisites#supported-operating-systems)  documentation for detailed requirements.
+
+**Reason**
+
+* To meet enhanced security requirements, the JDK (Java Development Kit) has been upgraded to version 17.0.18, which requires **Windows Server 2016 or later**.
+
+
+
