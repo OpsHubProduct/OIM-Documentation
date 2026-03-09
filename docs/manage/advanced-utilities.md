@@ -1,4 +1,4 @@
-1. [Count the users involved in synchronization](advanced-utilities/count-the-users.md) 
+1. [Usage Reports](advanced-utilities/usage-reports.md) 
 
 2. [Migrating Database](advanced-utilities/database-migration.md)
 
