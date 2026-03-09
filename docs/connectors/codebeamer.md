@@ -347,6 +347,9 @@ To configure criteria in codebeamer/codebeamerX, integration needs to be created
     * Modifying the Duplicated Entity:
         * If a user updates the wiki field in the duplicated item (e.g., by modifying the reference to the inline file), <code class="expression">space.vars.SITENAME</code> will sync the changes to the target system.
         * Importantly, the file attachment itself will not be removed from the target system entity, as it was already removed from the original entity.
+27. For Test Run type entity, `Test Step Results` field cannot be synchronized for parent test runs.
+    * Reason: Parent test runs in Codebeamer/CodebeamerX act as aggregated entities and do not maintain step-level execution data. Test step execution and results are stored only at the child test run level. Therefore, <code class="expression">space.vars.SITENAME</code> does not support synchronization of `Test Step Results` for parent test runs.
+    * To synchronize the `Test Step Result` use test run type as child. 
       
 # Appendix
 
