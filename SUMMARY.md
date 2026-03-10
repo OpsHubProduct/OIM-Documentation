@@ -57,7 +57,7 @@
           * [User Role Association](docs/manage/administrator/user-role-association.md)
           * [Role Configuration](docs/manage/administrator/role-configuration.md)
     * [Advanced Utilities](docs/manage/advanced-utilities.md) 
-        * [Usage Reports](docs/manage/advanced-utilities/usage-reports.md)
+        * [Usage Report Manual](docs/manage/advanced-utilities/usage-reports.md)
         * [Migrating Database](docs/manage/advanced-utilities/database-migration.md)
         * [Updating Database Password](docs/manage/advanced-utilities/updating-database-password.md)
         * [Changing MSSQL Server Host](docs/manage/advanced-utilities/how-to-change-mssql-database-server-host.md)

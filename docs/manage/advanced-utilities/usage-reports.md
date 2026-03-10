@@ -1,6 +1,4 @@
-# Usage Reports Manual
-
-## Overview
+# Overview
 
 The **Usage Reports** feature enables administrators to export detailed system usage data for analysis and licensing purposes. Reports can be downloaded directly from the **Licenses screen** or through the **Admin API**, providing a convenient and efficient way to access usage information.
 
@@ -30,7 +28,8 @@ To access and download the reports, the user must:
 
 ---
 
-# Download Usage Reports from UI
+# Download Usage Reports 
+## Using UI
 
 Follow these steps to download the usage reports from the application:
 
@@ -44,9 +43,8 @@ Follow these steps to download the usage reports from the application:
 <img src="../../assets/UsageReports/export_button.png" alt="Export Button"/>
 </p>
 
----
 
-## Download Usage Reports using Admin API
+## Using Admin API
 
 Administrators can also download the usage reports using the Admin API.
 
@@ -58,6 +56,7 @@ GET `/export/usage-reports`
 - Returns the **Usage Reports.zip** file.
 
 <p align="center"><img src="../../assets/UsageReports/admin_api.png" alt="Admin Api For Usage Report"/></p>
+
 ---
 
 # Contents of the Downloaded File
@@ -76,9 +75,8 @@ Each Excel report contains the following sheets:
 5. `Synced Data Count`
 6. `Detailed User Report`
 
----
 
-# Summary Sheet
+## Summary Sheet
 
 This sheet provides an overall summary of all the reports included in the Usage Reports. It gives a quick overview of key metrics, allowing administrators to quickly understand system usage and user activity.
 
@@ -99,7 +97,7 @@ This summary sheet provides a **high-level overview of system usage**, allowing 
 
 ---
 
-# Unique User Count Sheet
+## Unique User Count Sheet
 
 Displays the total number of unique users identified across integrated systems, along with a system-wise breakdown.
 
@@ -122,7 +120,7 @@ This information helps administrators understand how user identities are detecte
 
 ---
 
-# Entity Type Count Sheet
+## Entity Type Count Sheet
 
 Displays the entity types involved in synchronization across system pairs during the selected period.
 
@@ -140,7 +138,7 @@ Displays the entity types involved in synchronization across system pairs during
 
 ---
 
-# Integrated Project Count Sheet
+## Integrated Project Count Sheet
 
 Lists the unique project pairs that were involved in integrations during the selected timeframe, along with their status and last updated time.
 
@@ -160,7 +158,7 @@ This table provides a **clear view of project-level integrations**, helping admi
 
 ---
 
-# Synced Data Count Sheet
+## Synced Data Count Sheet
 
 Displays the total number of entities successfully synchronized between integrated system pairs.
 
@@ -176,7 +174,7 @@ Displays the total number of entities successfully synchronized between integrat
 
 ---
 
-# Detailed User Report Sheet
+## Detailed User Report Sheet
 
 The **Detailed User Report** sheet provides comprehensive information about each observed user across integrated systems.
 

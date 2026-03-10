@@ -1,4 +1,4 @@
-1. [Usage Reports](advanced-utilities/usage-reports.md) 
+1. [Usage Report Manual](advanced-utilities/usage-reports.md) 
 
 2. [Migrating Database](advanced-utilities/database-migration.md)
 
