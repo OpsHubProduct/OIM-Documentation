@@ -1,65 +1,44 @@
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
 
-# New Entities
-* **Azure DevOps Server**
-  * Release Pipeline**, Service Connection, Task Group : supported in versions 2018 and above
-  * Agent Pool : supported in versions 2020 and above
-* **Azure DevOps Services**
-  * Release Pipeline**, Agent Pool, Service Connection, Task Group
-
-# New Enhancements
-
-## Common
-* Improved search capability to help users quickly find Integrations, Mappings, Systems, Workflows, and other components across folders within <code class="expression">space.vars.SITENAME</code>.
-  * Additional details are available in the [Search and Navigate](../integrate/search.md) guide.
-
-## GitHub
-* Improved GitHub connector behavior by enforcing inclusion of the API version header on every outbound request, rather than relying on GitHub’s default versioning.
-  > Note: Note: At this time, only a single API version header is available from GitHub.
-  
-## Jira Cloud
-* Added documentation describing the permission requirements for the scoped base token used with Jira Cloud.
-  * For a full list of the minimum permissions the service-account user must have, see the Jira Connector [API Token](../connectors/jira.md#api-token) documentation.
+***  
 
 # Major Bugs
 
 ## Common
-* Resolved an issue where a global error occurred in the delete job synchronization when processing attachments on items that were deleted in the source.
-  * Use case: In <code class="expression">space.vars.SITENAME</code> version 7.196 and above, significant improvements were made to attachment and inline synchronization. After upgrading, if a source item was found to be deleted, its attachment and inline information was not processed to align with the new behavior, which could cause the delete job to fail.
-* Resolved an issue where reconciliation of some items was skipped when reconciling multiple source projects to a single target project.
-  * Use case: If the reconciliation was stopped and then resumed, it interrupted the sequence of items in the queue, causing only items with id greater than the last reconciled one to be processed.
-* Resolved an issue where a processing error occurred while transforming events containing empty key tags in the source event XML.
+* Resolved an issue where a job error occurred with the message: "OH-Connector-0070: Error occurred while creating entity because of java.lang.ClassCastException: class java.util.LinkedHashMap cannot be cast to class java.lang.String".
+  * Use case: This issue occurred when a target field was defined as type Text, but due to advanced mapping, a Map value (LinkedHashMap) was passed instead of a String. During the recovery process, the system attempted to compare the value assuming it was a String, which resulted in the ClassCastException.
+* Resolved an issue where end system criteria storage did not work as expected when the criteria storage field was empty.
+* Resolved an issue where the log settings could not be opened and an error occurred if the integration had never been activated.
+* Resolved an issue where a processing failure occurred with the error message: "OH-Connector-0071: Error occurred while updating entity X because of java.lang.NullPointerException: Cannot invoke com.opshub.eai.EAIAttachment.getAttachmentReferenceTypes() because targetAttachment is null. Failed to execute method OIMAdapter::processInlineMentionedAndInlineFielsOnComment with (8) parameters."
+  * This issue happened when a source attachment, referenced in a rich text field, was deleted. The system attempted to process the deleted attachment for auto-upload, resulting in a NullPointerException.
 
-## Broadcom Rally Software
-* Resolved an issue where a global error occurred when retrieving link information for a parent item that the service account could not access, resulting in the following NullPointerException: java.lang.NullPointerException: Cannot invoke 'com.opshub.eai.rally.common.RallyDevElement.getAttributes()' because 'portfolioItemObject' is null.
-  * Use case: A user story in Rally has a parent feature that the integration cannot access (for example, when the parent resides in a different project). In this scenario, a NullPointerException occurred while parsing link details from the user story response. 
+## Azure DevOps Server/Service
+* Resolved an issue where incorrect test execution duration data was synchronized during Test Result integration when source and target both are Azure DevOps Server/Services.
+* Resolved an issue where a processing failure occurred when the source system was Azure DevOps Service, the organization URL used for connection contained dev.azure.com, and the Multi-Iteration field was mapped for the Test Result entity.
 
-## Database
-* Resolved an issue in the Database Connector where attachments were overwritten when multiple attachments with the same name were received from the same source entity.
-  * Use case: When adding data from a source system to the database, if a work item contained multiple attachments with the same name, the connector overwrote them and only kept the last occurrence as attachments were stored on the local machine where the <code class="expression">space.vars.SITENAME</code> was deployed.
+## Codebeamer
+* Improved the error message shown when a user attempts to synchronize Test Step Results for a Parent Test Run.
+  * In Codebeamer, synchronizing a Test Run automatically creates a Child Run under a Parent Run, and several fields of the Parent Run are calculated based on the Child Run.
+  * Because of this relationship, synchronizing Test Step Results directly for the Parent Run is not supported.
 
-## IBM Engineering Requirements Management DOORS Next
-* Resolved an issue where a global error occurred due to incorrect detection of inline content or documents in rich text fields or comments.
+## GitHub
+* Resolved an issue where a global failure occurred with the error message "java.lang.UnsupportedOperationException: User Lookup from email is not supported for GitHub" in scenarios where a GitHub user's name matched their email address.
+* Resolved an issue where a NullPointerException was observed while synchronizing Milestones for the Issue entity type. 
 
-## IBM Engineering Test Management
-* Resolved an issue where retrieving external links from IBM Engineering Test Management returned a 400 error and caused synchronization to get stuck.
+## Jira Cloud
+* Resolved an issue where, when Include Comment Author Details was enabled and the Jira source field was mapped to the OH Comment field in the target system, the comment body displayed the author as the user's internal ID instead of their name or email.
+  * This typically occurred when the author's profile visibility was restricted in Jira Cloud.
+* Resolved an issue where warnings returned by Xray were ignored when the API response status code was 200.
 
-## ServiceNow Express
-* Resolved an issue that caused an error when retrieving data from the `cmdb_ci` table using advanced methods such as `getEntityFieldValue`.
+## ServiceNow/ServiceNow Quick Connect
+* Resolved an issue where revisions were jumbled and multiple events were created for the same revision after upgrading <code class="expression">space.vars.SITENAME</code> to version 7.217.
 
-{% endif %}  
+{% endif %}
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}
 
-# New Entities
-* **Azure DevOps Server**
-  * Release Pipeline**, Service Connection, Task Group : supported in versions 2018 and above
-  * Agent Pool : supported in versions 2020 and above
-* **Azure DevOps Services**
-  * Release Pipeline**, Agent Pool, Service Connection, Task Group
-
-# New Enhancements
-* License editions have been rebranded: Free is now Community, Premium is now Professional, and Platinum is now Ultimate.
-* Support for migrating Area Path and Iteration, previously available only in the Ultimate (formerly Platinum) edition, has now been added to the Professional (formerly Premium) edition.
+# Major Bugs
+* Resolved an issue where incorrect test execution duration data was migrated during Test Result migration.
+* Resolved an issue where a processing failure occurred when the source system was Azure DevOps Service, the organization URL used for connection contained dev.azure.com.
 
 {% endif %}  
