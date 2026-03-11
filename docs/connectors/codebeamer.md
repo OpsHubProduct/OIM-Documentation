@@ -57,11 +57,11 @@ Refer to the following screenshot for reference: **codebeamer**
 
 Download the JAR file that matches your Codebeamer version.
 
-| Codebeamer Version | Download                                                                                                                                                          |
-|---|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Versions earlier than **3.2** | Click [here](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/EVFSOUYC091GttarNbMULEoBVPpTsljgG-sYLbdlLrINJA?e=R3tCBq) to download the jar |
+| Codebeamer Version | Download                                                                                                                                                           |
+|---|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Versions earlier than **3.2** | Click [here](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/EVFSOUYC091GttarNbMULEoBVPpTsljgG-sYLbdlLrINJA?e=R3tCBq) to download the jar  |
 | **3.2.x** | Click [here](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/IQDn8HqgOp1yTaCU15Yff5CnAW_iJLYW-7GpLeUGLoW-wsw?e=r5rSKF) to download the jar |
-| Versions later than **3.2.x** | Not supported using the pre-built JAR                                                                                                                             |
+| Versions later than **3.2.x** | Pre-built JAR is not available for these versions, but you can easily build your own JAR. Refer to the steps for [How to generate conversion JAR](codebeamer.md#how-to-generate-the-html-to-jspwiki-conversion-jar)                                                                         |
 
 # Mapping Configuration
 
