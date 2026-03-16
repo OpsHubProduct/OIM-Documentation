@@ -1,44 +1,40 @@
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 
-***  
+***
+
+# Enhancements
+
+## Jira Data Center
+* Added support for the Test Run Status field for the XRay Test entity in Jira Data Center.
 
 # Major Bugs
 
 ## Common
-* Resolved an issue where a job error occurred with the message: "OH-Connector-0070: Error occurred while creating entity because of java.lang.ClassCastException: class java.util.LinkedHashMap cannot be cast to class java.lang.String".
-  * Use case: This issue occurred when a target field was defined as type Text, but due to advanced mapping, a Map value (LinkedHashMap) was passed instead of a String. During the recovery process, the system attempted to compare the value assuming it was a String, which resulted in the ClassCastException.
-* Resolved an issue where end system criteria storage did not work as expected when the criteria storage field was empty.
-* Resolved an issue where the log settings could not be opened and an error occurred if the integration had never been activated.
-* Resolved an issue where a processing failure occurred with the error message: "OH-Connector-0071: Error occurred while updating entity X because of java.lang.NullPointerException: Cannot invoke com.opshub.eai.EAIAttachment.getAttachmentReferenceTypes() because targetAttachment is null. Failed to execute method OIMAdapter::processInlineMentionedAndInlineFielsOnComment with (8) parameters."
-  * This issue happened when a source attachment, referenced in a rich text field, was deleted. The system attempted to process the deleted attachment for auto-upload, resulting in a NullPointerException.
+* Resolved an issue where the "Search Field" text overflowed from the designated area on the mapping screen due to a UI glitch.
+* Resolved an issue causing intermittent UI slowness and request delays when <code class="expression">space.vars.SITENAME</code> was installed on Microsoft SQL Server/Azure SQL Server.
 
-## Azure DevOps Server/Service
-* Resolved an issue where incorrect test execution duration data was synchronized during Test Result integration when source and target both are Azure DevOps Server/Services.
-* Resolved an issue where a processing failure occurred when the source system was Azure DevOps Service, the organization URL used for connection contained dev.azure.com, and the Multi-Iteration field was mapped for the Test Result entity.
+## Azure DevOps Server/Services
+* Resolved an issue where a job error occurred with the message "Query WIQL text length exceeded the limit. It should contain no more than 32000 characters" when criteria were configured to fetch items between specific IDs (e.g., [System.Id] > 235022 and [System.Id] <= 290238).
+  * This occurred because Azure DevOps connector internally generated a large list of IDs using an IN query to retrieve the data, which exceeded the WIQL character limit.
+* Resolved an issue where a job error occurred while retrieving Test Run data when more than 200 test cases were attached to a run.
+* Resolved an issue where a job error occurred while retrieving test results generated from automated runs, where associating a test case, test plan, or test suite is not required.
 
 ## Codebeamer
-* Improved the error message shown when a user attempts to synchronize Test Step Results for a Parent Test Run.
-  * In Codebeamer, synchronizing a Test Run automatically creates a Child Run under a Parent Run, and several fields of the Parent Run are calculated based on the Child Run.
-  * Because of this relationship, synchronizing Test Step Results directly for the Parent Run is not supported.
+* Resolved an issue where the existing prebuilt JAR for HTML to JSPWiki conversion caused compatibility issues with Codebeamer version 3.2.x due to Codebeamer's internal Apache Tomcat upgrade.
+  * A version-specific JAR has been uploaded to the connector documentation page for [Codebeamer](../connectors/codebeamer.md).
 
-## GitHub
-* Resolved an issue where a global failure occurred with the error message "java.lang.UnsupportedOperationException: User Lookup from email is not supported for GitHub" in scenarios where a GitHub user's name matched their email address.
-* Resolved an issue where a NullPointerException was observed while synchronizing Milestones for the Issue entity type. 
-
-## Jira Cloud
-* Resolved an issue where, when Include Comment Author Details was enabled and the Jira source field was mapped to the OH Comment field in the target system, the comment body displayed the author as the user's internal ID instead of their name or email.
-  * This typically occurred when the author's profile visibility was restricted in Jira Cloud.
-* Resolved an issue where warnings returned by Xray were ignored when the API response status code was 200.
+## OpenText ALM Quality Center
+* Resolved an issue where processing failed with the message "OH-Connector-0070: Error occurred while creating entity because of java.lang.NullPointerException" when the parent item was not synced, causing the item creation to fail under the root folder.
 
 ## ServiceNow/ServiceNow Quick Connect
-* Resolved an issue where revisions were jumbled and multiple events were created for the same revision after upgrading <code class="expression">space.vars.SITENAME</code> to version 7.217.
+* Resolved an issue where due to recent change in ServiceNow from 7.217 version of <code class="expression">space.vars.SITENAME</code>, post-synchronization re-executed in cyclic manner even if there is no update on the servicenow side.
 
-{% endif %}
+{% endif %}  
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}
+{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
 
-# Major Bugs
-* Resolved an issue where incorrect test execution duration data was migrated during Test Result migration.
-* Resolved an issue where a processing failure occurred when the source system was Azure DevOps Service, the organization URL used for connection contained dev.azure.com.
+# Major Bugs  
+* Resolved an issue where a job error occurred while retrieving Test Run data when more than 200 test cases were attached to a run.
+* Resolved an issue where a job error occurred while retrieving test results generated from automated runs, where associating a test case, test plan, or test suite is not required.
 
 {% endif %}  
