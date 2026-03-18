@@ -470,3 +470,39 @@ Update the custom workflow as described below:
 **Reason**
 * If the ClearQuest database uses a case-sensitive collation, the casing of table and column names in the query must exactly match the database schema. 
 * If you notice the query failing due to case differences, update the table and column names in the SQL statement to match the exact casing defined in your ClearQuest database.
+
+
+# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.221 or above
+
+## Update Password Strength Policy
+
+**Applicable When**
+
+* Users are authenticating via <code class="expression">space.vars.SITENAME</code>'s Default Login Server.
+* [OIM Admin/Rest APIs](../../manage/api/getting-started-with-api.md) are utilized for various purpose.
+
+**Actions**
+
+* For <code class="expression">space.vars.SITENAME</code> Users:
+  * Upon the first login post-upgrade, users with non-compliant passwords will see a security warning as shown below:
+
+<p align="center">
+  <img src="../../assets/Login_Password_Warning.png" width="350" />
+</p>
+
+  * These users must update their passwords via the [User Management](../administrator/user-management.md) screen to meet the new complexity requirements.
+* For Admin API Usage:
+  * Ensure all passwords passed through API calls are updated to meet the new criteria, as the API will strictly reject non-compliant strings. API calls will fail if the password does not meet the new requirements.
+* **New Password Complexity Requirements:**
+  * **Minimum Length:** 10 characters.
+  * **Complexity:** Must include at least **three** of the following:
+    * Uppercase letters (A–Z)
+    * Lowercase letters (a–z)
+    * Numbers (0–9)
+    * Special characters (!@#$%^&*)
+
+* Any existing custom password policy set in <code class="expression">space.vars.SITENAME</code> will be replaced with new standard rules to ensure compliance. If you had custom settings earlier, a backup has been created for your reference at:
+  `<<OpsHub_Installation_Directory>>\AppData\logs\PasswordPolicy_Regex_And_RegexMessage_2026-03-19_13-32-44.txt`
+
+**Reason**
+* To strengthen product security and align with modern enterprise standards, <code class="expression">space.vars.SITENAME</code> has transitioned to a mandatory minimum password policy. This prevents the use of weak or default credentials that are vulnerable to automated attacks.

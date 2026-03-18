@@ -166,6 +166,30 @@ This server cannot be deleted.
 
 **Note** : If the Default Server is inactivated and <code class="expression">space.vars.SITENAME</code> is unable to connect with any of the active LDAP servers, please contact sales/support representative.
 
+## Password Policy Configuration
+
+**Admin** users with the **Super Administration** role can define the password security standards for users authenticating via the default server.
+By default, the system enforces a password strength policy requiring a **minimum of 10 characters** and at least **three of the four** available character types:
+- Uppercase letters (A–Z)
+- Lowercase letters (a–z)
+- Numbers (0–9)
+- Special characters (!@#$%^&*).
+
+To customize these settings, navigate to the Default <code class="expression">space.vars.SITENAME</code> Server configuration page:
+
+<p align="center">
+<img src="../../assets/Password_Policy_Config.png" style="width:800px;" />
+</p>
+
+* Password Policy Configuration: Use the toggle to enable or disable custom policy enforcement.
+
+* Password Minimum Length: Specify the minimum number of characters required. This value must be 10 or greater.
+* Password Strength Requirements: Select the character types that must be included in a valid password. At least three of the following options must be selected:
+* Click **Save Configuration** to apply the changes.
+
+**Note** To maintain a high security standard, the default policy serves as a mandatory baseline. While administrators can further strengthen these requirements (e.g., requiring 12 characters or all four character types), the policy cannot be downgraded below the 10-character/3-type minimum.
+
+
 ---
 
 # View Login Servers
