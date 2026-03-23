@@ -81,7 +81,6 @@ Go to the Criteria Configuration section on the [Integration Configuration](../i
 
 # Known Limitations
 
-* Fields under properties tab of Additional Information are not supported for integration.
 * For synchronization of comments from CA Service Desk Manager to any other system, an entity update is required to the entity.
   * This is because logging a comment on an entity does not update the last modified time on the entity in end system.
 * Special characters are not supported in CA Service Desk Manager for attachment file name. 
