@@ -1,4 +1,4 @@
-# Prerequisites
+v# Prerequisites
 
 ## User Privileges
 
@@ -81,10 +81,11 @@ Go to the Criteria Configuration section on the [Integration Configuration](../i
 
 # Known Limitations
 
-* For synchronization of comments from CA Service Desk Manager to any other system, an entity update is required to the entity.
-  * This is because logging a comment on an entity does not update the last modified time on the entity in end system.
+* For synchronizing comments from CA Service Desk Manager to other systems, an additional entity update from the UI is required when comments are added via API.
+  * Reason: Adding or updating a comment through the API does not update the “last modified time” of the entity in the end system.
+  * If comments are added directly from the UI, no additional update is required.
 * Special characters are not supported in CA Service Desk Manager for attachment file name. 
-  * If the attachment file name contains this file name characters (!,@,#,$,^,&,(,),%,😅 or non-ascii characters like (样,品,テ,ス,ト,フ,ァ,イ,ル,★,✓,♛,Ω), then the file will not be added in CA Service Desk Manager. Consequently, the user will encounter a Processing Failure. To avoid this Processing Failure, it is recommended to use the valid file naming conventions.
+  * If the attachment file name contains this file name characters !,@,#,$,^,&,(,),%,😅 or non-ascii characters like (样,品,テ,ス,ト,フ,ァ,イ,ル,★,✓,♛,Ω), then the file will not be added in CA Service Desk Manager. Consequently, the user will encounter a Processing Failure. To avoid this Processing Failure, it is recommended to use the valid file naming conventions.
   * Additionally, if the user still wants to synchronize attachments having this file name characters, then the user needs to add advance mapping for attachments to replace special characters with any of the supported characters. Refer [Attachment naming convention related errors](../help-center/troubleshooting/errors/common/attachment-naming-convention-related-errors.md)
 * Link type attachments are not supported in CA Service Desk Manager. These types of attachments need to be skipped by using appropriate advance mapping.
 * If other complex objects are created in CA Service Desk Manager schema, these complex objects are also displayed as text field at field mapping.
