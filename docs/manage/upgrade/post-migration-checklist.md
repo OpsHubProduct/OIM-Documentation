@@ -501,7 +501,7 @@ Update the custom workflow as described below:
     * Numbers (0–9)
     * Special characters (!@#$%^&*)
 
-* Any existing custom password rules will be replaced with new standard rules to ensure compliance. If you had custom settings earlier, a backup has been created for your reference at:
+* Any existing custom password policy set in <code class="expression">space.vars.SITENAME</code> will be replaced with new standard rules to ensure compliance. If you had custom settings earlier, a backup has been created for your reference at:
   `<<OpsHub_Installation_Directory>>\AppData\logs\PasswordPolicy_Regex_And_RegexMessage_2026-03-19_13-32-44.txt`
 
 **Reason**
