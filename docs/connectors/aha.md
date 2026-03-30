@@ -163,6 +163,11 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
 * Goals and Initiative System fields will be available as lookup fields in the field mapping, even though they are not available in Aha! Develop UI.
   * **The above fields are available in Aha! Develop UI when the Aha! Develop instance is combined with Aha! Roadmap.**
 * Hierarchy sync is not supported. Hence, the synchronization of ranking the requirements and to-dos will not be supported.
+* Entity Mention is not supported for Notes and To-Do entities.
+* Only read-only synchronization is supported for the following fields in <code class="expression">space.vars.SITENAME</code>:
+  * Scorecard field
+  * Table field
+  * Worksheet field
 
 ## Project Selection
 
@@ -175,21 +180,20 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
 * To address this issue, wait time (given by Aha! API) will be considered for entity synchronization. Thus, there might be some delay in synchronization in case of API rate limit issue.
 
 # Known Limitations
-
-* Below Custom fields are not supported by <code class="expression">space.vars.SITENAME</code>:
-  * Score card field
-  * Table field
-  * Worksheet field
 * Limitations due to the lack of Aha! API:
-  * Entities will be synced without history.
+  * Entities will be synchronized with up to 12 months of history from the current date. 
+  * Following fields will be synced without history due to API limitations:
+    * Custom table fields
+    * System tag field
+    * Rich text type fields (system or custom)
+    * Scorecard field (system or custom)
+    * Goal type reference field
   * Metadata is not available for the system fields. So, we are providing static metadata in the system itself. Here, the user can change the display name of the entity. User can provide the entity name using the JSON input, and if any user doesn't provide any JSON input, an inbuild entity display name will be considered.
   * In Aha! Develop instance, for **Epic & Feature** type of entities, **Workspace** field is not available for synchronization.
   * In Aha! Develop instance, for **Requirement** type of entity, **Initial estimate, Detailed estimate & Actual effort** fields will not be synced.
-  * Score field is not supported as it is a complex field and it can be calculated according to different equations.
-  * State transition is not supported as API doesn't give the infomation about state transitions.
+  * State transition is not supported as API doesn't give the information about state transitions.
   * Attachment field: If Aha! is the target system and the attachment mapping is configured to use field-type attachments, at least one attachment should be present in the corresponding field.
 * For Aha! as the target system, the fields below will not unset via <code class="expression">space.vars.SITENAME</code> due to Aha!'s API limitation: **Effort, Value, Duration Source, Progress Source, Status, Type, Complete by date (internal), Round date to, Complete by date (external), Presented, and Description.**
-* For Comment synchronization, when you add inline image/attachment to comment, the user needs to update one field  [System/Custom field] or needs to add normal text comment to sync the comment with inline image/attachment. **Reason: In Aha!, entity modified time does not get updated with inline image/attachment addition in comment.**
 * **To-dos** present at user level will not synced by <code class="expression">space.vars.SITENAME</code>. **To-dos** present in other entities can only be synchronized.
 
 ## Troubleshooting Guide
