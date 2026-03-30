@@ -1,17 +1,13 @@
 # Prerequisites
 
-## Recovery Handling
-
-* <code class="expression">space.vars.SITENAME</code> requires a custom field of text type in Aha! system for recovery purpose.
-* Field with the internal name **oh _last _update** needs to be created for the entity type which is configured in <code class="expression">space.vars.SITENAME</code> for the sync purpose and for the entity type which is configured in the default link configuration.
-* Refer [Add Custom Fields section](aha.md#add-custom-fields) in appendix for details on how to create custom fields.
-
 ## User privileges
 
 * Create one user in Aha! that is dedicated for <code class="expression">space.vars.SITENAME</code>. This user shouldn't perform any other action from Aha!'s user interface. This user is referred as 'Integration User' in the document.
   * Please refer to [Add User](aha.md#add-user) section to create a user in Aha!.
 * To synchronize entities to and from any systems to Aha!, Integration User must have **Contributor** permission at project level and **Customizations** role  [which needs be selected from project's Administrator roles]. Refer to [Grant permissions to Aha! user](aha.md#grant-permissions-to-aha-user) section for step-wise details on how to grant permissions to a Aha! user.
 
+## API Rate Limiting
+* Due to Aha! rate limit issues, for more details, refer to the [API Rate Limitation in Aha!](aha.md#api-rate-limitation-in-aha) section,  it is recommended to use the Fetch Mapped Data Only feature  (available as an <code class="expression">space.vars.SITENAME</code> add-on) to optimize the API calls. Contact your sales or support representative to enable it.
 # System Configuration
 
 * As you kickstart with the integration, you must first configure Aha! system in <code class="expression">space.vars.SITENAME</code>.
@@ -30,7 +26,7 @@ Refer to the following screenshot for reference:
 | **Instance URL**             | Provide Instance URL of the Aha! instance. This URL will be used for communicating to Aha! API. The format of the URL is: https:// <company _name>.aha.io Example: https://opshub-inc.aha.io                                                                                                                                                                                                                                          |
 | **User Email**               | Provide the email Id of a dedicated user who will be used for communicating with Aha! API. This user should have the required privileges to use the Aha! API. For more details on the required privileges, please refer to [User privileges](aha.md#user-privileges) section.                                                                                                                                                         |
 | **API Token**                | Provide the bearer API Token generated in Aha! for the user given in "User Email" field. Please refer to [Steps for generating the API token](aha.md#steps-for-generating-the-api-token) section for generating the API token.                                                                                                                                                                                                        |
-| **Metadata Details**         | This data is pre-populated in JSON format based on our knowledge of system metadata (entity type, field names, lookup...). The user can edit entity types based on his/her Aha! instance details for system metadata. For the format and guidance related to filling these details in JSON form, please refer to [Understanding JSON Input](aha.md#understanding-json-input) section.                                                 |
+| **Metadata Details**         | The user can edit entity types based on his/her Aha! instance details for system metadata. For the format and guidance related to filling these details in JSON form, please refer to [Understanding JSON Input](aha.md#understanding-json-input) section.                                                 |
 | **Base URL for Remote Link** | Provide different Instance URL of the Aha! instance. This URL is used for generating the Remote Link. E.g., if the Instance URL is https://opshubTest33.aha.io/ or any API node URL, but Remote Link needs to be generated with a different Instance URL such as https://opshubTest.aha.io/. **Note** : If "Base URL for Remote Link" is empty, it will use Instance/Server URL to generate Remote Link if configured on Integration. |
 
 **Understanding JSON Input**
@@ -162,7 +158,19 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
 * To update the "Progress" field through synchronization, the progress source must be set to "manual" (from Aha! UI or field mapping of <code class="expression">space.vars.SITENAME</code>) due to Aha! API behavior.
 * Goals and Initiative System fields will be available as lookup fields in the field mapping, even though they are not available in Aha! Develop UI.
   * **The above fields are available in Aha! Develop UI when the Aha! Develop instance is combined with Aha! Roadmap.**
+  * **Note** The above fields will be deprecated in future releases and replaced with link-based support.
 * Hierarchy sync is not supported. Hence, the synchronization of ranking the requirements and to-dos will not be supported.
+* **Entity Mention is not supported** for Notes and To-Do entities.
+* **Scorecard parameter values require additional configuration in OIM to sync.**
+  * Refer to [Configuring Scorecard Parameter For Synchronization](aha.md#configuring-scorecard-parameter-for-synchronization)
+  * Reason: Aha APIs do not provide scorecard parameter details.
+* **Advanced XSLT configuration is required** to synchronize complex fields (such as table and worksheet types). 
+  * Refer to [Configure Advance XSLT For Complex Fields](aha.md#configure-advance-xslt-for-complex-fields) section.
+* **Only read-only synchronization is supported** for the following fields
+  * Scorecard fields 
+  * Table fields 
+  * Worksheet field
+  * **Note**: Write support for these fields is planned for future releases.
 
 ## Project Selection
 
@@ -171,25 +179,37 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
 ## API Rate Limitation in Aha!
 
 * Aha! has limitation on API access per minute for a single user. Due to this, <code class="expression">space.vars.SITENAME</code> can access Aha! API within a limit. When the limit exceeds, the Aha! API stops responding for certain amount of time, and no API calls can be done by <code class="expression">space.vars.SITENAME</code> during that time until Aha! resets the limit for that user.
-  * **Up to 300 requests per minute and 20 requets per second are allowed in Aha!.**
+  * **Up to 300 requests per minute and 20 requests per second are allowed in Aha!.**
 * To address this issue, wait time (given by Aha! API) will be considered for entity synchronization. Thus, there might be some delay in synchronization in case of API rate limit issue.
+* **Note:** To avoid hitting rate limits, do not set the integration schedule to run every minute. Instead, adjust the cache timeout in  <code class="expression">space.vars.SITENAME</code>(for example, 24 hours) and the integration schedule interval (for example, 15 minutes in production) to ensure smooth operation without exceeding rate limit
+* **Recommendation:** To reduce the number of API calls, consider using the Fetch Mapped Data Only feature, which is available as an additional license add-on. To enable this feature, please contact your sales or support representative.
 
 # Known Limitations
-
-* Below Custom fields are not supported by <code class="expression">space.vars.SITENAME</code>:
-  * Score card field
-  * Table field
-  * Worksheet field
 * Limitations due to the lack of Aha! API:
-  * Entities will be synced without history.
+  * Audit/History Sync
+    * **History is synced for the last 12 months only from current date.** 
+      * Reason: Aha APIs provide history data limited to the past 12 months. 
+      * Reference: [Aha Audits API](https://www.aha.io/api/resources/audits)
+    * **Some fields support only current value sync (history is not available).**
+      * Reason: This mainly includes fields like custom tables, tags, rich text fields, scorecards, goals/initiatives, and watchers, as they are not fully supported for history via Aha APIs.
+    * During history synchronization, changes in user fields may be synced as the wrong user in target, if multiple users share the same display name in Aha!.
+      * Example: 
+        * User 1 in Aha!: Display Name = X, Email = a@gmail.com.
+        * User 2 in Aha!: Display Name = X, Email = b@gmail.com.
+        * If an update is made to “X” like X -> X in Aha!, the system may sync it to the wrong user in the target system.
+        * Reason: The Aha! end system does not distinguish between users with identical display names through the UI/API.
+    * **A 5-minute delay is applied to history based sync**
+      * Reason: Aha consolidates audit records within a 5-minute interval. To avoid discrepancies or inconsistencies in history sync, this delay is introduced.
+      * **Additional delay depends on polling/scheduling interval:**
+        * Total delay = 5 minutes (processing) + configured polling interval.
+        * Example: If polling is set to 5 minutes, creations/updates may reflect after approximately 10 minutes.
+        * **Note:** To avoid dependency on the delay, you may run sync the current state and sync history separately in a tabular format in target system.
   * Metadata is not available for the system fields. So, we are providing static metadata in the system itself. Here, the user can change the display name of the entity. User can provide the entity name using the JSON input, and if any user doesn't provide any JSON input, an inbuild entity display name will be considered.
   * In Aha! Develop instance, for **Epic & Feature** type of entities, **Workspace** field is not available for synchronization.
   * In Aha! Develop instance, for **Requirement** type of entity, **Initial estimate, Detailed estimate & Actual effort** fields will not be synced.
-  * Score field is not supported as it is a complex field and it can be calculated according to different equations.
-  * State transition is not supported as API doesn't give the infomation about state transitions.
+  * State transition is not supported as API doesn't give the information about state transitions.
   * Attachment field: If Aha! is the target system and the attachment mapping is configured to use field-type attachments, at least one attachment should be present in the corresponding field.
 * For Aha! as the target system, the fields below will not unset via <code class="expression">space.vars.SITENAME</code> due to Aha!'s API limitation: **Effort, Value, Duration Source, Progress Source, Status, Type, Complete by date (internal), Round date to, Complete by date (external), Presented, and Description.**
-* For Comment synchronization, when you add inline image/attachment to comment, the user needs to update one field  [System/Custom field] or needs to add normal text comment to sync the comment with inline image/attachment. **Reason: In Aha!, entity modified time does not get updated with inline image/attachment addition in comment.**
 * **To-dos** present at user level will not synced by <code class="expression">space.vars.SITENAME</code>. **To-dos** present in other entities can only be synchronized.
 
 ## Troubleshooting Guide
@@ -302,3 +322,155 @@ If you are getting an **Internal Server Error** with **Status Code: 500**, then 
 <div align="center"><img src="../assets/aha_api_token_4.png" alt=""></div>
 
 5 . Copy the generated API key and save it for future reference.
+
+## Configuring Scorecard Parameter For Synchronization
+To synchronize **scorecard parameter values from Aha**, additional configuration is required in OIM because Aha APIs do not return these values by default.
+### 1. System Scorecard Fields
+- Use the following format for `internalName`: Product value.\<Parameter name>. Example json: 
+    ```json
+    {
+      "internalName": "Product Value.Need",
+      "displayName": "Need",
+      "dataType": "numeric",
+      "mandatory": false,
+      "historyEnabled": false
+    }
+    ```
+### 2. Custom Scorecard parameter fields:
+- Use the following format for `internalName`: custom_\<CustomFieldKey>.\<Parameter Name>. Example json:
+   ```json
+    {
+       "internalName": "custom_customscorecard.Sales increase",
+       "displayName": "Sales increase",
+       "dataType": "numeric",
+       "mandatory": false,
+       "historyEnabled": false
+    }
+   ```
+3. The display name for the scorecard parameter field is configurable. The value specified as the display name will be reflected in the <code class="expression">space.vars.SITENAME</code> mapping configuration screen.
+4. The last three parameters in the JSON configuration remain consistent across all scorecard parameters.
+5. The \<Parameter name> specified in the internalName field corresponds to the name displayed in the UI for the respective scorecard. Refer to screenshot below for illustration.
+   
+   <div align="center"><img src="../assets/Aha_ParameterName.png" alt=""></div>
+6. The \<Custom Scorecard fieldKey> represents the unique key of the custom field. For details on identifying the custom field key, refer to [Get Custom Field Unique Key](aha.md#get-custom-field-unique-key).
+
+## Configure Advance XSLT For Complex Fields
+### 1. Table Field → Rich Text (e.g., Jira Description)
+To synchronize a table type field(for example `oh_table_field`) that contains three columns: **Name**, **Primary customer contact**, **Email address** to rich text type field like Description in Jira in table format, refer to the following sample advance XSLT:
+```xml
+       <description xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:text>||*Name*||*Primary customer contact*||*Email address*||</xsl:text>
+        <xsl:variable name="nodes" select="/SourceXML/updatedFields/Property/custom__oh__table__field/list"/>
+        <xsl:for-each select="$nodes[position() mod 3 = 1]">
+            <xsl:variable name="start" select="((position() - 1) * 3) + 1"/>
+            <xsl:text>&amp;#10;|</xsl:text>
+            <xsl:choose>
+                <xsl:when test="normalize-space($nodes[$start]/Property/value) != ''">
+                    <xsl:value-of select="$nodes[$start]/Property/value"/>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:text>|</xsl:text>
+            <xsl:choose>
+                <xsl:when test="normalize-space($nodes[$start + 1]/Property/value) != ''">
+                    <xsl:value-of select="$nodes[$start + 1]/Property/value"/>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:text>|</xsl:text>
+            <xsl:choose>
+                <xsl:when test="normalize-space($nodes[$start + 2]/Property/value) != ''">
+                    <xsl:value-of select="$nodes[$start + 2]/Property/value"/>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:text>|</xsl:text>
+        </xsl:for-each>
+    </description>
+   ```
+1. The table field in aha is illustrated in the image below: 
+   
+   <div align="center"><img src="../assets/Aha_Table.png" alt=""></div>
+2. The data after transformation and synchronization to Jira is shown in the following image:
+   
+     <div align="center"><img src="../assets/Jira_Table.png" alt=""></div>
+   
+### 2. Worksheet Field → Rich Text
+To synchronize complex type worksheet field(for example, `custom_worksheet`) that contains two columns: **Column Name** and **Value** to a rich text field like Custom Description in Jira, refer to below sample advance XSLT:
+```xml
+       <customDescription xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:text>||*Column Name*||*Value*||</xsl:text>
+        <xsl:for-each select="/SourceXML/updatedFields/Property/custom__customworksheet/Property/values/Property">
+            <xsl:text>&amp;#10;|</xsl:text>
+            <xsl:value-of select=".//Property[name][1]/name"/>
+            <xsl:text>|</xsl:text>
+            <xsl:choose>
+                <xsl:when test="normalize-space(.//Property/value) != ''">
+                    <xsl:value-of select=".//Property[value][1]/value"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:text>|</xsl:text>
+        </xsl:for-each>
+    </customDescription>
+   ```
+1. The worksheet field in aha is illustrated in the image below: 
+       
+   <div align="center"><img src="../assets/Aha_Worksheet.png" alt=""></div>
+2. The data, after transformation and synchronization to Jira, is illustrated in the following image:
+        
+   <div align="center"><img src="../assets/Jira_Worksheet.png" alt=""></div>
+
+## Get Custom Field Unique Key
+
+### Getting Custom Field Unique Key Using API.
+ - To retrieve custom fields via the API, use the following endpoint: \<aha-instance>/api/v1/custom_field_definitions. This can be accessed through browser or tools such as Postman.
+ - Sample JSON response is shown below:
+    ```json
+        {
+          "custom_field_definitions": [
+              {
+                  "name": "Custom Attachment",
+                  "id": "7174752533322023770",
+                  "key": "custom_attachment_feature",
+                  "type": "CustomFieldDefinitions::AttachmentField",
+                  "custom_fieldable_type": "Feature",
+                  "internal_name": null
+              },
+              {
+                  "name": "Custom Attachment",
+                  "id": "7624035087472118759",
+                  "key": "custom_attachment_initiative",
+                  "type": "CustomFieldDefinitions::AttachmentField",
+                  "custom_fieldable_type": "Initiative",
+                  "internal_name": null
+              }
+          ]
+        }
+    ```
+ - The value in the **key** field represents the unique identifier for a specific custom field.
+ - **Note** Multiple custom fields across different entity types may share the same name. Ensure that the key is interpreted in the context of its corresponding entity type (`custom_fieldable_type`). 
+
+### Getting Custom Field Unique From UI.
+add after login go to user profile and find the value
+1. Navigate to the User Personal section under Settings by clicking on the user profile icon located in the top-right corner after logging in 
+
+<div align="center"><img src="../assets/Aha_User_Profile.png" alt=""></div>
+
+2 . Navigate to Custom fields section.
+
+<div align="center"><img src="../assets/aha_add_custom_field_1.png" alt=""></div>
+
+3 . Select the entity for which you want to identify the custom field key, and locate the relevant custom field.
+
+<div align="center"><img src="../assets/Aha_CustomField.png" alt=""></div>
+
+4. Open the Advanced Configuration settings for the selected custom field.
+
+<div align="center"><img src="../assets/Aha_CustomAdvanceOptions.png" alt=""></div>
+
+5. Retrieve the value displayed in the Key field.
+
+<div align="center"><img src="../assets/Aha_CustomFieldKey.png" alt=""></div>
+
+
+   
