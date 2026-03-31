@@ -318,7 +318,22 @@ To configure criteria in codebeamer/codebeamerX, integration needs to be created
 14. **Read-only Fields**: There's no API that can be used to find read-only fields, so some fields may be shown as writable even when they are read-only.
 15. **Calculated Fields**: Calculated fields are read-only from User Interface, hence they will be read-only.
 16. **Mandatory Fields**: In codebeamer/codebeamer X, there are two ways in which a field can be set as mandatory:
-    * **Mandatory in Status**: Fields that are mandatory in any of the states (except none) will be shown as mandatory field throughout.
+    * **Mandatory in Status**:
+      * Fields mandatory in all statuses:
+        * Fields that are mandatory across all statuses are treated as globally mandatory.
+        * A value for these fields must be provided in <code class="expression">space.vars.SITENAME</code> either by:
+          * Setting a default value for this field, or 
+          * Mapping it from the source system
+        * If a value is not provided, the sync will fail with an error message: "Mandatory field value is missing"
+      * Fields mandatory in specific statuses only:
+        * Fields that are mandatory in only certain statuses are treated as non-mandatory by default. 
+        * Their mandatory behavior is enforced only during specific workflow transitions. 
+        * To enforce mandatory conditions for specific statuses, configure Workflow Transition mappings. Refer to: [Workflow Transition](../integrate/mapping-configuration.md#workflow-transition) for details on XML mapping. 
+        * Reference fields (fields linking to other items)
+          * If a reference field is mandatory in a specific workflow step, a business validation error may occur if the value is not syncing to codebeamer/codebeamer X with below error message:
+            * OH-Connector-0059: Error occurred while processing entity, because "ReferenceField" is mandatory for Bugs. Either it is not configured in issue relationship panel or configured link entity is not found.
+          * This happens because <code class="expression">space.vars.SITENAME</code> does not enforce these mandatory rules by itself for workflow-specific fields; the end system enforces them.
+          * To prevent errors, ensure the appropriate relationship and reference mappings are correctly set in <code class="expression">space.vars.SITENAME</code>.
     * **Mandatory if**: Uses a computed formula to determine if the field is mandatory. These cannot be retrieved through API and hence will be shown as non-mandatory in mapping configuration.
 17. **Tracker Item Choice and Project Choice Field**:
     * No API to retrieve tracker-wise lookup values for Tracker Item Choice.
