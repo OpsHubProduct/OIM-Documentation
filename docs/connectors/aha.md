@@ -180,6 +180,7 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * **Up to 300 requests per minute and 20 requests per second are allowed in Aha!.**
 * To address this issue, wait time (given by Aha! API) will be considered for entity synchronization. Thus, there might be some delay in synchronization in case of API rate limit issue.
 * **Note:** To prevent exceeding rate limits, avoid configuring the integration schedule at a one-minute interval. It is recommended to appropriately tune both the cache timeout and the integration scheduling interval to avoid reaching rate limiting.
+* **Recommendation:** To optimize the number of API calls, consider using the **Fetch Mapped Data Only** feature available as part of an additional license add-on. To enable this feature, please contact your sales or support representative.
 
 # Known Limitations
 * Limitations due to the lack of Aha! API:
@@ -326,33 +327,34 @@ To synchronize **scorecard parameter values from Aha**, additional configuration
 - Use the following format for `internalName`: Product value.\<Parameter name>. Example json: 
     ```json
     {
-    "internalName": "Product Value.Need",
-    "displayName": "Product Value Need",
-    "dataType": "numeric",
-    "mandatory": false,
-    "historyEnabled": false
+      "internalName": "Product Value.Need",
+      "displayName": "Need",
+      "dataType": "numeric",
+      "mandatory": false,
+      "historyEnabled": false
     }
     ```
 ## 2. Custom Scorecard parameter fields:
 - Use the following format for `internalName`: custom_<CustomFieldKey>.<Parameter Name>. Example json:
    ```json
     {
-    "internalName": "custom_customscorecard.Sales increase",
-    "displayName": "Custom Sales increase",
-    "dataType": "numeric",
-    "mandatory": false,
-    "historyEnabled": false
+       "internalName": "custom_customscorecard.Sales increase",
+       "displayName": "Sales increase",
+       "dataType": "numeric",
+       "mandatory": false,
+       "historyEnabled": false
     }
    ```
-3. The last three parameters in the JSON configuration remain consistent across all scorecard parameters.
-4. The \<Parameter name> specified in the internalName field corresponds to the name displayed in the UI for the respective scorecard. Refer to screenshot below for illustration.
+3. The display name for the scorecard parameter field is configurable. The value specified as the display name will be reflected in the <code class="expression">space.vars.SITENAME</code> mapping configuration screen.
+4. The last three parameters in the JSON configuration remain consistent across all scorecard parameters.
+5. The \<Parameter name> specified in the internalName field corresponds to the name displayed in the UI for the respective scorecard. Refer to screenshot below for illustration.
    
    <div align="center"><img src="../assets/Aha_ParameterName.png" alt=""></div>
-5. The \<Custom Scorecard fieldKey> represents the unique key of the custom field. For details on identifying the custom field key, refer to [Get Custom Field Unique Key](aha.md#get-custom-field-unique-key).
+6. The \<Custom Scorecard fieldKey> represents the unique key of the custom field. For details on identifying the custom field key, refer to [Get Custom Field Unique Key](aha.md#get-custom-field-unique-key).
 
 ## Configure Advance XSLT For Complex Fields
 ### 1. Table Field → Rich Text (e.g., Jira Description)
-To synchronize a table type field(for example `oh_table_field`) that contains three columns: **Name*, **Primary customer contact**, **Email address** to rich text type field like Description in jira, refer to following advance XSLT:
+To synchronize a table type field(for example `oh_table_field`) that contains three columns: **Name**, **Primary customer contact**, **Email address** to rich text type field like Description in Jira in table format, refer to the following sample advance XSLT:
 ```xml
        <description xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         <xsl:text>||*Name*||*Primary customer contact*||*Email address*||</xsl:text>
@@ -389,7 +391,7 @@ To synchronize a table type field(for example `oh_table_field`) that contains th
      <div align="center"><img src="../assets/Jira_Table.png" alt=""></div>
    
 ### 2. Worksheet Field → Rich Text
-To synchronize complex type worksheet field(for example, `custom_worksheet`) that contains two columns: **Column Name** and **Value** to a rich text field like Custom Description in Jira, refer to below advance XSLT:
+To synchronize complex type worksheet field(for example, `custom_worksheet`) that contains two columns: **Column Name** and **Value** to a rich text field like Custom Description in Jira, refer to below sample advance XSLT:
 ```xml
        <customDescription xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         <xsl:text>||*Column Name*||*Value*||</xsl:text>
@@ -417,9 +419,40 @@ To synchronize complex type worksheet field(for example, `custom_worksheet`) tha
    <div align="center"><img src="../assets/Jira_Worksheet.png" alt=""></div>
 
 ## Get Custom Field Unique Key
-1. Navigate to Settings located in the top-right corner, and then access the Personal section.
 
-<div align="center"><img src="../assets/aha_api_token_1.png" alt=""></div>
+### Getting Custom Field Unique Key Using API.
+ - To retrieve custom fields via the API, use the following endpoint: <aha-instance>/api/v1/custom_field_definitions. This can be accessed through a browser or tools such as Postman.
+ - Sample JSON response is shown below:
+    ```json
+        {
+          "custom_field_definitions": [
+              {
+                  "name": "Custom Attachment",
+                  "id": "7174752533322023770",
+                  "key": "custom_attachment_feature",
+                  "type": "CustomFieldDefinitions::AttachmentField",
+                  "custom_fieldable_type": "Feature",
+                  "internal_name": null
+              },
+              {
+                  "name": "Custom Attachment",
+                  "id": "7624035087472118759",
+                  "key": "custom_attachment_initiative",
+                  "type": "CustomFieldDefinitions::AttachmentField",
+                  "custom_fieldable_type": "Initiative",
+                  "internal_name": null
+              }
+          ]
+        }
+    ```
+ - The value in the **key** field represents the unique identifier for a specific custom field.
+ - **Note** Multiple custom fields across different entity types may share the same name. Ensure that the key is interpreted in the context of its corresponding entity type (`custom_fieldable_type`). 
+
+### Getting Custom Field Unique From UI.
+add after login go to user profile and find the value
+1. Navigate to the User Personal section under Settings by clicking on the user profile icon located in the top-right corner after logging in 
+
+<div align="center"><img src="../assets/Aha_User_Profile.png" alt=""></div>
 
 2 . Navigate to Custom fields section.
 
