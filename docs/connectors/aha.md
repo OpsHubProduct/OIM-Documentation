@@ -170,7 +170,7 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * Scorecard fields 
   * Table fields 
   * Worksheet field
-    * **Note**: Write support for these fields is planned for future releases.
+  * **Note**: Write support for these fields is planned for future releases.
 
 ## Project Selection
 
