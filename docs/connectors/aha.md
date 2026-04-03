@@ -6,6 +6,8 @@
   * Please refer to [Add User](aha.md#add-user) section to create a user in Aha!.
 * To synchronize entities to and from any systems to Aha!, Integration User must have **Contributor** permission at project level and **Customizations** role  [which needs be selected from project's Administrator roles]. Refer to [Grant permissions to Aha! user](aha.md#grant-permissions-to-aha-user) section for step-wise details on how to grant permissions to a Aha! user.
 
+## API Rate Limiting
+* Due to Aha! rate limit issues, for more details, refer to the [API Rate Limitation in Aha!](aha.md#api-rate-limitation-in-aha) section,  it is recommended to use the Fetch Mapped Data Only feature  (available as an <code class="expression">space.vars.SITENAME</code> add-on) to optimize the API calls. Contact your sales or support representative to enable it.
 # System Configuration
 
 * As you kickstart with the integration, you must first configure Aha! system in <code class="expression">space.vars.SITENAME</code>.
@@ -179,8 +181,8 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
 * Aha! has limitation on API access per minute for a single user. Due to this, <code class="expression">space.vars.SITENAME</code> can access Aha! API within a limit. When the limit exceeds, the Aha! API stops responding for certain amount of time, and no API calls can be done by <code class="expression">space.vars.SITENAME</code> during that time until Aha! resets the limit for that user.
   * **Up to 300 requests per minute and 20 requests per second are allowed in Aha!.**
 * To address this issue, wait time (given by Aha! API) will be considered for entity synchronization. Thus, there might be some delay in synchronization in case of API rate limit issue.
-* **Note:** To prevent exceeding rate limits, avoid configuring the integration schedule at a one-minute interval. It is recommended to appropriately tune both the cache timeout and the integration scheduling interval to avoid reaching rate limiting.
-* **Recommendation:** To optimize the number of API calls, consider using the **Fetch Mapped Data Only** feature available as part of an additional license add-on. To enable this feature, please contact your sales or support representative.
+* **Note:** To avoid hitting rate limits, do not set the integration schedule to run every minute. Instead, adjust the cache timeout in  <code class="expression">space.vars.SITENAME</code>(for example, 24 hours) and the integration schedule interval (for example, 15 minutes in production) to ensure smooth operation without exceeding rate limit
+* **Recommendation:** o reduce the number of API calls, consider using the Fetch Mapped Data Only feature, which is available as an additional license add-on. To enable this feature, please contact your sales or support representative.
 
 # Known Limitations
 * Limitations due to the lack of Aha! API:
@@ -190,9 +192,12 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
       * Reference: https://www.aha.io/api/resources/audits
     * **Some fields support only current value sync (history is not available).**
       * Reason: This mainly includes fields like custom tables, tags, rich text fields, scorecards, goals/initiatives, and watchers, as they are not fully supported for history via Aha APIs.
-    * **In history sync, changes/updates in user fields may be attributed to the wrong user** if multiple users share the same display name in Aha.
-      * Example: In a field like **Assigned To**, if two users have the same name, updates may be recorded against the wrong user.
-      * Reason: The Aha end-system cannot distinguish between such users through the UI.
+    * During history synchronization, changes in user fields may be synced as the wrong user in target, if multiple users share the same display name in Aha!.
+      * Example: 
+        * User 1 in Aha!: Display Name = X, Email = a@gmail.com.
+        * User 2 in Aha!: Display Name = X, Email = b@gmail.com.
+        * If an update is made to “X” like X -> X in Aha!, the system may sync it to the wrong user in the target system.
+        * Reason: The Aha! end system does not distinguish between users with identical display names through the UI/API.
     * **A 5-minute delay is applied to history based sync**
       * Reason: Aha consolidates audit records within a 5-minute interval. To avoid discrepancies or inconsistencies in history sync, this delay is introduced.
       * **Additional delay depends on polling/scheduling interval:**
@@ -206,9 +211,6 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * Attachment field: If Aha! is the target system and the attachment mapping is configured to use field-type attachments, at least one attachment should be present in the corresponding field.
 * For Aha! as the target system, the fields below will not unset via <code class="expression">space.vars.SITENAME</code> due to Aha!'s API limitation: **Effort, Value, Duration Source, Progress Source, Status, Type, Complete by date (internal), Round date to, Complete by date (external), Presented, and Description.**
 * **To-dos** present at user level will not synced by <code class="expression">space.vars.SITENAME</code>. **To-dos** present in other entities can only be synchronized.
-* History synchronization is delayed by 5 minutes to prevent event loss.
-  * Reason: Aha consolidates audits records into base record within 5-minute interval.
-  * **Note:** To eliminate the dependency on the five-minute interval, users can synchronize the current state of the data and subsequently sync entity revisions in a tabular format.
 
 ## Troubleshooting Guide
 
@@ -323,7 +325,7 @@ If you are getting an **Internal Server Error** with **Status Code: 500**, then 
 
 ## Configuring Scorecard Parameter For Synchronization
 To synchronize **scorecard parameter values from Aha**, additional configuration is required in OIM because Aha APIs do not return these values by default.
-## 1. System Scorecard Fields
+### 1. System Scorecard Fields
 - Use the following format for `internalName`: Product value.\<Parameter name>. Example json: 
     ```json
     {
@@ -334,7 +336,7 @@ To synchronize **scorecard parameter values from Aha**, additional configuration
       "historyEnabled": false
     }
     ```
-## 2. Custom Scorecard parameter fields:
+### 2. Custom Scorecard parameter fields:
 - Use the following format for `internalName`: custom_<CustomFieldKey>.<Parameter Name>. Example json:
    ```json
     {
