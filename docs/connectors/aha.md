@@ -337,7 +337,7 @@ To synchronize **scorecard parameter values from Aha**, additional configuration
     }
     ```
 ### 2. Custom Scorecard parameter fields:
-- Use the following format for `internalName`: custom_<CustomFieldKey>.<Parameter Name>. Example json:
+- Use the following format for `internalName`: custom_\<CustomFieldKey>.\<Parameter Name>. Example json:
    ```json
     {
        "internalName": "custom_customscorecard.Sales increase",
@@ -423,7 +423,7 @@ To synchronize complex type worksheet field(for example, `custom_worksheet`) tha
 ## Get Custom Field Unique Key
 
 ### Getting Custom Field Unique Key Using API.
- - To retrieve custom fields via the API, use the following endpoint: <aha-instance>/api/v1/custom_field_definitions. This can be accessed through a browser or tools such as Postman.
+ - To retrieve custom fields via the API, use the following endpoint: \<aha-instance>/api/v1/custom_field_definitions. This can be accessed through browser or tools such as Postman.
  - Sample JSON response is shown below:
     ```json
         {
