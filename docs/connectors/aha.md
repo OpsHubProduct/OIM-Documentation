@@ -182,14 +182,14 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * **Up to 300 requests per minute and 20 requests per second are allowed in Aha!.**
 * To address this issue, wait time (given by Aha! API) will be considered for entity synchronization. Thus, there might be some delay in synchronization in case of API rate limit issue.
 * **Note:** To avoid hitting rate limits, do not set the integration schedule to run every minute. Instead, adjust the cache timeout in  <code class="expression">space.vars.SITENAME</code>(for example, 24 hours) and the integration schedule interval (for example, 15 minutes in production) to ensure smooth operation without exceeding rate limit
-* **Recommendation:** o reduce the number of API calls, consider using the Fetch Mapped Data Only feature, which is available as an additional license add-on. To enable this feature, please contact your sales or support representative.
+* **Recommendation:** To reduce the number of API calls, consider using the Fetch Mapped Data Only feature, which is available as an additional license add-on. To enable this feature, please contact your sales or support representative.
 
 # Known Limitations
 * Limitations due to the lack of Aha! API:
   * Audit/History Sync
     * **History is synced for the last 12 months only from current date.** 
       * Reason: Aha APIs provide history data limited to the past 12 months. 
-      * Reference: https://www.aha.io/api/resources/audits
+      * Reference: [Aha Audits API](https://www.aha.io/api/resources/audits)
     * **Some fields support only current value sync (history is not available).**
       * Reason: This mainly includes fields like custom tables, tags, rich text fields, scorecards, goals/initiatives, and watchers, as they are not fully supported for history via Aha APIs.
     * During history synchronization, changes in user fields may be synced as the wrong user in target, if multiple users share the same display name in Aha!.
