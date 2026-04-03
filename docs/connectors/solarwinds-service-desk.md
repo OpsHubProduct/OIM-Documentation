@@ -54,6 +54,41 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
   <img src="../assets/SolarWindsMappingCreation.png" width="850" alt=""/>
 </p>
 
+### Approver Field in Releases
+
+- The Approver field in Releases is supported as a read-only text field.
+  - Reason: Due to API limitations in SolarWinds Release:
+    - Source:
+        - Only the first approval level is accessible.
+        - Additional levels cannot be synchronized.
+    - Target:
+        - Only one user or group can be added per approval level.
+        - Existing approval levels cannot be modified once created.
+- This field captures details of users and groups at the Approver Level 1.
+- Note: Since it is stored as plain text, it can contain multiple approvers in a single string format.
+
+#### Mapping Approvers to Multi-User Field (Email-Based Systems)
+
+- If the target system requires a multi-user field populated via email addresses, each approver must be explicitly mapped.
+- The mapping ensures that all approvers are correctly synchronized to the target system.
+#### XSLT Snippet for Approver Field Mapping
+- The snippet demonstrates how to map multiple approvers from the source system to a multi-user field in the target system using XSLT.
+- Example structure:
+
+```xml
+<multiUser_customfield xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:if test="contains(SourceXML/updatedFields/Property/approvers, 'john.doe@xyz.com')">
+    <fieldvalue>john.doe@abc.com</fieldvalue>
+  </xsl:if>
+
+  <xsl:if test="contains(SourceXML/updatedFields/Property/approvers, 'jane.smith@xyz.com')">
+    <fieldvalue>jane.smith@abc.com</fieldvalue>
+  </xsl:if>
+
+</multiUser_customfield>
+```
+- Here, each ```<xsl:if>``` checks whether a specific approver exists in the source system and maps it to the target system’s multi-user field.
 ## Attachment Configuration
 
 - Attachment which are added directly to the SolarWinds Service Desk entities will be synced. Refer the below screenshot, showing the attachment added on Entity level in SolarWinds Service Desk's **Incident** entity.
@@ -114,6 +149,7 @@ Refer to [Integration Configuration](../integrate/integration-configuration.md) 
 
 # Known Behaviors and Limitations
 
+### Common known and limitations
 - User will not be able to put Criteria and Target Lookup on fields such as State, date-type fields, and custom fields due to API limitations.
 - In Criteria and Target Lookup configurations, only the following operators are supported: Equals & Not Equals. 
   - Range filters such as Less Than, Less Than or Equal To, Greater Than, and Greater Than or Equal To are not available due to API limitations.
@@ -127,6 +163,14 @@ Refer to [Integration Configuration](../integrate/integration-configuration.md) 
   - If permissions are removed from the integration user in SolarWinds Service Desk.
   - If the API token is manually reset or regenerated.
   - If the API token is deleted from the SolarWinds Service Desk interface.
+
+### Entity specific known and limitations
+In addition to the common known limitations for **SolarWinds Service Desk**, the following entity-specific limitations apply:- Below-mentioned features are not supported due to API limitations.
+  - Fields
+    - Solutions: Views, Likes, Dislikes, Category, Subcategory, Site, Department, State and Tags are not supported.
+    - Catalog Items: Default Assignee and Default Group Assignment
+  - Links are not supported for Solutions and Change Catalog
+  - History-based Synchronization are not supported for Solutions and Catalog Items
 
 # Appendix
 
