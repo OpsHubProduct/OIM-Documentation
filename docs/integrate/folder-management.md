@@ -29,6 +29,22 @@ Folder Management helps in organizing Integrations, Mappings, and Systems under 
   <img src="../assets/folderoverview1a.png" width="400"/>
 </div>
 
+- Search bar helps in locating folders within OpsHub Integration Manager by allowing users to search using full or partial folder name. The search is case-insensitive, making it easy to find folders.
+
+<div align="center">
+  <img src="../assets/folder_search_bar.png" width="400"/>
+</div>
+
+- All the matching folders are displayed along with their parent folders, preserving the hierarchy for easy navigation. The matched text within the folder name is highlighted for better visibility.
+
+<div align="center">
+  <img src="../assets/folder_search_bug.png" width="400"/>
+</div>
+
+> **Note**: The search text will be cleared and the default folder structure will be restored when
+>  - navigating between folders
+>  - clicking on the refresh button
+
 ## Include parent item
 
 From child folder, a user can view all the config done in parent folders, using the toggle button:
