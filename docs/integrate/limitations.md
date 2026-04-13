@@ -23,7 +23,7 @@ There are a few limitations that are common across all connectors. The limitatio
 - **Wiki to Markdown Conversion Limitations**
   - Wiki macros that do not have a direct Markdown equivalent (e.g., {panel}, {info}, or custom macros) are not converted. These elements are retained as raw text in the output.
   - Line breaks within table cells are not reliably preserved during conversion. Nested lists within table cells are flattened, leading to loss of structure.
-  - Task lists cannot be reliably identified in wiki. Hence, they will be shown as standard bulleted lists instead of interactive task lists.
+  - Task lists cannot be reliably detected in Wiki content. As a result, they are rendered as standard bulleted lists rather than interactive task lists.
 ## End System Limitations
 
 In addition to the common limitations, each system has its own set of synchronization limitations.  
