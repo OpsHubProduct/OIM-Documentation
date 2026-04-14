@@ -146,7 +146,7 @@ Here is a video on the silent registration of OIM on the Linux machine:
 
 When you want to install/upgrade <code class="expression">space.vars.SITENAME</code> on a Linux machine as described [here](installation.md#launch-the-installer-in-different-operating-systems), you need to register yourself by following the steps listed below before you proceed with the installation/upgradation.
 
-* Please download offline registration utility from [here](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/EQHg8u3f96lCgBG78UOaLMwBXsfN-yl-Z7ou6KxHYXJMcA).
+* Please download offline registration utility from [here](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/IQAWogdFMMRoRYXC95T2UfqMAVD0RDitlSq7VsvLXZjeSMI?e=1V5O5i).
 * You will get the files as shown below:
 
 <p align="center">
