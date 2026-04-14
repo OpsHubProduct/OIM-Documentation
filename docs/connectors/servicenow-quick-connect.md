@@ -113,15 +113,12 @@ Click [Mapping Configuration](../integrate/mapping-configuration.md) to learn th
 * When ServiceNow is the source endpoint, any CI associated with a Change Request will be synchronized to the target system during the next update of that Change Request. 
   **Reason**: When user associate CI with the Change Request **last updated** time will not be modified, so user need to update system or custom field of Change Request to reflect the changes.
 
-## Catalog Variables Field Configuration
+## Catalog variables field configuration
 
-* Catalog variables are available as fields under the Requested Item entity and can be extended to other entities through the [Overwrite API Endpoints using JSON](servicenow-quick-connect.md#overwrite-api-endpoints-using-json)configuration.
-* Supported types include Single Line Text, Multi Line Text, and Select Box.
-  
-**Known Behavior**:
-
-* When ServiceNow is the source endpoint and a Catalog Task is being synchronized, updates to variables made on the Requested Item or other associated tasks are synchronized only during the next update of the Catalog Task.
-  * **Reason**: Updates on the Requested Item or other tasks do not modify the **last updated** timestamp of the Catalog Task, so a system or custom field update on the Catalog Task is required to reflect and synchronize the changes.
+* Catalog variables are available as fields under the Requested Item entity and can be extended to other entities through the [Overwrite API Endpoints using JSON](servicenow-quick-connect.md#overwrite-api-endpoints-using-json) configuration.
+*   >**Note**:This configuration is required as the end system API does not provide information about the entity types where catalog variables are supported.
+* Supported types include Single Line Text, Multi Line Text, and Select Box. Additional variable types will be supported in upcoming releases.
+* Refer to the [Known Limitations](servicenow-quick-connect.md#known-limitations) section for details on the known behavior of catalog variables.
 
 # Integration Configuration
 
@@ -203,12 +200,14 @@ record_checkpoint!=-1^sys_created_by!=John
 * Only name or number would be supported as display values for the look-up values of a reference field, i.e., if any field is marked for display in reference table then instead of that field either Name or Number will be shown. Look-up values will be loaded only if the response contains name or number.
 * Look-up values will be loaded only when the integration user has the requisite 'read' permission on the required fields (sys _id, name and number) of the reference table.
 * Field of type 'Duration' is not supported.
-* Catalog variable is not supported.
 * During write operation, if attachment/Inlinefile's name is greater than configured attachment filename's length in ServiceNow Quick Connect, it will result in processing failure or sync duplicate attachments.
 * Synchronization of any entity type created under a private application scope is not supported.
 * For history based synchronization, auto purging should be disabled for the sys _audit table.
 * If the image is copied from an entity to another entity's field, there should not be more than one copied image in the field with the same name to sync such inline images. 
   >**Note**:  If ServiceNow Quick Connect is one of the systems in bidirectional integration and the user has more than one copied image with the same name in the field, it will be synchronized to the target system correctly. However, if the target system's field gets updated, those changes will replace all the images with the first copied image in the ServiceNow Quick Connect.
+* When ServiceNow Quick Connect is the source endpoint and a Catalog Task is being synchronized, updates to variables made on the Requested Item or other associated tasks are synchronized only during the next update of the Catalog Task.
+  * **Reason**: Updates on the Requested Item or other tasks do not modify the **last updated** timestamp of the Catalog Task, so a system or custom field update on the Catalog Task is required to reflect and synchronize the changes.
+  * **Example**: A Requested Item (RITM) has multiple associated tasks, including Task T1 and Task T2. A user updates a catalog variable on the RITM or on Task T1. Since this update does not impact the last updated timestamp of Task T2, the change is not immediately synchronized for T2. The updated value will be synchronized only when Task T2 is updated later, causing its timestamp to refresh.
 
 # Appendix
 
@@ -573,6 +572,43 @@ Provide 'read' access to a table
 ```
 
 >**Note**:  If details for an operation are not provided in the JSON, then default API endpoints with namespace `now` are used.
+
+>**Note**: Catalog Variables Configuration
+> <br><br> <b>How to get the internal name of the entity</b>
+<br>The internal name corresponds to the ServiceNow table name (for example, sc_task, sc_req_item). You can find this in ServiceNow by navigating to the form view of the record. Refer to the screenshot below to locate the table name in the UI.
+>  <p align="center"><img src="../assets/snow_quick_connect_catalog_variable.png"/></p>
+> <b>How to get requestedItemField</b>
+> <br>Execute the Read Entity Details API for the entity (for example, sc_task) and identify the field that contains the reference to the Requested Item. This field should be used as the requestedItemField.
+> Example: From the API response below, the field request_item contains the reference to the Requested Item, and hence should be used as the requestedItemField.
+> > <b>How to get requestedItemField</b>
+> <br>Execute the Read Entity Details API for the entity (for example, sc_task) and identify the field that contains the reference to the Requested Item. This field should be used as the requestedItemField.
+> <br><br><b>Example:</b> From the API response below, the field <code>request_item</code> contains the reference to the Requested Item, and hence should be used as the requestedItemField.
+> <br><br>
+> <pre>
+> {
+>   "result": {
+>     "parent": {
+>       "link": "https://ven01172.service-now.com/api/now/table/task/214c342493500b10f461f38d1dba1078",
+>       "value": "214c342493500b10f461f38d1dba1078"
+>     },
+>     "number": "TASK0010163",
+>     "sys_updated_by": "demouser",
+>     "sys_created_on": "2026-04-13 17:08:20",
+>     "sys_domain": {
+>       "link": "https://ven01172.service-now.com/api/now/table/sys_user_group/global",
+>       "value": "global"
+>     },
+>     "request": {
+>       "link": "https://ven01172.service-now.com/api/now/table/sc_req_item/654c342493500b10f461f38d1dba1077",
+>       "value": "654c342493500b10f461f38d1dba1077"
+>     },
+>     "request_item": {
+>       "link": "https://ven01172.service-now.com/api/now/table/sc_req_item/214c342493500b10f461f38d1dba1078",
+>       "value": "214c342493500b10f461f38d1dba1078"
+>     }
+>   }
+> }
+> </pre>
 
 ### Configure Additional Metadata for Specific Use Cases
 
