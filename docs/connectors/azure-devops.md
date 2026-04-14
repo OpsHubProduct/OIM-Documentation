@@ -1087,6 +1087,8 @@ please follow given steps fo find Team Foundation/Azure DevOps Server version.
 
 <div align="center"><img src="../assets/TFS_Server_Version_Edit1.png" alt="" width="800"></div>
 
+* In case of Azure DevOps Server (2025), you have to put the version as "2025" during system configuration.
+
 ## QTP MTM Test Extension Installation and Configuration
 
 1. QtpMtmTestInstall.zip is bundled with the <code class="expression">space.vars.SITENAME</code> installation.
