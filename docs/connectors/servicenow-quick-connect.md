@@ -113,16 +113,6 @@ Click [Mapping Configuration](../integrate/mapping-configuration.md) to learn th
 * When ServiceNow is the source endpoint, any CI associated with a Change Request will be synchronized to the target system during the next update of that Change Request. 
   **Reason**: When user associate CI with the Change Request **last updated** time will not be modified, so user need to update system or custom field of Change Request to reflect the changes.
 
-## Catalog Variables Field Configuration
-
-* Catalog variables are available as fields under the Requested Item entity and can be extended to other entities through the [Overwrite API Endpoints using JSON](servicenow-quick-connect.md#overwrite-api-endpoints-using-json)configuration.
-* Supported types include Single Line Text, Multi Line Text, and Select Box.
-  
-**Known Behavior**:
-
-* When ServiceNow is the source endpoint and a Catalog Task is being synchronized, updates to variables made on the Requested Item or other associated tasks are synchronized only during the next update of the Catalog Task.
-  * **Reason**: Updates on the Requested Item or other tasks do not modify the **last updated** timestamp of the Catalog Task, so a system or custom field update on the Catalog Task is required to reflect and synchronize the changes.
-
 # Integration Configuration
 
 In this step, set a time to synchronize data between ServiceNow Quick Connect and the other system to be integrated. Also, define parameters and conditions, if any, for integration. 
@@ -477,17 +467,6 @@ Provide 'read' access to a table
       "apiUrl": "<api_url_to_be_appended_to_the_base_instance_url>",
       "methodType": "PUT"
     }
-  },
-  "CATALOG_VARIABLE_CONFIG": {
-    "supportedEntityTypes": [
-      {
-        "entityType": "<internal_name_of_the_entity_type>",
-        "requestedItemField": "<field_name_used_to_resolve_associated_requested_item_from_read_entity_details_api>"
-      }
-    ],
-    "variableTypeMappings": {
-      "<servicenow_variable_type_name>": "<overridden_variable_type_name>"
-    }
   }
 }
 ```
@@ -555,18 +534,6 @@ Provide 'read' access to a table
     "default": {
       "apiUrl": "/api/now/v1/table",
       "methodType": "PUT"
-    }
-  },
-  "CATALOG_VARIABLE_CONFIG": {
-    "supportedEntityTypes": [
-      {
-        "entityType": "sc_task",
-        "requestedItemField": "request_item"
-      }
-    ],
-    "variableTypeMappings": {
-      "Select Box": "PickList",
-      "Single Line Text": "Singular Line Text"
     }
   }
 }
