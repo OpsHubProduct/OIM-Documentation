@@ -216,7 +216,7 @@ This feature allows seamless conversion when the routing field value changes and
 
 **Step 5:** Select Default Route [Optional]
 * Click on the ![Default Route Icon](../assets/default-route-icon.png) icon to designate the route as default route.
-* For more guidelines, refer to the [Default Route Configuration Guidelines](#default-rules-configuration-guidelines) section.
+* For more guidelines, refer to the [Default Route Configuration Guidelines](#default-route-configuration-guidelines) section.
 
 
 **Step 6:** Save the Integration
