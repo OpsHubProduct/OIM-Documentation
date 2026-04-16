@@ -203,41 +203,23 @@ This feature allows seamless conversion when the routing field value changes and
 * Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
 
 <p align="center">
-<img src="../assets/routing-config-screen.png" width="900" />
+<img src="../assets/routing-default-config-screen.png" width="900" />
 </p>
 
 **Step 4:** Configure Routing Rules for Each Row in the rule-based configuration
 * Click on the ![Routing Rules Icon](../assets/routing_rules_icon.png) icon to open the Routing Criteria Settings screen.
-* For more guidelines, refer to the [Routing Rules Configuration Guidelines](#routing-rules-configuration-guidelines) section.
+* For more guidelines, refer to the [Routing Rules Configuration Guidelines](../integrate/rule-based-routing.md#routing-rules-configuration-guidelines) section.
 
 <p align="center">
 <img src="../assets/Routing_criteria_field_screen.png" width="900" />
 </p>
 
-**Step 5:** Save the Integration
-## Handling Rule-Based and Duplicate Configuration
+**Step 5:** Select Default Route [Optional]
+* Click on the ![Default Route Icon](../assets/default-route-icon.png) icon to designate the route as default route.
+* For more guidelines, refer to the [Default Route Configuration Guidelines](../integrate/rule-based-routing.md#default-route-configuration-guidelines) section.
 
-If your configuration includes both **convertible** and **duplicate** entity types — for example, some entities that can convert into each other (*Bug ↔ Story ↔ Epic*) and others that should remain as duplicates (*Task*) — follow the steps below to avoid unexpected behavior.
 
-| **Source Entity Type** | **Target Entity Type(s)** | **Purpose** |
-|-------------------------|---------------------------|--------------|
-| Bug                    | Bug / Story / Epic         | Conversion between related types |
-| Bug                    | Task                       | Duplicate creation |
-
-* Do **not** use the same source–target system pair for both rule-based and duplicate configurations.
-* Create a **separate system** for the duplicate configuration.  
-  This separation ensures that conversion logic applies only to convertible entity types and does not affect duplicate entities.
-
-## Know Behaviors
-* If entity matched multiple rules and no rules, then the sync will be failed with below-mentioned processing failure
-  * Example 1: Multiple Routing Rule Match: 
-    * Row1: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Bug"},{"condition":"EQUALS","field":"priority","value":"Low"}]}`
-    * Row2: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Feature"},{"condition":"EQUALS","field":"priority","value":"High"}]}`
-    * The entity read from the end system has `type = 'Feature'` and `priority = 'Low'`, in this case, multiple routing rules are matched.
-  * Example 2: No Routing Rule Match
-    * Row1: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Bug"},{"condition":"EQUALS","field":"priority","value":"Low"}]}`
-    * Row2: `{"condition":"OR","criterias":[{"condition":"EQUALS","field":"type","value":"Feature"},{"condition":"EQUALS","field":"priority","value":"High"}]}`
-    * The entity read from the end system has `type = 'Story'` and `priority = 'Medium'`, in this case, no routing rule is matched.
+**Step 6:** Save the Integration
 
 <p align="center">
 <img src="../assets/failure-message.png" width="900" />
@@ -267,32 +249,6 @@ If your configuration includes both **convertible** and **duplicate** entity typ
 </p>
 
 * During reconciliation, you must wait for all rows to complete before switching to Integrate Mode.
-
-
-## Routing Rules Configuration Guidelines
-
-Follow these guidelines when configuring the **Routing Criteria** and **Routing Query** in the **Routing Criteria Settings** section:
-
-* Configure **routing rules** for every row, otherwise you will not be able to save the integration.
-* Write the routing query in the [OpsHub Query Format](opshub-query-format.md).
-
-* Make sure the **Default Values** in the **Routing Criteria Field Values** table match the routing criteria.
-    * Each value in the field values table must be a valid subset of the defined routing criteria.
-    * **Example:** If the routing criteria is `{"condition": "IN", "field": "priority", "values": ["High", "Medium"]}`, then only *High* and *Medium* can be used as default values for *priority*.
-
-* Do **not** map the fields in the mapping used in the routing criteria query.
-  * Example: If the routing criteria query uses the `priority` field, it should not be mapped in the sync direction from the N-side configuration to the 1-side configuration, as <code class="expression">space.vars.SITENAME</code> automatically manages the field's value based on the defaults defined in the Routing Criteria Field Values table.
-* Use the **same field set** across all rows in a rule-based configuration.
-  * Example: If one row in a rule-based configuration uses the `priority` field in its routing query, then all other rows in that configuration must also use only the `priority` field in their routing queries.
-
-* Keep all **routing rules independent** across rows.
-  * Example: If one row in a rule-based configuration uses the routing criteria
-  `{"condition": "IN", "field": "priority", "values": ["High", "Medium"]`}, then another row in the same configuration **cannot** use`{"condition": "IN", "field": "priority", "values": ["High", "Low"]}`. Each row must define a distinct and non-overlapping routing rule.
-
-* Do **not** use routing-based configuration if duplication is expected in the target.
-    * If one source entity needs to stay in sync with multiple target entity types at the same time, avoid rule-based routing.  
-      Under rule-based routing, a source entity can sync with only one target entity type at a time — based on the rule it matches.
-
 
 # Advance Settings
 
