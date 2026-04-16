@@ -203,7 +203,7 @@ This feature allows seamless conversion when the routing field value changes and
 * Each row in the configuration defines a distinct routing rule that links the source entity to a specific target entity type based on the routing criteria provided.
 
 <p align="center">
-<img src="../assets/routing-config-screen.png" width="900" />
+<img src="../assets/routing-default-config-screen.png" width="900" />
 </p>
 
 **Step 4:** Configure Routing Rules for Each Row in the rule-based configuration
@@ -214,7 +214,12 @@ This feature allows seamless conversion when the routing field value changes and
 <img src="../assets/Routing_criteria_field_screen.png" width="900" />
 </p>
 
-**Step 5:** Save the Integration
+**Step 5:** Select Default Route [Optional]
+* Click on the ![Default Route Icon](../assets/default-route-icon.png) icon to designate the route as default route.
+* For more guidelines, refer to the [Default Route Configuration Guidelines](#default-rules-configuration-guidelines) section.
+
+
+**Step 6:** Save the Integration
 ## Handling Rule-Based and Duplicate Configuration
 
 If your configuration includes both **convertible** and **duplicate** entity types — for example, some entities that can convert into each other (*Bug ↔ Story ↔ Epic*) and others that should remain as duplicates (*Task*) — follow the steps below to avoid unexpected behavior.
@@ -293,6 +298,15 @@ Follow these guidelines when configuring the **Routing Criteria** and **Routing 
     * If one source entity needs to stay in sync with multiple target entity types at the same time, avoid rule-based routing.  
       Under rule-based routing, a source entity can sync with only one target entity type at a time — based on the rule it matches.
 
+# Default Route Configuration Guidelines
+
+Follow these guidelines when configuring the **Default Route**:
+
+* Only one Default Route can be configured, within a given rule-based configuration.
+* The Default Route is applied only when no routing criteria match for an incoming entity.
+* Changes to the Default Route can impact previously synchronized entities.
+    * When modified, entities that were synchronized due to Default Route may undergo entity type conversion during subsequent synchronization.
+* Disabling the Default Route will result in synchronization failures for incoming entities where no routing criteria match.
 
 # Advance Settings
 
