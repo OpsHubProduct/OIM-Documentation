@@ -47,7 +47,6 @@ Integration Configuration with Default Route
 **Behavior with Default Route Configured**
 * When a source Request has requestType = Story (or any value not matching configured criteria), no explicit routing criteria is satisfied.
 * In such cases, the *Default Route* is applied for the synchronization, For example, for requestType = Story, the target entity type will be Feature (as per the above configuration).
-* Any updates to the target entity will update the source field (requestType) to maintain consistency.
 
 **Behavior When Default Route is Changed**
 
