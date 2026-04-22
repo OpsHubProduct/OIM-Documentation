@@ -80,6 +80,7 @@
           * [Pre Migration Checklists](docs/manage/upgrade/pre-migration-checklist.md)
           * [Post Migration Checklists](docs/manage/upgrade/post-migration-checklist.md)
         *  [Taking Application Backup](docs/manage/upgrade/taking-application-backup.md)
+     * [Product Security](docs/manage/product-security.md)
 * [Supported Connectors](docs/supported-connectors/systems-supported.md)
 * [Connector Documentation](docs/connectors/connectors.md)
   * [Aha](docs/connectors/aha.md)
