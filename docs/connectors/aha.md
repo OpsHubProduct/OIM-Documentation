@@ -160,7 +160,7 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * **The above fields are available in Aha! Develop UI when the Aha! Develop instance is combined with Aha! Roadmap.**
   * **Note** The above fields will be deprecated in future releases and replaced with link-based support.
 * Hierarchy sync is not supported. Hence, the synchronization of ranking the requirements and to-dos will not be supported.
-* **Entity Mention is not supported** for Notes and To-Do entities.
+* **Entity Mention is not supported** for Goals(read-only supported), Notes and To-Do entities.
 * **Scorecard parameter values require additional configuration in OIM to sync.**
   * Refer to [Configuring Scorecard Parameter For Synchronization](aha.md#configuring-scorecard-parameter-for-synchronization)
   * Reason: Aha APIs do not provide scorecard parameter details.
@@ -170,6 +170,8 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * Scorecard fields 
   * Table fields 
   * Worksheet field
+  * Custom choice field
+  * Detailed estimate source for **Epic** entity
   * **Note**: Write support for these fields is planned for future releases.
 
 ## Project Selection
@@ -191,7 +193,8 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
       * Reason: Aha APIs provide history data limited to the past 12 months. 
       * Reference: [Aha Audits API](https://www.aha.io/api/resources/audits)
     * **Some fields support only current value sync (history is not available).**
-      * Reason: This mainly includes fields like custom tables, tags, rich text fields, scorecards, goals/initiatives, and watchers, as they are not fully supported for history via Aha APIs.
+        * Due to Aha's historical behavior(UI and API limitations): Scorecard parameters, Watchers, Custom brief type field, Actual vote count, Proxy voters and Submission portal details
+        * Due to Aha's API limitations: Custom tables, Tags, Rich text fields, goals/initiatives and Estimate-related fields.
     * During history synchronization, changes in user fields may be synced as the wrong user in target, if multiple users share the same display name in Aha!.
       * Example: 
         * User 1 in Aha!: Display Name = X, Email = a@gmail.com.
@@ -208,9 +211,12 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * In Aha! Develop instance, for **Epic & Feature** type of entities, **Workspace** field is not available for synchronization.
   * In Aha! Develop instance, for **Requirement** type of entity, **Initial estimate, Detailed estimate & Actual effort** fields will not be synced.
   * State transition is not supported as API doesn't give the information about state transitions.
+  * For synchronizing updates of **Proxy votes** and **Submission portal details** fields for Idea entities, an additional field update is required. This is because changes to these fields do not update the entity's last modified time.
+  * **Custom Key Result** field is treated as a **text** field due to API unavailability.
   * Attachment field: If Aha! is the target system and the attachment mapping is configured to use field-type attachments, at least one attachment should be present in the corresponding field.
 * For Aha! as the target system, the fields below will not unset via <code class="expression">space.vars.SITENAME</code> due to Aha!'s API limitation: **Effort, Value, Duration Source, Progress Source, Status, Type, Complete by date (internal), Round date to, Complete by date (external), Presented, and Description.**
 * **To-dos** present at user level will not synced by <code class="expression">space.vars.SITENAME</code>. **To-dos** present in other entities can only be synchronized.
+
 
 ## Troubleshooting Guide
 

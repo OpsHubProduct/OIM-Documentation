@@ -34,7 +34,7 @@ Given below are the systems supported currently by <code class="expression">spac
             <td>1</td>
             <td>Aha!</td>
             <td>All</td>
-            <td>Epic, Feature, Initiative, Release, Requirement, To-do, Note</td>
+            <td>Epic, Goal, Feature, Idea, Initiative, Release, Requirement, To-do, Note</td>
             <td></td>
         </tr>
         <tr>
