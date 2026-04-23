@@ -160,7 +160,9 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * **The above fields are available in Aha! Develop UI when the Aha! Develop instance is combined with Aha! Roadmap.**
   * **Note** The above fields will be deprecated in future releases and replaced with link-based support.
 * Hierarchy sync is not supported. Hence, the synchronization of ranking the requirements and to-dos will not be supported.
-* **Entity Mention is not supported** for Goals(read-only supported), Notes and To-Do entities.
+* Entity Mention is not supported for the following entities in the given scenarios:
+  * **When Aha! is configured as the target system,** Entity Mention is not supported for Goals, Notes, and To-Do entities.
+  * **When Aha! is configured as the source system,** Entity Mention through source URL is not supported for the Goals entity.
 * **Scorecard parameter values require additional configuration in OIM to sync.**
   * Refer to [Configuring Scorecard Parameter For Synchronization](aha.md#configuring-scorecard-parameter-for-synchronization)
   * Reason: Aha APIs do not provide scorecard parameter details.
