@@ -117,8 +117,8 @@ Click [Mapping Configuration](../integrate/mapping-configuration.md) to learn th
 
 * Catalog variables are available as fields under the Requested Item entity and can be extended to other entities through the [Overwrite API Endpoints using JSON](servicenow-quick-connect.md#overwrite-api-endpoints-using-json) configuration.
 *   >**Note**:This configuration is required as the end system API does not provide information about the entity types where catalog variables are supported.
-* Supported types include Single Line Text, Multi Line Text, and Select Box. Additional variable types will be supported in upcoming releases.
-* Refer to the [Known Limitations](servicenow-quick-connect.md#known-limitations) section for details on the known behavior of catalog variables.
+* All variable types are supported, except Lookup Select Box, Lookup Multiple Choice, and Masked.
+  * Refer to the [Known Limitations](servicenow-quick-connect.md#known-limitations) section for details on the known behavior of catalog variables.
 
 # Integration Configuration
 
@@ -208,6 +208,9 @@ record_checkpoint!=-1^sys_created_by!=John
 * When ServiceNow Quick Connect is the source endpoint and a Catalog Task is being synchronized, updates to variables made on the Requested Item or other associated tasks are synchronized only during the next update of the Catalog Task.
   * **Reason**: Updates on the Requested Item or other tasks do not modify the **last updated** timestamp of the Catalog Task, so a system or custom field update on the Catalog Task is required to reflect and synchronize the changes.
   * **Example**: A Requested Item (RITM) has multiple associated tasks, including Task T1 and Task T2. A user updates a catalog variable on the RITM or on Task T1. Since this update does not impact the last updated timestamp of Task T2, the change is not immediately synchronized for T2. The updated value will be synchronized only when Task T2 is updated later, causing its timestamp to refresh.
+* Synchronization of **Lookup Select Box** and **Lookup Multiple Choice** variable types is not supported, as they can be linked to dynamic fields that may reference any column.
+* Synchronization of **Masked** variable type is not supported, as the API does not return decrypted values for these fields. As a result, the actual stored data cannot be retrieved or processed.
+* History-based synchronization of catalog variables is available only for the Requested Item entity. For all other entities (e.g., Catalog Task), only current-state synchronization is supported due to API limitation.
 
 # Appendix
 
@@ -486,6 +489,33 @@ Provide 'read' access to a table
     ],
     "variableTypeMappings": {
       "<servicenow_variable_type_name>": "<overridden_variable_type_name>"
+    },
+    "supportedCatalogItemIds": "<List of Catalog Item IDs whose variables should be loaded>",
+    "apiDetails": {
+      "GET_ALL_CATALOG_VARIABLES": {
+        "apiUrl": "<api_url_to_be_appended_to_the_base_instance_url>",
+        "methodType": "GET",
+        "queryParams": {
+          "sysparm_fields": "sys_id,sys_name,cat_item.name,type,reference,list_table",
+          "sysparm_display_value": "true"
+        }
+      },
+      "GET_VARIABLE_CHOICES": {
+        "apiUrl": "<api_url_to_be_appended_to_the_base_instance_url>",
+        "methodType": "GET"
+      },
+      "GET_REQUESTED_ITEM_VARIABLES": {
+        "apiUrl": "<api_url_to_be_appended_to_the_base_instance_url>",
+        "methodType": "GET",
+        "queryParams": {
+          "sysparm_fields": "sc_item_option.value,sc_item_option.item_option_new,sc_item_option.item_option_new.name,sc_item_option.item_option_new.sys_id,sc_item_option.sys_id,sc_item_option.item_option_new.type",
+          "sysparm_display_value": "true"
+        }
+      },
+      "UPDATE_CATALOG_VARIABLE": {
+        "apiUrl": "<api_url_to_be_appended_to_the_base_instance_url>",
+        "methodType": "PATCH"
+      }
     }
   }
 }
@@ -566,6 +596,34 @@ Provide 'read' access to a table
     "variableTypeMappings": {
       "Select Box": "PickList",
       "Single Line Text": "Singular Line Text"
+    },
+    "supportedCatalogItemIds": ["7d87d30c93940710f461f38d1dba1062","56edf2a5933f36d070e5f9027cba108d"],
+    "apiDetails": {
+      "GET_ALL_CATALOG_VARIABLES": {
+        "apiUrl": "/api/now/v1/table/item_option_new",
+        "methodType": "GET",
+        "queryParams": {
+          "sysparm_fields": "sys_id,sys_name,cat_item.name,type,reference,list_table",
+          "sysparm_display_value": "true"
+        }
+      },
+      "GET_VARIABLE_CHOICES": {
+        "apiUrl": "/api/now/v1/table/question_choice",
+        "methodType": "GET"
+      },
+      "GET_REQUESTED_ITEM_VARIABLES": {
+        "apiUrl": "/api/now/v1/table/sc_item_option_mtom",
+        "methodType": "GET",
+        "queryParams": {
+          "sysparm_fields": "sc_item_option.value,sc_item_option.item_option_new,sc_item_option.item_option_new.name,sc_item_option.item_option_new.sys_id,sc_item_option.sys_id,sc_item_option.item_option_new.type",
+          "sysparm_display_value": "true"
+        }
+      },
+      "UPDATE_CATALOG_VARIABLE": {
+        "apiUrl": "/api/now/v1/table/sc_item_option",
+        "methodType": "PATCH"
+      }
+
     }
   }
 }
@@ -609,6 +667,10 @@ Provide 'read' access to a table
 >   }
 > }
 > </pre>
+> <br>In order to load catalog variables for selected Catalog Items, users can provide a list of Catalog Item IDs under <code>supportedCatalogItemIds</code>.
+> <br><br><b>How to get Catalog Item ID</b>
+> <br>The Catalog Item ID (<code>sys_id</code>) can be obtained from the URL of the Catalog Item record. When you open the record in ServiceNow, the <code>sys_id</code> is present as a parameter in the URL. Refer to the screenshot below to locate it in the UI.
+> <p align="center"><img src="../assets/snow_quick_connect_catalog_item.png"/></p>
 
 ### Configure Additional Metadata for Specific Use Cases
 
