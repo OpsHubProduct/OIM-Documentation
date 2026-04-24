@@ -60,15 +60,15 @@ Follow these guidelines when configuring the **Routing Criteria** and **Routing 
     * If one source entity needs to stay in sync with multiple target entity types at the same time, avoid rule-based routing.  
       Under rule-based routing, a source entity can sync with only one target entity type at a time — based on the rule it matches.
 
-# Default Route Configuration Guidelines
+# default route Configuration Guidelines
 
-Follow these guidelines when configuring the **Default Route**:
+Follow these guidelines when configuring the **default route**:
 
-* Only one Default Route can be configured, within a given rule-based configuration.
-* The Default Route is applied only when no routing criteria match for an incoming entity.
-* Changes to the Default Route can impact previously synchronized entities.
-    * When modified, entities that were synchronized due to Default Route may undergo entity type conversion during subsequent synchronization.
-* Disabling the Default Route will result in synchronization failures for incoming entities where no routing criteria match.
+* Only one default route can be configured, within a given rule-based configuration.
+* The default route is applied only when no routing criteria match for an incoming entity.
+* Changes to the default route can impact previously synchronized entities.
+    * When modified, entities that were synchronized due to default route may undergo entity type conversion during subsequent synchronization.
+* Disabling the default route will result in synchronization failures for incoming entities where no routing criteria match.
 
 # Example Use Case
 
@@ -90,31 +90,32 @@ Consider a source system where all items are created as a Request, and the field
 
 In integrations where routing criteria determine the target entity type,
 there may be scenarios where incoming entities do not match any configured conditions.
-The Default Route ensures such entities are still processed by assigning a fallback target entity type.
+The default route ensures such entities are still processed by assigning a fallback target entity type.
 
 Consider a source system where all items are created as a Request, and the field **requestType** determines the entity type to be created in the target (as per the above example use-case)
 
-Integration Configuration with Default Route
+Integration Configuration with default route
 
-| **Source Entity Type**  | **Target Entity Type** | **Routing Criteria**              | **Default Route**      |     
+| **Source Entity Type**  | **Target Entity Type** | **Routing Criteria**              | **default route**      |     
 |------------------------|-------------------------|-----------------------------------|------------------------|
 | Request                | Bug                     |   requestType = Bug               |    false               |
 | Request                | Feature                 |   requestType = Feature Request   |    true                |
 | Request                | Change Request          |   requestType = Change Request    |    false               |
 
-**Behavior with Default Route Configured**
+**Behavior with default route Configured**
 * When a source Request has requestType = Story (or any value not matching configured criteria), no explicit routing criteria is satisfied.
-* In such cases, the *Default Route* is applied for the synchronization, For example, for requestType = Story, the target entity type will be Feature (as per the above configuration).
+* In such cases, the *default route* is applied for the synchronization, For example, for requestType = Story, the target entity type will be Feature (as per the above configuration).
 
-**Behavior When Default Route is Changed**
+**Behavior When default route is Changed**
 
 * Continuing the above scenario, a Request with requestType = Story is initially synchronized as a Feature.
-* If the Default Route is changed to requestType = Bug route.
+* If the default route is changed to requestType = Bug route.
   * On the next synchronization, the existing target entity will be converted from Feature to Bug.
+* **Warning** : Changing default route will change the entity type of all records synchronized via the default route in the next sync cycle.
 
-**Behavior When Default Route is Disabled**
+**Behavior When default route is Disabled**
 
-* If the Default Route is disabled and an entity does not match any routing criteria:
+* If the default route is disabled and an entity does not match any routing criteria:
   * The synchronization will fail with the error message: "OpsHub-020604: No routing criteria matched the provided entity values. Review the currently configured routing criteria: {currently configured criteria}"
 
-<code class="expression">space.vars.SITENAME</code> allows seamless conversion when the routing field value changes and automatically updates the corresponding target entity type. It also ensures that when updates flow in the reverse direction, the source field value is adjusted accordingly—maintaining complete bidirectional consistency. For more details about configuration, refer to this section: [Routing Rules Configuration](integration-configuration.md#rule-based-routing).
+<code class="expression">space.vars.SITENAME</code> allows seamless conversion when the routing field value changes and automatically updates the corresponding target entity type. It also ensures that when updates flow in the reverse direction, the source field value is adjusted accordingly, maintaining complete bidirectional consistency. For more details about configuration, refer to this section: [Routing Rules Configuration](integration-configuration.md#rule-based-routing).
