@@ -7,16 +7,25 @@ Let's see how you can get started with <code class="expression">space.vars.SITEN
   - username: admin
   - password: password
 
-These are default credentials. You can change them after you log in.
-
 <p align="center">
   <img src="../assets/Getting_Started_With_Application_Image_1G_a.png"  width="680"/>
 </p>
 
 # Linux
 * For Linux, once the installation is done, enter the URL as http://localhost:8989/OIM/ in browser.
-* Log in as username **admin** and password **password**. These are default username and password. You can change them from profile once you log in.
+* Log in as username **admin** and password **password**.
 * If you have configured <code class="expression">space.vars.SITENAME</code> for HTTPS, then enter the URL as https://localhost:8443/OIM/ in browser.
+
+# Action Required for Update Password on first login
+* When a new user is created in OIM, or when the default **admin** user logs in for the first time after installation, you will be prompted to update your password.
+* After logging in with the initial credentials, you will be automatically redirected to the password update screen.
+* Please update your password in accordance with the defined password policy. For more details about password policy, refer to [Default Password Policy](../manage/administrator/login-server-management.md#password-policy-configuration).
+
+<p align="center">
+  <img src="../assets/updatePassword.png"  width="680"/>
+</p>
+
+* Once the password is successfully updated, you will be redirected back to the Login page, where you can log in using your updated credentials. 
 
 # Forgot Password
 If you have forgotten your password, <code class="expression">space.vars.SITENAME</code> provides a secure way to reset it.
