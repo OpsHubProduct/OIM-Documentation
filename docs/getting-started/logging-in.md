@@ -16,7 +16,7 @@ Let's see how you can get started with <code class="expression">space.vars.SITEN
 * Log in as username **admin** and password **password**.
 * If you have configured <code class="expression">space.vars.SITENAME</code> for HTTPS, then enter the URL as https://localhost:8443/OIM/ in browser.
 
-# Action Required for Update Password on first login
+# Set a New Password on First Login
 * When a new user is created in OIM, or when the default **admin** user logs in for the first time after installation, you will be prompted to update your password.
 * After logging in with the initial credentials, you will be automatically redirected to the password update screen.
 * Please update your password in accordance with the defined password policy. For more details about password policy, refer to [Default Password Policy](../manage/administrator/login-server-management.md#password-policy-configuration).
