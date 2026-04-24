@@ -86,7 +86,7 @@ Consider a source system where all items are created as a Request, and the field
 * If the requestType changes to Feature Request, the previously synced Bug is automatically converted to a Feature Request — without creating duplicates.
 * If the entity type changes on the target side, the requestType field in the source system updates automatically to stay aligned.
 
-# Default Route Use Case
+# Configure default route
 
 In integrations where routing criteria determine the target entity type,
 there may be scenarios where incoming entities do not match any configured conditions.

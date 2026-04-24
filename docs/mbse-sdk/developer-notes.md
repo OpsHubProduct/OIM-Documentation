@@ -1,13 +1,32 @@
 # MBSE SDK Server Bootstrap Package v/s OIM version compatibility matrix
 
-| SDK Server                                                                                                                                                           | OIM      | Remarks                                                                                  |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|------------------------------------------------------------------------------------------|
-| [1.1.0](https://opshubtrial-my.sharepoint.com/:f:/g/personal/support_opshub_com/IgASwZ7wO5lsQZXpQozVIq6kAUcbJWqBEpV5QEZxTJ4NlYk?e=p0Brbr) | \>=7.218 | Batching and parallel processing implemented for getting list of elements on latest state and at given revision.
-| [1.0.0](https://opshubtrial-my.sharepoint.com/:f:/g/personal/support_opshub_com/IgB2GwvZGsFzTb8G8eOLDsoHAVGOfcyUg0Z-XDYSNM-6ZdY?e=YQ7PWC) | \>=7.218 | Initial Version.<br><br>OIM supports MBSE SDK connector registration from 7.218 onwards. |
+| SDK Server                                                                                                                                | OIM                 | Remarks                                                                                                                                                                                                                                                                |
+|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [1.1.0](https://opshubtrial-my.sharepoint.com/:f:/g/personal/support_opshub_com/IgASwZ7wO5lsQZXpQozVIq6kAUcbJWqBEpV5QEZxTJ4NlYk?e=p0Brbr) | \>=7.218            | Batching and parallel processing implemented for getting list of elements on latest state and at given revision.                                                                                                                                                       
+| [1.0.0](https://opshubtrial-my.sharepoint.com/:f:/g/personal/support_opshub_com/IgB2GwvZGsFzTb8G8eOLDsoHAVGOfcyUg0Z-XDYSNM-6ZdY?e=YQ7PWC) | \>=7.218            | Initial Version.<br><br>OIM supports MBSE SDK connector registration from 7.218 onwards.                                                                                                                                                                               |
+| [1.2.0](https://opshubtrial-my.sharepoint.com/:f:/g/personal/support_opshub_com/IgB2GwvZGsFzTb8G8eOLDsoHAVGOfcyUg0Z-XDYSNM-6ZdY?e=YQ7PWC) | \>=7.218 and <7.224 | Support for Generalization and Usage relationship, along with renaming of realization relationship                                                                                                                                                                     |
+| [1.3.0](https://opshubtrial-my.sharepoint.com/:f:/g/personal/support_opshub_com/IgB2GwvZGsFzTb8G8eOLDsoHAVGOfcyUg0Z-XDYSNM-6ZdY?e=YQ7PWC) | \>=7.224            | Added support for query-based filtering using name and GUID.<br>Redesigned the Element Types JSON configuration for improved structure and flexibility.<br>Enabled support for polling entities from the first revision.<br>Added support for Item Flow and reference fields. |
 
 ---
 
 # Developer Notes
+
+## MBSE SDK Release 1.3.0
+**Backward Compatible Changes**
+- Added support for query-based filtering using name and GUID.
+- Redesigned the element types json configuration for improved structure and flexibily.
+- Enabled support for polling entities from first revision.
+- Added support for item flow and reference fields.
+
+**Breaking API changes**
+- Added parameters for the branchName and branchDescription in the EmfBranchClient.
+- Added deleteElements and bulkUpsertElements method in the EmfElementClient.![img.png](img.png)
+
+## MBSE SDK Release 1.2.0
+**Backward Compatible Changes**
+- Added support for Generalization and Usage Relationship.
+- Renaming for the realization link
+
 
 ## MBSE SDK Release 1.1.0
 **Backward Compatible Changes**
