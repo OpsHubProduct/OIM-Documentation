@@ -208,7 +208,7 @@ This feature allows seamless conversion when the routing field value changes and
 
 **Step 4:** Configure Routing Rules for Each Row in the rule-based configuration
 * Click on the ![Routing Rules Icon](../assets/routing_rules_icon.png) icon to open the Routing Criteria Settings screen.
-* For more guidelines, refer to the [Routing Rules Configuration Guidelines](../../integrate/rule-based-routing.md#routing-rules-configuration-guidelines) section.
+* For more guidelines, refer to the [Routing Rules Configuration Guidelines](../integrate/rule-based-routing.md#routing-rules-configuration-guidelines) section.
 
 <p align="center">
 <img src="../assets/Routing_criteria_field_screen.png" width="900" />
@@ -216,7 +216,7 @@ This feature allows seamless conversion when the routing field value changes and
 
 **Step 5:** Select Default Route [Optional]
 * Click on the ![Default Route Icon](../assets/default-route-icon.png) icon to designate the route as default route.
-* For more guidelines, refer to the [Default Route Configuration Guidelines](../../integrate/rule-based-routing.md#default-route-configuration-guidelines) section.
+* For more guidelines, refer to the [Default Route Configuration Guidelines](../integrate/rule-based-routing.md#default-route-configuration-guidelines) section.
 
 
 **Step 6:** Save the Integration
