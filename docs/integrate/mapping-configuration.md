@@ -530,7 +530,7 @@ Read in detail about [Default Link Settings](default-link-settings.md) here.
 </p>
 
 
-# Workflow Transition
+# Transitions & Dependencies
 
 **Workflow transition** is a feature supported by <code class="expression">space.vars.SITENAME</code> wherein the user can configure <code class="expression">space.vars.SITENAME</code> to automatically handle workflow transition of an entity as per requirement.
 
