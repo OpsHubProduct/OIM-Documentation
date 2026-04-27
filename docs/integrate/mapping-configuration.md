@@ -616,6 +616,82 @@ To solve this problem, <code class="expression">space.vars.SITENAME</code> allow
           * WITH : Dependent fields with this value are updated as part of the state transition.
           * AFTER : Dependent fields with this value are updated after the state transition is completed.
         * If the `<executionOrder>` attribute is not specified for a dependent field, the execution order defaults to WITH.
+      * `<alwaysUpdate>` : This tag controls whether the dependent field should always be updated during workflow transition execution, even when the incoming mapped value and the current target value are already the same.
+        * `true` : Always update the dependent field during transition execution.
+        * `false` : Update only when value comparison determines change is required.
+
+**Use Cases of always update dependent type field:**
+
+Use <alwaysUpdate>true</alwaysUpdate> when:
+
+* Target system requires the field to be explicitly sent during transition.
+* Workflow validator requires field update even if same value already exists.
+* Transition screen mandates field submission.
+
+If omitted, default behavior is : <alwaysUpdate>false</alwaysUpdate>
+
+## Target-Only Matching Transition
+
+A transition can be configured using only `<targetValue>` without specifying `<sourceValue>`.
+
+This is useful when the source value is unpredictable or multiple source states can move to one common target state.
+
+### Example
+
+```xml
+<FieldTransition>
+  <transitionName>Resolve Transition</transitionName>
+  <fromField>status</fromField>
+  <toField>status</toField>
+  <sourceValue></sourceValue>
+  <targetValue>Resolved</targetValue>
+</FieldTransition>
+```
+
+### Behavior
+
+If the incoming target value is `Resolved`, this transition is selected regardless of the current source value.
+
+### Use Cases
+
+- Multiple source states move to the same destination state.
+- Source system workflow is dynamic.
+- Exact source status is not reliable.
+
+
+## Fallback Transition
+
+A workflow transition can be marked as default using:
+
+```xml
+<sourceValue></sourceValue>
+<targetValue></targetValue>
+```
+
+When no configured transition matches the incoming source/target values, `space.vars.SITENAME` uses the default transition as a fallback route.
+
+### Example
+
+```xml
+<FieldTransition>
+  <transitionName>Default Transition</transitionName>
+  <fromField>status</fromField>
+  <toField>status</toField>
+  <sourceValue/>
+  <targetValue></targetValue>
+</FieldTransition>
+```
+
+### Behavior
+
+| Condition | Result |
+|-----------|--------|
+| Matching transition exists | Matching transition is used |
+| No matching transition exists | Default transition is used |
+| No matching transition and no default transition configured | Synchronization fails with an error |
+
+---
+
 
 **Example of multi-valued type field:**
 
