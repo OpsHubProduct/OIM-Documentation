@@ -288,7 +288,7 @@ When the search text is cleared:
 * The final field name will be:
   **`ProductUst__169__Uendversion`**
 
-You can map attachments, comments and relationships between System 1 and System 2. You can also configure workflow transition between System 1 and System 2.
+You can map attachments, comments and relationships between System 1 and System 2. You can also configure Transitions & Dependencies between System 1 and System 2.
 
 
 ## Specifying Unicode for values in lookup fields
@@ -532,18 +532,18 @@ Read in detail about [Default Link Settings](default-link-settings.md) here.
 
 # Transitions & Dependencies
 
-**Workflow transition** is a feature supported by <code class="expression">space.vars.SITENAME</code> wherein the user can configure <code class="expression">space.vars.SITENAME</code> to automatically handle workflow transition of an entity as per requirement.
+**Transitions & Dependencies** is a feature supported by <code class="expression">space.vars.SITENAME</code> wherein the user can configure <code class="expression">space.vars.SITENAME</code> to automatically handle Transitions & Dependencies of an entity as per requirement.
 
 For example, consider a system in which Transition Workflow exists, a certain state is only accessible from a certain specific state or a new item can only exist in a new default state. Another example can be a requirement in which a state a field has to be assigned a value. If the value for that field is not assigned in that specific state, then it will result into error. In such circumstances, synchronizing entities from a system that does not enforce Transition Workflow to the target system is cumbersome.
 
-To solve this problem, <code class="expression">space.vars.SITENAME</code> allows the user to configure Workflow Transition Handling. Some systems provide workflow transition information through API. For these systems, the workflow transition information is picked from the API by default. Irrespective of the availability of the workflow transition through API, user can configure Workflow Transition by providing the information through XSL.
+To solve this problem, <code class="expression">space.vars.SITENAME</code> allows the user to configure Transitions & Dependencies Handling. Some systems provide Transitions information through API. For these systems, the transition information is picked from the API by default. Irrespective of the availability of the transitions through API, user can configure Transitions & Dependencies by providing the information through XSL.
 
-* Slide the button adjacent to **Workflow Transition** to the right.
-* Click the (</>) icon to edit the workflow transition XSL. A default sample XSL is loaded using which a user can build his own XSL as per his requirement.
+* Slide the button adjacent to **Transitions & Dependencies** to the right.
+* Click the (</>) icon to edit the Transitions & Dependencies XSL. A default sample XSL is loaded using which a user can build his own XSL as per his requirement.
 
-**Workflow Behaviour for Workflow Transition when the reference field is added as a dependent field:**
+**Workflow Behaviour for Transitions & Dependencies when the reference field is added as a dependent field:**
 
-* If the dependent field added in the workflow transition is the reference field type, then by default, the lookup for the target entity will be done based on a name basis.
+* If the dependent field added in the Transitions & Dependencies is the reference field type, then by default, the lookup for the target entity will be done based on a name basis.
 * If the user wants to perform target lookup based on the target entity id, they can achieve this by specifying the attribute `"lookupBy"` in the dependent field. For more details, refer to [Reference Field Working](mapping-configuration.md#reference-field).
 
 <p align="center">
@@ -618,19 +618,21 @@ To solve this problem, <code class="expression">space.vars.SITENAME</code> allow
           * WITH : Dependent fields with this value are updated as part of the state transition.
           * AFTER : Dependent fields with this value are updated after the state transition is completed.
         * If the `<executionOrder>` attribute is not specified for a dependent field, the execution order defaults to WITH.
-      * `<alwaysUpdate>` : This tag controls whether the dependent field should always be updated during workflow transition execution, even when the incoming mapped value and the current target value are already the same.
-        * `true` : Always update the dependent field during transition execution.
-        * `false` : Update only when value comparison determines change is required.
+      * `<alwaysUpdate>` : This attribute controls whether the dependent field should be updated every time a transition runs.
+        * `true` : The field is updated every time the transition executes, even if the new value is the same as the current value in the target.
+        * `false` : The field is updated only when there is an actual difference between the current target value and the incoming value.
+      * Use `true` to force an update every time, and `false` to update only when a change is detected.
 
-**Use Cases of always update dependent type field:**
+**Use cases for `true`: Target system enforces field presence**
 
-Use <alwaysUpdate>true</alwaysUpdate> when:
+Some APIs or workflows fail if a field is not explicitly sent, even if unchanged.
 
-* Target system requires the field to be explicitly sent during transition.
-* Workflow validator requires field update even if same value already exists.
-* Transition screen mandates field submission.
+* Workflow validators depend on the field update event
+* Validators or post-functions may trigger only when the field is part of the update payload.
 
-If omitted, default behavior is : <alwaysUpdate>false</alwaysUpdate>
+If not specified, the default behavior is false, meaning:
+
+* The field is updated only when an actual change in value is detected
 
 ## Target-Only Matching Transition
 
@@ -656,12 +658,12 @@ If the incoming target value is `Resolved`, this transition is selected regardle
 
 ### Use Cases
 
-- Multiple source states move to the same destination state.
+- when multiple source states can move to a common target state
 - Source system workflow is dynamic.
 - Exact source status is not reliable.
 
 
-## Fallback Transition
+## Default (Generic) Transition
 
 A workflow transition can be marked as default using:
 
@@ -670,16 +672,28 @@ A workflow transition can be marked as default using:
 <targetValue></targetValue>
 ```
 
-When no configured transition matches the incoming source/target values, `space.vars.SITENAME` uses the default transition as a fallback route.
+This transition acts as a generic route when no specific source-to-target mapping is defined.
+
+#### In simple terms:
+
+- Use this when you don’t want to define transitions for every specific status change.
+- It ensures that updates still go through using a common transition.
+- Useful when the exact source/target combination is not important, but the dependent fields or updates must still be applied.
+
+#### When to use it:
+- When you don’t require strict mapping for each status change.
+- When dependent fields or other updates should be applied consistently, regardless of the exact transition.
 
 ### Example
+
+If transitions are unknown, keep both source value and target value empty
 
 ```xml
 <FieldTransition>
   <transitionName>Default Transition</transitionName>
   <fromField>status</fromField>
   <toField>status</toField>
-  <sourceValue/>
+  <sourceValue></sourceValue>
   <targetValue></targetValue>
 </FieldTransition>
 ```
@@ -688,9 +702,9 @@ When no configured transition matches the incoming source/target values, `space.
 
 | Condition | Result |
 |-----------|--------|
-| Matching transition exists | Matching transition is used |
-| No matching transition exists | Default transition is used |
-| No matching transition and no default transition configured | Synchronization fails with an error |
+| Matching transition exists | The matching transition is used |
+| No matching transition exists | The default transition is used |
+| No matching transition exists and no default transition is configured | Synchronization fails with an error |
 
 ---
 
@@ -731,10 +745,10 @@ When no configured transition matches the incoming source/target values, `space.
 > **Note** : All the values provided for Advance Transition XSL are related to the target system.
 > **Note** : `<fromField>` and `<toField>` refer to the same field, provided end system's transition flow is configured on a single transition field. Otherwise, they refer to different fields as per the end system's transition flow.
 
-* If the Workflow Transition is configured, then during the integration, the transition of entities based on incoming values is done automatically by <code class="expression">space.vars.SITENAME</code>. This makes it easier to synchronize such systems.
+* If the Transitions & Dependencies is configured, then during the integration, the transition of entities based on incoming values is done automatically by <code class="expression">space.vars.SITENAME</code>. This makes it easier to synchronize such systems.
 * Now, click **Create Mapping** button to create the mapping.
 
-## Workflow Transition Example
+## Transitions & Dependencies Example
 
 Suppose the possible status transition(s) of Jira system is:
 
@@ -743,7 +757,7 @@ Suppose the possible status transition(s) of Jira system is:
 * Active → Resolved
 * Resolved → Closed
 
-Below is workflow transition XML configuration sample for <code class="expression">space.vars.SITENAME</code> for above possible end system transitions.
+Below is Transitions & Dependencies XML configuration sample for <code class="expression">space.vars.SITENAME</code> for above possible end system transitions.
 
 ```xml
 <FieldTransitions>
@@ -781,8 +795,8 @@ Below is workflow transition XML configuration sample for <code class="expressio
 
 ## Known Behavior and Limitations
 
-* If comment is mandatory on state/status transitions and user has configured the `OH_Dependent_Comments` in workflow transition XML, the N number of comment from source will be processed with N number of transition in target. If there is no comment coming from the source, default comment [mentioned in the Workflow transition XML] will be synced to the target system.
-* `OH_Dependent_Comments` in workflow transition XML will work for `WITH` execution order because of API limitations.
+* If comment is mandatory on state/status transitions and user has configured the `OH_Dependent_Comments` in transition XML, the N number of comment from source will be processed with N number of transition in target. If there is no comment coming from the source, default comment [mentioned in the Transitions & Dependencies XML] will be synced to the target system.
+* `OH_Dependent_Comments` in Transitions & Dependencies XML will work for `WITH` execution order because of API limitations.
 
 **E.g.,**
 
