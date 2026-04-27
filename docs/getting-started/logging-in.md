@@ -19,7 +19,7 @@ Let's see how you can get started with <code class="expression">space.vars.SITEN
 # Set a New Password on First Login
 * When a newly created user logs in for the first time, or when the default **admin** user logs in after installation, you will be prompted to update your password and will be automatically redirected to the password update screen.
 * Please update your password in accordance with the defined password policy. For more details about password policy, refer to [Default Password Policy](../manage/administrator/login-server-management.md#password-policy-configuration).
-* This step is enforced to strengthen OIM user security, as default passwords may be accessible to unauthorized users. Creating a strong, unique password ensures that only you can access your account.
+* This step is enforced to enhance the security of <code class="expression">space.vars.SITENAME</code> user accounts, as default passwords may be vulnerable to unauthorized access. Setting a strong, unique password ensures that only the intended user can access the account.
 
 <p align="center">
   <img src="../assets/updatePassword.png"  width="680"/>
