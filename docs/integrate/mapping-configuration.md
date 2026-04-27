@@ -578,6 +578,7 @@ To solve this problem, <code class="expression">space.vars.SITENAME</code> allow
           <possibleValue>value C1</possibleValue>
         </possibleTargetValues>
         <defaultValue>value A1</defaultValue>
+        <alwaysUpdate>false</alwaysUpdate>
       </dependentField>
       <dependentField lookupBy="defaultTargetId">
         <fieldName>dependent field 2</fieldName>
@@ -587,6 +588,7 @@ To solve this problem, <code class="expression">space.vars.SITENAME</code> allow
           <possibleValue>Id 3</possibleValue>
         </possibleTargetValues>
         <defaultValue>Id 1</defaultValue>
+        <alwaysUpdate>false</alwaysUpdate>
       </dependentField>
     </dependentFields>
   </FieldTransition>
