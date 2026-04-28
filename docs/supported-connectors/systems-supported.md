@@ -488,7 +488,7 @@ Given below are the systems supported currently by <code class="expression">spac
         <tr>
             <td>66</td>
             <td>ServiceNow</td>
-            <td>San Diego–Zurich</td>
+            <td>San Diego - Australia</td>
             <td>All System + Custom Tables</td>
             <td></td>
         </tr>
