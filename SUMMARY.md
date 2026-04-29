@@ -75,6 +75,7 @@
           * [Add fields to existing Mapping](docs/manage/api/add-fields-to-mapping.md)
           * [Configure Reconciliation on existing Integration](docs/manage/api/configure-reconcile-on-exisiting-integration.md)
           * [Retrieve and Configure Integration Pair Log Settings](docs/manage/api/retrive-and-configure-integration-pair-log-setting.md)
+        * [API Capability Matirx](docs/manage/api/api_capability_matrix.md)
      * [Upgrade](docs/manage/upgrade-index.md)
         *  [Upgrading Application Version](docs/manage/upgrade/upgrade-application.md)
           * [Pre Migration Checklists](docs/manage/upgrade/pre-migration-checklist.md)

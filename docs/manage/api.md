@@ -14,5 +14,9 @@
       <td align="center"><strong>Sample Use Cases and Scripts</strong></td>
       <td><a href="api/sample-use-cases.md">Sample Use Cases and Scripts</a></td>
     </tr>
+    <tr>
+      <td align="center"><strong>API Capability Matrix</strong></td>
+      <td><a href="api/api_capability_matrix.md">API Capability Matrix</a></td>
+    </tr>
   </tbody>
 </table>
