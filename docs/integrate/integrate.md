@@ -35,8 +35,8 @@
       <td><a href="best-practises.md">Best Practices</a></td>
     </tr>
     <tr>
-      <td align="center"><mark style="color:#555555"><strong>🚫 Limitations</strong></mark></td>
-      <td><a href="limitations.md">Limitations</a></td>
+      <td align="center"><mark style="color:#555555"><strong>🚫 Known Behaviours and Limitations</strong></mark></td>
+      <td><a href="known-behaviours-and-limitations.md">Limitations</a></td>
     </tr>
   </tbody>
 </table>

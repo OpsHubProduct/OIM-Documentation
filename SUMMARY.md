@@ -38,7 +38,7 @@
         * [Integration Landscape](docs/integrate/dashboards.md)
         * [Trends and Metrics](docs/integrate/trends-and-metrics.md)
     * [Best Practices](docs/integrate/best-practises.md)
-    * [Limitations](docs/integrate/limitations.md)
+    * [Known Behaviours And Limitations](docs/integrate/known-behaviours-and-limitations.md)
 * [Manage](docs/manage/manage.md)
      * [Administrator](docs/manage/administrator.md)
         * [User Management](docs/manage/administrator/user-management.md)

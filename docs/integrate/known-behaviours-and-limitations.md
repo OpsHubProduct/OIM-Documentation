@@ -16,6 +16,20 @@ There are a few limitations that are common across all connectors. The limitatio
   - Synchronization of the height and width of the inline image is performed only for HTML-supported systems.
   - If the same image is referred to more than once with a different height and width, then only the size of the last image is synchronized with all the images on the target side.
 
+- **Comment Synchronization Behaviour (Edited Comments)**
+  - Consider the following scenario:
+      - Initial sync of an entity:
+          - Comments **C1** and **C2** are added and synchronized to the target system.
+      - Later:
+          - Comment **C1** is edited in the source system.
+
+  - When the edited comment is synchronized:
+      - <code class="expression">space.vars.SITENAME</code> detects the updated **C1** based on its modified timestamp.
+      - As **editing existing comments is not supported**, the <code class="expression">space.vars.SITENAME</code> does not update the previously synced comment (C1).
+      - Instead, a **new comment is created** with the updated content.
+
+  - This may result in **duplicate-looking comments** in the target system (original C1 + updated C1).
+      
 ## End System Limitations
 
 In addition to the common limitations, each system has its own set of synchronization limitations.  

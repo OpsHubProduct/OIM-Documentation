@@ -34,7 +34,7 @@
       * [Merge Integrations](docs/integrate/merge.md)
       * [Using the Dashboard](docs/integrate/dashboards.md)
     * [Best Practices](docs/integrate/best-practises.md)
-    * [Limitations](docs/integrate/limitations.md)
+    * [Known Behaviours and Limitation](docs/integrate/known-behaviours-and-limitations.md)
 *  **Manage**
      * Administrator
         * [User Management](docs/manage/administrator/user-management.md)
