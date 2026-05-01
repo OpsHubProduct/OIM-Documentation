@@ -14,14 +14,14 @@ PUT: /entities/{entityTypeId}/{entityId}/attachments?
 
 ## URI Parameters
 
-| Name          | In    | Required | Type   | Description                                                                                                                                                                                       |
-|---------------|-------|----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| entityTypeId  | path  | True     | String | ‘id’ of entity type for given entity id                                                                                                                                                           |
-| entityId      | path  | True     | String | ‘id’ of entity in which attachment needs to be updated                                                                                                                                            |
-| attachmentId  | path  | True     | String | Id of the attachment that needs to be updated                                                                                                                                                     |
-| projectId     | query | True     | String | Project in which the given entity exists                                                                                                                                                          |
-| attachmentType | query | False    | String | Name of the field on which the attachment content needs to be updated.<br>For example, if the attachment is to be updated on 'Steps' field,<br>attachmentType="Steps"                             |
-| typeItemId     | query | False    | String | Id of the item on which the attachment content needs to be updated.<br>For example, if the attachment is to be updated on step 1 of 'Steps' field, provide id of step 1,<br>typeItemId="10409526" |
+| Name          | In    | Required | Type   | Description                                                                                                                                                                                                           |
+|---------------|-------|----------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| entityTypeId  | path  | True     | String | ‘id’ of entity type for given entity id                                                                                                                                                                               |
+| entityId      | path  | True     | String | ‘id’ of entity in which attachment needs to be updated                                                                                                                                                                |
+| attachmentId  | path  | True     | String | Id of the attachment that needs to be updated                                                                                                                                                                         |
+| projectId     | query | True     | String | Project in which the given entity exists                                                                                                                                                                              |
+| attachmentType | query | False    | String | Name of the field on which the attachment content needs to be updated.<br>For example, if the attachment needs to be updated on 'Steps' field,<br>attachmentType="Steps"                                              |
+| typeItemId     | query | False    | String | Id of the item within the field on which the attachment content needs to be updated.<br>For example, if the attachment needs to be updated on step 1 of 'Steps' field, provide id of step 1,<br>typeItemId="10409526" |
 
 ## Request Payload
 

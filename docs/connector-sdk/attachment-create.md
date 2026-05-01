@@ -11,13 +11,13 @@ typeItemId={typeItemId}
 
 ## URI Parameters
 
-| Name          | In    | Required | Type   | Description                                                                                                                                                                                   |
-|---------------|-------|----------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| entityTypeId  | path  | True     | String | ID of the entity type for which attachment content needs to be added                                                                                                                          |
-| entityId      | path  | True     | String | ID of the entity in which attachment needs to be added                                                                                                                                        |
-| projectId     | query | True     | String | Project in which the given entity exists                                                                                                                                                      |
-| attachmentType | query | False    | String | Name of the field on which the attachment content needs to be added.<br>For example, if the attachment is to be added on 'Steps' field,<br>attachmentType="Steps"                             |
-| typeItemId     | query | False    | String | Id of the item on which the attachment content needs to be added.<br>For example, if the attachment is to be added on step 1 of 'Steps' field, provide id of step 1,<br>typeItemId="10409526" |
+| Name          | In    | Required | Type   | Description                                                                                                                                                                                                       |
+|---------------|-------|----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| entityTypeId  | path  | True     | String | ID of the entity type for which attachment content needs to be added                                                                                                                                              |
+| entityId      | path  | True     | String | ID of the entity in which attachment needs to be added                                                                                                                                                            |
+| projectId     | query | True     | String | Project in which the given entity exists                                                                                                                                                                          |
+| attachmentType | query | False    | String | Name of the field on which the attachment content needs to be added.<br>For example, if the attachment needs to be added on 'Steps' field,<br>attachmentType="Steps"                                              |
+| typeItemId     | query | False    | String | Id of the item within the field on which the attachment content needs to be added.<br>For example, if the attachment needs to be added on step 1 of 'Steps' field, provide id of step 1,<br>typeItemId="10409526" |
 
 ## Request Payload
 Content-type: `multipart/form-data`
