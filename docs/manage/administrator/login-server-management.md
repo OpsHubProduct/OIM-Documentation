@@ -69,6 +69,44 @@ Once the server is configured, user needs to activate it to authenticate with th
 
 Identity Providers following SAML 2.0 standards and having HTTP/HTTPS metadata URL for downloading their metadata are supported.
 
+## Just-In-Time (JIT) User Provisioning
+
+- We Support SAML-based Just-In-Time (JIT) user provisioning, where users are automatically created in the application upon their first successful login. 
+- No prior user creation is required. User attributes such as name, email, and roles/groups are populated dynamically from the Identity Provider (IdP) during authentication. 
+- This ensures consistent user data and streamlined onboarding aligned with the IdP.
+
+## Identity Provider (IdP) Requirements
+
+To enable SAML JIT user provisioning, the Identity Provider must be configured to send the required user attributes in the SAML assertion.
+
+### Mandatory Attributes
+
+| Attribute Name | Description |
+|---------------|-------------|
+| First Name | User’s given name |
+| Last Name | User’s family name |
+| Email | email id for the user |
+| Groups | Group information associated with the user |
+| Roles | Roles information associated with the user |
+
+> **Note:** Attribute names and formats must align with the application’s SAML configuration. You can define Groups or Roles, both are not required.
+
+### User Data Handling
+
+When a SAML response is received:
+
+- The <code class="expression">space.vars.SITENAME</code> checks whether the user already exists.
+- If the user does not exist, a new user is automatically created (JIT provisioning).
+- User attributes are created or updated from the Identity Provider (IdP), including:
+    - First Name
+    - Last Name
+    - Email Address
+    - Group or role attributes provided by the IdP
+
+- User details are refreshed on every login to stay aligned with the IdP.
+
+> **Note:** User that was pre-created by admin will not be de provisioner if the IDP is not providing any Group or role information. User that was auto created via JIT approach will be de provisioner. 
+
 ## Service Provider Metadata
 
 Below information should be used for configuring <code class="expression">space.vars.SITENAME</code> as a Service Provider for Identity Provider(s):
@@ -94,6 +132,21 @@ Select Login Server Type as SAML 2.0 and the form shown below would be displayed
 </p>
 
 - Provide inputs to all the fields, as shown in the above image. Only after providing all the inputs, user can save the configuration.
+- The <code class="expression">space.vars.SITENAME</code> allows administrators to define how IdP groups or roles map to <code class="expression">space.vars.SITENAME</code> roles using a JSON configuration.
+- Group‑to‑Role mapping enables automatic role assignment at login, centralized access control through IdP groups and elimination of manual role management in the <code class="expression">space.vars.SITENAME</code>.
+- The mapping configuration is defined as a JSON array. Each object in the array specifies:
+  - An IdP group or role name
+  - One or more corresponding <code class="expression">space.vars.SITENAME</code> roles
+  - For example,
+    ```json
+    [
+      {
+        "idpGroupOrRoleName": "IDP_ADMIN_GROUP",
+        "opshubRoleNames": ["ROLE_ADMIN", "ROLE_MANAGER"]
+      }
+    ] 
+    ```
+  - If multiple roles given, <code class="expression">space.vars.SITENAME</code> will assign the unique union role to the user.
 - The server would be added in Inactive state.
 - SSL certificate needs to be imported when SAML Identity Server is on HTTPS. To import the SSL certificate, please follow the steps given on [Import SSL Certificates](../../getting-started/ssl-certificate-configuration.md).  
   **Note:** In case of Azure SAML, refer to [Azure Active Directory Configuration](#azure-active-directory-configuration)
@@ -150,6 +203,8 @@ Select Login Server Type as SAML 2.0 and the form shown below would be displayed
 ## Known Behaviors
 
 - If <code class="expression">space.vars.SITENAME</code> is behind the proxy server, and you want to configure SAML authentication, then after configuring proxy using [Proxy Setting](../administrator/proxy-setting.md), you need to re-start the <code class="expression">space.vars.SITENAME</code> server.
+- Users pre-created by an administrator will not be de-provisioned if the IdP does not provide group or role information.
+  However, users created via JIT provisioning will be assigned the default least permission where only login is allowed and not able to read any data even,  roles/groups attributes are no receiving from the IdP.
 
 ---
 
