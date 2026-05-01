@@ -16,7 +16,7 @@
 
 # Script
 
-You can download the script from [here].
+You can download the script from [here](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/IQCYsYXc54Z8T5HPSFXGPA1FAbbDAjg1vtp7umfq3B21Oo8).
 
 Below is an example of execution for this script.
 
