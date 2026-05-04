@@ -25,7 +25,7 @@ The integration user must have the following Windchill PLM permissions:
 - **Download**: Ability to download attached files.
 - **Set State**: Ability to change the lifecycle state of items (e.g., moving from "Open" to "In Progress").
 
-These permissions should be granted for all products and entities that you plan to synchronize as part of the integration.
+These permissions should be granted for all products, libraries and entities that you plan to synchronize as part of the integration.
 
 ### User Impersonation
 
@@ -330,7 +330,7 @@ Here:
 * Only those attachments will be synchronized which are uploaded to the items using the `Attach new local file` option.
 * Comments and discussions' synchronization is not supported.
 * Relationship/Link information can be read and synchronized, but new relationships/links cannot be created or modified through the integration.
-* Any new items created by the integration are placed in the base folder of the product container.
+* Any new items created by the integration are placed in the base folder of the product or library container.
   * Once the item is created in base folder, they cannot be moved to a different folder through integration.
 * Currently, fields that appear in an **Item's Details** tab will be synchronized.
 * Windchill PLM does not always indicate whether a field supports multiple values. The user can define the correct behavior for such fields in the [Metadata Details JSON](#understanding-the-json-structure).
@@ -339,7 +339,8 @@ Here:
   * Currently, the user can only configure Issue entity and its fields/relationships through [Metadata Details JSON](#understanding-the-json-structure).
 * Product names containing a single quote (`'`) are not supported.
   * Reason: Windchill PLM's API does not handle single quotes in product names correctly, leading to the errors during synchronization.
-
+* To prevent ambiguity during synchronization, ensure that Products and Libraries have distinct names.
+  * Reason: Windchill PLM’s Search Entities API relies on container name and does not provide a mechanism to differentiate between Product and Library, resulting in Issues from both being returned when names are identical.
 ---
 
 # Appendix
