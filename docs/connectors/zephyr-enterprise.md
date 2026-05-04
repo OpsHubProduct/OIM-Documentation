@@ -27,7 +27,7 @@ The user must also be assigned to the configured project with the configured **P
 3. Create or verify a role using the **Administration Apps** role template.
 4. Under **Administration Apps**, enable at minimum: **System Setup** and **User Setup**.
 
-![img.png](../assets/zephyrEnterpriseAdminRole.png)
+![](../assets/zephyrEnterpriseAdminRole.png)
 
 5. Save the role and assign it to the integration user.
 
@@ -43,7 +43,7 @@ The user must also be assigned to the configured project with the configured **P
 | **Test Planning**   | Read, Create and Edit |
 |**Test Execution** | Read, Create and Edit |
 
-![img.png](../assets/zephyrEnterpriseProjectAppsRole.png)
+![](../assets/zephyrEnterpriseProjectAppsRole.png)
 
 
 5. Save the role.
@@ -53,7 +53,7 @@ The user must also be assigned to the configured project with the configured **P
 1. Navigate to **Project Setup** and open the target project.
 2. Open the **Assign Users to project with Roles** panel.
 3. Assign the integration user with the **Project Apps** role, you have configured in step 2.
-   ![img.png](../assets/zephyrEnterpriseAssignUser.png)
+   ![](../assets/zephyrEnterpriseAssignUser.png)
 4. Save the assignment.
 
 
@@ -184,7 +184,7 @@ To generate an API token in Zephyr Enterprise for the integration user:
 1. Navigate to the **Administration** section in Zephyr Enterprise.
 2. Under **System Setup**, click on **API Token**.
 
-![img.png](../assets/zephyrEnterpriseApiToken.png)
+![](../assets/zephyrEnterpriseApiToken.png)
 
 3. Click **Create API Token**, then copy and save the generated token.
 
