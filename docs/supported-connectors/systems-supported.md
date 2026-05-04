@@ -569,6 +569,13 @@ Given below are the systems supported currently by <code class="expression">spac
             <td>Zendesk Ticket</td>
             <td></td>
         </tr>
+         <tr>
+            <td>78</td>
+            <td>Zephyr Enterprise</td>
+            <td>8.6.0</td>
+            <td>Folder, Phase, Test Case, Test Execution</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
