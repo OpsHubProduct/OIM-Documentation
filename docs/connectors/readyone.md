@@ -115,6 +115,11 @@ Set polling time as the time after which the user wants to synchronize data betw
   → To show the Display Id as Remote Id, add the **Item Number** field in ReadyOne. Refer to [Add Item Number Field](#set-item-number-for-custom-entity) for more details.  
 * In ReadyOne, the *project concept* is only supported for the `Requirement` Item Type (`req_Requirement`).
 
+**Reference Field Lookup Behavior**
+* During reference field processing, if the ID-based lookup fails, <code class="expression">space.vars.SITENAME</code> falls back to a name-based lookup. For more details about reference field synchronization, refer to [Synchronization behavior of reference field(s)](../integrate/mapping-configuration.md#synchronization-behavior-of-reference-fields).
+* However, for custom entities in ReadyOne, the display name may be stored in fields other than the standard `Name` field. In such cases, the fallback to name-based lookup may not work as expected, which can result in lookup failure.
+* To avoid this issue, you must include a field with the internal name as `name` in custom entities. This ensures that name-based lookup works correctly when ID-based lookup is unsuccessful.
+
 # Known Limitations
 
 * Only English alphabets (A–Z, a–z), numeric digits (0–9), and special characters (e.g., `:`, `<`, `?`, `>`, `]`, `[`, `!`, `@`) are supported in Criteria Configuration.

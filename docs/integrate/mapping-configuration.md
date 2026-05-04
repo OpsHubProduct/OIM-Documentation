@@ -319,7 +319,7 @@ You can map attachments, comments and relationships between System 1 and System 
 
 # Reference Field
 
-## Synchronization behavior of reference field(s)
+## Synchronization behavior of reference field(s) {#synchronization-behavior-of-reference-fields}
 
 * The first synchronization will be performed based on the ID of the target entity synced by <code class="expression">space.vars.SITENAME</code>.
 * If no matching entity is found in the above step, then the synchronization will be performed based on the name of the entity.
