@@ -328,6 +328,11 @@ layout:
           <td><a href="../assets/connector/59_zendesk.png">Zendesk</a></td>
           <td><a href="zendesk.md">zendesk.md</a></td>
         </tr>
+       <tr>
+          <td align="center"><mark style="color:#555555"><strong>Zephyr Enterprise</strong></mark></td>
+          <td><a href="../assets/connector/127_zephyr_enterprise.png">Zephyr Enterprise</a></td>
+          <td><a href="zephyr-enterprise.md">zephyr-enterprise.md</a></td>
+        </tr>
     </tbody>
 </table>
 
