@@ -149,6 +149,7 @@
   * [Windchill](docs/connectors/windchillrv&s.md)
   * [Windchill PLM](docs/connectors/plm.md)
   * [Zendesk](docs/connectors/zendesk.md)
+  * [Zephyr Enterprise](docs/connectors/zephyr-enterprise.md)
 * [Connector SDK](docs/connector-sdk/connector-sdk-index.md)
     * [Getting Started](docs/connector-sdk/getting-started.md)
       * [SDK Best Practices](docs/connector-sdk/sdk-best-practices.md)
