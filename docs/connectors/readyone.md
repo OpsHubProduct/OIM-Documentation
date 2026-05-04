@@ -118,7 +118,7 @@ Set polling time as the time after which the user wants to synchronize data betw
 **Reference Field Lookup Behavior**
 * During reference field processing, if the ID-based lookup fails, <code class="expression">space.vars.SITENAME</code> falls back to a name-based lookup. For more details about reference field synchronization, refer to [Synchronization behavior of reference field(s)](../integrate/mapping-configuration.md#synchronization-behavior-of-reference-fields).
 * However, for custom entities in ReadyOne, the display name may be stored in fields other than the standard `Name` field. In such cases, the fallback to name-based lookup may not work as expected, which can result in lookup failure.
-* It is recommended to define a field with the internal name `name` in custom entities. This helps ensure that name-based lookup works correctly when ID-based lookup is unsuccessful.
+* To avoid this issue, you must include a field with the internal name `name` in custom entities. This ensures that name-based lookup works correctly when ID-based lookup is unsuccessful.
 
 # Known Limitations
 
