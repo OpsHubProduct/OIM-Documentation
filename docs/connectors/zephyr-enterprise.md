@@ -89,6 +89,22 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
         - Cycle Start Date ≥ Release Start Date (`OH_ReleaseStartDate`)
         - Cycle End Date ≤ Release End Date (`OH_ReleaseEndDate`) *(if provided)*
 
+## Tags Field Configuration
+
+* In Zephyr Enterprise, **tags cannot contain spaces**. Any space character is treated as a delimiter, meaning it splits a single value into multiple tags.
+
+    **For Example:**
+If the API value is `"tag1 tag2"`, Zephyr Enterprise interprets this as two separate tags: `tag1` and `tag2`.
+
+* When Zephyr Enterprise is the **target system**, and the source system (e.g., tag or label fields) allows spaces within a single value, those spaces must be handled during transformation. Specifically, spaces should be replaced with a supported delimiter such as an underscore (`_`) to preserve the intended single tag.
+
+    **For Example:**
+  - Source system value: `"Test Case"`
+  - Without transformation → Stored in Zephyr Enterprise as: `Test`, `Case`
+  - With transformation → Stored as: `Test_Case`
+
+* If customization is implemented using **advanced XSLT**, ensure that the same transformation logic is also applied in the **reverse direction** (from Zephyr Enterprise back to the source system), especially when the field mapping is bidirectional.
+
 ## Test Step Field Configuration
 
 * For mapping additional fields for test steps like 'Comments', advance XSLT will be modified. Add the following sample xslt in default xslt to map additional fields:
@@ -137,10 +153,7 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
 - Requirements and Defects links on Test Case and Test Execution are not supported in <code class="expression">space.vars.SITENAME</code>.
 - **Release, Folder, and Cycle names are case-insensitive** in Zephyr Enterprise. Hence, while performing check-and-create operations for these entities, entities with names differing only by case are treated as the same entity and will not be created again.
   **Example:**
-    - If a Release named `Release_1` already exists in Zephyr Enterprise, and the incoming data contains `release_1` or `RELEASE_1`, the existing release will be identified and **updated**, rather than creating a new release. 
-- **Tags cannot contain spaces in Zephyr Enterprise.** A space is treated as a delimiter:
-  - `"tag1 tag2"` is stored as two separate tags.
-  - If the source or target system contains tag values with spaces, they must be transformed before synchronization. This can be achieved using **advanced XSLT transformation**, for example by replacing spaces with a supported character such as `_`. 
+    - If a Release named `Release_1` already exists in Zephyr Enterprise, and the incoming data contains `release_1` or `RELEASE_1`, the existing release will be identified and **updated**, rather than creating a new release.  
 - **Folder path handling using `OH_Folder_Path`:**
   - The separator for folder hierarchy is `/` (forward slash).
   - Example:
