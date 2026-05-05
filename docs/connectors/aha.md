@@ -160,6 +160,7 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * **The above fields are available in Aha! Develop UI when the Aha! Develop instance is combined with Aha! Roadmap.**
   * **Note** The above fields will be deprecated in future releases and replaced with link-based support.
 * Hierarchy sync is not supported. Hence, the synchronization of ranking the requirements and to-dos will not be supported.
+* Attachment and inline image synchronization is not supported for fields of type Table and other complex type of fields.
 * Entity mention is not supported for the following entities in the given scenarios:
   * **When Aha! is configured as the target system,** Entity mention is not supported for Goals, Notes, and To-Do entities.
   * **When Aha! is configured as the source system,** Entity mention through source URL configuration is not supported for the Goals entity.
@@ -174,6 +175,7 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * Worksheet field
   * Custom choice field
   * Detailed estimate source for **Epic** entity
+  * Votes and Submission portal field for **Idea** entity
   * **Note**: Write support for these fields is planned for future releases.
 
 ## Project Selection
@@ -195,8 +197,8 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
       * Reason: Aha APIs provide history data limited to the past 12 months. 
       * Reference: [Aha Audits API](https://www.aha.io/api/resources/audits)
     * **Some fields support only current value sync (history is not available).**
-        * Due to Aha's historical behavior(UI and API limitations): Scorecard parameters, Watchers, Custom brief type field, Actual vote count, Proxy voters and Submission portal details
-        * Due to Aha's API limitations: Custom tables, Tags, Rich text fields, goals/initiatives and Estimate-related fields.
+        * Due to Aha's historical behavior(UI and API limitations): Scorecard parameters, Watchers, Custom brief type field, Actual vote count, Admin message, Proxy voters and Submission portal details
+        * Due to Aha's API limitations: Custom tables, Idea categories, Votes, Key results, Tags, Rich text fields, goals/initiatives and Estimate-related fields.
     * During history synchronization, changes in user fields may be synced as the wrong user in target, if multiple users share the same display name in Aha!.
       * Example: 
         * User 1 in Aha!: Display Name = X, Email = a@gmail.com.
