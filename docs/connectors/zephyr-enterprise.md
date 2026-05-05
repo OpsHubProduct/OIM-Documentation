@@ -160,15 +160,15 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
    - During bulk update operations or when cloning test cases, the indexed last modified time may not be updated in the system.
    - As a result, <code class="expression">space.vars.SITENAME</code> may not detect these changes, and these updates may be missed during synchronization.
 - **An additional update to the entity is required when:**
-  - Adding or removing a test step.
-  - Adding or removing attachments or external link.
-  - Update in test step results.
+    - Adding or removing a test step
+    - Adding or removing attachments or external links
+    - Updating test step results
 
   **Reason:** In Zephyr Enterprise, these actions do not update the entity’s modified timestamp. Since <code class="expression">space.vars.SITENAME</code> relies on the entity’s modified time to detect changes, these updates are not picked up during synchronization unless an additional update is made to the entity.
 - **Field length limitation:**
    - For **Phase** and **Folder** entities, the **Description field cannot exceed 1024 characters**.
 - **Test step result limitations:**
-   - Only **ADD operation is supported** for:
+   - Only **add operation is supported** for:
       - Attachments
       - External links
    - Update and delete operations are **not supported** at step result level. 
