@@ -157,7 +157,9 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
 # Limitations
 
 - **History-based synchronization is not supported** due to API limitations.
-- **Attachment file names with non-ASCII characters are not supported.** This is a limitation of Zephyr Enterprise itself.
+- For Zephyr Enterprise as the target system,
+  - If the attachment file name contains this file name characters (%,:) or non-ascii characters like (样,品,テ,ス,ト,フ,ァ,イ,ル,★,✓,♛,Ω), then the file will not be added in Zephyr Enterprise. Consequently, the user will encounter a Processing Failure. To avoid this Processing Failure, it is recommended to use the valid file naming conventions.
+  - Additionally, if the user still wants to synchronize attachments having this file name characters, then the user needs to add advance mapping for attachments to replace special characters with any of the supported characters. Refer [Attachment naming convention related errors](../help-center/troubleshooting/errors/common/attachment-naming-convention-related-errors.md)
 - **The following actions requires an additional update on the entity to be synchronized**:
     - Bulk updates
     - Cloning of test cases
