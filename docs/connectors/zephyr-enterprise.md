@@ -70,6 +70,25 @@ Map the fields between Zephyr Enterprise and the other system to be integrated t
 
 Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for steps on configuring field mappings.
 
+## Folder Entity Field Configuration
+
+- Due to API limitations, **Description field must not exceed 1024 characters.** If mapped, truncate the value to 1024 characters using advanced XSLT to prevent processing failures.
+
+
+## Phase Entity Field Configuration
+
+- Due to API limitations, **Description field must not exceed 1024 characters.** If mapped, truncate the value to 1024 characters using advanced XSLT to prevent processing failures.
+
+- **Phase creation and updates depend on Release and Cycle context:**
+    - **OH_Release** is used to check or create the release.
+    - **OH_Cycle** is used to check or create the cycle within the release.
+
+    - The following date validations are enforced:
+        - Phase Start Date ≥ Cycle Start Date (`OH_CycleStartDate`)
+        - Phase End Date ≤ Cycle End Date (`OH_CycleEndDate`)
+        - Cycle Start Date ≥ Release Start Date (`OH_ReleaseStartDate`)
+        - Cycle End Date ≤ Release End Date (`OH_ReleaseEndDate`) *(if provided)*
+
 ## Test Step Field Configuration
 
 * For mapping additional fields for test steps like 'Comments', advance XSLT will be modified. Add the following sample xslt in default xslt to map additional fields:
@@ -86,14 +105,6 @@ Refer to [Mapping Configuration](../integrate/mapping-configuration.md) for step
         <xsl:value-of select="additionalFields/comment"/>
     </zcf_1001>
 </additionalFields> 
-```
-
-* Test step ordering uses **1-based indexing**. Hence, while synchronizing with a system that follows 0-based indexing. The xslt should be updated as follows:
-
-```xml
-<order> 
-<xsl:value-of select="number(order) + 1"/> 
-</order> 
 ```
 
 
@@ -123,31 +134,23 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
 
 # Known Behavior
 
-- Comments are not supported. Zephyr Enterprise does not support comments on entities.
-- Requirements and Defects links on Test Case and Test Execution are not supported.
-- Cookie-based authentication is not supported by <code class="expression">space.vars.SITENAME</code>. Zephyr Enterprise supports Basic Auth, API Token, and Cookie authentication; <code class="expression">space.vars.SITENAME</code> supports only **Basic Auth** and **API Token**.
-- **Release, Folder, and Cycle names are case-insensitive** in Zephyr Enterprise.
+- Requirements and Defects links on Test Case and Test Execution are not supported in <code class="expression">space.vars.SITENAME</code>.
+- **Release, Folder, and Cycle names are case-insensitive** in Zephyr Enterprise. Hence, while performing check-and-create operations for these entities, entities with names differing only by case are treated as the same entity and will not be created again.
+  **Example:**
+    - If a Release named `Release_1` already exists in Zephyr Enterprise, and the incoming data contains `release_1` or `RELEASE_1`, the existing release will be identified and **updated**, rather than creating a new release. 
 - **Tags cannot contain spaces in Zephyr Enterprise.** A space is treated as a delimiter:
   - `"tag1 tag2"` is stored as two separate tags.
-  - If the source system contains spaces in tag values, they must be handled using **advanced XSLT transformation**.
+  - If the source system contains tag values with spaces, they must be transformed before synchronization. This can be achieved using **advanced XSLT transformation**, for example by replacing spaces with a supported character such as `_`.
+  - This transformation is also required whenever **Zephyr Enterprise is the target system**, to ensure tag values are stored correctly and do not get split unintentionally. 
 - **Folder path handling using `OH_Folder_Path`:**
   - The separator for folder hierarchy is `/` (forward slash).
   - Example:
      - `"Parent/Child"` → *Child* is created under *Parent*
      - `"Folder1/Folder2/Folder3"` → hierarchical structure is created accordingly
-- **Phase creation and updates depend on Release and Cycle context:**
-   - **OH_Release** is used to check or create the release.
-   - **OH_Cycle** is used to check or create the cycle within the release.
 
-   - The following date validations are enforced:
-      - Phase Start Date ≥ Cycle Start Date (`OH_CycleStartDate`)
-      - Phase End Date ≤ Cycle End Date (`OH_CycleEndDate`)
-      - Cycle Start Date ≥ Release Start Date (`OH_ReleaseStartDate`)
-      - Cycle End Date ≤ Release End Date (`OH_ReleaseEndDate`) *(if provided)*
-
-   - If the Release or Cycle already exists:
-      - Start and End dates are **updated based on incoming values**
-      - Once a **Release End Date is set, it cannot be modified again**
+- If the Release or Cycle already exists:
+   - Start and End dates are **updated based on incoming values**
+   - Once a **Release End Date is set, it cannot be modified again**. This is an API-level restriction in Zephyr Enterprise.
 
 
 
@@ -155,23 +158,20 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
 
 - **History-based synchronization is not supported** due to API limitations.
 - **Attachment file names with non-ASCII characters are not supported.** This is a limitation of Zephyr Enterprise itself.
-- **Bulk updates and cloning may not trigger synchronization:**
-   - In Zephyr Enterprise, test cases are queried based on their indexed last modified timestamp.
-   - During bulk update operations or when cloning test cases, the indexed last modified time may not be updated in the system.
-   - As a result, <code class="expression">space.vars.SITENAME</code> may not detect these changes, and these updates may be missed during synchronization.
-- **An additional update to the entity is required when:**
+- **The following actions requires an additional update on the entity to be synchronized**:
+    - Bulk updates
+    - Cloning of test cases
     - Adding or removing a test step
     - Adding or removing attachments or external links
-    - Updating test step results
+    - Updating only test step results
 
-  **Reason:** In Zephyr Enterprise, these actions do not update the entity’s modified timestamp. Since <code class="expression">space.vars.SITENAME</code> relies on the entity’s modified time to detect changes, these updates are not picked up during synchronization unless an additional update is made to the entity.
-- **Field length limitation:**
-   - For **Phase** and **Folder** entities, the **Description field cannot exceed 1024 characters**.
+  **Reason:**  
+  In Zephyr Enterprise, these operations do not update the entity’s modified timestamp. Since <code class="expression">space.vars.SITENAME</code> relies on this timestamp to detect changes, such updates are not picked up during synchronization unless an additional update is performed on the entity.
 - **Test step result limitations:**
    - Only **add operation is supported** for:
       - Attachments
       - External links
-   - Update and delete operations are **not supported** at step result level. 
+   - Update and delete operations are **not supported** at step result level in <code class="expression">space.vars.SITENAME</code>.
 
 # Appendix
 
