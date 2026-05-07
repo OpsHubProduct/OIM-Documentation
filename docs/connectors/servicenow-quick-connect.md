@@ -481,6 +481,7 @@ Provide 'read' access to a table
     }
   },
   "CATALOG_VARIABLE_CONFIG": {
+    "catalogVariableApiEnabled": "<true_if_catalog_variable_api_support_is_enabled_otherwise_false>",
     "supportedEntityTypes": [
       {
         "entityType": "<internal_name_of_the_entity_type>",
@@ -587,6 +588,7 @@ Provide 'read' access to a table
     }
   },
   "CATALOG_VARIABLE_CONFIG": {
+    "catalogVariableApiEnabled": true,
     "supportedEntityTypes": [
       {
         "entityType": "sc_task",
@@ -632,6 +634,9 @@ Provide 'read' access to a table
 >**Note**:  If details for an operation are not provided in the JSON, then default API endpoints with namespace `now` are used.
 
 >**Note**: Catalog Variables Configuration
+> <br><br><b>catalogVariableApiEnabled</b>
+> <br>Indicates whether Catalog Variable API support is enabled.
+> <br>If set to <code>false</code>, catalog variables will not be loaded as part of fields metadata for any entity type.
 > <br><br> <b>How to get the internal name of the entity</b>
 <br>The internal name corresponds to the ServiceNow table name (for example, sc_task, sc_req_item). You can find this in ServiceNow by navigating to the form view of the record. Refer to the screenshot below to locate the table name in the UI.
 >  <p align="center"><img src="../assets/snow_quick_connect_catalog_variable.png"/></p>
