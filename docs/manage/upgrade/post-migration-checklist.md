@@ -506,3 +506,52 @@ Update the custom workflow as described below:
 
 **Reason**
 * To strengthen product security and align with modern enterprise standards, <code class="expression">space.vars.SITENAME</code> has transitioned to a mandatory minimum password policy. This prevents the use of weak or default credentials that are vulnerable to automated attacks.
+
+
+# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.225 or above
+
+## Update the JSON input for Jira Xray On-Premise Entity Display Name
+
+**Applicable When**
+
+* The deployment type is On-Premise and Xray is selected as the test management plugin, and user has renamed any entity's display name.
+
+**Actions**
+
+* Update the value of field **Xray Entity Names** in Jira system configuration according to the current entity display name.
+* For example, if `Test` entity is renamed to `Xray Test`, the input value must be modified as:
+
+```json
+[
+    {
+        "defaultEntityName": "Test",
+        "currentEntityDisplayName": "Xray Test"
+    },
+    {
+        "defaultEntityName": "Pre-Condition",
+        "currentEntityDisplayName": "Pre-Condition"
+    },
+    {
+        "defaultEntityName": "Test Set",
+        "currentEntityDisplayName": "Test Set"
+    },
+    {
+        "defaultEntityName": "Test Plan",
+        "currentEntityDisplayName": "Test Plan"
+    },
+    {
+        "defaultEntityName": "Test Execution",
+        "currentEntityDisplayName": "Test Execution"
+    },
+    {
+        "defaultEntityName": "Sub Test Execution",
+        "currentEntityDisplayName": "Sub Test Execution"
+    }
+]
+```
+
+* Refer to [Jira Xray entity names](../../connectors/jira.md#xray-entity-names) section for more details.
+
+**Reason**
+
+* The prerequisite to rename Jira Xray entities has been removed.

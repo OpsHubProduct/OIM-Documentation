@@ -219,7 +219,7 @@ Refer the screenshot given below for reference:
 | **Client Id**                  | Only when Jira's deployment type is Cloud and Xray is selected as the test management plugin         | Provide the **Client Id** generated for the user  [mentioned in the **User Email** field of system configuration]. The steps to generate the Client Id for Xray are mentioned [here](https://docs.getxray.app/display/XRAYCLOUD/Global+Settings%3A+API+Keys).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | **Client Secret**              | Only when Jira's deployment type is Cloud and Xray is selected as the test management plugin         | Provide the **Client Secret** generated for the user  [mentioned in the **User Email** field of system configuration]. The steps to generate the Client Secret for Xray are mentioned [here](https://docs.getxray.app/display/XRAYCLOUD/Global+Settings%3A+API+Keys).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | **Xray API Endpoint**          | Only when Jira's deployment type is Cloud and Xray is selected as the test management plugin         | Provide the Xray GraphQL API endpoint for API requests. By default, https://xray.cloud.getxray.app API endpoint will be used. The URL must have a prefix for the location where Xray data is hosted. The locations, according to the [XRay documentation](https://docs.getxray.app/display/XRAYCLOUD/Data+Residency#DataResidency-XrayLocations), can be US, Europe, and Australia. Hence, the API URL can be one of these: https://us.xray.cloud.getxray.app, https://eu.xray.cloud.getxray.app, or https://au.xray.cloud.getxray.app.                                                                                                                                                                                                                                                                                                                                                                                       |
-| **Xray Entity Names**          | Only when Jira's deployment type is Cloud and Xray is selected as the test management plugin         | If any Xray entity is renamed, provide the updated display name in the JSON input. Refer to [Xray entity names](jira.md#Xray-Entity-Names) section for details.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Xray Entity Names**          | Only when Xray is selected as the test management plugin         | If any Xray entity is renamed, provide the updated display name in the JSON input. Refer to [Xray entity names](jira.md#Xray-Entity-Names) section for details.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 # Mapping Configuration
 
@@ -1646,6 +1646,11 @@ For Target Lookup Configuration of Zephyr entities, refer to [Target lookup for 
 
 ### Jira Self-managed Instance
 
+**Prerequisites**
+
+* When synchronizing Xray On-Premise entities, if default name of any Xray entity is changed, the same information must be provided in system configuration. For more details, refer to [System Configuration](jira.md#system-configuration) section.
+  * Default Xray entity names are: Test, Test Set, Test Plan, Test Execution, Sub Test Execution, Pre-Condition.
+
 **Test Entity**
 
 * In Jira Xray, the  [https://docs.getxray.app/display/XRAY/Test test] is a test case. It may either be manual or automated, composed of multiple steps, actions and expected results.
@@ -2904,13 +2909,44 @@ If you overwrite a field data type used in mappings, you must **remap** that fie
 
 ## Xray Entity Names
 
-* This field is used to determine the changed entity names for Xray Cloud. This field is not mandatory.
+* This field is used to determine the changed entity names for Xray Cloud or On-Premise. This field is not mandatory.
 * The input includes entity's original display name (default name when plugin was installed) and the corresponding current display name.
 * Change the **currentEntityDisplayName** field in case of entity rename.
 
 > **Note** The values for defaultEntityName field are pre-defined. Do not change its value.
 
-* Here is the structure of the JSON input:
+* Here is the structure of the JSON input for Xray On-Premise:
+
+```json
+[
+    {
+        "defaultEntityName": "Test",
+        "currentEntityDisplayName": "Test"
+    },
+    {
+        "defaultEntityName": "Pre-Condition",
+        "currentEntityDisplayName": "Pre-Condition"
+    },
+    {
+        "defaultEntityName": "Test Set",
+        "currentEntityDisplayName": "Test Set"
+    },
+    {
+        "defaultEntityName": "Test Plan",
+        "currentEntityDisplayName": "Test Plan"
+    },
+    {
+        "defaultEntityName": "Test Execution",
+        "currentEntityDisplayName": "Test Execution"
+    },
+    {
+        "defaultEntityName": "Sub Test Execution",
+        "currentEntityDisplayName": "Sub Test Execution"
+    }
+]
+```
+
+* Here is the structure of the JSON input for Xray Cloud:
 
 ```json
 [
