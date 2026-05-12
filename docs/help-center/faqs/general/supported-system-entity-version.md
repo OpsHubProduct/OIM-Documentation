@@ -16,4 +16,4 @@ There can be multiple queries as below:
 
 ## Solution
 
-To know which systems, versions, and entity types are supported by <code class="expression">space.vars.SITENAME</code>, refer to the [Systems Supported List](../../../supported-connectors/systems-supported.md) documentation.
+To know which systems, versions, and entity types are supported by <code class="expression">space.vars.OIM</code>, refer to the [Systems Supported List](../../../supported-connectors/systems-supported.md) documentation.

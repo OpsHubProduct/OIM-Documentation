@@ -2,39 +2,43 @@
 
 ***
 
+# Critical Updates & Actions Required
+* Enforced mandatory password reset for all new and default user accounts of <code class="expression">space.vars.SITENAME</code> to ensure compliance with product security requirements and defined password policies.
+
 # Enhancements
 
-## Jira Data Center
-* Added support for the Test Run Status field for the XRay Test entity in Jira Data Center.
+## Common
+* Improved dashboard view that allows users to click on an integration card and directly navigate to the corresponding integration folder.
+* Enhanced rule-based routing to support default routing for entity type movement. For setup guidelines, refer to: [How to configure defaulting for rule-based routing](../integrate/rule-based-routing.md#default-route-configuration-guidelines).
+* Enhanced **Transitions & Dependencies** to enforce dependent fields during item updates.
+ 
+## ServiceNow/ServiceNow Quick Connect
+* Added support for Catalog Variables.
 
 # Major Bugs
 
 ## Common
-* Resolved an issue where the "Search Field" text overflowed from the designated area on the mapping screen due to a UI glitch.
-* Resolved an issue causing intermittent UI slowness and request delays when <code class="expression">space.vars.SITENAME</code> was installed on Microsoft SQL Server/Azure SQL Server.
+* Resolved an issue where extra new lines were introduced when syncing content from the source system’s wiki field to the target system’s HTML field.
+* Resolved an issue where cyclic sync occurred because changes in inline image height and width were not retained, causing the system to repeatedly detect differences. 
 
 ## Azure DevOps Server/Services
-* Resolved an issue where a job error occurred with the message "Query WIQL text length exceeded the limit. It should contain no more than 32000 characters" when criteria were configured to fetch items between specific IDs (e.g., [System.Id] > 235022 and [System.Id] <= 290238).
-  * This occurred because Azure DevOps connector internally generated a large list of IDs using an IN query to retrieve the data, which exceeded the WIQL character limit.
-* Resolved an issue where a job error occurred while retrieving Test Run data when more than 200 test cases were attached to a run.
-* Resolved an issue where a job error occurred while retrieving test results generated from automated runs, where associating a test case, test plan, or test suite is not required.
+* Resolved an issue where enabling OH Soft Delete for test items resulted in hard deletion when the items were deleted in the source system.
+  * Clarification: Soft delete is supported only for items that can be restored.
+  * In Azure DevOps, only work items support restoration, whereas test items are permanently deleted(hard delete). 
+* Resolved an issue where comments were duplicated during creation when both item creation and state transition occurred within the same revision.
 
-## Codebeamer
-* Resolved an issue where the existing prebuilt JAR for HTML to JSPWiki conversion caused compatibility issues with Codebeamer version 3.2.x due to Codebeamer's internal Apache Tomcat upgrade.
-  * A version-specific JAR has been uploaded to the connector documentation page for [Codebeamer](../connectors/codebeamer.md).
+## GitHub
+* Resolved an issue where the “last processed time” displayed on the integration page showed an incorrect or unexpected date. 
 
-## OpenText ALM Quality Center
-* Resolved an issue where processing failed with the message "OH-Connector-0070: Error occurred while creating entity because of java.lang.NullPointerException" when the parent item was not synced, causing the item creation to fail under the root folder.
-
-## ServiceNow/ServiceNow Quick Connect
-* Resolved an issue where due to recent change in ServiceNow from 7.217 version of <code class="expression">space.vars.SITENAME</code>, post-synchronization re-executed in cyclic manner even if there is no update on the servicenow side.
+## Jira Cloud
+* Resolved an OutOfMemory issue when Jira Cloud was configured as the source in <code class="expression">space.vars.SITENAME</code> with “Child Link” enabled in the mapping configuration.
+  * Use case: This happened when the parent item had more than 100 child items, causing repeated retrieval of the same page due to a pagination issue. 
 
 {% endif %}  
 
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
 
 # Major Bugs  
-* Resolved an issue where a job error occurred while retrieving Test Run data when more than 200 test cases were attached to a run.
-* Resolved an issue where a job error occurred while retrieving test results generated from automated runs, where associating a test case, test plan, or test suite is not required.
+* Resolved an issue where deletion of the testcase in source, deleted the testcase in target in ongoing migration due to defaulting of delete set to soft-delete which caused an issue as the test items were not supporting restored from bin.
 
-{% endif %}  
+{% endif %}

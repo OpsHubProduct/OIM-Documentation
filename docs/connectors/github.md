@@ -2,7 +2,7 @@
 
 ## User privileges
 
-Create one GitHub user for the repository(s) that is a part of synchronization. User should be dedicated to **<code class="expression">space.vars.SITENAME</code>** and should not be used for any other operations from system's user interface.  
+Create one GitHub user for the repository(s) that is a part of synchronization. User should be dedicated to **<code class="expression">space.vars.OIM</code>** and should not be used for any other operations from system's user interface.  
 
 GitHub supports following authentication types:  
 #### Personal Access Tokens (classic)
@@ -156,14 +156,14 @@ Following is the description of fields that are available in GitHub for mapping 
 
 ## Inline attachments synchronization
 
-For HTML fields in **<code class="expression">space.vars.SITENAME</code>**, GitHub allows to synchronization of inline images. Such content can be synchronized for GitHub with the following behavior:  
+For HTML fields in **<code class="expression">space.vars.OIM</code>**, GitHub allows to synchronization of inline images. Such content can be synchronized for GitHub with the following behavior:  
 * Images and other type of files are synced to the target system depending on whether the target system supports inline images or not.  
 
 For **limitations** of Inline image synchronization, refer to [Limitations](#known-limitations) section.
 
 ## User Mapping Configuration
 **Pull Request entity:**  
-* By default, user field synchronization in **<code class="expression">space.vars.SITENAME</code>** works on user email added in both source and target end systems.  
+* By default, user field synchronization in **<code class="expression">space.vars.OIM</code>** works on user email added in both source and target end systems.  
 * To make user mapping to work on username instead of email address, the username in both source and target end systems must be same. Otherwise, excel mapping will be required for one-to-one user mapping. Refer below mentioned sample examples.
 
 **Issue entity:**  
@@ -288,7 +288,7 @@ Refer to document [Search Syntax in GitHub](https://help.github.com/en/github/se
 # Known Behaviors
 
 * API Rate Limitation in GitHub:
-  * GitHub has limitation on API access per minute for a single user. Due to this, <code class="expression">space.vars.SITENAME</code> can access GitHub API within a limit. When the limit exceeds, the GitHub API stops responding for certain amount of time, and no API calls can be done by <code class="expression">space.vars.SITENAME</code> during that time until GitHub resets the limit for that user.
+  * GitHub has limitation on API access per minute for a single user. Due to this, <code class="expression">space.vars.OIM</code> can access GitHub API within a limit. When the limit exceeds, the GitHub API stops responding for certain amount of time, and no API calls can be done by <code class="expression">space.vars.OIM</code> during that time until GitHub resets the limit for that user.
   * For GitHub Cloud instance, the rate limit for Search API is 30 requests per minute, and other APIs have the rate limit of 5000 requests per hour whereas for GitHub on-premise instance, the rate limit is configurable. For configuring rate limit on GitHub on-premise, refer to the document [Configuring Rate Limits](https://help.github.com/en/enterprise/2.20/admin/installation/configuring-rate-limits).
   * To address this issue, we have added wait time in entity synchronization. Thus, there might be some delay in synchronization. For more information on API rate limitations, refer to document [Rate Limits](https://developer.github.com/v3/#rate-limiting).
   * There are some measures that can be taken to experience less delay in synchronization.
@@ -305,9 +305,9 @@ Refer to document [Search Syntax in GitHub](https://help.github.com/en/github/se
 
 ## Common
 * For GitHub HTML fields:
-  * Content less than 400 KB will only be synchronized. If the field content is greater than 400 KB, then the field value will not be transformed correctly by <code class="expression">space.vars.SITENAME</code>.
+  * Content less than 400 KB will only be synchronized. If the field content is greater than 400 KB, then the field value will not be transformed correctly by <code class="expression">space.vars.OIM</code>.
   * Synchronization of inline document is not supported for HTML fields of GitHub.
-  * For synchronization of inline image which refers to the checked-in files of a repository, <code class="expression">space.vars.SITENAME</code> is using keyword "blob" for processing the URL of such images. Thus, username and repositories with such inline images must not have "blob" keyword in their name. Otherwise, inline images which refer to the checked-in files in the repository won't be synchronized by <code class="expression">space.vars.SITENAME</code>. In such cases, the source inline image URL will be written in the target system as it is.
+  * For synchronization of inline image which refers to the checked-in files of a repository, <code class="expression">space.vars.OIM</code> is using keyword "blob" for processing the URL of such images. Thus, username and repositories with such inline images must not have "blob" keyword in their name. Otherwise, inline images which refer to the checked-in files in the repository won't be synchronized by <code class="expression">space.vars.OIM</code>. In such cases, the source inline image URL will be written in the target system as it is.
   * Inline image synchronization for comments is not supported currently for GitHub as a target system due to API limitation. It will sync as a inline file.
   * Inline document synchronization for comments is not supported currently for GitHub as a target system due to API limitation.
 * GitHub doesn't give Updated By user information through API. Hence, this field won't be present in fields in mapping.
@@ -318,8 +318,8 @@ Refer to document [Search Syntax in GitHub](https://help.github.com/en/github/se
 ## Pull Request
 * For GitHub Pull Request, the current values for status field are Open and Closed.
   * Going forward, if GitHub introduces a new status, then user can use it with the help of advanced mapping.
-* By default, user field synchronization in <code class="expression">space.vars.SITENAME</code> works on user email added in both source and target end systems.
-  * For Pull Requests, the user mapping in <code class="expression">space.vars.SITENAME</code> will work on the email address of users. In case the user email for any user is not publicly available in GitHub, then the mapping will work on a username by default for that user. In such a case, the username of source user and target user must be the same, otherwise, there will be a failure in synchronization. This is because GitHub API provides an email address only when the user has made his/her email address publicly available. Thus, <code class="expression">space.vars.SITENAME</code> can access the email of any user if it's visible as a public email.
+* By default, user field synchronization in <code class="expression">space.vars.OIM</code> works on user email added in both source and target end systems.
+  * For Pull Requests, the user mapping in <code class="expression">space.vars.OIM</code> will work on the email address of users. In case the user email for any user is not publicly available in GitHub, then the mapping will work on a username by default for that user. In such a case, the username of source user and target user must be the same, otherwise, there will be a failure in synchronization. This is because GitHub API provides an email address only when the user has made his/her email address publicly available. Thus, <code class="expression">space.vars.OIM</code> can access the email of any user if it's visible as a public email.
     * In case the source username is not found in the target system and failure occurs, then one-to-one username mapping will be required. For more information, refer to section [User Mapping Configuration](#user-mapping-configuration). 
 * For Pull Requests, we can synchronize Commits entity as links. GitHub API gives the latest 250 commits in a Pull Requests. Thus, when links are configured for Pull Request integration, only the latest 250 commits will be in sync with the target system i.e. The 1st commit link will be removed in target system when 251st commit is added in source system and the target system will have links of commit 2 to 251.
 
@@ -328,7 +328,7 @@ Refer to document [Search Syntax in GitHub](https://help.github.com/en/github/se
 * Relationship synchronization is not supported because of API unavailability.
 * History based synchronization is not supported because of API unavailability.
 * Fields need to be given in JSON input at the system configuration level. Based on configurations, the fields will be loaded in the mapping.
-  * Custom fields are not supported by GitHub, hence they will be not supported by <code class="expression">space.vars.SITENAME</code>.
+  * Custom fields are not supported by GitHub, hence they will be not supported by <code class="expression">space.vars.OIM</code>.
 * User Lookup based on **Email** is not supported due to API unavailability. For more information, refer to [User Mapping Configuration](#user-mapping-configuration) section.
 
 ## Entity Mention

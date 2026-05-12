@@ -7,9 +7,9 @@ When you encounter error OH-Jama-0012, then following error message will appear:
 
 Probable causes for this issue are:
 
-- Date format can be configured in Jama self-hosted instance at instance level and same format information needs to be added in system configuration in <code class="expression">space.vars.SITENAME</code>.
-- If the date format details are not same as configured in Jama and provided in <code class="expression">space.vars.SITENAME</code> then <code class="expression">space.vars.SITENAME</code> will raise the above error.
+- Date format can be configured in Jama self-hosted instance at instance level and same format information needs to be added in system configuration in <code class="expression">space.vars.OIM</code>.
+- If the date format details are not same as configured in Jama and provided in <code class="expression">space.vars.OIM</code> then <code class="expression">space.vars.OIM</code> will raise the above error.
 
 ## Solution
 
-In <code class="expression">space.vars.SITENAME</code>, for Jama system configuration, provide the correct date format as its configured in Jama end system.
+In <code class="expression">space.vars.OIM</code>, for Jama system configuration, provide the correct date format as its configured in Jama end system.

@@ -1,14 +1,14 @@
 # proxy-configuration
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}    
-To start the <code class="expression">space.vars.SITENAME</code> installer on a machine that is behind a proxy, please perform the following steps:
+{% if "OpsHub Migrator for Microsoft Azure DevOps" === visitor.claims.unsigned.product %}    
+To start the <code class="expression">visitor.claims.unsigned.product</code> installer on a machine that is behind a proxy, please perform the following steps:
 {% endif %}
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 1.
 {% endif %}
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OIM" === visitor.claims.unsigned.product %}  
 6.
 {% endif %}
 
@@ -20,11 +20,11 @@ Open environment configuration from My Computer -> Properties -> Advanced System
 
 <div align="center"><img src="../assets/Proxy3.png" alt="" width="600"></div>
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 2.
 {% endif %}
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OIM" === visitor.claims.unsigned.product %}  
 7.
 {% endif %}
 
@@ -32,11 +32,11 @@ Create a new environment variable with the name **"\_JAVA\_OPTIONS"**.
 
 <div align="center"><img src="../assets/Proxy4.png" alt="" width="600"></div>
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 3.
 {% endif %}
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OIM" === visitor.claims.unsigned.product %}  
 8.
 {% endif %}
 
@@ -60,34 +60,34 @@ ProxyIP → `00.00.00.00`, Proxy Port → `8080`, Proxy User Name → `username`
 
 <div align="center"><img src="../assets/Proxy5.png" alt="" width="600"></div>
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 4. Save all the changes.
 {% endif %}
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
-9. Save all the changes and restart the <code class="expression">space.vars.SITENAME</code> Service.
+{% if "OIM" === visitor.claims.unsigned.product %}  
+9. Save all the changes and restart the <code class="expression">visitor.claims.unsigned.product</code> Service.
 {% endif %}
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OIM" === visitor.claims.unsigned.product %}  
 10. Test the proxy by opening service URL \*\*http://:/TFSService\*\* in browser. Now check the connection by trying to create mapping.
 {% endif %}
 
 > **Note**: Even after performing all these steps, if you are still unable to connect, then please check the proxy credentials given in
 >
-> {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+> {% if "OM4ADO" === visitor.claims.unsigned.product %}  
 > Step 3
 > {% endif %}
 >
-> {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+> {% if "OIM" === visitor.claims.unsigned.product %}  
 > Step 8
 > {% endif %}
 >
 > and
 >
-> {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+> {% if "OM4ADO" === visitor.claims.unsigned.product %}  
 > restart your installer.
 > {% endif %}
 >
-> {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
-> restart the <code class="expression">space.vars.SITENAME</code> Service.
+> {% if "OIM" === visitor.claims.unsigned.product %}  
+> restart the <code class="expression">visitor.claims.unsigned.product</code> Service.
 > {% endif %}

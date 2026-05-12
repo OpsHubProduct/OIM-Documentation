@@ -2,7 +2,7 @@
 
 ## User privileges
 
-- Create one user in Zephyr Enterprise that is dedicated to <code class="expression">space.vars.SITENAME</code>. This user should not perform any other action from Zephyr Enterprise’s user interface. This user is referred to as an 'Integration User' in the documentation.
+- Create one user in Zephyr Enterprise that is dedicated to <code class="expression">space.vars.OIM</code>. This user should not perform any other action from Zephyr Enterprise’s user interface. This user is referred to as an 'Integration User' in the documentation.
 - For this integration user to perform operations in Zephyr Enterprise, various permissions are required, as outlined in the [Required Permissions](#required-permissions) section.
 
 
@@ -19,7 +19,7 @@ The following entities are supported for synchronization between Zephyr Enterpri
 
 # System Configuration
 
-Before you continue with the integration, you must first configure the Zephyr Enterprise system in <code class="expression">space.vars.SITENAME</code>.
+Before you continue with the integration, you must first configure the Zephyr Enterprise system in <code class="expression">space.vars.OIM</code>.
 
 Refer to [System Configuration](../integrate/system-configuration.md) for a steps on how to configure the system.
 Refer to the screenshot below:
@@ -34,7 +34,7 @@ Refer to the screenshot below:
 |------------------------------|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **System Name**              | Always                                     | Provide a unique name for the Zephyr Enterprise system.                                                                                                                                                                                                                                                                                             |
 | **Server URL**               | Always                                     | Provide Server URL of the Zephyr Enterprise instance. This URL will be used for communicating with Zephyr Enterprise system API. The format of the URL would be - http://[Server host], e.g. - http://127.0.0.1                                                                                                                                     |
-| **Username**                 | Always                                     | Provide the username of the Zephyr Enterprise user dedicated to <code class="expression">space.vars.SITENAME</code>. This user must not be used for any operations from Zephyr Enterprise’s user interface and must have the required permission to access the data as per <code class="expression">space.vars.SITENAME</code> product documentation |
+| **Username**                 | Always                                     | Provide the username of the Zephyr Enterprise user dedicated to <code class="expression">space.vars.OIM</code>. This user must not be used for any operations from Zephyr Enterprise’s user interface and must have the required permission to access the data as per <code class="expression">space.vars.OIM</code> product documentation |
 | **Authentication Type**      | Always                                     | Provide the authentication type to connect to the Zephyr Enterprise instance. Supported options are Basic and API Token.                                                                                                                                                                                                     |
 | **Password**                 | Only when Authentication Type is Basic     | Provide the password for the user given in the "Username" field.                                                                                                                                                                                                                                                                                    |
 | **API Token**                | Only when Authentication Type is API Token | Provide the API token generated in Zephyr Enterprise for the user given in the Username field. Refer to [Generate API Token](#generate-api-token) in the Appendix for details.                                                                                                                                                                      |
@@ -47,7 +47,7 @@ Refer to the screenshot below:
 
 ### Controlling Attachment Download via Private API
 
-By default, <code class="expression">space.vars.SITENAME</code> downloads attachments from Zephyr Enterprise using the private API. This behavior is enabled even if the **Metadata Overwrite** field is left empty or an empty JSON object (`{}`) is provided.
+By default, <code class="expression">space.vars.OIM</code> downloads attachments from Zephyr Enterprise using the private API. This behavior is enabled even if the **Metadata Overwrite** field is left empty or an empty JSON object (`{}`) is provided.
 
 To disable private API usage for attachment downloads, explicitly set the `disableReadAttachments` flag to `true` in the JSON:
 
@@ -132,7 +132,7 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
 
 ## Criteria Configuration & Target Lookup
 
-* <code class="expression">space.vars.SITENAME</code> supports criteria and target lookups for the entity types Test Case and test Execution.
+* <code class="expression">space.vars.OIM</code> supports criteria and target lookups for the entity types Test Case and test Execution.
 * Zephyr Enterprise Query format will be same as the **ZQL (Zephyr Query Language)**.
 * Please refer [this](https://support.smartbear.com/zephyr-enterprise/docs/en/zephyr-enterprise/zephyr-user-guide/search.html) link To learn how to form a query in ZQL format.
 
@@ -150,7 +150,7 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
 
 # Known Behavior
 
-- Requirements and Defects links on Test Case and Test Execution are not supported in <code class="expression">space.vars.SITENAME</code>.
+- Requirements and Defects links on Test Case and Test Execution are not supported in <code class="expression">space.vars.OIM</code>.
 - **Release, Folder, and Cycle names are case-insensitive** in Zephyr Enterprise. Hence, while performing check-and-create operations for these entities, entities with names differing only by case are treated as the same entity and will not be created again.
   **Example:**
     - If a Release named `Release_1` already exists in Zephyr Enterprise, and the incoming data contains `release_1` or `RELEASE_1`, the existing release will be identified and **updated**, rather than creating a new release.  
@@ -180,12 +180,12 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
     - Updating only test step results
 
   **Reason:**  
-  In Zephyr Enterprise, these operations do not update the entity’s modified timestamp. Since <code class="expression">space.vars.SITENAME</code> relies on this timestamp to detect changes, such updates are not picked up during synchronization unless an additional update is performed on the entity.
+  In Zephyr Enterprise, these operations do not update the entity’s modified timestamp. Since <code class="expression">space.vars.OIM</code> relies on this timestamp to detect changes, such updates are not picked up during synchronization unless an additional update is performed on the entity.
 - **Test step result limitations:**
    - Only **add operation is supported** for:
       - Attachments
       - External links
-   - Update and delete operations are **not supported** at step result level in <code class="expression">space.vars.SITENAME</code>.
+   - Update and delete operations are **not supported** at step result level in <code class="expression">space.vars.OIM</code>.
 
 # Appendix
 

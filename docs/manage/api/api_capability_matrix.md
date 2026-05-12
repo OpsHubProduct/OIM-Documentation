@@ -1,6 +1,6 @@
-# API Capability Matrix - <code class="expression">space.vars.SITENAME</code>
+# API Capability Matrix - <code class="expression">space.vars.OIM</code>
 
-This document provides an overview of API capabilities available in <code class="expression">space.vars.SITENAME</code>.
+This document provides an overview of API capabilities available in <code class="expression">space.vars.OIM</code>.
 It outlines which operations (Get, Create, Update, Delete, List, Execute) are supported across Integration and Admin modules.
 
 Use this matrix as a quick reference to understand API coverage.

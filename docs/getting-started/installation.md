@@ -14,15 +14,15 @@ The first screen when you launch the application will be this:
 | * Double click the executable *.exe file given in the application folder (It is advisable to run .exe file by right-clicking **Run as administrator** where * is replaced with the application version).<br>* If one instance of this release is already installed, then the user will be notified.<br>* Click **yes** to continue with the installation. It will then display the uninstallation key for the current installation. | **Before Installation** <br>* Extract the zip file. Make sure user who will run installer owns the files and has full access to extracted files.<br>* Create empty directory with full access(it should not be inside installation directory) and export it's path to OPSHUB_TEMP_DATA variable as shown in below example:<br>  **export OPSHUB_TEMP_DATA=/home/setup/temp**<br>* If you are doing a silent installation, make sure you have provided the same path for OPSHUB_TEMP_DATA as provided during [Silent Registration for Linux](registration.md#silent-registration-for-linux).<br>* If Linux has NFS (Network File System) based file system, please add the following line in OIM user's '.bashrc' file:<br>  **In /home/{OIM user}/.bashrc file, add the following line at the end:**<br>  ***<code> export JAVA_OPTS="$JAVA_OPTS -XX:+StartAttachListener" </code>***<br>  **Without the Java option, the server start up will fail. The error details are available [here](../help-center/troubleshooting/errors/install/could-not-self-attach-to-current-vm-using-external-process.md).**<br>* See minimal access required to install OpsHub Integration Manager [here](#minimal-access-required-to-run-linux-installer-using-external-file), when you do not have root access.<br><br>**To Run sh file** <br>* Open terminal window and go to the folder containing the install.sh file.<br>* Execute the following command: **sudo -E sh install.sh**.<br>* To run the sh File, you need to have access to Linux UI. This is because the installation process requires user inputs through UI. Installation won't get completed through remote terminal connection (i.e. Putty).<br><br>**To Run sh File from External File (Silent Installation)** <br>To install OpsHub Integration Manager through terminal connection (i.e. Putty), follow the steps given below:<br>* Complete user registration as described [here](registration.md#silent-registration-for-linux).<br>* Download and modify OpsHubAutoInstall.xml file as per your requirement by click [here](prepare-xml-for-auto-installation-upgradation.md).<br>* Make sure, you will transfer the modified file on the instance where you want to install OpsHub Integration Manager.<br>* Set an environment variable OPSHUB_AUTO_INSTALL on the installation instance, the value of variable is the path to the OpsHubAutoInstall.xml file. File name can be different.<br>  **For example, export OPSHUB_AUTO_INSTALL=/home/Downloads/OpsHubAutoInstall.xml.**<br>* After setting environment variable, run the installer with command **sudo -E sh install.sh**.<br>* Please refer [Possible Error](#possible-error-during-silent-installation-upgradation) section for trouble shooting error(s) occurred during Installation. |
 
 
-### Recommended Installation Path for <code class="expression">space.vars.SITENAME</code> Installer for Linux
+### Recommended Installation Path for <code class="expression">space.vars.OIM</code> Installer for Linux
 
-* It is recommended to install or perform migration of the <code class="expression">space.vars.SITENAME</code> in the /opt folder or /user/local folder.
-  * For <code class="expression">space.vars.SITENAME</code> migration, if the <code class="expression">space.vars.SITENAME</code> is not installed at the above places, then follow the steps mentioned [here](../faqs/general/how-to-move-application-server-from-one-machine-to-other.md).
-  * Reason: SELinux prevents Linux users from running a <code class="expression">space.vars.SITENAME</code> service in the user's home directory. Hence, the user needs to avoid installing <code class="expression">space.vars.SITENAME</code> in the home directory.
+* It is recommended to install or perform migration of the <code class="expression">space.vars.OIM</code> in the /opt folder or /user/local folder.
+  * For <code class="expression">space.vars.OIM</code> migration, if the <code class="expression">space.vars.OIM</code> is not installed at the above places, then follow the steps mentioned [here](../faqs/general/how-to-move-application-server-from-one-machine-to-other.md).
+  * Reason: SELinux prevents Linux users from running a <code class="expression">space.vars.OIM</code> service in the user's home directory. Hence, the user needs to avoid installing <code class="expression">space.vars.OIM</code> in the home directory.
 
 ### Minimal access required to run linux installer using external file
 
-* <code class="expression">space.vars.SITENAME</code> Installation Directory should be owned by user who run installer/migrator and has following permissions.
+* <code class="expression">space.vars.OIM</code> Installation Directory should be owned by user who run installer/migrator and has following permissions.
 
 Here are the required permissions:
 
@@ -36,9 +36,9 @@ Here are the required permissions:
 | r-x            | /usr/lib64/*                                                                          |
 | --x            | /usr/share (if user edits file using nano)                                             |
 | r-x            | /usr/share/*                                                                          |
-| rw-            | /etc/systemd/system (if user needs <code class="expression">space.vars.SITENAME</code> as a service for Ubuntu) |
+| rw-            | /etc/systemd/system (if user needs <code class="expression">space.vars.OIM</code> as a service for Ubuntu) |
 
-* Note: For HSQLDB, root access is required when user needs to install/migrate <code class="expression">space.vars.SITENAME</code>.
+* Note: For HSQLDB, root access is required when user needs to install/migrate <code class="expression">space.vars.OIM</code>.
 
 ### Possible error during Silent Installation/Upgradation
 
@@ -67,7 +67,7 @@ at com.izforge.izpack.installer.Installer.main(Unknown Source)
 Make sure you have performed the following steps correctly:
 
 * You have registered as described [Registration - Silent Registration for Linux](registration.md#silent-registration-for-linux) before Installation/Upgradation.
-* You have registered using the same path for which you install/upgrade <code class="expression">space.vars.SITENAME</code>.
+* You have registered using the same path for which you install/upgrade <code class="expression">space.vars.OIM</code>.
 * You have used the correct verification code.
   * Verification Code is unique for each machine and installation path. The code generated on a different machine and for different path won't work.
 * You have export same value for OPSHUB_TEMP_DATA during Registration and Installation/Upgradation.
@@ -86,7 +86,7 @@ License Information window has the details of the trial license and the contact 
 
 ### Possible exceptions
 
-While uploading the license from license management tab, <code class="expression">space.vars.SITENAME</code> throws exceptions as below:
+While uploading the license from license management tab, <code class="expression">space.vars.OIM</code> throws exceptions as below:
 
 * **Unable to install license** `com.opshub.license.exception.LicenseException`: Failed to get license content because of If you are accessing OpsHub from different machine then change localhost to ip address of the machine where OpsHub installed.
 * **The filename, directory name, or volume label syntax is incorrect**
@@ -99,7 +99,7 @@ at java.io.FileInputStream.open(Native Method) at java.io.FileInputStream.(FileI
 
 # Installation
 
-Here is a video on how to install <code class="expression">space.vars.SITENAME</code> on the Windows machine:
+Here is a video on how to install <code class="expression">space.vars.OIM</code> on the Windows machine:
 
 {% embed url="https://youtu.be/Is5sDKV01P0" %}
 
@@ -166,7 +166,7 @@ The image below shows the overall progress of installation.
 
 <div align="center"><img src="../assets/Installer_Image_8b.png" width="820"></div>
 
-* Setup Shortcuts: It will add the application to the Windows program list if the operating system is Windows and will add the application to the Linux program list if the operating system is Linux. It will also create the <code class="expression">space.vars.SITENAME</code> launcher.
+* Setup Shortcuts: It will add the application to the Windows program list if the operating system is Windows and will add the application to the Linux program list if the operating system is Linux. It will also create the <code class="expression">space.vars.OIM</code> launcher.
 
 <div align="center"><img src="../assets/Installer_Image_9Seta.png" width="800"></div>
 
@@ -192,7 +192,7 @@ It is advisable to enter the server-host name in the given field, it might creat
 * Enter the current Country Code. It should be alphabetic code. For e.g., "IN" for India, "US" for America, "AU" for Australia, etc.
 * Select the number of days till when the certificate should be valid.
 
-> **Note** : Please note with the above steps <code class="expression">space.vars.SITENAME</code> will be installed with SSL configuration. But the corresponding SSL certificate imported will be self-signed. In case you want to install certificate signed by your CA authority then follow the steps given in this section [How To Import a Certificate](how-to-import-a-certificate.md) in appendix.
+> **Note** : Please note with the above steps <code class="expression">space.vars.OIM</code> will be installed with SSL configuration. But the corresponding SSL certificate imported will be self-signed. In case you want to install certificate signed by your CA authority then follow the steps given in this section [How To Import a Certificate](how-to-import-a-certificate.md) in appendix.
 
 # Manual creation of databases
 For manual creation of databases, you can use the following queries:

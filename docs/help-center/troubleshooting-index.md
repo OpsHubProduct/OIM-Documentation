@@ -1,3 +1,5 @@
+{% if visitor.claims.unsigned.product == "OIM" %}
+
 <table data-view="cards" data-full-width="false">
   <thead>
     <tr>
@@ -32,3 +34,34 @@
     </tr>
   </tbody>
 </table>
+
+{% endif %}  
+
+{% if visitor.claims.unsigned.product == "OM4ADO" %}  
+
+<table data-view="cards" data-full-width="false">
+  <thead>
+    <tr>
+      <th align="center" data-card-cover></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">🛠️ <strong>Manage Migration Failures</strong></td>
+      <td><a href="troubleshooting/manage-integration-failures.md">Manage Migration Failures</a></td>
+    </tr>
+    <tr>
+      <td align="center">🧾 <strong>Migration Sync Logs</strong></td>
+      <td><a href="troubleshooting/integration-sync-logs.md">Migration Sync Logs</a></td>
+    </tr>
+    <tr>
+      <td align="center">❗ <strong>Errors</strong></td>
+      <td><a href="troubleshooting/errors/errors-index.md">Errors</a></td>
+    </tr>
+  </tbody>
+</table>
+
+{% endif %}  
+
+

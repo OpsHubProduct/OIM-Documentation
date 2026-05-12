@@ -1,6 +1,6 @@
 These are the common privileges for **user**. To know specific privileges required for user, refer to [User Privileges](tfs-prerequisites.md#user-privileges).
 
-* Add a user in Azure DevOps that is dedicated for <code class="expression">space.vars.SITENAME</code>. This user shouldn't perform any other action from Azure DevOps user interface. Please make sure this user or Service Principal has a unique display name across the instance.
+* Add a user in Azure DevOps that is dedicated for <code class="expression">visitor.claims.unsigned.product</code>. This user shouldn't perform any other action from Azure DevOps user interface. Please make sure this user or Service Principal has a unique display name across the instance.
 * User must be a member of **Project Administrators** group for work item entities and Build entity migration. For Meta entities like Group, User entities, integration user must be a member of **Project Collection Administrators** group or **Project Administrators** group. Refer section [How to Add User or Service Principal in group](../../connectors/azure-devops.md#how-to-add-user-or-service-principal-in-group).
 
 > **Note**: If integration user is not a member of **Project Collection Administrators** group, collection level permissions will not be synchronized.
@@ -14,7 +14,7 @@ These are the common privileges for **user**. To know specific privileges requir
 * User can use **Basic** Authentication or **Personal Access Token** authentication method to communicate with API for Azure DevOps.
   * In case of **Personal Access Token** authentication, please check [Personal Access Token Permission](tfs-prerequisites.md#personal-access-token-minimum-required-permission) section for the required permission details. Personal Access Token is supported for Team foundation Server On-Premise (TFS instance with **HTTPS** installation only) with version 2017 and above and Azure DevOps.
   * For On-Premises deployment, either Basic authentication or PAT authentication needs to be enabled on server. Please refer to [Internet Information Services(IIS) Configurations](tfs-prerequisites.md#internet-information-services-iis-configurations) to learn more about enabling the Basic/PAT authentication in IIS.
-* In case user want to synchronize User type fields of Azure DevOps with any other system with default <code class="expression">space.vars.SITENAME</code> generated mapping, it is necsessary that all users have their preferred e-mail address set in Azure DevOps.
+* In case user want to synchronize User type fields of Azure DevOps with any other system with default <code class="expression">visitor.claims.unsigned.product</code> generated mapping, it is necsessary that all users have their preferred e-mail address set in Azure DevOps.
 *   The user for both the source and target systems requires a minimum access level of **Basic + Test Plans** to synchronize both query-based and requirement-based suites. Additionally, the user of the target system must also have at least **Basic** access to synchronize new tags. Refer to the [Access Level](https://docs.microsoft.com/en-us/azure/devops/organizations/security/access-levels?view=azure-devops) documentation to know more about this access level or subscription for the user. Otherwise, Test Suite synchronization will be resulted in to job error/sync failure as "You are not authorized to access this API. Please contact your project administrator".
 * If your Azure DevOps is configured with SSO, then the above mentioned privileges and permissions are sufficient.
 * If Bypass Rules is set to **Yes** in the system configuration, make sure the user or Service Principal has the **Bypass rules on work item updates permission** set to Allow at the project level in Azure DevOps.
@@ -89,7 +89,7 @@ Refer [Create Personal Access Token](../../connectors/azure-devops.md#create-per
 
 * Personal Access Token should be created with **Full access** scope for all entities if user is using On-Premises deployed server.
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OIM" === visitor.claims.unsigned.product %}  
 ### Service Principal Privileges
 
 * It is applicable when the authentication mode is set to **Service Principal - Client Secret** or **Service Principal - Client Certificate**.

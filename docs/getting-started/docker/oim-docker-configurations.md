@@ -94,7 +94,7 @@ The variable values need to be added in `Input.json` to configure OIM as Docker.
     ```
 ## YAML Inputs for Windows
 
-- <code class="expression">space.vars.SITENAME</code> also supports containerized ReadyOne Service and MBSE SDK service on windows base docker deployment. 
+- <code class="expression">space.vars.OIM</code> also supports containerized ReadyOne Service and MBSE SDK service on windows base docker deployment. 
 - `docker-compose-OIM-windows.yml` file is used to get required inputs and starts the docker container using docker-compose.
 - The path of directory in which updated `Input.json` file in [Input Variables](#input-variables) , database connector jar needs to be mentioned in place of <Path_Input_Directory> before the colon(:) in `volumes` section of `oim` service in the `services` section.
 - User needs to put the database connector jar in the directory whose path is provided in place of <Path_Input_Directory>.

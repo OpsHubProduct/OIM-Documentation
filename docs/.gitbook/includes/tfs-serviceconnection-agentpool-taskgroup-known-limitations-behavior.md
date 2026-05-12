@@ -8,7 +8,7 @@ Following are the limitations and behaviors specific to the individual entities 
 **Agent Pool Entity**
 
 **Known Behaviour and Limitations:**
-* By default, <code class="expression">space.vars.SITENAME</code> synchronizes project-level Agent Pools [the collection level pools which are associated with projects].
+* By default, <code class="expression">visitor.claims.unsigned.product</code> synchronizes project-level Agent Pools [the collection level pools which are associated with projects].
 * To synchronize collection-level Agent Pools as well, set the “Collection Level” option to Yes, at the integration of Agent Pool as shown in the below image:
   <p align="center">
     <img src="../../assets/AgentPoolCollectionLevel.png"/>

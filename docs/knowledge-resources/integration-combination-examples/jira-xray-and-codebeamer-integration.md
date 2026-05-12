@@ -18,8 +18,8 @@ Jira Xray is a modern requirements and test management solution for complex syst
 
 ## Pre-requisites for integration
 To create an integration between Jira Xray and Codebeamer, you need to:
-* You need to install <code class="expression">space.vars.SITENAME</code>.
-* Configure Jira Xray and Codebeamer onto <code class="expression">space.vars.SITENAME</code>.  
+* You need to install <code class="expression">space.vars.OIM</code>.
+* Configure Jira Xray and Codebeamer onto <code class="expression">space.vars.OIM</code>.  
 
 <p align="center">
   <img src="../../assets/Xray-CB-systems.png" width="1100">

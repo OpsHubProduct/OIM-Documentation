@@ -1,6 +1,6 @@
 # View Rules
 
-To view Rules, go to Administration > Rules Management. This would lead to a page that lists multiple rules that are already configured for different systems integrated using <code class="expression">space.vars.SITENAME</code>.
+To view Rules, go to Administration > Rules Management. This would lead to a page that lists multiple rules that are already configured for different systems integrated using <code class="expression">space.vars.OIM</code>.
 
 <p align="center">
   <img src="../../assets/Rules_Management.png" width="1000"  />

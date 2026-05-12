@@ -5,7 +5,7 @@ Migration is required from current version to higher version as it includes supp
 
 Provide the permissions to database user as mentioned in the [Database Selection](../../getting-started/installation.md#database-selection) section on the Installation Steps page.
 
-Follow instruction as mentioned in [Pre-Migration Checklist](pre-migration-checklist.md) before starting the upgradation process based on current version of <code class="expression">space.vars.SITENAME</code> installed and version to which <code class="expression">space.vars.SITENAME</code> will be upgraded. (If you do not have access to the [Pre-Migration Checklist](pre-migration-checklist.md), log a ticket on our customer portal if you have the access or get in touch with your point of contact (POC) for integration.)
+Follow instruction as mentioned in [Pre-Migration Checklist](pre-migration-checklist.md) before starting the upgradation process based on current version of <code class="expression">space.vars.OIM</code> installed and version to which <code class="expression">space.vars.OIM</code> will be upgraded. (If you do not have access to the [Pre-Migration Checklist](pre-migration-checklist.md), log a ticket on our customer portal if you have the access or get in touch with your point of contact (POC) for integration.)
 
 ### Best Practices for Memory Allocation in the Upgrade Process
 
@@ -15,19 +15,19 @@ To ensure a smooth and successful migration, especially when handling larger dat
 
 By default, the migration process automatically allocates **one-fourth** of the total available RAM. This allocation works for most use cases but might not be enough for larger datasets, leading to potential memory issues.
 
-For example, if the machine has 16GB RAM available and 8GB RAM is allocated to **<code class="expression">space.vars.SITENAME</code>** at the time of the upgrade, Java will still pick the default 4GB RAM (1/4th of total).
+For example, if the machine has 16GB RAM available and 8GB RAM is allocated to **<code class="expression">space.vars.OIM</code>** at the time of the upgrade, Java will still pick the default 4GB RAM (1/4th of total).
 
 #### 2. Check Memory Settings in OIM Configuration File
 
 To confirm that the memory settings align with your requirements, review the following file: `<installation path>\OpsHubServer\conf\OIM_Config.properties`
 
-This file contains the allocated memory settings for running **<code class="expression">space.vars.SITENAME</code>**.
+This file contains the allocated memory settings for running **<code class="expression">space.vars.OIM</code>**.
 
 #### 3. Set JAVA_OPTS for Optimal Memory Allocation
 
 For better stability and performance during migration, manually set the `JAVA_OPTS` environment variable before starting the upgrade process. This allows you to define the initial and maximum memory allocated to the process, ensuring it can handle larger datasets.
 
-**Recommended Configuration (Same as Allocated to <code class="expression">space.vars.SITENAME</code>)**
+**Recommended Configuration (Same as Allocated to <code class="expression">space.vars.OIM</code>)**
 
 **Where:**
 
@@ -58,7 +58,7 @@ Given below are the migration steps:
 
 * Inactivate all the integrations.
 * To stop the Server service, run this command on command prompt **ps -ef | grep "java"** to get the PID and then execute **kill -9 .**
-* If you are running <code class="expression">space.vars.SITENAME</code> without service or without root access stop server as described below:
+* If you are running <code class="expression">space.vars.OIM</code> without service or without root access stop server as described below:
   * Go to "/OpsHubServer/bin" directory and run shutdown.sh file. It will take some time to stop server.
 * Take back up of the database (refer to the [Taking Application Backup](taking-application-backup.md) page).
 * Take back up of the application folder (refer to the [Taking Application Backup](taking-application-backup.md) page).
@@ -77,7 +77,7 @@ Given below are the migration steps:
 
 ### Migrate without GUI Access (Silent Migration)
 
-To upgrade <code class="expression">space.vars.SITENAME</code> through terminal connection (i.e. Putty), follow the steps given below:
+To upgrade <code class="expression">space.vars.OIM</code> through terminal connection (i.e. Putty), follow the steps given below:
 
 * Make sure, you have performed the pre-migration steps as described [here](upgrade-application.md#pre-migration-steps).
 * Modify the external configuration file and export OPSHUB_AUTO_INSTALL variable as described at **To Run sh File from External File** section [here](../../getting-started/installation.md#launch-the-installer-in-different-operating-systems).
@@ -88,7 +88,7 @@ To upgrade <code class="expression">space.vars.SITENAME</code> through terminal 
 ## Post Migration Steps for Windows and Linux
 
 * After the successful migration, server will start automatically.
-* After loading <code class="expression">space.vars.SITENAME</code> UI, please refresh the browser before doing any operation. Verify the version at the bottom of UI.
+* After loading <code class="expression">space.vars.OIM</code> UI, please refresh the browser before doing any operation. Verify the version at the bottom of UI.
 * Follow the guidelines given in the [Post-Migration-Checklist](post-migration-checklist.md) once the migration process is complete.
 * Activate all the integrations.
 

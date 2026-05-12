@@ -1,7 +1,7 @@
 > 👉 **Looking for older version steps?** <br>
-> Refer to the [Post-Migration Checklist (MediaWiki)](https://docs.myopshub.com/oim/index.php/Post-Migration_Checklist) for <code class="expression">space.vars.SITENAME</code> versions prior to 7.175.
+> Refer to the [Post-Migration Checklist (MediaWiki)](https://docs.myopshub.com/oim/index.php/Post-Migration_Checklist) for <code class="expression">space.vars.OIM</code> versions prior to 7.175.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.175 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.175 or above
 
 ## Update the Advance XSLT used for Jira Zephyr Test-step results
 
@@ -29,24 +29,24 @@
 
 **Applicable When**
 
-* SAML-based authentication is configured in <code class="expression">space.vars.SITENAME</code>.
+* SAML-based authentication is configured in <code class="expression">space.vars.OIM</code>.
 
 **Actions**
 
 * The user has already configured SAML Identity Provider. Example., OKTA, Azure Active Directory, etc.
 * In SAML Identity Provider configuration, the user can find the single sign-on URL field under the SAML settings.
-* The user must change the single sign-on URL in SAML Identity Provider when <code class="expression">space.vars.SITENAME</code> is installed with HTTP protocol:
+* The user must change the single sign-on URL in SAML Identity Provider when <code class="expression">space.vars.OIM</code> is installed with HTTP protocol:
   * Current configuration: `http://localhost:8989/OpsHubWS/saml/SSO`
   * Updated URL configuration must be: `http://localhost:8989/OpsHubWS/login/saml2/sso/opshubsaml`
-* The user must change the single sign-on URL in SAML Identity Provider when <code class="expression">space.vars.SITENAME</code> is installed with HTTPS protocol:
+* The user must change the single sign-on URL in SAML Identity Provider when <code class="expression">space.vars.OIM</code> is installed with HTTPS protocol:
   * Current configuration: `https://localhost:8443/OpsHubWS/saml/SSO`
   * Updated URL configuration must be: `https://localhost:8443/OpsHubWS/login/saml2/sso/opshubsaml`
 
 **Reason**
 
-* Going forward, <code class="expression">space.vars.SITENAME</code> will use Spring Security Saml2 service provider to support SAML-based authentication. It will also eliminate vulnerabilities of older SAML framework.
+* Going forward, <code class="expression">space.vars.OIM</code> will use Spring Security Saml2 service provider to support SAML-based authentication. It will also eliminate vulnerabilities of older SAML framework.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.176 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.176 or above
 
 ## Update .NET framework to 4.7.2 or above
 
@@ -66,7 +66,7 @@
 
 * .NET Framework version 4.0 is out of support. Therefore, dependency on .NET framework version 4.0 has also been removed.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.177 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.177 or above
 
 ## Workflow Change for Any Customized Workflow
 
@@ -115,17 +115,17 @@ Starting with version 7.177, all properties are directly accessible from the old
 
 ***
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.181 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.181 or above
 
 ## Remap values of lookup field when it contains special character(s)
 
 ### Applicable When
 
-Values for lookup field contains special characters (tab space) in the source/target system, even though these special characters are not visible in the lookup values of <code class="expression">space.vars.SITENAME</code>.
+Values for lookup field contains special characters (tab space) in the source/target system, even though these special characters are not visible in the lookup values of <code class="expression">space.vars.OIM</code>.
 
 ### Actions
 
-After upgrading <code class="expression">space.vars.SITENAME</code>, remap the lookup field that contains lookup values with the above specified special characters.
+After upgrading <code class="expression">space.vars.OIM</code>, remap the lookup field that contains lookup values with the above specified special characters.
 
 The following specified characters need to have their lookup field values remapped:
 
@@ -166,9 +166,9 @@ Open mapping configurations with mention relationships configured. Remove mentio
 
 ### Reason
 
-This makes link names visible in <code class="expression">space.vars.SITENAME</code> aligned with link names visible in OpenText ALM Octane UI for respective entity types.
+This makes link names visible in <code class="expression">space.vars.OIM</code> aligned with link names visible in OpenText ALM Octane UI for respective entity types.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.184 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.184 or above
 
 ## Update the Criteria Query Or Lookup Query for Tricentis qTest Module
 
@@ -189,7 +189,7 @@ This makes link names visible in <code class="expression">space.vars.SITENAME</c
 
 * Enhanced filtering for qTest module entity to support **expand** and **parentId** along with search query parameters.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.186 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.186 or above
 
 ## Update Relationship Mapping for Cycle Entity in OpenText ALM Quality Center
 
@@ -232,7 +232,7 @@ For more details, please refer to [Gitlab connector mapping configurations](../.
 
 ***
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.189 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.189 or above
 
 ## Update the JSON input for Jira Xray Cloud Entity Display Name
 
@@ -279,7 +279,7 @@ For more details, please refer to [Gitlab connector mapping configurations](../.
 **Reason**
 The prerequisite to rename Jira Xray entities has been removed.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.195 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.195 or above
 
 ## Data type changes for Text type of fields in TestRail
 
@@ -297,7 +297,7 @@ The prerequisite to rename Jira Xray entities has been removed.
 
 ***
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.196 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.196 or above
 
 ## Update .py files used in commit hooks
 
@@ -346,7 +346,7 @@ Refer to respective section links for Commit Hooks setup: [SVN](../../connectors
 Removed entity type mappings are saved at the following path:
 &#xNAN;**`<OpsHub Installation Dir>/AppData/LinkEntityTypeMapping`**
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.199 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.199 or above
 
 ## Remap values of lookup field **Planned For** in IBM Engineering Workflow Management
 
@@ -366,7 +366,7 @@ Removed entity type mappings are saved at the following path:
 
 ***
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.201 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.201 or above
 
 ## Map the lookup field **Test Run Type** in Codebeamer
 
@@ -383,29 +383,29 @@ Removed entity type mappings are saved at the following path:
 
 * Previously, only the **Test Run (Parent)** entity was supported. Now, both **Test Run (Parent)** and **Test Run (Child)** are supported; the latter is automatically generated during Parent creation and is handled as a separate synchronization entity.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.203 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.203 or above
 
 ## Update Relationship Mapping for Jira
 
 **Applicable When**
-* Jira is configured as one of the endpoints in the integration and a not supported link type from Jira has been mapped in the <code class="expression">space.vars.SITENAME</code>. In such cases, after the upgrade, the mapping cannot be updated until the unsupported link type is removed.
+* Jira is configured as one of the endpoints in the integration and a not supported link type from Jira has been mapped in the <code class="expression">space.vars.OIM</code>. In such cases, after the upgrade, the mapping cannot be updated until the unsupported link type is removed.
 
 **Actions**
 * If the this kind of link is configured, after upgrading to 7.203, the user needs to remove the mapped link type from the mapping.
 
 **Reason**
-* Previously, <code class="expression">space.vars.SITENAME</code> displayed both the link type and its reverse link type in the link type mapping.
+* Previously, <code class="expression">space.vars.OIM</code> displayed both the link type and its reverse link type in the link type mapping.
 * Now, only the supported link type will be shown.
 * For example  
   * In Jira, for the **Test Plan** entity, two supported link types exist: ***tests*** and ***testExecution***.  
   * The link type ***testplans*** is the reverse of both, meaning that from **Test** and **Test Execution** entities, a **Test Plan** could be linked back using ***testplans***.  
-  * Earlier, <code class="expression">space.vars.SITENAME</code> displayed all three — ***tests***, ***testExecution***, and ***testplans*** — in the mapping screen of Test Plan entity.  
+  * Earlier, <code class="expression">space.vars.OIM</code> displayed all three — ***tests***, ***testExecution***, and ***testplans*** — in the mapping screen of Test Plan entity.  
   * Going forward, only the supported link types (***tests*** and ***testExecution***) will be shown.  
   * **Note:** ***testplans*** is not a supported link type for the **Test Plan** entity in Jira as well.
 
 # Separate Workflow for Post Synchronization
 
-## Migrating <code class="expression">space.vars.SITENAME</code> version to 7.207 or above
+## Migrating <code class="expression">space.vars.OIM</code> version to 7.207 or above
 
 **Applicable When**
 * Integration configurations are using a customized workflow.  
@@ -422,17 +422,17 @@ Update the custom workflow as described below:
 * If the post-sync step is customized:  
   * Move it out of the customized integration sync workflow and configure it as a separate, dedicated post-sync workflow.  
 
-* To create or update separate workflows for synchronization and post-synchronization, refer to the default workflows available in <code class="expression">space.vars.SITENAME</code> at: `http://<serverIP>:8989/OIM/#/home/configure-integrations/workflows`
+* To create or update separate workflows for synchronization and post-synchronization, refer to the default workflows available in <code class="expression">space.vars.OIM</code> at: `http://<serverIP>:8989/OIM/#/home/configure-integrations/workflows`
 
 **Reason**
 * From now on, updating the Remote Entity ID and Remote Entity Link to the source entity will be handled by a dedicated post-sync workflow.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.214 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.214 or above
 
 ## Addition of new Personal Queries for IBM ClearQuest system
 
 **Applicable When**
-* IBM ClearQuest is configured as an endpoint and the <code class="expression">space.vars.SITENAME</code> is upgraded to version 7.214 or later.
+* IBM ClearQuest is configured as an endpoint and the <code class="expression">space.vars.OIM</code> is upgraded to version 7.214 or later.
 
 **Actions**
 * User-related data is now fetched using Personal Queries instead of SimpleQuery calls.
@@ -444,7 +444,7 @@ Update the custom workflow as described below:
 **Reason**
 * This change replaces the default SimpleQuery, which returned all users without filtering. Personal Queries enable fetching users based on specific criteria, improving filtering and performance.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.217 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.217 or above
 
 **Applicable When**
 * If one of the integration endpoints is Jira Xray (Cloud), Jama, or Codebeamer, and the integration is using a customized workflow to synchronize step field [Test Assets] attachments and inline images/files.
@@ -455,12 +455,12 @@ Update the custom workflow as described below:
 **Reason**
 * From version 7.217 onwards, step attachments and inline images/files are handled automatically between these systems, hence no workflow customization is required.
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.218 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.218 or above
 
 ## Change in Personal Query for IBM ClearQuest system
 
 **Applicable When**
-* IBM ClearQuest is configured as an endpoint and the <code class="expression">space.vars.SITENAME</code> is upgraded to version 7.218 or later.
+* IBM ClearQuest is configured as an endpoint and the <code class="expression">space.vars.OIM</code> is upgraded to version 7.218 or later.
 
 **Actions**
 * After upgrading to 7.218, the sync user must edit the following Personal Query in ClearQuest:
@@ -472,18 +472,18 @@ Update the custom workflow as described below:
 * If you notice the query failing due to case differences, update the table and column names in the SQL statement to match the exact casing defined in your ClearQuest database.
 
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.221 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.221 or above
 
 ## Update Password Strength Policy
 
 **Applicable When**
 
-* Users are authenticating via <code class="expression">space.vars.SITENAME</code>'s Default Login Server.
+* Users are authenticating via <code class="expression">space.vars.OIM</code>'s Default Login Server.
 * [OIM Admin/Rest APIs](../../manage/api/getting-started-with-api.md) are utilized for various purpose.
 
 **Actions**
 
-* For <code class="expression">space.vars.SITENAME</code> Users:
+* For <code class="expression">space.vars.OIM</code> Users:
   * Upon the first login post-upgrade, users with non-compliant passwords will see a security warning as shown below:
 
 <p align="center">
@@ -501,14 +501,14 @@ Update the custom workflow as described below:
     * Numbers (0–9)
     * Special characters (!@#$%^&*)
 
-* Any existing custom password policy set in <code class="expression">space.vars.SITENAME</code> will be replaced with new standard rules to ensure compliance. If you had custom settings earlier, a backup has been created for your reference at:
+* Any existing custom password policy set in <code class="expression">space.vars.OIM</code> will be replaced with new standard rules to ensure compliance. If you had custom settings earlier, a backup has been created for your reference at:
   `<<OpsHub_Installation_Directory>>\AppData\logs\PasswordPolicy_Regex_And_RegexMessage_2026-03-19_13-32-44.txt`
 
 **Reason**
-* To strengthen product security and align with modern enterprise standards, <code class="expression">space.vars.SITENAME</code> has transitioned to a mandatory minimum password policy. This prevents the use of weak or default credentials that are vulnerable to automated attacks.
+* To strengthen product security and align with modern enterprise standards, <code class="expression">space.vars.OIM</code> has transitioned to a mandatory minimum password policy. This prevents the use of weak or default credentials that are vulnerable to automated attacks.
 
 
-# Migrating <code class="expression">space.vars.SITENAME</code> version to 7.225 or above
+# Migrating <code class="expression">space.vars.OIM</code> version to 7.225 or above
 
 ## Update the JSON input for Jira Xray On-Premise Entity Display Name
 

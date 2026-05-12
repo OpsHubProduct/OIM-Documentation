@@ -1,13 +1,13 @@
 ## Description
 
-Where to find the logs generated during <code class="expression">space.vars.SITENAME</code> installation?
+Where to find the logs generated during <code class="expression">space.vars.OIM</code> installation?
 
-Logs generated during <code class="expression">space.vars.SITENAME</code> installation are useful in identifying the reason for failure (if any).
+Logs generated during <code class="expression">space.vars.OIM</code> installation are useful in identifying the reason for failure (if any).
 
 ## Solution
 
-<code class="expression">space.vars.SITENAME</code> installation progress gets logged in an `Install.log` file. It contains details of all the steps performed in the process, along with the details of failures (if any).  
-This file is located under the 'logs' folder in <code class="expression">space.vars.SITENAME</code> installation path.
+<code class="expression">space.vars.OIM</code> installation progress gets logged in an `Install.log` file. It contains details of all the steps performed in the process, along with the details of failures (if any).  
+This file is located under the 'logs' folder in <code class="expression">space.vars.OIM</code> installation path.
 
 For example:
 

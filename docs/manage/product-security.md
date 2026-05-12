@@ -1,6 +1,6 @@
 # Product Security
 
-OpsHub is committed to ensuring that <code class="expression">space.vars.SITENAME</code> is designed, developed, and delivered following industry-standard security practices. Our approach includes secure development practices, application security testing, third-party component monitoring, vulnerability management, and continuous patching of security issues.
+OpsHub is committed to ensuring that <code class="expression">space.vars.OIM</code> is designed, developed, and delivered following industry-standard security practices. Our approach includes secure development practices, application security testing, third-party component monitoring, vulnerability management, and continuous patching of security issues.
 
 Our security practices are aligned with widely accepted standards and frameworks such as OWASP and CWE, and security validation is incorporated throughout the product development lifecycle.
  

@@ -1,6 +1,6 @@
 # Overview
 
-Integration Sync Report provides the information for each entity synchronized by <code class="expression">space.vars.SITENAME</code>. The report gives insight into which entity from which project in the source system has synchronized to which project in the target system. The report also shows source entities ids and target entities ids. You can also navigate to the failed event of a particular entity from this report. Each integration has a separate Integration Sync Report.
+Integration Sync Report provides the information for each entity synchronized by <code class="expression">space.vars.OIM</code>. The report gives insight into which entity from which project in the source system has synchronized to which project in the target system. The report also shows source entities ids and target entities ids. You can also navigate to the failed event of a particular entity from this report. Each integration has a separate Integration Sync Report.
 
 # How to navigate to the Integration Sync Reports
 
@@ -22,13 +22,13 @@ The integration sync report is divided into two panes:
 
 The Integration Sync Report includes:  
 - **Source Entity Id:** This column shows the entity id of the source system  
-- **Source Project Name:** This column shows the name of the project from which entity gets polled by <code class="expression">space.vars.SITENAME</code>  
+- **Source Project Name:** This column shows the name of the project from which entity gets polled by <code class="expression">space.vars.OIM</code>  
 - **Source Entity Sync State:** This column shows the [state](#state) of the entity in the source system  
 - **Last Updated in Source:** This column shows the last updated time for the given entity in the source system  
-- **Target Entity Id:** This column shows the entity id of the target system in which entity gets created by <code class="expression">space.vars.SITENAME</code>  
-- **Target Project Name:** This column shows the project name of the target system in which entity gets created by <code class="expression">space.vars.SITENAME</code>  
+- **Target Entity Id:** This column shows the entity id of the target system in which entity gets created by <code class="expression">space.vars.OIM</code>  
+- **Target Project Name:** This column shows the project name of the target system in which entity gets created by <code class="expression">space.vars.OIM</code>  
 - **Target Entity Sync State:** This column shows the [state](#state) of the entity in the target system  
-- **Last Processed Time:** This column show the time when entity was last processed by <code class="expression">space.vars.SITENAME</code>  
+- **Last Processed Time:** This column show the time when entity was last processed by <code class="expression">space.vars.OIM</code>  
 - **No. of Failures:** This column shows the number of failed events for a given entity. By clicking on the number, you will be navigated to failed events for that entity.  
 
 <p align="center">
@@ -63,27 +63,27 @@ Enter the details in the field that you want to use for filtering the data. Then
 
 ## State
 
-- Represents the current synchronization status of the entity for the configured integration in <code class="expression">space.vars.SITENAME</code>.
+- Represents the current synchronization status of the entity for the configured integration in <code class="expression">space.vars.OIM</code>.
 
 - The possible values are as follows:
 
 ### 1. General State
 
-1. **Active:** The entity is available and accessible to <code class="expression">space.vars.SITENAME</code>.
+1. **Active:** The entity is available and accessible to <code class="expression">space.vars.OIM</code>.
 
 ### 2. When *Source Delete Synchronization* Is Enabled
 
 The following states are applicable when deletion or archival changes in the source system are synchronized to the target system for an integration where [Source Delete Synchronization](../../integrate/source-delete-synchronization.md) is configured.
 
-1. **Not Accessible:** The entity is no longer accessible to <code class="expression">space.vars.SITENAME</code>.
+1. **Not Accessible:** The entity is no longer accessible to <code class="expression">space.vars.OIM</code>.
 
 2. **Not Applicable:** The entity is not eligible for synchronization due to its type and/or project change, as no integration configuration matches the updated type and/or project.
 
 3. **Archived:** The entity has been archived in the source system.
 
-4. **Deleted by Sync:** The entity has been logically/soft deleted in the target system by <code class="expression">space.vars.SITENAME</code> as part of source delete synchronization.
+4. **Deleted by Sync:** The entity has been logically/soft deleted in the target system by <code class="expression">space.vars.OIM</code> as part of source delete synchronization.
 
-5. **Archived by Sync:** The entity has been archived in the target system by <code class="expression">space.vars.SITENAME</code> as part of source delete synchronization.
+5. **Archived by Sync:** The entity has been archived in the target system by <code class="expression">space.vars.OIM</code> as part of source delete synchronization.
 
 ### 3. When *Entity Type and/or Project Change Synchronization* Occurs
 
@@ -107,15 +107,15 @@ The following states are applicable when entity type and/or project changes in t
 
 ### 4. Applicable When Batch Writing Is Supported in the Target System
 
-These states are applicable only for integrations with systems for which <code class="expression">space.vars.SITENAME</code> supports batch writing.
+These states are applicable only for integrations with systems for which <code class="expression">space.vars.OIM</code> supports batch writing.
 
-1. **Sync Queued:** The source changes are scheduled in a synchronization queue for batch writing. <code class="expression">space.vars.SITENAME</code> first collects all changes read by the integrations configured within the same group before applying them to the target system. At this stage, the changes are waiting in the queue and have not yet been written.
-2. **Sync Started:** The processing of the queued changes has started. <code class="expression">space.vars.SITENAME</code> evaluates the queued updates one by one to determine the changes to be applied to the target system. Once all processing is completed, the consolidated updates are written to the target system.
+1. **Sync Queued:** The source changes are scheduled in a synchronization queue for batch writing. <code class="expression">space.vars.OIM</code> first collects all changes read by the integrations configured within the same group before applying them to the target system. At this stage, the changes are waiting in the queue and have not yet been written.
+2. **Sync Started:** The processing of the queued changes has started. <code class="expression">space.vars.OIM</code> evaluates the queued updates one by one to determine the changes to be applied to the target system. Once all processing is completed, the consolidated updates are written to the target system.
 
 > *Note:* To view queued changes for batch processing, refer to [Viewing Queued Entities for Synchronization](integration-sync-report.md#viewing-queued-entities-for-synchronization).
 ## Viewing Queued Entities for Synchronization
 
-<code class="expression">space.vars.SITENAME</code> temporarily stores changes queued for batch writing in its database to ensure consistency and reliable processing.
+<code class="expression">space.vars.OIM</code> temporarily stores changes queued for batch writing in its database to ensure consistency and reliable processing.
 
 Entities whose data is in the synchronization queue will have the **Sync Queued** or **Sync Started** state. Otherwise, they will have the **Active** state, which indicates that synchronization has either been completed for that entity or that no pending changes remain in the synchronization queue.
 

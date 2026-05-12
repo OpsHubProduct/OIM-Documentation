@@ -1,13 +1,13 @@
 ## Pre-requisites
 
 ### User Privileges
-- Create a dedicated user in Midas for <code class="expression">space.vars.SITENAME</code>.
+- Create a dedicated user in Midas for <code class="expression">space.vars.OIM</code>.
 - To enable synchronization, the service account user must have access to the target project in Midas.
 - For granting the **Safety Project Level permission**, refer to [how to grant required access](#granting-permissions-to-the-midas-service-user).
 
 # System Configuration
 
-Before you continue with the integration, you must first configure the Midas system in <code class="expression">space.vars.SITENAME</code>.
+Before you continue with the integration, you must first configure the Midas system in <code class="expression">space.vars.OIM</code>.
 
 Click **System Configuration** to learn the step-by-step process to configure a system.
 

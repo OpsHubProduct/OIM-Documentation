@@ -1,22 +1,22 @@
 # Different Types of Logs
 
-There are different logs maintained and stored under **<code class="expression">space.vars.SITENAME</code>'s `<Installation Folder>\AppData\logs`** during the installation process and one log is maintained to track the ongoing processing in \<code class="expression">space.vars.SITENAME</code>.
+There are different logs maintained and stored under **<code class="expression">space.vars.OIM</code>'s `<Installation Folder>\AppData\logs`** during the installation process and one log is maintained to track the ongoing processing in \<code class="expression">space.vars.OIM</code>.
 
 | **Log File Name**      | **Description**                                                                                              |
 | ---------------------- |--------------------------------------------------------------------------------------------------------------|
 | DatabaseCreation.log   | Log generated during Database Creation phase of Installation                                                 |
 | Install.log            | Log related to installation steps                                                                            |
-| OpsHubServer.log       | Log generated while <code class="expression">space.vars.SITENAME</code> Installation (like launching URL).   |
-| Service.log            | Log generated while registering <code class="expression">space.vars.SITENAME</code> Application as Service.  |
+| OpsHubServer.log       | Log generated while <code class="expression">space.vars.OIM</code> Installation (like launching URL).   |
+| Service.log            | Log generated while registering <code class="expression">space.vars.OIM</code> Application as Service.  |
 | ConnectionModeConf.log | Log related to the Connection Mode Configuration.                                                            |
-| OpsHub.log             | <code class="expression">space.vars.SITENAME</code> Application log file for all the migrations/integrations |
+| OpsHub.log             | <code class="expression">space.vars.OIM</code> Application log file for all the migrations/integrations |
 | OpsHubTFSService.log   | Common log file for TFS API interaction                                                                      |
 | Integrations           | Folder contains the files for the logs of each migrations/integrations                                       |
 
 {% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
 # Log Settings
 
-System log helps to view logs for tracking backend activity in <code class="expression">space.vars.SITENAME</code>. Usually logs are useful when any failure or unusual behavior is detected in integration. System log can store logs in 5 different levels. Logs will capture information based on logging level set in System log.
+System log helps to view logs for tracking backend activity in <code class="expression">space.vars.OIM</code>. Usually logs are useful when any failure or unusual behavior is detected in integration. System log can store logs in 5 different levels. Logs will capture information based on logging level set in System log.
 
 To navigate to System log
 
@@ -41,7 +41,7 @@ Click on Setting button on System log window to configure log settings as mentio
 
 **Class/Package Name:** The name of the package or class for which logs need to be monitored. To monitor the logs within the 'com.opshub', package 'com.opshub' should be entered here.
 
-**Log Level:** Represents the logging level which determines the amount of information recorded in the log files. By default, only Error logged in <code class="expression">space.vars.SITENAME</code> are logged in logs. The coverage of information increases in ascending order from logging level 1 to 6.
+**Log Level:** Represents the logging level which determines the amount of information recorded in the log files. By default, only Error logged in <code class="expression">space.vars.OIM</code> are logged in logs. The coverage of information increases in ascending order from logging level 1 to 6.
 
 1-FATAL, 2-ERROR, 3-WARN, 4-INFO, 5-DEBUG, 6-TRACE
 
@@ -59,7 +59,7 @@ Click on Setting button on System log window to configure log settings as mentio
 
 **No. of max backup global log files:** Select the maximum number of backup files to store, excluding the current log file used by the UI logs.
 
-**Location to save logs:** Location where log files should be saved, this should be configured if default directory where <code class="expression">space.vars.SITENAME</code> is installed do not have sufficient space to store log files. By default, logs are stored in default directory where <code class="expression">space.vars.SITENAME</code> is installed.
+**Location to save logs:** Location where log files should be saved, this should be configured if default directory where <code class="expression">space.vars.OIM</code> is installed do not have sufficient space to store log files. By default, logs are stored in default directory where <code class="expression">space.vars.OIM</code> is installed.
 
 * If you change the default location to another location, all the older logs will be copied to the updated location, except for Tomcat Server logs. The new logs will be logged at the updated location.
 

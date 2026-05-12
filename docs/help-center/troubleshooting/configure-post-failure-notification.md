@@ -42,7 +42,7 @@ This section shows SMTP Mail Client System Configuration steps in detail.
            “expiresInKey”: "expires_in"
       }
       
-7. **TimeOut** is optional field, it is maximum time for which <code class="expression">space.vars.SITENAME</code> will try to send email, after time out period that specific mail will not be sent.  
+7. **TimeOut** is optional field, it is maximum time for which <code class="expression">space.vars.OIM</code> will try to send email, after time out period that specific mail will not be sent.  
 8. Give email id of recipient of notifications in **To Email-Id**.  
 9. Click **Save** to save the configuration.
 

@@ -34,8 +34,8 @@ To synchronize linked test case steps from **Zephyr Scale** to **ETM**, follow t
 
 1. First, synchronize all Zephyr test cases to **ETM Keywords**.
     * The purpose of the above step is to ensure that all test cases are synchronized to ETM as keywords.  
-    However, <code class="expression">space.vars.SITENAME</code> does not know which test case is linked with another test case in Zephyr.  
-    Therefore, while synchronizing a test case to a Test Script, if <code class="expression">space.vars.SITENAME</code> finds a linked test case, it can be replaced with a keyword.
+    However, <code class="expression">space.vars.OIM</code> does not know which test case is linked with another test case in Zephyr.  
+    Therefore, while synchronizing a test case to a Test Script, if <code class="expression">space.vars.OIM</code> finds a linked test case, it can be replaced with a keyword.
 2. Download the customized workflow from below  
 {% file src="../../assets/Files/Custom Integration Workflow For Shared Step.xml" %}
 Custom Integration Workflow For Shared Step

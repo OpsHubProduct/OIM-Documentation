@@ -1,6 +1,6 @@
 # SSL Certificate Import Instructions
 
-**<code class="expression">space.vars.SITENAME</code>** will automatically import the certificate if you create or edit a system.  
+**<code class="expression">space.vars.OIM</code>** will automatically import the certificate if you create or edit a system.  
 If the certificate does not import automatically during project or entity selection, you may see error messages like:
 
 - `Peer is not authenticated`
@@ -13,7 +13,7 @@ If the certificate is not imported, follow the steps below.
 
 ## Download HTTPS Certificate
 
-To access systems deployed on HTTPS from **<code class="expression">space.vars.SITENAME</code>**, download the HTTPS certificate on the machine where OIM is deployed.
+To access systems deployed on HTTPS from **<code class="expression">space.vars.OIM</code>**, download the HTTPS certificate on the machine where OIM is deployed.
 
 ## Mozilla Firefox
 <p align="center">
@@ -72,7 +72,7 @@ To access systems deployed on HTTPS from **<code class="expression">space.vars.S
 
 ## Import SSL Certificate through Console
 
-Follow the steps below to import the downloaded certificate into **<code class="expression">space.vars.SITENAME</code>**:
+Follow the steps below to import the downloaded certificate into **<code class="expression">space.vars.OIM</code>**:
 
 1. Open **Command Prompt** with Administrator privileges (right-click `cmd.exe` → **Run as Administrator**).  
 2. Navigate to the folder:  
@@ -101,7 +101,7 @@ Follow the steps below to import the downloaded certificate into **<code class="
 **Important Notes**:
 
 - If any hierarchy is present in the certificate, all certificates must be imported.
-- If multiple end system certificates are configured in **<code class="expression">space.vars.SITENAME</code>** and these certificates have different private key passwords, use the [**Certificate Password Encryptor Utility**](../manage/advanced-utilities/certificate-private-key-password-encryptor-utility.md) to encrypt and store the passwords.
+- If multiple end system certificates are configured in **<code class="expression">space.vars.OIM</code>** and these certificates have different private key passwords, use the [**Certificate Password Encryptor Utility**](../manage/advanced-utilities/certificate-private-key-password-encryptor-utility.md) to encrypt and store the passwords.
   - This utility creates a `cacert_config.properties` file containing all alias names and their encrypted passwords.
-  - You can use this file to load the certificates from the keystore in **<code class="expression">space.vars.SITENAME</code>**.
+  - You can use this file to load the certificates from the keystore in **<code class="expression">space.vars.OIM</code>**.
 

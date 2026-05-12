@@ -2,7 +2,7 @@
 
 ## User privileges
 
-- Create one user in Monday.com that is dedicated to <code class="expression">space.vars.SITENAME</code>. This user should not perform any other action from Monday.com’s user interface. This user is referred to as an 'Integration User' in the documentation.
+- Create one user in Monday.com that is dedicated to <code class="expression">space.vars.OIM</code>. This user should not perform any other action from Monday.com’s user interface. This user is referred to as an 'Integration User' in the documentation.
 - For this integration user to perform operations in Monday.com, various permissions are required, as outlined in the [Required Permissions](#required-permissions) section.
 
 ## Required Permissions
@@ -42,7 +42,7 @@
 
 # System Configuration
 
-Before you continue with the integration, you must first configure the Monday.com system in <code class="expression">space.vars.SITENAME</code>.
+Before you continue with the integration, you must first configure the Monday.com system in <code class="expression">space.vars.OIM</code>.
 
 Refer to [System Configuration](../integrate/system-configuration.md) for a steps on how to configure the system.
 Refer to the screenshot below:
@@ -57,7 +57,7 @@ Refer to the screenshot below:
 |------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **System Name**              | Always                    | Provide a unique name for the Monday.com system.                                                                                                                                                                                                                                                   |
 | **API URL**                  | Always                    | The GraphQL API endpoint used. Default value is: https://api.monday.com/v2                                                                                                                                                                                                                         |
-| **User Email**               | Always                    | Provide a dedicated email address of the Monday.com user for <code class="expression">space.vars.SITENAME</code>. This user should not be used for any other operations from system's user interface, and must have the [required permissions](#required-permissions) to access data in Monday.com |
+| **User Email**               | Always                    | Provide a dedicated email address of the Monday.com user for <code class="expression">space.vars.OIM</code>. This user should not be used for any other operations from system's user interface, and must have the [required permissions](#required-permissions) to access data in Monday.com |
 | **API Token**                | Always                    | Provide the API token generated for the user given in the User Email field. Refer to [Access API Token](#get-api-token) section for details.                                                                                                                                                       |
 | **Base URL for Remote Link** | Always                    | Provide a different instance URL of the Monday.com instance. This URL will be used for generating the Remote Link. <br> Note: If "Base URL for Remote Link" is empty, it will use default instance URL to generate remote link if configured on integration.                                       |
 
@@ -84,7 +84,7 @@ For Monday.com as a target system:
 - **World clock**: Accepts a time zone as a value only. Example: "Europe/London"
   - Other time zone values can be referred from: [List of Time Zones of the World](https://utctime.info/timezone/)
 - **Group**: Group is a **mandatory** field for items.
-  - If a group with the specified name does not exist on Monday.com, <code class="expression">space.vars.SITENAME</code> will create and use it.
+  - If a group with the specified name does not exist on Monday.com, <code class="expression">space.vars.OIM</code> will create and use it.
 
 ## Relationship Configuration
 
@@ -126,7 +126,7 @@ If the user wants to sync item and sub items with parent-child links:
 ## Soft Delete Configuration
 
 - When Monday.com is the target system, the **soft delete operation** is performed by **default** in the synchronization of the [Source Delete event](../integrate/source-delete-synchronization.md).
-- After the soft delete operation is performed by <code class="expression">space.vars.SITENAME</code>, the entity will be deleted from Monday.com and it can be found in trash.
+- After the soft delete operation is performed by <code class="expression">space.vars.OIM</code>, the entity will be deleted from Monday.com and it can be found in trash.
 - Configuring Delete Mode:
   - To enable **archive** operation in target, "OH Archive" field shall be mapped with default value "Yes" in the [Delete Mode](../integrate/mapping-configuration.md#delete-mode) mapping.
   - To enable only the **logical delete** operation in the target, "OH Soft Delete" field shall be mapped with the default value "No" in the [Delete Mode](../integrate/mapping-configuration.md#delete-mode) mapping.
@@ -149,7 +149,7 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
 - Set the Criteria Query as per Monday.com’s **Native JSON query format**.
 - Refer to [Monday API Reference](https://developer.monday.com/api-reference/reference/items-page#filtering-items-by-name) for more details on query format.
 - While adding the criteria, user needs to add the internal names of the fields on which the criteria is to be applied. To get the internal field name for the Monday.com columns, refer to the [Get field internal name](#get-internal-names-for-fields) section.
-- Given below are the sample snippets of how the Monday.com queries can be used as criteria query in <code class="expression">space.vars.SITENAME</code>:
+- Given below are the sample snippets of how the Monday.com queries can be used as criteria query in <code class="expression">space.vars.OIM</code>:
 
 ### Sample criteria:
 
@@ -186,7 +186,7 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
     - Reason: Monday.com API unavailability
   - A parent link can be added on a sub item while creation, but a child link cannot be added from already existing items in Monday.com due to unavailability of API.
 - **Comments**:
-  - Replies to comments or edits in Monday.com will be synced as separate comments by <code class="expression">space.vars.SITENAME</code>.
+  - Replies to comments or edits in Monday.com will be synced as separate comments by <code class="expression">space.vars.OIM</code>.
 - **Documents**:
   - Synchronization of documents as entity is not supported.
 

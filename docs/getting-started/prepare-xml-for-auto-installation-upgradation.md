@@ -2,12 +2,12 @@ Here is the process of getting and customizing OpsHubAutoInstall/OpsHubAutoMigra
 
 # <div id="download-xml-file"> 1 - Download XML file </div>  
 
-Below are the sample templates for OpsHubAutoInstall/OpsHubAutoMigrator XML. You need to customize the template downloaded as described below for configuring your own file for installing or migrating <code class="expression">space.vars.SITENAME</code>.
+Below are the sample templates for OpsHubAutoInstall/OpsHubAutoMigrator XML. You need to customize the template downloaded as described below for configuring your own file for installing or migrating <code class="expression">space.vars.OIM</code>.
 
 
-* If you are installing <code class="expression">space.vars.SITENAME</code> then download file [here](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/EdwkmbjVf5RNpjHmsqi8dE4BaSfch1pFlGQhPsixpGnHEw?e=VJclvQ)
+* If you are installing <code class="expression">space.vars.OIM</code> then download file [here](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/EdwkmbjVf5RNpjHmsqi8dE4BaSfch1pFlGQhPsixpGnHEw?e=VJclvQ)
     * To customize the file as per your configuration, follow steps from section [step 3 - Configure Installation path](#id-3-configure-installation-path).
-* If you are upgrading the existing <code class="expression">space.vars.SITENAME</code> then download file [OpsHubAutoMigrator.xml](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/EW_r0v_m5RtPoQp-jGLitoMBfWzZDdB0zdpJxflswG4a2Q).  
+* If you are upgrading the existing <code class="expression">space.vars.OIM</code> then download file [OpsHubAutoMigrator.xml](https://opshubtrial-my.sharepoint.com/:u:/g/personal/support_opshub_com/EW_r0v_m5RtPoQp-jGLitoMBfWzZDdB0zdpJxflswG4a2Q).  
     * To customize the file as per your configuration, follow steps **step 3 and step 4**.  
 
 >**Note**: Refer to [step 2](#id-2-customized-example-of-xml-file-with-mysql-database) for example of an already customized file for **installation with MySQL database**.
@@ -162,27 +162,27 @@ If you are doing advance configuration then only follow the below step.
 ## Enabling advance configuration with HSQL, then follow below steps  
 
 1. Remove comment from panel id "UserInputPanel.advancedOptionsHSQL" and add comment in panel id **"UserInputPanel.advancedOptions"**.  
-2. Find **@ADV_HTTP_CONFIG@** and replace it with "HTTP" if you want to configure <code class="expression">space.vars.SITENAME</code> with HTTP or replace it with "HTTPS" if you want to configure <code class="expression">space.vars.SITENAME</code> with https.  
-   * Make sure you are following step no 8 if you configure <code class="expression">space.vars.SITENAME</code> with https.  
-3. Find **@ADV_ISSERVICE@** and replace with 1 if you want to configure <code class="expression">space.vars.SITENAME</code> as a service else replace it with 0.  
+2. Find **@ADV_HTTP_CONFIG@** and replace it with "HTTP" if you want to configure <code class="expression">space.vars.OIM</code> with HTTP or replace it with "HTTPS" if you want to configure <code class="expression">space.vars.OIM</code> with https.  
+   * Make sure you are following step no 8 if you configure <code class="expression">space.vars.OIM</code> with https.  
+3. Find **@ADV_ISSERVICE@** and replace with 1 if you want to configure <code class="expression">space.vars.OIM</code> as a service else replace it with 0.  
 4. Find **@ADV_SEC_CONFIG@** and replace with 1 if you want to configure advance Security configuration else replace it with 0.  
 
 ## Enabling advance configuration other than HSQL, then follow below steps  
 
 1. Remove comment from id "UserInputPanel.advancedOptions".  
-2. Find **@ADV_HTTP_CONFIG@** and replace it with "HTTP" if you want to configure <code class="expression">space.vars.SITENAME</code> with HTTP or replace it with "HTTPS" if you want to configure <code class="expression">space.vars.SITENAME</code> with https.  
-   * Make sure you are following step no 8 if you configure <code class="expression">space.vars.SITENAME</code> with https.  
-3. Find **@ADV_ISDBFLAG@** and replace with 1 if you will create <code class="expression">space.vars.SITENAME</code> database manually else set it as 0.  
-4. Find **@ADV_OPSHUBDBMAME@** and replace it with your <code class="expression">space.vars.SITENAME</code> database name else remove that entry from the panel.  
-5. Find **@ADV_REPORT_DBNAME@** and replace it with your <code class="expression">space.vars.SITENAME</code> report database name else remove that entry from the panel.  
-6. Find **@ADV_ISSERVICE@** and replace with 1 if you want to configure <code class="expression">space.vars.SITENAME</code> as a service else replace it with 0.  
+2. Find **@ADV_HTTP_CONFIG@** and replace it with "HTTP" if you want to configure <code class="expression">space.vars.OIM</code> with HTTP or replace it with "HTTPS" if you want to configure <code class="expression">space.vars.OIM</code> with https.  
+   * Make sure you are following step no 8 if you configure <code class="expression">space.vars.OIM</code> with https.  
+3. Find **@ADV_ISDBFLAG@** and replace with 1 if you will create <code class="expression">space.vars.OIM</code> database manually else set it as 0.  
+4. Find **@ADV_OPSHUBDBMAME@** and replace it with your <code class="expression">space.vars.OIM</code> database name else remove that entry from the panel.  
+5. Find **@ADV_REPORT_DBNAME@** and replace it with your <code class="expression">space.vars.OIM</code> report database name else remove that entry from the panel.  
+6. Find **@ADV_ISSERVICE@** and replace with 1 if you want to configure <code class="expression">space.vars.OIM</code> as a service else replace it with 0.  
 7. Find **@ADV_SEC_CONFIG@** and replace with 1 if you want to configure advance Security configuration else replace it with 0.  
 
 # <div id="https-configuration"> 8 - HTTPS configuration </div>  
 
 1. Make sure you have configure **@ADV_HTTP_CONFIG@** with "HTTPS" value.  
 2. Find panel with id "UserInputPanel.certInfo" remove comment from parameters.  
-3. Find **@CERT_SERVER_HOST@** and replace it with IP Address/hostname of Machine on which you install <code class="expression">space.vars.SITENAME</code>.  
+3. Find **@CERT_SERVER_HOST@** and replace it with IP Address/hostname of Machine on which you install <code class="expression">space.vars.OIM</code>.  
 4. Find **@CERT_COMP_UNIT@** and replace it with your Organization's Unit like Manufacturing, Sales etc.  
 5. Find **@CERT_COMP_NAME@** and replace it with your Organization Name.  
 6. Find **@CERT_COMP_CITY@** and replace it with your Organization's City.  
@@ -197,4 +197,4 @@ If you are doing advance configuration then only follow the below step.
 3. Find **@SEC_KEYMODE@** replace with "newSecretKey".  
 4. Find **@SEC_KEY_PATH@** and replace with your secret key installation path.  
 5. Find **@SEC_ALGO@** and replace with either "AES-256" or "DES-56 or "DESede-168" as per your need.  
-6. Note do not copy your secret file once its generated after <code class="expression">space.vars.SITENAME</code> installation process.  
+6. Note do not copy your secret file once its generated after <code class="expression">space.vars.OIM</code> installation process.  

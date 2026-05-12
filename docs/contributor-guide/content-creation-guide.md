@@ -372,8 +372,8 @@ To list a new connector in the documentation, follow the steps below. These step
 ## Usage
 - To insert the value of a variable inside your documentation: 
     >   ```html
-    >   <code class="expression">space.vars.SITENAME</code>
+    >   <code class="expression">space.vars.OIM</code>
     >   ```
 - **Rendered Output:**
-  >     This site describes <code class="expression">space.vars.SITENAME</code> features.
+  >     This site describes <code class="expression">space.vars.OIM</code> features.
   (This replaces the variable with its actual value.)

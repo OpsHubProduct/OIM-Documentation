@@ -19,7 +19,7 @@
 
 ## Custom Field
 
-<code class="expression">space.vars.SITENAME</code> requires one special field to be defined on the entity that is being synchronized to Tosca. It must be set up so that <code class="expression">space.vars.SITENAME</code> can track the integration status of each item:
+<code class="expression">space.vars.OIM</code> requires one special field to be defined on the entity that is being synchronized to Tosca. It must be set up so that <code class="expression">space.vars.OIM</code> can track the integration status of each item:
 
 | **Property Name** | **Type** |
 |-------------------|----------|
@@ -29,7 +29,7 @@ For more details on adding custom fields, refer to [Create Custom Property](#cre
 
 ## Dedicated Workspace
 
-* To synchronize data from a specific Tosca workspace, the user needs to create a cloned workspace of the original one for integration through <code class="expression">space.vars.SITENAME</code>.
+* To synchronize data from a specific Tosca workspace, the user needs to create a cloned workspace of the original one for integration through <code class="expression">space.vars.OIM</code>.
 * Ensure that both the original and cloned workspaces point to the same repository.
 * For more details on creating/cloning a workspace, refer to [Create or Clone Workspace](#create-or-clone-workspace) section in Appendix.
 
@@ -122,16 +122,16 @@ Refer to the following screenshot below with **Authentication Type** as Client C
 | **System Name** | Always | Provide a unique name to Tosca system                                                                                                                                                                                                                                                           |
 | **Instance URL** | Always | Provide URL for Tosca instance. Example: <hostname>/rest/toscacommander                                                                                                                                                                                                                         |
 | **Authentication Type** | Always | Select the authentication type you would like to use for communicating with Tosca API (Supported Authentication types : Basic Authentication, Basic Authentication With Client Credentials, or Personal Access Token Authentication)                                                                                                                                      |
-| **Username** | Authentication type is Basic authentication | Provide username of the dedicated user for <code class="expression">space.vars.SITENAME</code>. Ensure that the dedicated user has the necessary permissions                                                                                                                                    |
-| **Password** | Authentication type is Basic authentication | Provide password of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                  |
-| **client id** | Authentication type is Client credential based authentication | Provide client ID of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                                 |
-| **client secret** | Authentication type is Client credential based authentication | Provide client secret of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                             |
-| **personal access token** | Authentication type is PAT based authentication | Provide personal access token of the dedicated user for <code class="expression">space.vars.SITENAME</code>                                                                                                                                                                                     |
+| **Username** | Authentication type is Basic authentication | Provide username of the dedicated user for <code class="expression">space.vars.OIM</code>. Ensure that the dedicated user has the necessary permissions                                                                                                                                    |
+| **Password** | Authentication type is Basic authentication | Provide password of the dedicated user for <code class="expression">space.vars.OIM</code>                                                                                                                                                                                                  |
+| **client id** | Authentication type is Client credential based authentication | Provide client ID of the dedicated user for <code class="expression">space.vars.OIM</code>                                                                                                                                                                                                 |
+| **client secret** | Authentication type is Client credential based authentication | Provide client secret of the dedicated user for <code class="expression">space.vars.OIM</code>                                                                                                                                                                                             |
+| **personal access token** | Authentication type is PAT based authentication | Provide personal access token of the dedicated user for <code class="expression">space.vars.OIM</code>                                                                                                                                                                                     |
 | **Date Format For API** | Always | Provide the date format of Tosca instance in which date appears in API response for CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For API](#select-date-format-for-api) section in Appendix for more information)                                                               |
 | **Date Format For UI** | Always | Provide date format of Tosca instance in which the date appears in CreatedAt And ModifiedAt Fields (Refer to [Select Date Format For UI](#select-date-format-for-ui) section in Appendix for more information)                                                                                  |
 | **Instance Time Zone** | Always | Provide time zone of Tosca instance                                                                                                                                                                                                                                                             |
 | **Metadata Details** | Always | This data is pre-populated in JSON format based on system metadata (entity type, field names, etc.). You can edit entity types based on your Tosca instance's details for system metadata. Refer to [Understanding JSON Input](#understanding-json-input) section for format and JSON form details |
-| **Workspace Refresh Time** | Always | Enter the time in seconds for the workspace refresh interval. <code class="expression">space.vars.SITENAME</code> will update the cloned workspace according to this interval.                                                                                                                  |
+| **Workspace Refresh Time** | Always | Enter the time in seconds for the workspace refresh interval. <code class="expression">space.vars.OIM</code> will update the cloned workspace according to this interval.                                                                                                                  |
 
 ## Understanding JSON Input
 

@@ -133,7 +133,7 @@ Following are the limitations and behaviors specific to the individual entities 
 
 * REST API–based synchronization is not supported for on-premises instances of Azure DevOps Server prior to version 2020.
 * Test Run and Test Result will migrate current state. Any changes in the target system after synchronization may show inconsistency in data in both end points.
-* Following Test Result and Test Run will not synchronize (these Run and Result are logged in <code class="expression">space.vars.SITENAME</code> logs).
+* Following Test Result and Test Run will not synchronize (these Run and Result are logged in <code class="expression">visitor.claims.unsigned.product</code> logs).
   * Run and Result created with Test Suite not existing in the source.
   * Run and Result created with Test Case not associated with the Test Suite while synchronization was performed.
   * Any Run and Result created with Test Case/Configuration, associated with Test Suite after synchronization.

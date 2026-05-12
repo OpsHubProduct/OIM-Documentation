@@ -2,15 +2,15 @@
 
 ## User privileges
 
-* Create one user in Aha! that is dedicated for <code class="expression">space.vars.SITENAME</code>. This user shouldn't perform any other action from Aha!'s user interface. This user is referred as 'Integration User' in the document.
+* Create one user in Aha! that is dedicated for <code class="expression">space.vars.OIM</code>. This user shouldn't perform any other action from Aha!'s user interface. This user is referred as 'Integration User' in the document.
   * Please refer to [Add User](aha.md#add-user) section to create a user in Aha!.
 * To synchronize entities to and from any systems to Aha!, Integration User must have **Contributor** permission at project level and **Customizations** role  [which needs be selected from project's Administrator roles]. Refer to [Grant permissions to Aha! user](aha.md#grant-permissions-to-aha-user) section for step-wise details on how to grant permissions to a Aha! user.
 
 ## API Rate Limiting
-* Due to Aha! rate limit issues, for more details, refer to the [API Rate Limitation in Aha!](aha.md#api-rate-limitation-in-aha) section,  it is recommended to use the Fetch Mapped Data Only feature  (available as an <code class="expression">space.vars.SITENAME</code> add-on) to optimize the API calls. Contact your sales or support representative to enable it.
+* Due to Aha! rate limit issues, for more details, refer to the [API Rate Limitation in Aha!](aha.md#api-rate-limitation-in-aha) section,  it is recommended to use the Fetch Mapped Data Only feature  (available as an <code class="expression">space.vars.OIM</code> add-on) to optimize the API calls. Contact your sales or support representative to enable it.
 # System Configuration
 
-* As you kickstart with the integration, you must first configure Aha! system in <code class="expression">space.vars.SITENAME</code>.
+* As you kickstart with the integration, you must first configure Aha! system in <code class="expression">space.vars.OIM</code>.
 * Click [System Configuration](../integrate/system-configuration.md) to learn the step-by-step process to configure a system.
 
 Refer to the following screenshot for reference:
@@ -79,7 +79,7 @@ Click [Mapping Configuration](../integrate/mapping-configuration.md) to learn th
 
 In Aha!, entity type selection in mapping configuration depends on the project/product selection. For more details, please refer to [Project Selection](aha.md#project-selection) section.
 
-> **Note**: In <code class="expression">space.vars.SITENAME</code>, for the sync of Parking lots, the Release entity needs to be seleted at mapping level {as Parking lots are considered as Release by <code class="expression">space.vars.SITENAME</code> }.
+> **Note**: In <code class="expression">space.vars.OIM</code>, for the sync of Parking lots, the Release entity needs to be seleted at mapping level {as Parking lots are considered as Release by <code class="expression">space.vars.OIM</code> }.
 
 ## Comments Configuration
 
@@ -127,7 +127,7 @@ In Aha!, the entity type selection in integration configuration depends on the p
 ## Criteria Configuration
 
 If the user wants to specify conditions for synchronizing an entity from Aha! as source system to the other system, the criteria must be configured. Navigate to Criteria Configuration section on [Integration Configuration](../integrate/integration-configuration.md) page to learn in detail about Criteria Configuration. 
-Set the **Query** as per Aha! encoded query format. Criteria is only applicable to given four fields. Given below are the sample snippets of how the Aha! queries can be used as criteria query in <code class="expression">space.vars.SITENAME</code>:
+Set the **Query** as per Aha! encoded query format. Criteria is only applicable to given four fields. Given below are the sample snippets of how the Aha! queries can be used as criteria query in <code class="expression">space.vars.OIM</code>:
 
 **Criteria samples:**
 
@@ -154,8 +154,8 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
 # Known Behaviour
 
 * From Aha! UI, issue type can be changed for entity. Currently, such conversions will create a new entity in the target and the previous one will be orphaned.
-* From Aha! UI, the entity can be deleted. However, for Aha! as the source system, the deleted entity will not sync by <code class="expression">space.vars.SITENAME</code>. The corresponding target entity will remain orphan in target system on Aha! entity deletion. Also, Aha! entity deletion is not supported by <code class="expression">space.vars.SITENAME</code>, when Aha! is the target system.
-* To update the "Progress" field through synchronization, the progress source must be set to "manual" (from Aha! UI or field mapping of <code class="expression">space.vars.SITENAME</code>) due to Aha! API behavior.
+* From Aha! UI, the entity can be deleted. However, for Aha! as the source system, the deleted entity will not sync by <code class="expression">space.vars.OIM</code>. The corresponding target entity will remain orphan in target system on Aha! entity deletion. Also, Aha! entity deletion is not supported by <code class="expression">space.vars.OIM</code>, when Aha! is the target system.
+* To update the "Progress" field through synchronization, the progress source must be set to "manual" (from Aha! UI or field mapping of <code class="expression">space.vars.OIM</code>) due to Aha! API behavior.
 * Goals and Initiative System fields will be available as lookup fields in the field mapping, even though they are not available in Aha! Develop UI.
   * **The above fields are available in Aha! Develop UI when the Aha! Develop instance is combined with Aha! Roadmap.**
   * **Note** The above fields will be deprecated in future releases and replaced with link-based support.
@@ -184,10 +184,10 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
 
 ## API Rate Limitation in Aha!
 
-* Aha! has limitation on API access per minute for a single user. Due to this, <code class="expression">space.vars.SITENAME</code> can access Aha! API within a limit. When the limit exceeds, the Aha! API stops responding for certain amount of time, and no API calls can be done by <code class="expression">space.vars.SITENAME</code> during that time until Aha! resets the limit for that user.
+* Aha! has limitation on API access per minute for a single user. Due to this, <code class="expression">space.vars.OIM</code> can access Aha! API within a limit. When the limit exceeds, the Aha! API stops responding for certain amount of time, and no API calls can be done by <code class="expression">space.vars.OIM</code> during that time until Aha! resets the limit for that user.
   * **Up to 300 requests per minute and 20 requests per second are allowed in Aha!.**
 * To address this issue, wait time (given by Aha! API) will be considered for entity synchronization. Thus, there might be some delay in synchronization in case of API rate limit issue.
-* **Note:** To avoid hitting rate limits, do not set the integration schedule to run every minute. Instead, adjust the cache timeout in  <code class="expression">space.vars.SITENAME</code>(for example, 24 hours) and the integration schedule interval (for example, 15 minutes in production) to ensure smooth operation without exceeding rate limit
+* **Note:** To avoid hitting rate limits, do not set the integration schedule to run every minute. Instead, adjust the cache timeout in  <code class="expression">space.vars.OIM</code>(for example, 24 hours) and the integration schedule interval (for example, 15 minutes in production) to ensure smooth operation without exceeding rate limit
 * **Recommendation:** To reduce the number of API calls, consider using the Fetch Mapped Data Only feature, which is available as an additional license add-on. To enable this feature, please contact your sales or support representative.
 
 # Known Limitations
@@ -218,8 +218,8 @@ Set the **Query** as per Aha! encoded query format. Criteria is only applicable 
   * For synchronizing updates of **Proxy votes** and **Submission portal details** fields for Idea entities, an additional field update is required. This is because changes to these fields do not update the entity's last modified time.
   * **Custom Key Result** field is treated as a **text** field due to API unavailability.
   * Attachment field: If Aha! is the target system and the attachment mapping is configured to use field-type attachments, at least one attachment should be present in the corresponding field.
-* For Aha! as the target system, the fields below will not unset via <code class="expression">space.vars.SITENAME</code> due to Aha!'s API limitation: **Effort, Value, Duration Source, Progress Source, Status, Type, Complete by date (internal), Round date to, Complete by date (external), Presented, and Description.**
-* **To-dos** present at user level will not synced by <code class="expression">space.vars.SITENAME</code>. **To-dos** present in other entities can only be synchronized.
+* For Aha! as the target system, the fields below will not unset via <code class="expression">space.vars.OIM</code> due to Aha!'s API limitation: **Effort, Value, Duration Source, Progress Source, Status, Type, Complete by date (internal), Round date to, Complete by date (external), Presented, and Description.**
+* **To-dos** present at user level will not synced by <code class="expression">space.vars.OIM</code>. **To-dos** present in other entities can only be synchronized.
 
 
 ## Troubleshooting Guide
@@ -357,7 +357,7 @@ To synchronize **scorecard parameter values from Aha**, additional configuration
        "historyEnabled": false
     }
    ```
-3. The display name for the scorecard parameter field is configurable. The value specified as the display name will be reflected in the <code class="expression">space.vars.SITENAME</code> mapping configuration screen.
+3. The display name for the scorecard parameter field is configurable. The value specified as the display name will be reflected in the <code class="expression">space.vars.OIM</code> mapping configuration screen.
 4. The last three parameters in the JSON configuration remain consistent across all scorecard parameters.
 5. The \<Parameter name> specified in the internalName field corresponds to the name displayed in the UI for the respective scorecard. Refer to screenshot below for illustration.
    

@@ -333,7 +333,7 @@ For example, there are two main integrations:
 
 # Appendix
 ## How to know System ID
-* Log in to <code class="expression">space.vars.SITENAME</code> (`<OIM URL>//OIM`).
+* Log in to <code class="expression">space.vars.OIM</code> (`<OIM URL>//OIM`).
 * Navigate to Configure Systems Page.
     
  <p align="center">

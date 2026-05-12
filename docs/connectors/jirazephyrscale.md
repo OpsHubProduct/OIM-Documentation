@@ -8,7 +8,7 @@
 
 # System Configuration
 
-Before you start with the integration configuration, you must first set up the [Jira system](jira.md#system-configuration) in <code class="expression">space.vars.SITENAME</code>.
+Before you start with the integration configuration, you must first set up the [Jira system](jira.md#system-configuration) in <code class="expression">space.vars.OIM</code>.
 
 Click [System Configuration](../integrate/system-configuration.md) to learn the step-by-step process to configure a system.
 
@@ -35,10 +35,10 @@ Refer the screenshot given below for reference.
 
 # Mapping Configuration
 
-* If the Folder entity is configured in <code class="expression">space.vars.SITENAME</code> as a separate entity, map the Folder in a link relationship with Test Plan, Test Case, and Test Cycle entities.  
+* If the Folder entity is configured in <code class="expression">space.vars.OIM</code> as a separate entity, map the Folder in a link relationship with Test Plan, Test Case, and Test Cycle entities.  
   * The **folderType** field is mandatory in folder synchronization.  
 * If the Folder entity is not configured separately, use the check-and-create functionality with the **OH_Folder_path** field.  
-  * <code class="expression">space.vars.SITENAME</code> uses the "/" character to separate folders in a folder path. If the source system uses a different path separator, users must create advanced mapping to convert that separator to the "/" string.  
+  * <code class="expression">space.vars.OIM</code> uses the "/" character to separate folders in a folder path. If the source system uses a different path separator, users must create advanced mapping to convert that separator to the "/" string.  
   * For example: if the Source system gives "\\" as path separator, then advance XSLT for this field will be as follows:
 
 ```xml
@@ -49,7 +49,7 @@ Refer the screenshot given below for reference.
 </OH_Folder_Path>
 ```
 
-* <code class="expression">space.vars.SITENAME</code> supports synchronization of test steps through the field '''OH_Test_Steps'''.
+* <code class="expression">space.vars.OIM</code> supports synchronization of test steps through the field '''OH_Test_Steps'''.
 * Custom field of test steps will be synced with additional fields as bellow:
 
 ```xml
@@ -184,15 +184,15 @@ Refer the screenshot given below for reference.
 # Integration Configuration
 
 ## Criteria Configuration & Target Lookup
-* <code class="expression">space.vars.SITENAME</code> supports criteria and target lookups for the entity types Test Case, Test Cycle, and Test Plan via a private API.  
+* <code class="expression">space.vars.OIM</code> supports criteria and target lookups for the entity types Test Case, Test Cycle, and Test Plan via a private API.  
   * The criteria query can be obtained by inspecting the browser’s developer tools (Inspect tab).
-* <code class="expression">space.vars.SITENAME</code> supports criteria and target lookups for the Test Folder entity type on only one **folderType** field.
+* <code class="expression">space.vars.OIM</code> supports criteria and target lookups for the Test Folder entity type on only one **folderType** field.
 
 # Known Behavior/ Limitations
 
 * Polling for all entity types requires a full scan of all records; therefore, choose the polling frequency judiciously. Refer [Best Practices for Polling Frequency](../integrate/best-practises.md#polling-frequency-scheduling)
 * Shared Step is not supported.
-* The following limitations exist in <code class="expression">space.vars.SITENAME</code> due to API restrictions:
+* The following limitations exist in <code class="expression">space.vars.OIM</code> due to API restrictions:
   * Attachment write support is not available due to API limitation.
   * Delete and Archive functionality is not supported.
   * For Test Execution,  

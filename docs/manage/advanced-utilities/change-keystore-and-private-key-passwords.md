@@ -1,9 +1,9 @@
-In case of HTTPS deployment of **<code class="expression">space.vars.SITENAME</code>**, if the user wants to change the existing keystore or private key passwords for **<code class="expression">space.vars.SITENAME</code>** certificate, this utility can be used to change and update the encrypted passwords in **<code class="expression">space.vars.SITENAME</code>** application.
+In case of HTTPS deployment of **<code class="expression">space.vars.OIM</code>**, if the user wants to change the existing keystore or private key passwords for **<code class="expression">space.vars.OIM</code>** certificate, this utility can be used to change and update the encrypted passwords in **<code class="expression">space.vars.OIM</code>** application.
 
-Follow the steps given below for updating the encrypted keystore and private key passwords in **<code class="expression">space.vars.SITENAME</code>**:
+Follow the steps given below for updating the encrypted keystore and private key passwords in **<code class="expression">space.vars.OIM</code>**:
 
 * Stop OpsHub Server Service before execution of this utility.
-* Navigate to `<code class="expression">space.vars.SITENAME</code> Installation Folder>/Other_Resources/Resources`.
+* Navigate to `<code class="expression">space.vars.OIM</code> Installation Folder>/Other_Resources/Resources`.
 * Unzip `"OpsHub Keystore Password Encryptor Utility.zip"`.
 * Run `KeystorePasswordEncryptorUtility.bat` for Windows system. In case of Linux system, run `KeystorePasswordEncryptorUtility.sh`.
 * Enter the path for OpsHub Installation Directory.

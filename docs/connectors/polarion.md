@@ -9,11 +9,11 @@
   - Refer [Polarion API Reference](https://docs.sw.siemens.com/en-US/doc/230235217/PL20241023686685479.polarion_help_sc.xid2134849/xid2137943) for more details.
 
 ## User Privileges
-* Create a user in Polarion that is dedicated for <code class="expression">space.vars.SITENAME</code>. This user shouldn't perform any other action from Polarion's user interface.
+* Create a user in Polarion that is dedicated for <code class="expression">space.vars.OIM</code>. This user shouldn't perform any other action from Polarion's user interface.
 * Following are the user privileges required:
 1. The user must have access to the default SVN repository:
    - To grant user access to the default repository, refer [Grant Permission To Access Repository](#grant-permission-to-access-repository).
-2. The user must have the role of '**project_admin**' in the project which they are going to configure in <code class="expression">space.vars.SITENAME</code>.
+2. The user must have the role of '**project_admin**' in the project which they are going to configure in <code class="expression">space.vars.OIM</code>.
    - To assign this role, refer [Assign Role To User](#assign-role-to-user).
 3. The user must have the following minimal permissions:
 
@@ -26,7 +26,7 @@
 
 # System Configuration
 
-Before you continue with the integration, you must first configure the Polarion system in <code class="expression">space.vars.SITENAME</code>.
+Before you continue with the integration, you must first configure the Polarion system in <code class="expression">space.vars.OIM</code>.
 
 Refer to [System Configuration](../integrate/system-configuration.md) for steps on how to configure the system.
 Refer to the screenshot below:
@@ -75,7 +75,7 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
   - Refer to [Polarion API Reference](https://developer.siemens.com/polarion/basic-concepts.html#querying) for more details on query format.
 - While adding the criteria, user needs to add the internal names of the fields on which the criteria has to be applied.
   - Refer to [Access Field Internal Name](#access-field-internal-name) section for details.
-- Given below are the sample snippets of how the Polarion queries can be used as criteria query in <code class="expression">space.vars.SITENAME</code>:
+- Given below are the sample snippets of how the Polarion queries can be used as criteria query in <code class="expression">space.vars.OIM</code>:
 
 ### Sample criteria:
 
@@ -106,7 +106,7 @@ Navigate to [Criteria Configuration](../integrate/integration-configuration.md/#
 
 - History based synchronization is not supported due to API unavailability.
 - **Comments**:
-  - Replies to comments or edits in Polarion will be synced as separate comments by <code class="expression">space.vars.SITENAME</code>.
+  - Replies to comments or edits in Polarion will be synced as separate comments by <code class="expression">space.vars.OIM</code>.
 - **Project Groups**:
   - Project Groups are not visible in the Project mapping list due to API limitations; projects are listed individually.
 - **Test cases and Unit test cases in Work item**:
@@ -199,7 +199,7 @@ To get the API token for a user:
     </p>
 
 Note:
-- It is recommended to regenerate API token before it expires, to avoid unexpected processing failures in <code class="expression">space.vars.SITENAME</code>.
+- It is recommended to regenerate API token before it expires, to avoid unexpected processing failures in <code class="expression">space.vars.OIM</code>.
 
 ## Access Field Internal Name
 

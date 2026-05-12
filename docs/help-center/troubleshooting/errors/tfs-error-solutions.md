@@ -4,6 +4,8 @@
 
 [OH-TFS/AzureDevOps-0102: Unable to load projects from the server. Error received from the server: TF30063: You are not authorized to access `<TFS_Collection_URL>` Collection. Please check whether the integration user has permission for accessing at least one project in a collection.](tfs/oh-tfs-azure-devops-0102.md)
 
+{% if visitor.claims.unsigned.product === "OM4ADO" %}  
+
 [OH-TFS/AzureDevOps-0182: Cannot reach TFSService. Please check if TFSService is running and `<TFS_SERVICE_URL>` is valid URL for TFSService.](tfs/oh-tfs-azure-devops-0182.md)
 
 [OH-TFS/AzureDevOps-0169: Create or Update entity of type `<Entity_Type>` for `<Project_Name>` project is failing. Error received from the server: Failed to create/update entity because : InvalidEmpty for field [`<Field>`] value [`<Value>`].](tfs/oh-tfs-azure-devops-0169.md)
@@ -12,5 +14,5 @@
 
 [OH-TFS/AzureDevOps-1119: Error occurred while creating/updating a dashboard. You can either give Owner field value or Owned by team field value for creating a dashboard. Please update the mapping configured. Owner value is `<owner name>` and Owned by team value is `<team name>`.](tfs/oh-tfs-azure-devops-1119.md)
 
-
+{% endif %}
 

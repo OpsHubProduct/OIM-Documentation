@@ -13,7 +13,7 @@
 * To sync the stages' approvals, the following points must be considered:
   * Three text types of the fields need to be created for stage identifier(in YML file of pipeline for particular stage), approval status, approval comments in source system, from which the data will be synced to Build entity.
   * To approve the build stage, user needs to give the above three values in the above fields.
-  * Map the 'None' field of the source system to the OH_StageApproval field of build entity in <code class="expression">space.vars.SITENAME</code>. The following advance mapping should be utilized for mapping the 'None' field to OH_StageApproval:
+  * Map the 'None' field of the source system to the OH_StageApproval field of build entity in <code class="expression">visitor.claims.unsigned.product</code>. The following advance mapping should be utilized for mapping the 'None' field to OH_StageApproval:
     
 ```xml
 <oh_stageApproval xmlns:xsl="http://www.w3.org/1999/XSL/Transform">

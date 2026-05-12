@@ -1,8 +1,8 @@
-In case deployment of **<code class="expression">space.vars.SITENAME</code>**, if the user wants to encrypt the password for **<code class="expression">space.vars.SITENAME</code>** , this utility can be used.
+In case deployment of **<code class="expression">space.vars.OIM</code>**, if the user wants to encrypt the password for **<code class="expression">space.vars.OIM</code>** , this utility can be used.
 
-Follow the steps given below for encrypting password in **<code class="expression">space.vars.SITENAME</code>**:
+Follow the steps given below for encrypting password in **<code class="expression">space.vars.OIM</code>**:
 
-* Navigate to `<code class="expression">space.vars.SITENAME</code> Installation Folder>/Other_Resources/Resources`.
+* Navigate to `<code class="expression">space.vars.OIM</code> Installation Folder>/Other_Resources/Resources`.
 * Unzip `"Encrypt Any Password To Use Later.zip"`.
 * Run `EncryptPasswordToUseLaterUtility.bat` for Windows system. In case of Linux system, run `EncryptPasswordToUseLaterUtility.sh`.
 * Enter the path for OpsHub Installation Directory.

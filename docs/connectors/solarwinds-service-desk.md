@@ -1,6 +1,6 @@
 # Prerequisites
 ## User Privileges
-- Create one user in SolarWinds Service Desk that is dedicated to <code class="expression">space.vars.SITENAME</code>. This user should not perform any other action from SolarWinds Service Desk's user interface. This user is referred to as an 'Integration User' in the documentation.
+- Create one user in SolarWinds Service Desk that is dedicated to <code class="expression">space.vars.OIM</code>. This user should not perform any other action from SolarWinds Service Desk's user interface. This user is referred to as an 'Integration User' in the documentation.
 - For this integration user to perform operations in SolarWinds Service Desk, various permissions are required, as outlined in the [Required Permissions](#required-permissions) section.
 ## Required Permissions
 
@@ -10,9 +10,9 @@ The following permissions should be granted to the integration user:
 |---------------------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | **Read**            | Read access for entity types  | Read permission must be granted for the specific entity types that need to be synchronized (Incidents and Changes).                           |
 | **Read**            | Read access for Users         | Required to read user-related details such as user name, user email for the user fields like reporter, assignee etc. during synchronization.  |
-| **Manage**           | Write access for entity types | Allows the connector to create, update, and delete records for supported entity types by <code class="expression">space.vars.SITENAME</code>. |
+| **Manage**           | Write access for entity types | Allows the connector to create, update, and delete records for supported entity types by <code class="expression">space.vars.OIM</code>. |
 | **Manage**           | Write access for Users        | Required to read user-related details such as user name, user email for the user fields like reporter, assignee etc. during synchronization.  |
-| **Setup**           | Setup (with All option)       | Required to the user who is generating  API token of Integration User for <code class="expression">space.vars.SITENAME</code>.                |
+| **Setup**           | Setup (with All option)       | Required to the user who is generating  API token of Integration User for <code class="expression">space.vars.OIM</code>.                |
 
 ## SolarWinds Service Desk Edition Guidelines
 
@@ -20,12 +20,12 @@ The following permissions should be granted to the integration user:
     - **Reason**: The API rate limit depends on your subscription plan:
         - **Advanced Plan**: 1,000 API calls user/minute.
         - **Premier Plan**: 1,500 API calls user/minute.
-- For optimal performance, set the item sync schedule to **15 minutes or more** at <code class="expression">space.vars.SITENAME</code>.
+- For optimal performance, set the item sync schedule to **15 minutes or more** at <code class="expression">space.vars.OIM</code>.
     - **Reason**: Shorter sync intervals may cause sync delays due to API rate limiting, especially when synchronizing a large number of entities.
 
 # System Configuration
 
-Before you continue with the integration, you must first configure the SolarWinds Service Desk system in <code class="expression">space.vars.SITENAME</code>.
+Before you continue with the integration, you must first configure the SolarWinds Service Desk system in <code class="expression">space.vars.OIM</code>.
 
 Refer to [System Configuration](../integrate/system-configuration.md) for steps on how to configure the system.
 Refer to the screenshot below:
@@ -116,7 +116,7 @@ Refer to [Integration Configuration](../integrate/integration-configuration.md) 
 - If the user wants to specify conditions for synchronizing an entity from SolarWinds Service Desk as source system to the other system, the criteria must be configured. Navigate to Criteria Configuration section on [Criteria Configuration](../integrate/integration-configuration.md/#criteria-configuration) page to learn in detail about Criteria Configuration.
 
 
-- Set the **Query** as per <code class="expression">space.vars.SITENAME</code>'s Native query format.Refer to [OpsHub Query Format](../integrate/opshub-query-format.md) for step-by-step instructions. While adding the criteria, user needs to add the internal names of the fields on which the criteria have to be applied.
+- Set the **Query** as per <code class="expression">space.vars.OIM</code>'s Native query format.Refer to [OpsHub Query Format](../integrate/opshub-query-format.md) for step-by-step instructions. While adding the criteria, user needs to add the internal names of the fields on which the criteria have to be applied.
 
 
 ### Sample criteria:
@@ -216,7 +216,7 @@ Below are the steps to find the internal Name or ID for a specific field value:
 6. Here in the above screenshot, **department** is the internal field name for the selected field **Department** and **1117661** is the internal field value for the lookup field value  **Engineering**.
 ## Metadata JSON Format
 
-When configuring SolarWinds Service Desk in <code class="expression">space.vars.SITENAME</code>, user must provide a JSON structure for system fields. For Lookup-type fields, as their values cannot be retrieved via API therefore this fields must be manually defined here, to ensure proper integration.To get the internal field names and the internal ids for the lookup fields refer [Get Internal Name and ID For Fields](#get-internal-name-and-id-for-fields) section. The Sample JSON structure provided as below:
+When configuring SolarWinds Service Desk in <code class="expression">space.vars.OIM</code>, user must provide a JSON structure for system fields. For Lookup-type fields, as their values cannot be retrieved via API therefore this fields must be manually defined here, to ensure proper integration.To get the internal field names and the internal ids for the lookup fields refer [Get Internal Name and ID For Fields](#get-internal-name-and-id-for-fields) section. The Sample JSON structure provided as below:
 
 ```json
 {

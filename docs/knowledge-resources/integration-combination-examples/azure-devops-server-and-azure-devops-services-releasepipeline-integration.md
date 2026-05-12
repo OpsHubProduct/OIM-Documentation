@@ -1,7 +1,7 @@
 # Overview
 Synchronizing Release Pipelines from Azure DevOps Server (TFS) to Azure DevOps Services (ADO) enables teams to modernize their delivery workflows and leverage cloud-based CI/CD capabilities. This integration ensures that Release Pipeline configurations, references, and dependent artifacts are consistently transferred to the target ADO project—eliminating manual re-creation, reducing configuration errors, and accelerating release readiness.
 
-**<code class="expression">space.vars.SITENAME</code>** provides bidirectional integration between Azure DevOps Server (TFS) and Azure DevOps Services (ADO).
+**<code class="expression">space.vars.OIM</code>** provides bidirectional integration between Azure DevOps Server (TFS) and Azure DevOps Services (ADO).
 
 This page covers the bidirectional integration of Release Pipelines and their dependent artifacts.
 
@@ -12,13 +12,13 @@ This page covers the bidirectional integration of Release Pipelines and their de
 
 
 # Integration Configuration
-* Log in into **<code class="expression">space.vars.SITENAME</code>**. The default credentials are:  
+* Log in into **<code class="expression">space.vars.OIM</code>**. The default credentials are:  
   **User Name:** admin, **Password:** password
 <p align="center">
   <img src="../../assets/Getting_Started_With_Application_Image_1G_a.png" width="700"/>
 </p>  
 
->**Note**: **Proxy parameters:** Before you proceed with the configuration, check whether the system is behind a proxy server. If yes, then set up [proxy parameters](../../manage/administrator/proxy-setting.md) in **<code class="expression">space.vars.SITENAME</code>**.
+>**Note**: **Proxy parameters:** Before you proceed with the configuration, check whether the system is behind a proxy server. If yes, then set up [proxy parameters](../../manage/administrator/proxy-setting.md) in **<code class="expression">space.vars.OIM</code>**.
 
 * Since Release Pipeline may reference dependent artifacts such as **Agent Pools**, **Service Connections**, **Task Groups** and **Variable Groups**, we will configure mappings for these dependent artifacts as well, along with the Release Pipeline.
 
@@ -60,7 +60,7 @@ This page covers the bidirectional integration of Release Pipelines and their de
   <img src="../../assets/TFS_ADO4.png" width="1100"/>
 </p>  
 
-* **<code class="expression">space.vars.SITENAME</code>** fetches entities available in both systems and shows them in entities list for both systems. From the **Select Entities to Sync** section, select the relevant entities for both systems.  
+* **<code class="expression">space.vars.OIM</code>** fetches entities available in both systems and shows them in entities list for both systems. From the **Select Entities to Sync** section, select the relevant entities for both systems.  
   Example: **Release Pipeline** from both Azure DevOps Server (TFS) and Azure DevOps Service (ADO).
 
 * The next step is to define the fields that need to be integrated for every entity mapped. Once the entities are selected, click the plus icon [+] adjacent to **Select fields to be Synced** to create the mapping between these two entities. You will now be navigated to Mapping Configuration screen.
@@ -75,7 +75,7 @@ This page covers the bidirectional integration of Release Pipelines and their de
   In this case: **Release Pipeline** from Azure DevOps Server (TFS) and Azure DevOps Service (ADO) . Create a Mapping for this entity as well.
 * Following details are automatically populated in the Mapping section: **Systems, Projects, Entities, and Mapping Name**. If you wish, change the name for the mapping in the **Name** field.
 * Now, either click **Create from Scratch** to define the mapping from scratch or click **Auto Map** to automatically map all fields with the same name.
-* Even if you select the **Auto Map**, **<code class="expression">space.vars.SITENAME</code>** will allow you to remove or add more fields before saving mapping.
+* Even if you select the **Auto Map**, **<code class="expression">space.vars.OIM</code>** will allow you to remove or add more fields before saving mapping.
 * Since a Release Pipeline may reference dependent artifacts, ensure that **Agent Pool**, **Service Connection**, **Task Group** and **Variable Group** are mapped as reference fields.
 * You can also import a mapping. Refer to [Release Pipeline field mapping](release-pipeline-field-mapping.xml) to import the default field mapping from Azure DevOps Services to Azure DevOps Server for the Release Pipeline entity.
   * You may further modify the imported mapping based on your use case.

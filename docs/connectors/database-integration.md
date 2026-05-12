@@ -6,11 +6,11 @@
 - This user should not be used to perform any other operations on the database.
 
 ## When database integration is required to communicate to a new database server
-If a database system is needed to be integrated with a database type other than the type of database on which <code class="expression">space.vars.SITENAME</code> is deployed, follow the steps given below:
+If a database system is needed to be integrated with a database type other than the type of database on which <code class="expression">space.vars.OIM</code> is deployed, follow the steps given below:
 - Download the required database driver on which new database connection is to be created. Refer [this](Installation_Prerequisites#Download-Database-Connector-jar) to get the link of database connector jar.
-- Stop the <code class="expression">space.vars.SITENAME</code>.
+- Stop the <code class="expression">space.vars.OIM</code>.
 - Copy the downloaded driver into `Opshub installation directory]\OpsHubServer\lib` folder.
-- Start <code class="expression">space.vars.SITENAME</code>.
+- Start <code class="expression">space.vars.OIM</code>.
 
 ## Fields requirement
 - **Primary-key**: There must be a primary key field or a field which doesn't allow duplicate or null values.
@@ -19,7 +19,7 @@ If a database system is needed to be integrated with a database type other than 
 - **Created/Updated By (Optional)**: A column to store the username of the person who created or last updated the record.
 - **OH_Last_Update (Optional)**: A text column to store required information for the recovery.
 
-> **Note**: The columns storing "created/updated by" and "OH_Last_Update" are required by <code class="expression">space.vars.SITENAME</code> to ensure smooth data synchronization, especially if something goes wrong during the sync process.  
+> **Note**: The columns storing "created/updated by" and "OH_Last_Update" are required by <code class="expression">space.vars.OIM</code> to ensure smooth data synchronization, especially if something goes wrong during the sync process.  
 > Without these columns, during the synchronization, all record field values are compared with the existing values, which is inefficient.
 
 # System Configuration
@@ -104,7 +104,7 @@ Here is the screenshot:
   </class>
 </hibernate-mapping>
 ```
-* <code class="expression">space.vars.SITENAME</code> supports history via OH_History field using history-tracking table (OH_History). Refer to [OH_History Table](#oh_history-table) for configuration steps.
+* <code class="expression">space.vars.OIM</code> supports history via OH_History field using history-tracking table (OH_History). Refer to [OH_History Table](#oh_history-table) for configuration steps.
   * This table can store **field-wise revision history** for the entity.
   * For each field change in each revision, a new record would be stored capturing:
     - which field changed
@@ -112,7 +112,7 @@ Here is the screenshot:
     - the revision number
     - who changed it
     - when it was changed
-* <code class="expression">space.vars.SITENAME</code> supports virtual field storage in additional table (OH_Additional_Fields). Refer to [OH_Additional_Fields Table](#oh_additional_fields-table) for configuration steps.
+* <code class="expression">space.vars.OIM</code> supports virtual field storage in additional table (OH_Additional_Fields). Refer to [OH_Additional_Fields Table](#oh_additional_fields-table) for configuration steps.
   * This table stores **user-defined or dynamically added fields** that are not part of the main table.
   * Each additional field is stored as a separate row with:
     - workitem_id
@@ -136,13 +136,13 @@ An example input for the metadata JSON:
 
 * Map the fields between the database and the other system to be integrated to ensure that the data between both the systems synchronize correctly.  
 * Refer to [Mapping Configuration](../integrate/mapping-integration.md) page to learn the step-by-step process to configure mapping between the systems.
-* <code class="expression">space.vars.SITENAME</code> supports storing audits using OH_History field using history-tracking tabl. Refer to [OH_History Table Mapping Configuration](#mapping-configuration-1).
-* <code class="expression">space.vars.SITENAME</code> supports storing extra fields without modifying the table structure. Refer to [Additional field configuration](#json-configuration) for configuration steps.
+* <code class="expression">space.vars.OIM</code> supports storing audits using OH_History field using history-tracking tabl. Refer to [OH_History Table Mapping Configuration](#mapping-configuration-1).
+* <code class="expression">space.vars.OIM</code> supports storing extra fields without modifying the table structure. Refer to [Additional field configuration](#json-configuration) for configuration steps.
   * These configured fields will be available for mapping once configured.
 ## Inline File Support
 * Prerequisite: Configure the attachment table and ensure attachment configuration is enabled.
 * Inline files are supported for both read and write operations. It is supported for fields with data type `text`, `html` or `wiki`. Refer to [Field JSON Configuration](#json-configuration) to understand how to configure field's data type.
-* <code class="expression">space.vars.SITENAME</code> stores image references in following URI template `file:/{attachmentIdColumn value}` where `{attachmentIdColumn value}` is the id of the record in the attachment table.
+* <code class="expression">space.vars.OIM</code> stores image references in following URI template `file:/{attachmentIdColumn value}` where `{attachmentIdColumn value}` is the id of the record in the attachment table.
 Examples:
 ```html
 <img src="file:/12345" alt="Example image.png" />
@@ -218,7 +218,7 @@ Here is the screenshot:
   * It is greater than or equal to the time of the last processed record.
   * It is greater than or equal to the time specified in the "Start Polling Time" field on the advance integration configuration.
 * If a table's username column mapped to `created_updated_by` is the same as the username in the database system form, records will be skipped during polling time.
-* For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the <code class="expression">space.vars.SITENAME</code> is installed.  
+* For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the <code class="expression">space.vars.OIM</code> is installed.  
   For example, on Windows, characters such as `\ / : * ? " < > |` are not allowed in file names.
 * Only write operations are supported for `OH_History` field and extra fields (stored in `OH_Additional_Fields`); they cannot be used in criteria or target lookup.
 
@@ -234,8 +234,8 @@ Here is the screenshot:
 | Column               | Data Type               | Description                                                                                           |
 |----------------------|-------------------------|-------------------------------------------------------------------------------------------------------|
 | `workitem_change_id` | `VARCHAR`               | Deterministic unique ID generated using (`workitem_id`, `workitem_type`, `revision_id`, `field_name`) |
-| `workitem_id`        | `VARCHAR`               | <code class="expression">space.vars.SITENAME</code> overwrites this based on entity being processed   |
-| `workitem_type`      | `VARCHAR`               | <code class="expression">space.vars.SITENAME</code> overwrites this with entity type                  |
+| `workitem_id`        | `VARCHAR`               | <code class="expression">space.vars.OIM</code> overwrites this based on entity being processed   |
+| `workitem_type`      | `VARCHAR`               | <code class="expression">space.vars.OIM</code> overwrites this with entity type                  |
 | `revision_id`        | `VARCHAR`               | Logical revision number                                                                               |
 | `field_name`         | `VARCHAR`               | Name of field changed                                                                                 |
 | `old_value`          | `TEXT`                  | Previous value                                                                                        |
@@ -341,7 +341,7 @@ CREATE TABLE OH_History (
 
 #### Expected data format
 
-* After the transformation, <code class="expression">space.vars.SITENAME</code> expects data in the following format:
+* After the transformation, <code class="expression">space.vars.OIM</code> expects data in the following format:
 
 ```xml
 <OH_History>
@@ -375,7 +375,7 @@ CREATE TABLE OH_History (
 </OH_History>
 ```
 - Only `revision_id` is mandatory in the mapping.
-- <code class="expression">space.vars.SITENAME</code> automatically sets `workitem_id` and `workitem_type`.
+- <code class="expression">space.vars.OIM</code> automatically sets `workitem_id` and `workitem_type`.
 
 #### Sample mapping
 * The following mapping can be used to, get data from source using utility method  ```utils:getEntityRevisions``` and use it for preparing history.
@@ -422,7 +422,7 @@ CREATE TABLE OH_History (
 
 | Column            | Data Type | Description                                                                                       |
 |-------------------|-----------|---------------------------------------------------------------------------------------------------|
-| `field_value_id`  | `VARCHAR` | Deterministic/assigned unique ID generated by <code class="expression">space.vars.SITENAME</code> |
+| `field_value_id`  | `VARCHAR` | Deterministic/assigned unique ID generated by <code class="expression">space.vars.OIM</code> |
 | `workitem_id`     | `VARCHAR` | Entity identifier                                                                                 |
 | `workitem_type`   | `VARCHAR` | Entity type                                                                                       |
 | `field_id`        | `VARCHAR` | Internal name of the field                                                                        |
@@ -504,7 +504,7 @@ CREATE TABLE OH_Additional_Fields (
 * Users can configure extra fields, or overwrite metadata for fields mentioned in HBM with the following JSON configuration.
 * `additionalMeta.internalName` must match the HBM XML `class:entity-name`.
 * When `additionalMeta.fields.system.internalName` matches an existing HBM column:
-  * <code class="expression">space.vars.SITENAME</code> overwrites the field metadata.
+  * <code class="expression">space.vars.OIM</code> overwrites the field metadata.
 * When it does not match:
   * A new field is created, and values are stored in `OH_Additional_Fields`.
 * Users may configure the following parameters for each field.
@@ -550,11 +550,11 @@ CREATE TABLE OH_Additional_Fields (
 * Above JSON Example understanding
   * Overwriting an existing mapped field
     * When `additionalMeta.fields.system.internalName: "name"` matches a column defined in HBM XML.
-    * <code class="expression">space.vars.SITENAME</code> overwrites metadata:
+    * <code class="expression">space.vars.OIM</code> overwrites metadata:
       * `displayName` → "Work Item Title"
       * `dataType` → `text`
       * `mandatory` → true
       * All other parameters remain unchanged.
   * Adding a new field
     * When `additionalMeta.fields.system.internalName: "custom_priority"` does not match any column in HBM XML.
-    * <code class="expression">space.vars.SITENAME</code> treats it as a new field, storing its values in the `OH_Additional_Fields` table.
+    * <code class="expression">space.vars.OIM</code> treats it as a new field, storing its values in the `OH_Additional_Fields` table.

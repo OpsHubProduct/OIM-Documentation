@@ -16,7 +16,7 @@ These are required to in target due to Azure DevOps API Restrictions/limitations
 >
 > **Note:** If any of the above resources do not exist in the target project, the sync operation will fail because the Release Pipeline depends on these resources for successful execution.
 
-* Release Pipeline may contain reference of Query, Agent Pools, Service Connection, Task Group, Build Pipeline so these dependent entities must be synced before Release Pipeline to avoid the sync failure. **<code class="expression">space.vars.SITENAME</code>** support all these dependent artifacts sync along with Release Pipeline.
+* Release Pipeline may contain reference of Query, Agent Pools, Service Connection, Task Group, Build Pipeline so these dependent entities must be synced before Release Pipeline to avoid the sync failure. **<code class="expression">visitor.claims.unsigned.product</code>** support all these dependent artifacts sync along with Release Pipeline.
     * For TFS versions earlier than 2020, due to API unavailability, the Agent Pools must pre-exist and be linked manually after Release Pipeline sync.
 
 **Known Behaviour and Limitations:**

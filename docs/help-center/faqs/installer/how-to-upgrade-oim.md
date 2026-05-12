@@ -1,6 +1,6 @@
 ## Description
 
-Migrating <code class="expression">space.vars.SITENAME</code> to new version will ensure that the application includes new features and improved functionality.
+Migrating <code class="expression">space.vars.OIM</code> to new version will ensure that the application includes new features and improved functionality.
 
 ## Solution  
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}
@@ -19,4 +19,4 @@ Once the pre-requisites are met, follow one of the below sections.
 
 Once migration is completed successfully, follow these [Post Migration Steps](../../../manage/upgrade/upgrade-application.md#post-migration-steps-for-windows-and-linux).
 
-In case the migration fails, you can check for the cause of failure in `Migration.log` file located under `logs` folder at <code class="expression">space.vars.SITENAME</code> `<installation_path>`.
+In case the migration fails, you can check for the cause of failure in `Migration.log` file located under `logs` folder at <code class="expression">space.vars.OIM</code> `<installation_path>`.
