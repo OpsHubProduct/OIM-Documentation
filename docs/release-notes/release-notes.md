@@ -2,39 +2,77 @@
 
 ***
 
+# New Connector(s)
+* [**Zephyr Enterprise**](../connectors/zephyr-enterprise.md)
+  * Supported Version: 8.6.0
+  * Supported Entities: Folder, Phase, Test Case, Test Execution
+
+# New Version(s)
+* ServiceNow: Australia
+* Tricentis Tosca: 2025.1.x
+
 # Enhancements
 
+## Common
+* Added support for inline content and attachments in complex fields such as test steps.
+* Added documentation for the [API Capability Matrix](../manage/api/api_capability_matrix.md).
+  * The document outlines the features and functionalities supported through REST APIs.
+
+## GitHub
+* Improved synchronization performance in GitHub by approximately 40%.  
+
 ## Jira Data Center
-* Added support for the Test Run Status field for the XRay Test entity in Jira Data Center.
+* Added support for providing input in the system form when the Xray plugin is selected and entity names are updated in the end system from the default values.
+  * please refer to the post migration checklist in case Xray plugin entity names are updated in the endsystem.
+
+## ReadyOne
+* Added support for Reference fields.
+
+## Windchill PLM
+* Added support for Library as a container (project) in Windchill PLM.
 
 # Major Bugs
 
 ## Common
-* Resolved an issue where the "Search Field" text overflowed from the designated area on the mapping screen due to a UI glitch.
-* Resolved an issue causing intermittent UI slowness and request delays when <code class="expression">space.vars.SITENAME</code> was installed on Microsoft SQL Server/Azure SQL Server.
+* Resolved an issue where missing fields in REST APIs for system type templates were not incorporated correctly.
+* Resolved an issue where installation of <code class="expression">space.vars.SITENAME</code> failed due to incorrect JAR detection with Windows Authentication on MSSQL Server.
+* Resolved an issue where daylight saving time changes impacted integration edit operations.
+
+## Aha
+* Resolved an issue where table-type fields merged rows when cells were empty across different rows.
 
 ## Azure DevOps Server/Services
-* Resolved an issue where a job error occurred with the message "Query WIQL text length exceeded the limit. It should contain no more than 32000 characters" when criteria were configured to fetch items between specific IDs (e.g., [System.Id] > 235022 and [System.Id] <= 290238).
-  * This occurred because Azure DevOps connector internally generated a large list of IDs using an IN query to retrieve the data, which exceeded the WIQL character limit.
-* Resolved an issue where a job error occurred while retrieving Test Run data when more than 200 test cases were attached to a run.
-* Resolved an issue where a job error occurred while retrieving test results generated from automated runs, where associating a test case, test plan, or test suite is not required.
+* Resolved an issue where synchronization for Azure DevOps Services was impacted due to incorrect API rate limit header values.
+* Resolved an issue where a global failure occurred with a Null Pointer Exception for Test Suite entities when inaccessible test cases were present in missing work item fields.
+* Resolved an issue where processing failures occurred because of invalid characters generated while looking up release pipelines in the target system.
+* Resolved an issue where attachment processing failures occurred when attachments were not found in Azure DevOps Server/Services as the source system.
 
-## Codebeamer
-* Resolved an issue where the existing prebuilt JAR for HTML to JSPWiki conversion caused compatibility issues with Codebeamer version 3.2.x due to Codebeamer's internal Apache Tomcat upgrade.
-  * A version-specific JAR has been uploaded to the connector documentation page for [Codebeamer](../connectors/codebeamer.md).
 
-## OpenText ALM Quality Center
-* Resolved an issue where processing failed with the message "OH-Connector-0070: Error occurred while creating entity because of java.lang.NullPointerException" when the parent item was not synced, causing the item creation to fail under the root folder.
+## Windchill
+* Resolved an issue where <code class="expression">space.vars.SITENAME</code> incorrectly associates linked release entity even if its synced via <code class="expression">space.vars.SITENAME</code>. 
 
-## ServiceNow/ServiceNow Quick Connect
-* Resolved an issue where due to recent change in ServiceNow from 7.217 version of <code class="expression">space.vars.SITENAME</code>, post-synchronization re-executed in cyclic manner even if there is no update on the servicenow side.
+## Azure DevOps Server/Services
+* Resolved an issue where sync for Azure DevOps Services are impacted due to headers are incorrectly returning the value of API rate limit. 
+* Resolved an issue where global failure occured with  Null Pointer Exception for Test Suite due to missing workitem fields contains inaccessible test case.
+* Resolved an issue where processing failure occured because of invalid character formed while looking up release pipeline in target.
+* Resolved an issue where processing failure observed for the attachments where it was not found in Azure DevOps Server/Service as source system.
+
+## GitHub
+* Resolved an issue where high RAM utilization warnings were observed on the VM hosting <code class="expression">space.vars.SITENAME</code>.
+
+## Jira Data Center
+* Resolved an issue where the system could not be saved when the Xray plugin was enabled for Jira Data Center versions above 9.
+
+## Windchill
+* Resolved an issue where <code class="expression">space.vars.SITENAME</code> incorrectly associated linked release entities even when they were synchronized through <code class="expression">space.vars.SITENAME</code>.
 
 {% endif %}  
 
 {% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
 
-# Major Bugs  
-* Resolved an issue where a job error occurred while retrieving Test Run data when more than 200 test cases were attached to a run.
-* Resolved an issue where a job error occurred while retrieving test results generated from automated runs, where associating a test case, test plan, or test suite is not required.
+# Major Bugs
+* Resolved an issue where OpsHub TFS Service crashed during migration of Test Runs after the initial 2–3 hours of execution.
+* Resolved an issue where processing failures occurred during release pipeline migration due to invalid release pipeline encoding.
+* Resolved an issue where attachment processing failures occurred when attachments were not found in the source system.
 
-{% endif %}  
+{% endif %}
