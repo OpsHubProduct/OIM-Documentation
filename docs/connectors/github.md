@@ -3,8 +3,10 @@
 ## User privileges
 
 Create one GitHub user for the repository(s) that is a part of synchronization. User should be dedicated to **<code class="expression">space.vars.SITENAME</code>** and should not be used for any other operations from system's user interface.  
-GitHub supports only Personal Access Token Authentication:  
-* Personal Access Token Authentication - The integration user should be added as a collaborator in the repository which is to be synced. Additionally, the following set of scopes are required while creating Personal Access Token for synchronization.
+
+GitHub supports following authentication types:  
+#### Personal Access Tokens (classic)
+  * The integration user should be added as a collaborator in the repository which is to be synced. Additionally, the following set of scopes are required while creating Personal Access Token for synchronization.
 
 | **Entity Type** | **Permission/Role** |
 |------------------|---------------------|
@@ -14,6 +16,61 @@ GitHub supports only Personal Access Token Authentication:
 
 
 Refer to section [Creating Personal Access Token](#create-personal-access-token) of appendix on how to create Personal Access Token.
+
+#### Fine-grained Personal Access Tokens
+* Use a fine-grained token that is owned by the GitHub organization to enable synchronization of its repositories. 
+* For each organization included in synchronization, generate the fine-grained token by logging in with the OIM dedicated integration user in GitHub.
+* Known limitation: avoid using a user account as the resource owner when creating the token. GitHub currently imposes limitations on user-owned tokens, which may prevent compatibility with certain APIs required for synchronization, i.e. Projects and custom fields can not be accessed with user owned token. Hence, it is recommended to always use an organization owned fine-grained token.
+
+The following set of permissions are required while creating token:
+
+<table>    
+    <th>Entity Type</th>
+    <th>Scope</th>
+    <th>Permission</th>
+    <th>Access</th>
+  <tr>
+    <td rowspan="2"><strong>Commit</strong></td>
+    <td>Repository</td>
+    <td>Commit statuses, Contents</td>
+    <td>Read-only</td>
+  </tr>
+  <tr>
+    <td>Organization</td>
+    <td>Members</td>
+    <td>Read-only</td>
+  </tr>
+  <tr>
+    <td rowspan="2"><strong>Pull Request</strong></td>
+    <td>Repository</td>
+    <td>Merge queues, Pull requests, Discussions</td>
+    <td>Read and write</td>
+  </tr>
+  <tr>
+    <td>Organization</td>
+    <td>Members</td>
+    <td>Read and write</td>
+  </tr>
+  <tr>
+    <td rowspan="2"><strong>Issue</strong></td>
+    <td>Repository</td>
+    <td>Issues, Contents, Discussions</td>
+    <td>Read and write</td>
+  </tr>
+  <tr>
+    <td>Organization</td>
+    <td>Issue fields, Issue types, Projects, Members</td>
+    <td>Read and write</td>
+  </tr>
+</table>
+
+
+Refer to this GitHub document to create fine-grained token: [Creating a fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
+
+#### OIM Configuration:
+* Each fine-grained token is bound to a single organization only as per GitHub's policy.
+    * Accordingly, configure separate GitHub systems in OIM for each organization to enable repository synchronization across multiple organizations. For more details on system configuration, refer [System Configuration](#system-configuration).
+* Both classic and fine-grained tokens must be provided in the same field, named “Personal Access Token” in system configuration form.
 
 # System Configuration
 
