@@ -636,7 +636,7 @@ Provide 'read' access to a table
 >**Note**: Catalog Variables Configuration
 > <br><br><b>catalogVariableApiEnabled</b>
 > <br>Indicates whether Catalog Variable API support is enabled.
-> <br>If set to <code>false</code>, catalog variables will not be loaded as part of fields metadata for any entity type.
+> <br>If set to <code>false</code>, catalog variables will not be available OpsHub integration mapping and will not be synchronized.
 > <br><br> <b>How to get the internal name of the entity</b>
 <br>The internal name corresponds to the ServiceNow table name (for example, sc_task, sc_req_item). You can find this in ServiceNow by navigating to the form view of the record. Refer to the screenshot below to locate the table name in the UI.
 >  <p align="center"><img src="../assets/snow_quick_connect_catalog_variable.png"/></p>
