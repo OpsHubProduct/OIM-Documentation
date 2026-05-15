@@ -19,7 +19,7 @@ Refer to the following screenshot with Authentication Mode as API Token:
 
 Refer to the following screenshot with Authentication Mode as Global OAuth Refresh Token:
 
-![Zendesk System Global OAuth Refresh Token](/files/Zendesk_System_4.png)
+![Zendesk System Global OAuth Refresh Token](../assets/Zendesk_System_4.png)
 
 ### **<span style="color:blue">Zendesk System form details</span>**
 
