@@ -9,10 +9,6 @@
 
 Before you continue to the integration, you must first configure Zendesk. Click [System Configuration](../integrate/system-configuration.md) to learn the step-by-step process to configure a system.
 
-Refer to the following screenshot with Authentication Mode as Basic Authentication:
-
-![Zendesk System Basic Auth](../assets/Zendesk_System_1.png)
-
 Refer to the following screenshot with Authentication Mode as OAuth Access Token:
 
 ![Zendesk System OAuth](../assets/Zendesk_system_2.png)
@@ -21,19 +17,23 @@ Refer to the following screenshot with Authentication Mode as API Token:
 
 ![Zendesk System API Token](../assets/Zendesk_System_3.png)
 
+Refer to the following screenshot with Authentication Mode as Global OAuth Refresh Token:
+
+![Zendesk System Global OAuth Refresh Token](../assets/Zendesk_System_4.png)
+
 ### **<span style="color:blue">Zendesk System form details</span>**
 
-| **Field Name**            | **When field is visible on the System form**             | **Description**                                                                                                                                                                                                 |
-|---------------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **System Name**           | Always                                                    | Provide System name                                                                                                                                                                                              |
-| **Version**               | Always                                                    | Provide Zendesk system version                                                                                                                                                                                   |
-| **Instance URL**          | Always                                                    | Provide Zendesk instance URL                                                                                                                                                                                     |
-| **Authentication Mode**   | Always                                                    | Select the authentication mode you would like to use to communicate with the Zendesk server. If you have **single sign on** enabled for Zendesk server, select **API Token** as authentication mode. If you have **OAuth Client App** configured to communicate with APIs, select **OAuth Access Token** as the authentication mode. |
-| **User Name**             | When Authentication Mode selected                         | Provide Zendesk system user with administrator privilege.                                                                                                                                                        |
-| **User Password**         | Basic Authentication mode selected                        | Provide Zendesk system user's password.                                                                                                                                                                          |
-| **API Token**             | API Token mode selected                                   | Provide Zendesk user API Token. Refer [this](https://support.zendesk.com/hc/en-us/articles/226022787-Generating-a-new-API-token) for generating **API Token** in Zendesk server.                                |
-| **OAuth Access Token**    | OAuth Access Token mode selected                          | Provide Zendesk OAuth Access Token. Refer [Generating OAuth Access Token Through UI](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application) or [Generating OAuth Access Token through API](https://developer.zendesk.com/documentation/ticketing/working-with-oauth/creating-and-using-oauth-tokens-with-the-api/) to generate **OAuth Access Token** in Zendesk server. |
-| **Zendesk Link Field Name** | Always                                                  | Provide the link field name that denotes the Parent - Child link. Refer to [Determine the Parent - Child Link field name](#determine-the-parent---child-link-field-name) section                                 |
+| **Field Name**                 | **When field is visible on the System form** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|--------------------------------|----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System Name**                | Always                                       | Provide System name                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Version**                    | Always                                       | Provide Zendesk system version                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Instance URL**               | Always                                       | Provide Zendesk instance URL                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Authentication Mode**        | Always                                       | Select the authentication mode you would like to use to communicate with the Zendesk server. If you have **single sign on** enabled for Zendesk server, select **API Token** as authentication mode. If you have **OAuth Client App** configured to communicate with APIs, select **OAuth Access Token** as the authentication mode. To authenticate using a Global OAuth, select **Global OAuth Refresh Token** as the authentication mode. |
+| **User Name**                  | When Authentication Mode selected            | Provide Zendesk system user with administrator privilege.                                                                                                                                                                                                                                                                                                                                                                                    |
+| **API Token**                  | API Token mode selected                      | Provide Zendesk user API Token. Refer [this](https://support.zendesk.com/hc/en-us/articles/226022787-Generating-a-new-API-token) for generating **API Token** in Zendesk server.                                                                                                                                                                                                                                                             |
+| **OAuth Access Token**         | OAuth Access Token mode selected             | Provide Zendesk OAuth Access Token. Refer [Generating OAuth Access Token Through UI](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application) or [Generating OAuth Access Token through API](https://developer.zendesk.com/documentation/ticketing/working-with-oauth/creating-and-using-oauth-tokens-with-the-api/) to generate **OAuth Access Token** in Zendesk server.              |
+| **Global OAuth Refresh Token** | Global OAuth Refresh Token mode selected     | Provide the Zendesk Global OAuth Refresh Token. Refer to [Generating Global OAuth Refresh Token](#generating-global-oauth-refresh-token) to generate the **Global OAuth Refresh Token**.                                                                                                                                                                                                                                                     |
+| **Zendesk Link Field Name**    | Always                                       | Provide the link field name that denotes the Parent - Child link. Refer to [Determine the Parent - Child Link field name](#determine-the-parent---child-link-field-name) section                                                                                                                                                                                                                                                             |
 
 If the system is deployed on HTTPS and a self-signed certificate is used, then you will have to import the SSL Certificate to be able to access the system from <code class="expression">space.vars.OIM</code>. Click [Import SSL Certificates](../getting-started/ssl-certificate-configuration.md) to learn how to import SSL certificate.
 
@@ -48,7 +48,10 @@ Set a time to synchronize data between Zendesk and the other system to be integr
 Click [Integration Configuration](../integrate/integration-configuration.md) to learn the step-by-step process to configure integration between two systems.
 
 ## Known Limitations
-
+* Zendesk permits only one active Global OAuth Refresh Token per user at a time. Generating a new token immediately invalidates the previously generated token for that user.
+  * The same token cannot be reused across multiple system configurations or integrations, whether within the same deployment or across separate deployments.
+  * If a new token is generated for a user already in use by an active integration, that integration will begin to fail with authentication errors.
+  * To avoid disruption, ensure that a **separate dedicated Zendesk user** is created for each OpsHub deployment. Do not share the integration user or regenerate its token while an integration is active.
 * If a ticket is merged into another ticket, then this merged ticket will contain all public and private attachments from the original ticket into separate comments. If the original ticket contains both public and private comments, then either one of them might not synchronize unless the merged ticket is updated. This is due to the update time of the merged ticket being less than the creation time of the merged comments. Once the merged ticket is updated then all comments will synchronize.
 * Zendesk has some validation for naming the tags mentioned in the Zendesk document. Zendesk will remove most of the special characters from the names of the tags. In that case, if the Zendesk system is the target system, it may result in conflict.
 * <code class="expression">space.vars.OIM</code> can only sync updates related to parent-child links in one ticket at a time due to API limitations. It is because the API does not reflect such a linkage in the linked ticket. As a result, the link will only be visible in one of the tickets on which the linking operation is performed.
@@ -150,12 +153,12 @@ The steps given below explain how to make view in Zendesk for enabling criteria:
 
 * Organization association with ticket depends on the mapping configuration. The behaviors under different cases are listed below.
 
-| **Mapping Configuration** | **Behavior** |
+| **Mapping Configuration**                             | **Behavior**                                                                                                                                                                                          |
 |---------------------------|--------------|
 | Both Requester and Organization fields are not mapped | Ticket will be associated with the default organization of integration user. If integration user does not belong to any organization, the synced ticket will not be associated with any organization. |
-| Only Requester field is mapped | Ticket will be associated with default organization of the Requester |
-| Only Organization field is mapped | If the mapped organization is accessible to integration user, ticket will be associated with that organization, otherwise failure will be generated. |
-| Both Requester and Organization fields are mapped | If the mapped organization is accessible to requester, ticket will be associated with that organization, otherwise failure will be generated. |
+| Only Requester field is mapped                        | Ticket will be associated with default organization of the Requester                                                                                                                                  |
+| Only Organization field is mapped                     | If the mapped organization is accessible to integration user, ticket will be associated with that organization, otherwise failure will be generated.                                                  |
+| Both Requester and Organization fields are mapped     | If the mapped organization is accessible to requester, ticket will be associated with that organization, otherwise failure will be generated.                                                         |
 
 The above behavior with <code class="expression">space.vars.OIM</code> sync reflects the Zendesk API behavior.
 
@@ -176,5 +179,15 @@ The above behavior with <code class="expression">space.vars.OIM</code> sync refl
   <img src="../assets/Zendesk_LinkField_2.png" width="900"/>
 </p>
 
+## Generating Global OAuth Refresh Token
 
-
+* Click [Generate Global OAuth Refresh Token](https://www.opshub.com/zendesk-oauth).
+* On the authorization page, enter your Zendesk instance URL.
+* Select Access Level as per requirement:
+  * Read-Only: When Zendesk is configured as source system.
+  * Read & Write(Tickets): When Zendesk is configured as target system.
+* Click **Connect to Zendesk**.
+* You will be redirected to your Zendesk sign-in page. Sign in with the Zendesk user you want to use with OpsHub.
+* Allow the OpsHub application when prompted to grant access.
+* You will be redirected back to the OpsHub website, where your refresh token is generated.
+* Copy the generated refresh token and paste it into the **Global OAuth Refresh Token** field on the Zendesk System form.
