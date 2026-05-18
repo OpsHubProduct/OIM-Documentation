@@ -21,8 +21,7 @@ Refer to the following screenshot with Authentication Mode as Global OAuth Refre
 
 ![Zendesk System Global OAuth Refresh Token](../assets/Zendesk_System_4.png)
 
-### **<span style="color:blue">Zendesk System form details</span>**
-
+### Zendesk System form details
 | **Field Name**                 | **When field is visible on the System form** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |--------------------------------|----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **System Name**                | Always                                       | Provide System name                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -57,7 +56,7 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
     * Configure user override for any integration
   * If an additional Zendesk system is needed, a separate dedicated Zendesk user must be created and a new token must be generated for it.
   * Never regenerate a token for an integration user already associated with an Zendesk system in <code class="expression">space.vars.OIM</code>, this will result into authentication failures in all existing integrations using that system
-  * This token expires if no integrations actively sync data through it for 6 consecutive months. Re-authenticate by generating a new token for the associated user.
+  * The refresh token expires if there is no active integration for 6 consecutive months from the time of generation. Hence, user need to regenerate this refresh token and provide in system configuration of <code class="expression">space.vars.OIM</code>. For generation of token, we need to follow the same steps mentioned [here](#generating-global-oauth-refresh-token).
 * If a ticket is merged into another ticket, then this merged ticket will contain all public and private attachments from the original ticket into separate comments. If the original ticket contains both public and private comments, then either one of them might not synchronize unless the merged ticket is updated. This is due to the update time of the merged ticket being less than the creation time of the merged comments. Once the merged ticket is updated then all comments will synchronize.
 * Zendesk has some validation for naming the tags mentioned in the Zendesk document. Zendesk will remove most of the special characters from the names of the tags. In that case, if the Zendesk system is the target system, it may result in conflict.
 * <code class="expression">space.vars.OIM</code> can only sync updates related to parent-child links in one ticket at a time due to API limitations. It is because the API does not reflect such a linkage in the linked ticket. As a result, the link will only be visible in one of the tickets on which the linking operation is performed.
@@ -196,6 +195,7 @@ The above behavior with <code class="expression">space.vars.OIM</code> sync refl
   ![Connect to Zendesk](../assets/Zendesk_GORT_1.png)
 * You will be redirected to your Zendesk sign-in page. Sign in with the Zendesk user you want to use with OpsHub.
 * Allow the OpsHub application when prompted to grant access.
+  ![Grant access to Zendesk](../assets/Zendesk_GORT_3.png)
 * You will be redirected back to the OpsHub website, where your refresh token is generated.
   ![Generated OAuth Refresh Token](../assets/Zendesk_GORT_2.png)
 * Copy the generated refresh token and paste it into the **Global OAuth Refresh Token** field on the Zendesk System form.
