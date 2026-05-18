@@ -32,7 +32,7 @@ Refer to the following screenshot with Authentication Mode as Global OAuth Refre
 | **User Name**                  | When Authentication Mode selected            | Provide Zendesk system user with administrator privilege.                                                                                                                                                                                                                                                                                                                                                                                    |
 | **API Token**                  | API Token mode selected                      | Provide Zendesk user API Token. Refer [this](https://support.zendesk.com/hc/en-us/articles/226022787-Generating-a-new-API-token) for generating **API Token** in Zendesk server.                                                                                                                                                                                                                                                             |
 | **OAuth Access Token**         | OAuth Access Token mode selected             | Provide Zendesk OAuth Access Token. Refer [Generating OAuth Access Token Through UI](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application) or [Generating OAuth Access Token through API](https://developer.zendesk.com/documentation/ticketing/working-with-oauth/creating-and-using-oauth-tokens-with-the-api/) to generate **OAuth Access Token** in Zendesk server.              |
-| **Global OAuth Refresh Token** | Global OAuth Refresh Token mode selected     | Provide the Zendesk Global OAuth Refresh Token. Refer to [Generating Global OAuth Refresh Token](#generating-global-oauth-refresh-token) to generate the **Global OAuth Refresh Token**.                                                                                                                                                                                                                                                     |
+| **Global OAuth Refresh Token** | Global OAuth Refresh Token mode selected     | Provide the Zendesk Global OAuth Refresh Token. Refer to [Generating Global OAuth Refresh Token](#generating-global-oauth-refresh-token) to generate the **Global OAuth Refresh Token**. Refer to [Known Limitations](#known-limitations) to understand limitation of this auth mechanism.                                                                                                                                                   |
 | **Zendesk Link Field Name**    | Always                                       | Provide the link field name that denotes the Parent - Child link. Refer to [Determine the Parent - Child Link field name](#determine-the-parent---child-link-field-name) section                                                                                                                                                                                                                                                             |
 
 If the system is deployed on HTTPS and a self-signed certificate is used, then you will have to import the SSL Certificate to be able to access the system from <code class="expression">space.vars.OIM</code>. Click [Import SSL Certificates](../getting-started/ssl-certificate-configuration.md) to learn how to import SSL certificate.
@@ -48,13 +48,16 @@ Set a time to synchronize data between Zendesk and the other system to be integr
 Click [Integration Configuration](../integrate/integration-configuration.md) to learn the step-by-step process to configure integration between two systems.
 
 ## Known Limitations
-* Zendesk permits only one active Global OAuth Refresh Token per user at a time. Generating a new token immediately invalidates the previously generated token for that user.
-  * A token used to create a system cannot be reused to:
-    * Create another system (within same or separate deployments)
+* Global OAuth Refresh Token Authentication:
+  * In <code class="expression">space.vars.OIM</code>, one refresh token created per integration user, can be used for one Zendesk system configuration only.
+  * Multiple integrations can be created under the same system without any restriction
+    * Reason: Zendesk permits only one active Global OAuth Refresh Token per integration user at a time. Generating a new token based on this refresh token to use in the Zendesk API calls for sync purpose, immediately invalidates the previously generated refresh token for that user.
+  *The same refresh token used to create one Zendesk system in <code class="expression">space.vars.OIM</code> cannot be reused to:
+    * Create another system
     * Configure user override for any integration
   * If an additional Zendesk system is needed, a separate dedicated Zendesk user must be created and a new token must be generated for it.
-  * Never regenerate a token for a user already associated with an active system, this will result into authentication failures in all integrations using that system
-  * Multiple integrations can be created under the same system without any restriction
+  * Never regenerate a token for an integration user already associated with an Zendesk system in <code class="expression">space.vars.OIM</code>, this will result into authentication failures in all existing integrations using that system
+  * This token expires if no integrations actively sync data through it for 6 consecutive months. Re-authenticate by generating a new token for the associated user.
 * If a ticket is merged into another ticket, then this merged ticket will contain all public and private attachments from the original ticket into separate comments. If the original ticket contains both public and private comments, then either one of them might not synchronize unless the merged ticket is updated. This is due to the update time of the merged ticket being less than the creation time of the merged comments. Once the merged ticket is updated then all comments will synchronize.
 * Zendesk has some validation for naming the tags mentioned in the Zendesk document. Zendesk will remove most of the special characters from the names of the tags. In that case, if the Zendesk system is the target system, it may result in conflict.
 * <code class="expression">space.vars.OIM</code> can only sync updates related to parent-child links in one ticket at a time due to API limitations. It is because the API does not reflect such a linkage in the linked ticket. As a result, the link will only be visible in one of the tickets on which the linking operation is performed.
@@ -190,9 +193,9 @@ The above behavior with <code class="expression">space.vars.OIM</code> sync refl
   * Read-Only: When Zendesk is configured as source system.
   * Read & Write(Tickets): When Zendesk is configured as target system.
 * Click **Connect to Zendesk**.
-  * ![Connect to Zendesk](../assets/Zendesk_GORT_1.png)
+  ![Connect to Zendesk](../assets/Zendesk_GORT_1.png)
 * You will be redirected to your Zendesk sign-in page. Sign in with the Zendesk user you want to use with OpsHub.
 * Allow the OpsHub application when prompted to grant access.
 * You will be redirected back to the OpsHub website, where your refresh token is generated.
-  * ![Generated OAuth Refresh Token](../assets/Zendesk_GORT_2.png)
+  ![Generated OAuth Refresh Token](../assets/Zendesk_GORT_2.png)
 * Copy the generated refresh token and paste it into the **Global OAuth Refresh Token** field on the Zendesk System form.
