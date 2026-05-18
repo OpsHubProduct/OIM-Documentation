@@ -35,19 +35,57 @@
 
 Before the user continues with the integration, he/she must first configure Aras Innovator System. Refer to [System Configuration](../integrate/system-configuration.md) to learn step-by-step process to configure a system. See the screenshot given below for reference:
 
-<div align="center"><img src="../assets/Aras_System_config_6.png" alt="" width="1100"></div>
+<div align="center"><img src="../assets/Aras_System.png" alt="" width="1100"></div>
 
-| **Field Name**                     | **Description**                                                                                                                                                                                                              |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **System Name**                    | Provide a unique name to the Aras Innovator System.                                                                                                                                                                          |
-| **Version**                        | Provide version for Aras Innovator Instance. Check [Get Aras Innovator Version](aras.md#get-aras-innovator-version) in the Appendix section to learn how to get Aras Innovator version.                                      |
-| **Aras Innovator Instance URL**    | Provide URL for Aras Innovator Instance. Example: `<hostname>/InnovatorServer/Server/InnovatorServer.aspx`                                                                                                                   |
-| **Aras Innovator User Name**       | Provide username of the user dedicated for <code class="expression">space.vars.OIM</code>. Please ensure that user has the necessary permissions. Refer to [User privileges](aras.md#user-privileges) for permissions required by user identity. |
-| **Aras Innovator User Password**   | Provide password of user dedicated for <code class="expression">space.vars.OIM</code> - use plain text if FIPS is disabled, or MD5-hashed if FIPS is enabled. |
-| **Aras Innovator Database name**   | Provide Aras Innovator Database name to which the connection needs to be done. Refer to [Get Database Name](aras.md#get-database-name) in the Appendix section to learn how to get Database name.                            |
-| **Aras Innovator Web Service URL** | Provide URL for the hosted OpsHubArasService. Refer to [Hosting opshub Aras service](aras.md#hosting-opshub-aras-service) to learn how to host <code class="expression">space.vars.OIM</code> Aras Webservice.                                   |
+| **Field Name**       | **Description**                                                                                                                                                                                                                                  |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **System Name**      | Provide a unique name to the Aras Innovator System.                                                                                                                                                                                              |
+| **Version**          | Provide version for Aras Innovator Instance. Check [Get Aras Innovator Version](aras.md#get-aras-innovator-version) in the Appendix section to learn how to get Aras Innovator version.                                                          |
+| **Instance URL**     | Provide URL for Aras Innovator Instance. Example: `<hostname>/InnovatorServer/Server/InnovatorServer.aspx`                                                                                                                                       |
+| **User Name**        | Provide username of the user dedicated for <code class="expression">space.vars.OIM</code>. Please ensure that user has the necessary permissions. Refer to [User privileges](aras.md#user-privileges) for permissions required by user identity. |
+| **User Password**    | Provide password of user dedicated for <code class="expression">space.vars.OIM</code> - use plain text if FIPS is disabled, or MD5-hashed if FIPS is enabled.                                                                                    |
+| **Database name**    | Provide Aras Innovator Database name to which the connection needs to be done. Refer to [Get Database Name](aras.md#get-database-name) in the Appendix section to learn how to get Database name.                                                |
+| **Web Service URL**  | Provide URL for the hosted OpsHubArasService. Refer to [Hosting opshub Aras service](aras.md#hosting-opshub-aras-service) to learn how to host <code class="expression">space.vars.OIM</code> Aras Webservice.                                   |
+| **Metadata Details** | Override default entity properties using metadata configuration.. Refer to [Understanding JSON Input](aras.md#understanding-json-input) to learn how to specify the metadata details.                                                            |
 
 * If the system is deployed on HTTPS and a self-signed certificate is used, then the user should import the SSL Certificate to be able to access the system from <code class="expression">space.vars.OIM</code>. Check [Import SSL Certificates](../getting-started/ssl-certificate-configuration.md) to learn how to import SSL certificate.
+
+### Understanding JSON Input
+
+* The entity metadata details can be provided at the time of system configuration in the field 'Metadata details' [in the form of JSON] in the below-mentioned use case:
+  * Use Case:
+    * This configuration is required when:
+      * An item type is used as a reference field in field mapping for synchronization, and 
+      * The referenced entity’s display name is configured using a field other than the default **name** field.
+  * Configuration Requirement:
+    * In Aras, the primary display field of an entity can be customized. Refer to [Create custom property](aras.md#create-custom-property) section for getting the internal-name of the primary display field.
+    * If the display field differs from the default name, it must be specified in the JSON under: **PrimaryNameField**
+    * If not configured, the integration will assume **name** as the default display field.
+  * Reason:
+    * The primary display field is not exposed through the API, so the integration cannot automatically determine which field is used for display.
+  * Example:
+    * A Requirement item type contains a reference field (e.g., PartReference) pointing to Part. 
+    * This field is included in synchronization. 
+    * By default:
+      * Part uses name as its display field → this value is used in sync. 
+      * If the display field is customized:
+        * The correct field must be defined in PrimaryNameField.
+        * This ensures accurate synchronization of the reference value.
+        
+> **Note**:
+> The value for PrimaryNameField must be the internal field name. 
+> Separate configurations can be defined for different item types.
+
+```json
+{    
+  "Part": {
+    "PrimaryNameField": "name"
+  },
+  "Product": {
+    "PrimaryNameField": "title"
+  }
+}  
+```
 
 # Mapping Configuration
 
@@ -94,6 +132,9 @@ Set polling time as the time after which the user wants to synchronize data betw
 * In Aras, custom entity types don't have Item Number (which stores Display Id) field by default. Hence, in such cases, <code class="expression">space.vars.OIM</code> will use entity's Internal Id as Remote Id to be synchronized to the other end system.
 * To show the 'Display Id' as Remote Id, it is required to add the Item Number field in Aras.
   Refer to [Add Item Number Field](aras.md#set-item-number-for-custom-entity) for more details.
+
+**Reference Field Lookup Behavior**
+* For reference fields, if the referenced entity uses a field other than the standard name field, configure the correct field in Metadata details (JSON) using PrimaryNameField.
 
 # Known Limitations
 
