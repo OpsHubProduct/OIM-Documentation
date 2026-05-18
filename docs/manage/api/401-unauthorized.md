@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Description
 When you receive **401** status code with the description **Unauthorized** in the API request.
 

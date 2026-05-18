@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 User has configured an integration from Micro Focus ALM/QC to any other system and user has followed the pre-requisites & best practices, but the target field value is not getting updated as per the updates done in the source system.

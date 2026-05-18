@@ -7,12 +7,11 @@
   </thead>
   <tbody>
 
-{% if "OIM" === visitor.claims.unsigned.product %}   
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}   
     <tr>
       <td align="center">🤝 <strong>Integration Combination Examples</strong></td>
       <td><a href="integration-combination-examples/integration-combination-examples.md">Integration Combination Examples</a></td>
     </tr>
-
 {% endif %}   
     <tr>
       <td align="center">🎥 <strong>Videos</strong></td>

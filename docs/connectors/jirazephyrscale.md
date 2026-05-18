@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 **Zephyr (formerly known as Zephyr Scale)**
 
 # Prerequisites

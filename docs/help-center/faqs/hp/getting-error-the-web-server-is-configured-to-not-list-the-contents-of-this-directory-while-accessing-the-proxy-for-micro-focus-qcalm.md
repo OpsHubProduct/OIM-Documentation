@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 While accessing the proxy that is configured by performing the steps mentioned for [Proxy Configuration](../../../connectors/micro-focus-alm-qc.md#proxy-configuration-steps) in the product documentation for Micro Focus QC/ALM, a user gets the error **The Web server is configured to not list the contents of this directory**.

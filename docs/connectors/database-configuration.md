@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Prerequisites
 
 1. Few Systems supported by <code class="expression">space.vars.OIM</code> require Database Connection. By default, <code class="expression">space.vars.OIM</code> is deployed on HSQL Database Server, MSSQL Database Server, MySQL Database Server, PostgreSQL Database Server or Oracle Database Server.

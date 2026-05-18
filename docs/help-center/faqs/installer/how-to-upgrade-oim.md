@@ -1,19 +1,19 @@
 ## Description
 
-Migrating <code class="expression">space.vars.OIM</code> to new version will ensure that the application includes new features and improved functionality.
+Migrating <code class="expression">visitor.claims.unsigned.product</code> to new version will ensure that the application includes new features and improved functionality.
 
 ## Solution  
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}
-Make sure that the [Migration Pre-requisites](../../../manage/upgrade/upgrade-application.md#migration-pre-requiste-for-windows-and-linux) steps are followed before migrating to new version.
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
+Make sure that the [Migration Pre-requisites](../../../manage/upgrade/upgrade-application-om4ado.md#pre-upgrade-checklist) steps are followed before migrating to new version.
 Once the pre-requisites are met, follow one of the below section
 {% endif %}
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 Make sure that the [Pre-Upgrade Checklist](../../../manage/upgrade/upgrade-application.md#pre-upgrade-checklist) steps are followed before migrating to new version.
 Once the pre-requisites are met, follow one of the below sections.
 {% endif %}
 
 - [Steps to migrate on Windows](../../../manage/upgrade/upgrade-application.md#migration-steps-for-windows)  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+  {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 - [Steps to migrate on Linux](../../../manage/upgrade/upgrade-application.md#migration-steps-for-linux) 
 {% endif %}
 

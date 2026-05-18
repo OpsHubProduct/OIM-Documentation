@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 <code class="expression">space.vars.OIM</code> requires OpsHubTFSService to communicate with Team Foundation Server (TFS) and Azure DevOps.

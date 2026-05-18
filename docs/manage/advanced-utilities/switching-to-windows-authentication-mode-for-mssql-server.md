@@ -17,7 +17,7 @@ If the database is on MSSQL SQL Authentication mode and you need to switch to Wi
 - Go to `<Installation Folder>/Other_Resources/Resources`.  
 - Unzip `OpsHub Database Management utility.zip`.  
 - Run `DatabaseManagementUtility.bat` for Windows system.  
-  {% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+  {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 - In case of Linux system, run `DatabaseManagementUtility.sh`.
   {% endif %}
 

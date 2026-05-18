@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Overview
 
 OpsHub will call this API for fields of type LOOKUP. Implementation of this API should return valid values that the user can set in a given lookup field.

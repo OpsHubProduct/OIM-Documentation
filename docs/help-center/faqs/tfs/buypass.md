@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 During system configuration, there is an option to set the ByPass rule option. By default, the option is set to "No". There are use cases when this option can be set to "Yes".

@@ -14,16 +14,16 @@ I have <code class="expression">space.vars.OIM</code> installed on one machine. 
 
 ## Steps
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}    
 1. Stop all migrations.  
 {% endif %}   
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+   {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}    
 1. Inactivate all integrations.  
 {% endif %}  
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 2. Close <code class="expression">space.vars.OIM</code>.  
 {% endif %}
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+   {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 2. Stop the <code class="expression">space.vars.OIM</code> server.  
 {% endif %}
 3. Take application and database backup:
@@ -34,7 +34,7 @@ I have <code class="expression">space.vars.OIM</code> installed on one machine. 
    * After taking database backup, drop the database.
    * Uninstall <code class="expression">space.vars.OIM</code> from the older instance.
 5. Install the same <code class="expression">space.vars.OIM</code> version on the machine where you want to move <code class="expression">space.vars.OIM</code> server. During installation, select the database server where you want your <code class="expression">space.vars.OIM</code> database. While configuring installation, make sure database name is same as old installation. If your old <code class="expression">space.vars.OIM</code> instance database name is custom (other than 'opshub' and 'reportsdb'), then make sure in this new installation the database name remains the same.
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+   {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}    
    * You can refer [OpsHub Database Custom Configuration](../../../getting-started/installation.md#opshub-database-custom-configuration)  documentation for selecting database name during installation time. 
 {% endif %}
 6. If for any reason, installation failed, follow the steps below:  
@@ -44,24 +44,24 @@ I have <code class="expression">space.vars.OIM</code> installed on one machine. 
    * Restore applicable folder by following [Application Restore](../../../manage/upgrade/taking-application-backup.md#application-restore) documentation.
    * Restore database by following [Database Restore](../../../manage/upgrade/taking-application-backup.md#database-restore) documentation.  
 7. If installation finished successfully, follow the steps below:  
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}    
    * Close <code class="expression">space.vars.OIM</code>.
 {% endif %}  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}      
    * Stop the <code class="expression">space.vars.OIM</code>.
 {% endif %}
    * Restore the database(s) from the backup taken from old <code class="expression">space.vars.OIM</code> instance/server into the new <code class="expression">space.vars.OIM</code> database instance/server. For more information, refer [Database Restore](../../../manage/upgrade/taking-application-backup.md#database-restore).
    * Start new <code class="expression">space.vars.OIM</code> server.
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}    
    * Re-enter the password for sync user configured in systems.
 {% endif %}  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+     {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}    
    * Re-enter the password for sync user configured in systems and integration
    * Load field mapping and integration to validate connectivity.
 {% endif %}  
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}    
 8. Now you can start migrations  as per your requirement.
 {% endif %}  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+   {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 8. Now you can activate integrations as per your requirement.
 {% endif %}

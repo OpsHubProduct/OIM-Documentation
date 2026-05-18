@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Prerequisites
 ## User Privileges
 - Create one user in SolarWinds Service Desk that is dedicated to <code class="expression">space.vars.OIM</code>. This user should not perform any other action from SolarWinds Service Desk's user interface. This user is referred to as an 'Integration User' in the documentation.

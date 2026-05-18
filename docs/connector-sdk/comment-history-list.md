@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 Returns only the revisions in which a comment was added, deleted or modified. This API is handy for end systems where the end system has a different API for fetching comment revisions.
 

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 This behavior is applicable when the desired entity type of ServiceNow is not visible in the mapping/integration configuration screen of <code class="expression">space.vars.OIM</code>.

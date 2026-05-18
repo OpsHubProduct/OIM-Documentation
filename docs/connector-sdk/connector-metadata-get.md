@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 Returns connector metadata information using which OpsHub will register this connector in OpsHub. The features and fields provided here are what users will see on OpsHub UI when configuring integration with this connector.
 

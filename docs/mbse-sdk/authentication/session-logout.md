@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 Logs out of the end system and cleans up any cached data for the given MBSE SDK session id. This API will be called by OpsHub, only at the end once all sync events are processed. 
 

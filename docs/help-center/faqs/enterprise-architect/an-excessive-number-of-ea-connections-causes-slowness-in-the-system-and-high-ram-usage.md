@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 - Too many open connections observed when OpsHubEAWindowsService is running as console application and OpsHubEAWindowsService is forced closed using cancel button.

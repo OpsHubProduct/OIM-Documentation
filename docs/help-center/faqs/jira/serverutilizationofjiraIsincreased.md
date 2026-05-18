@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 Jira On-Premise Server is overloaded with REST API request from sync user. How to reduce the issue of this overloading on Jira On-Premise server?
 

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 The user has configured an integration between **Test Plan** entity of Micro Focus ALM/QC and any entity of the target system. The field **Design Steps** of the Test Plan entity has been mapped to the relevant field entity in the target system; however, they aren't getting synchronized.

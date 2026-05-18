@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 * Below is the sample JSON for Jira Zephyr entities. Based on your use case and Jira Zephyr instance configuration, the JSON needs to be modified.
   
 ```json

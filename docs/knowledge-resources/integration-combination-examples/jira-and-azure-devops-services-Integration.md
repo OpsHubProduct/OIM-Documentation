@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 Best-of-breed systems such as Jira and Azure DevOps Server (TFS) bring rich functionalities to the ecosystem. The integration of Jira with Azure DevOps Services (VSTS) enhances collaboration between the project and development teams. As both the teams have visibility into each other’s task and complete context of customer expectations, the quality of product is better and the delivery cycle is shorter. There is no manual effort required to keep the teams updated on the latest work status.  
 <code class="expression">space.vars.OIM</code> integrates Jira and Azure DevOps Services (VSTS) bi-directionally. On this page, we will discuss the bi-directional integration of:

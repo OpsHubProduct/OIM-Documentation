@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 This utility regenerates Secret Key for application. This can be used in following cases:
 * Secret Key is lost.
 * Secret Key has been tampered.

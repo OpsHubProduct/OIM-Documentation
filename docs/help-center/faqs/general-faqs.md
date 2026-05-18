@@ -3,7 +3,7 @@
 * [How to migrate from HSQL to other enterprise database?](./general/hsql-other-database.md)  
 * [How to move application server from one machine to other?](./general/move-application-server.md)    
 * [Are there any vulnerabilities in OpsHub Integration Manager?](./general/vulnerabilities.md)  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+  {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 * [Integrations are configured but synchronization is not happening, What can be potentials reasons?](./general/integration-sync-not-working.md)
 {% endif %}  
 

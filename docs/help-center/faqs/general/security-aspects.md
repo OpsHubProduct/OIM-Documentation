@@ -18,12 +18,12 @@ Customer data privacy and protection is the top-most priority at OpsHub. To ensu
 
 * Users must authenticate themselves with a user name and password to gain access to <code class="expression">space.vars.OIM</code>.
 * All <code class="expression">space.vars.OIM</code> users' passwords are stored with one-way hash with a salt so decrypting <code class="expression">space.vars.OIM</code> passwords is not possible.
-* <code class="expression">space.vars.OIM</code> stores sensitive data such as system's passwords, API token, database password in an encrypted format so that only <code class="expression">space.vars.OIM</code> can access it and others can't access it. 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+* <code class="expression">space.vars.OIM</code> stores sensitive data such as system's passwords, API token, database password in an encrypted format so that only <code class="expression">space.vars.OIM</code> can access it and others can't access it.
+  {% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}    
   * The default encryption algorithm is AES-256. Encryption algorithm selection option is visible in advance configuration of installation. For more information on how to select encryption algorithm and what other encryption algorithm options are available, please refer [Data Encryption Configuration](../../../getting-started/installation.md#data-encryption-configuration).  
 {% endif %}
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 ### HTTPS deployment
 <code class="expression">space.vars.OIM</code> supports https deployment. This option is available during installation. For more information please refer [Advance Installation](../../../getting-started/installation.md#advance-installation).
 

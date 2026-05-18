@@ -1,4 +1,6 @@
 ---
+if: >-
+    visitor.claims.unsigned.product === "OM4ADO"
 layout:
   width: wide
   title:
@@ -22,7 +24,7 @@ An upgrade from the current version to a higher version becomes necessary to inc
 # Upgrade Prerequisites
 
 * Provide the required permissions to database users as mentioned in the [Database Selection](Installation_Steps.md#database-selection) section of the Installation Steps page.
-* Follow the instructions mentioned in the [Pre-Upgrade Checklist](#pre-upgrade-checklist) before starting the upgrade process, based on the currently installed version of {{SITENAME}} and the target upgrade version.
+* Follow the instructions mentioned in the [Pre-Upgrade Checklist](#pre-upgrade-checklist) before starting the upgrade process, based on the currently installed version of <code class="expression">space.vars.OM4ADO</code> and the target upgrade version.
 
 # Pre-Upgrade Checklist
 > **Note:** There are currently no pre-upgrade checklists available.

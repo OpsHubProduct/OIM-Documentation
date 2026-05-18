@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 This API is supposed to create a new entity in the end system and return the entity object as a response. As part of the request payload, OpsHub will send all the field details with which entity needs to be created. Therefore, API must set only the values that are coming and shouldn’t modify or add any more fields while creating an entity in the end system.
 

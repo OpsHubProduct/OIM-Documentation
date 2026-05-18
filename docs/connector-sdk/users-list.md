@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 Returns the list of users matching the given email, username, or display name in the given project id. Implementing this API will enable OpsHub to automatically map users across the connectors if users have the same email ID, username, or display name. In the absence of this API, the OpsHub admin will have to map users from the mapping interface.
 

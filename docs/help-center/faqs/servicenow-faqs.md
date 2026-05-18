@@ -1,3 +1,7 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
 # Category: OIM User Manual
 
 * [Which changes are required in case entity types are not visible in mapping/integration for ServiceNow?](./servicenow/servicenow-entity-types-not-available.md)

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 If multiple certificates are imported into the Keystore, and the certificates have different private key passwords, this utility can be used to create a `cacerts_config.properties` file having all the certificate alias names and their passwords in encrypted format. The information in this file would be used to load certificates from Keystore.
 
 Follow the steps given below for creating/updating the `cacerts_config.properties` file:

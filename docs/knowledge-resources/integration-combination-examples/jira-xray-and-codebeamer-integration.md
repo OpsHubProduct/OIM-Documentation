@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 Jira Xray is a modern requirements and test management solution for complex systems development. Integrating Jira Xray with Codebeamer, a comprehensive web-based test case management solution, ensures that the product management team using Jira Xray has complete traceability for all the test entities in Codebeamer from Jira Xray itself.
 
 # Use case: Jira Xray - Codebeamer integration

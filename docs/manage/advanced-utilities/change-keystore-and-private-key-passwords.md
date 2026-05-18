@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 In case of HTTPS deployment of **<code class="expression">space.vars.OIM</code>**, if the user wants to change the existing keystore or private key passwords for **<code class="expression">space.vars.OIM</code>** certificate, this utility can be used to change and update the encrypted passwords in **<code class="expression">space.vars.OIM</code>** application.
 
 Follow the steps given below for updating the encrypted keystore and private key passwords in **<code class="expression">space.vars.OIM</code>**:

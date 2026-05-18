@@ -1,4 +1,7 @@
-
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
 
 - **[OH-DOORS Next-0043: Module of an artifact cannot be changed, Hence map the "Module" field only for create. For this configuration in mapping, To skip this field synchronization set "Create" option under "Sync When?" settings in the field mapping.](dng/oh-doors-next-0043.md)**
 

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Synchronization of Jira Zephyr Shared Step from Test Cases
 
 ## What is a Shared Steps

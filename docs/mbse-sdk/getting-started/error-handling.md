@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 *For any API, if error occurs, it should return appropriate HTTP status code. Examples:*  
 - **401:** If user is not authenticated or session is expired  
 - **403:** If user is authenticated but does not have access to specified resource  

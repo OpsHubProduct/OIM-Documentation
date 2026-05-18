@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 In case deployment of **<code class="expression">space.vars.OIM</code>**, if the user wants to encrypt the password for **<code class="expression">space.vars.OIM</code>** , this utility can be used.
 
 Follow the steps given below for encrypting password in **<code class="expression">space.vars.OIM</code>**:

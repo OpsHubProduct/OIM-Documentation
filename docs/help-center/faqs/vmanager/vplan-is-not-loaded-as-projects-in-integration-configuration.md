@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 The user has configured the Verisium Manager System in the <code class="expression">space.vars.OIM</code>. However, vPlans are not loaded in the Project list of Integration Configuration / Mapping configuration.
 

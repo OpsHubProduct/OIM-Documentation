@@ -1,4 +1,7 @@
-
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
 - **[OH-ClearQuest-0023: Query Parameter(s) not matched, Expected query parameter(s) are `<Filter Fields Name>` for the query Personal Queries\OpsHub_`<Query Name>` `<EntityName>`.](clearquest/oh-clearquest-0023.md)**
 
 - **[OH-ClearQuest-0064: Invalid Filter `<Filter Fields Name>` encountered for the query cq.query:Personal Queries/OpsHub_`<QueryName>` `<EntityName>`. Expected filter(s) are `<Filter Fields Name>`](clearquest/oh-clearquest-0064.md)**

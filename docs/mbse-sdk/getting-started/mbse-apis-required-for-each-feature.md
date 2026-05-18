@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ### List of APIs required for implementing the features
 
 >**Note**: The mandatory APIs are required to integrate any system through SDK.

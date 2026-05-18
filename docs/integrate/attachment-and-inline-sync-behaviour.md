@@ -1,6 +1,6 @@
 # Overview
 
-<code class="expression">space.vars.SITENAME</code> supports the synchronization of images and files across end systems in fields, comments, and as attachments on the entity.
+<code class="expression">space.vars.OIM</code> supports the synchronization of images and files across end systems in fields, comments, and as attachments on the entity.
 
 * There are certain types of end systems based on how they add images/ files on their entity fields and comments.
 
@@ -37,7 +37,7 @@
 </p>
 
 
-* Between server/ base64 and server/ base64 storage combination systems, if an inline image/ file is added to the entity upon synchronization by <code class="expression">space.vars.SITENAME</code> as shown in the above image, it will be similar to the way image/ file is added to the source end system entity, i.e., it will only be added on inline field/ comment.
+* Between server/ base64 and server/ base64 storage combination systems, if an inline image/ file is added to the entity upon synchronization by <code class="expression">space.vars.OIM</code> as shown in the above image, it will be similar to the way image/ file is added to the source end system entity, i.e., it will only be added on inline field/ comment.
 
 ## Entity Storage System Combinations
 
@@ -46,16 +46,16 @@
 </p>
 
 
-* Between entity and entity storage combination systems, if an inline image/ file is added to the entity, upon synchronization by <code class="expression">space.vars.SITENAME</code> as shown in the above image, it will be similar to the way image/ file is added to the source end system entity, i.e., it will be added on inline field/ comment and also as an attachment on the entity.
-  * Due to the entity storage system's behavior of auto-adding the image/ file as an attachment to the entity regardless of whether attachment synchronization is enabled/ disabled in mapping. <code class="expression">space.vars.SITENAME</code> will also add the attachment on the entity to synchronize the image/ file.
+* Between entity and entity storage combination systems, if an inline image/ file is added to the entity, upon synchronization by <code class="expression">space.vars.OIM</code> as shown in the above image, it will be similar to the way image/ file is added to the source end system entity, i.e., it will be added on inline field/ comment and also as an attachment on the entity.
+  * Due to the entity storage system's behavior of auto-adding the image/ file as an attachment to the entity regardless of whether attachment synchronization is enabled/ disabled in mapping. <code class="expression">space.vars.OIM</code> will also add the attachment on the entity to synchronize the image/ file.
 
 ## Server/ Base64 Storage and Entity System Combinations
 
 ![](../assets/Server_to_entity_inline.png)
 
-* Between server/ base64 and entity storage combination systems, if an inline image/ file is added to the entity, upon synchronization by <code class="expression">space.vars.SITENAME</code> above shown image will be the way image/ file will be added to the entity.
-  * When the entity storage system is the target, <code class="expression">space.vars.SITENAME</code> will auto-add the image/ file as an attachment to the entity.
-  * When server/ base64 storage system is the target, <code class="expression">space.vars.SITENAME</code> will not auto-add the image/ file as an attachment to an entity. It will only be added in the rich text field/ comment.
+* Between server/ base64 and entity storage combination systems, if an inline image/ file is added to the entity, upon synchronization by <code class="expression">space.vars.OIM</code> above shown image will be the way image/ file will be added to the entity.
+  * When the entity storage system is the target, <code class="expression">space.vars.OIM</code> will auto-add the image/ file as an attachment to the entity.
+  * When server/ base64 storage system is the target, <code class="expression">space.vars.OIM</code> will not auto-add the image/ file as an attachment to an entity. It will only be added in the rich text field/ comment.
   * View parity between these storage combinations will be due to end-system behavior differences.
 
 # Image/ File Synchronization Behavior with Text Fields/ Comments
@@ -75,14 +75,14 @@
 
 # Image/ File Synchronization Behavior with Target end system not supporting Inline Synchronization
 
-* In case the target end system does not support inline synchronization, and an inline image/ file is added to the source entity rich text field/ comment, then upon synchronization by <code class="expression">space.vars.SITENAME</code>, below mentioned will be the behavior:
+* In case the target end system does not support inline synchronization, and an inline image/ file is added to the source entity rich text field/ comment, then upon synchronization by <code class="expression">space.vars.OIM</code>, below mentioned will be the behavior:
   * Data synchronized to the target entity will not have any renderable images/ files or opshub custom tags for image/ file when it is not a renderable field/ comment.
   * Images/ files will be uploaded to the entity as attachments.
   * In backward synchronization, from such end systems, the originally added images/ files will be removed from the fields.
 
 # Image/ File Synchronization Behavior with Comment
 
-* If a comment has been synchronized by <code class="expression">space.vars.SITENAME</code> with an inline image/ file, the target comment will also have the image/ file.
+* If a comment has been synchronized by <code class="expression">space.vars.OIM</code> with an inline image/ file, the target comment will also have the image/ file.
   * Now, even if the comment is deleted in the source end system, the image/ file will persist in the target comment and also as an attachment on the entity in case it is an entity storage end system.
 
 # Attachment and Inline Image Synchronization with Field Storage
@@ -92,7 +92,7 @@
 Other systems may require additional customization to handle step level attachments and inline images. Please refer to connector documentation for more details.
 
 ## Pre-requisite
-* Attachment mapping must be enabled in <code class="expression">space.vars.SITENAME</code> to synchronize step level attachments.
+* Attachment mapping must be enabled in <code class="expression">space.vars.OIM</code> to synchronize step level attachments.
   * Attachment type will be auto-mapped based on field configuration in mapping to sync step level attachment. For more details, refer [Auto-mapping of Attachment type](#auto-mapping-of-attachment-type).
 
 * No pre-requisite to synchronize step level inline images.
@@ -135,7 +135,7 @@ Other systems may require additional customization to handle step level attachme
 | Source Storage | Target Storage | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |----------------|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Field Storage | Field Storage | Attachment is added to the field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Field Storage | Entity/Server Storage | Attachment is added to the entity. <br/>For the end systems, where field level attachments are not supported, attachments associated with a particular step are included in the Description sub-field of that step. So user will know that which attachments are a part of step from entity level attachments. However, this is just plain text data for reference point of view, not a link to those attachments. <br/><br/>For example: two attachments are added for step 1 & one attachment is added for step 2 to the entity, step content will be as followed:<br/> Step 1 description: “step 1 text data <Attachments: image1.png, file1.pdf>”<br/>Step 2 description: “step 2 text data <Attachments: file2.txt>”<br/><br/>It is suggested to keep <code class="expression">space.vars.SITENAME</code> added content at the end of original content during modification; however, synchronization will not be impacted regardless of its placement. |
+| Field Storage | Entity/Server Storage | Attachment is added to the entity. <br/>For the end systems, where field level attachments are not supported, attachments associated with a particular step are included in the Description sub-field of that step. So user will know that which attachments are a part of step from entity level attachments. However, this is just plain text data for reference point of view, not a link to those attachments. <br/><br/>For example: two attachments are added for step 1 & one attachment is added for step 2 to the entity, step content will be as followed:<br/> Step 1 description: “step 1 text data <Attachments: image1.png, file1.pdf>”<br/>Step 2 description: “step 2 text data <Attachments: file2.txt>”<br/><br/>It is suggested to keep <code class="expression">space.vars.OIM</code> added content at the end of original content during modification; however, synchronization will not be impacted regardless of its placement. |
 
 ### Inline Image/File Synchronization
 

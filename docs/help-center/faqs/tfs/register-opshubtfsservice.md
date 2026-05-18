@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 OpsHubTFSService needs to be registered while communicating with Team Foundation Server (TFS) and Azure DevOps.

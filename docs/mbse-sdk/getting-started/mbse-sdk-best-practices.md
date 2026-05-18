@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 - When dealing with REST APIs in the end system, try to map the request and response JSON to programming objects rather than dealing with maps or dictionaries.  
   - For example, when implementing APIs in Java, convert JSON payloads to Java classes.  
     - Following are the links that can help you convert JSON to Java classes:  

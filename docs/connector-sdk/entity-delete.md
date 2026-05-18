@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Overview
 This API is supposed to soft delete an entity in the end system. OpsHub will call this API to soft delete entity in the end system.
 

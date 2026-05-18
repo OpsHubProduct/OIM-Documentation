@@ -4,7 +4,7 @@
 * These entities do not have Attachments, Comments, and Inline images, hence these details are not supported.
 * These entities do not have historical data, hence historical data synchronization is not supported.
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 * Criteria based synchronization and target lookup is not supported for Dashboard and Query entity. Refer to [Criteria Configuration in integration](../../integrate/integration-configuration.md#criteria-configuration) and [Search in Target Before Sync](../../integrate/integration-configuration.md#search-in-target-before-sync) to know more on these features.
 * Criteria based synchronization is not supported for Query entity. Target lookup is only supported for 'Folder' field, please refer to [Target lookup query format](../../connectors/azure-devops.md#supported-target-lookup-query-for-query-entity) for its target lookup query format.
 {% endif %}
@@ -18,7 +18,7 @@ Following are the limitations and behaviors specific to the individual entities 
 * Dashboard can be marked as **Favorite**. Synchronization of this **Favorite** attribute is not supported.
   * Reason: ADO/TFS API unavailability
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 * Dashboard can be created with **Dashboard Type** as **Project Dashboard** or a **Team Dashboard**.
   * For Team Dashboard, **Owned by team** will be applicable and for **Project Dashboard**, **Owner** field will be applicable.
   * When Azure DevOps is source:

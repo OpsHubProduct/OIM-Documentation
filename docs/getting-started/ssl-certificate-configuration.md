@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # SSL Certificate Import Instructions
 
 **<code class="expression">space.vars.OIM</code>** will automatically import the certificate if you create or edit a system.  

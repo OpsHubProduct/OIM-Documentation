@@ -10,11 +10,11 @@
    * Entity mention synchronization is not supported for the Team Foundation Server ALM with version < 2015.
    * Default entity mention synchronization option is **Sync source id**. So, migration will migrate source mentioned entity as source id in target.
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 * Default entity mention synchronization option is **Sync source id**. So, migration will migrate source mentioned entity as source id in target.
 {% endif %}
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 * Refer ["**Mention Sync Option**"](../../integrate/mapping-configuration.md#mention-configuration) for more details.
 {% endif %}
 
@@ -24,9 +24,9 @@
 
 {% include "/.gitbook/includes/read-write-field.md" %}
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 
-* To maintain correct relationships and references [available among the source data] into target [through migration], {{SITENAME}} migration follows a specific sequence in which the migration is undertaken. The below list will help understand this sequence.
+* To maintain correct relationships and references [available among the source data] into target [through migration], <code class="expression">space.vars.OM4ADO</code> migration follows a specific sequence in which the migration is undertaken. The below list will help understand this sequence.
 
     1. Meta Entities [User, Group and Team, Area, Iteration]
     2. Work Item Entities [Bug, User Story, Task, etc., Test Case, Shared Steps]

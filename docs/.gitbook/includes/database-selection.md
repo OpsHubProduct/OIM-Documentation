@@ -5,12 +5,12 @@ The user should select the Database type for installation from the dropdown list
 </p>
 
 Click the checkbox adjacent to **Advance configuration** option if you have one of the following requirements:  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 - Install <code class="expression">visitor.claims.unsigned.product</code> in https
 {% endif %}
 - Install multiple instances of <code class="expression">visitor.claims.unsigned.product</code> on a single instance  
 - Need to create database manually  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 - Need to change encryption algorithm (by default, it is AES 256)
 {% endif %}
 

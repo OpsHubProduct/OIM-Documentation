@@ -48,7 +48,7 @@ Follow these guidelines when configuring the **Routing Criteria** and **Routing 
     * **Example:** If the routing criteria is `{"condition": "IN", "field": "priority", "values": ["High", "Medium"]}`, then only *High* and *Medium* can be used as default values for *priority*.
 
 * Do **not** map the fields in the mapping used in the routing criteria query.
-    * Example: If the routing criteria query uses the `priority` field, it should not be mapped in the sync direction from the N-side configuration to the 1-side configuration, as <code class="expression">space.vars.SITENAME</code> automatically manages the field's value based on the defaults defined in the Routing Criteria Field Values table.
+    * Example: If the routing criteria query uses the `priority` field, it should not be mapped in the sync direction from the N-side configuration to the 1-side configuration, as <code class="expression">space.vars.OIM</code> automatically manages the field's value based on the defaults defined in the Routing Criteria Field Values table.
 * Use the **same field set** across all rows in a rule-based configuration.
     * Example: If one row in a rule-based configuration uses the `priority` field in its routing query, then all other rows in that configuration must also use only the `priority` field in their routing queries.
 
@@ -118,4 +118,4 @@ Integration Configuration with default route
 * If the default route is disabled and an entity does not match any routing criteria:
   * The synchronization will fail with the error message: "OpsHub-020604: No routing criteria matched the provided entity values. Review the currently configured routing criteria: {currently configured criteria}"
 
-<code class="expression">space.vars.SITENAME</code> allows seamless conversion when the routing field value changes and automatically updates the corresponding target entity type. It also ensures that when updates flow in the reverse direction, the source field value is adjusted accordingly, maintaining complete bidirectional consistency. For more details about configuration, refer to this section: [Routing Rules Configuration](integration-configuration.md#rule-based-routing).
+<code class="expression">space.vars.OIM</code> allows seamless conversion when the routing field value changes and automatically updates the corresponding target entity type. It also ensures that when updates flow in the reverse direction, the source field value is adjusted accordingly, maintaining complete bidirectional consistency. For more details about configuration, refer to this section: [Routing Rules Configuration](integration-configuration.md#rule-based-routing).

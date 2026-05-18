@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Description
 
 - To set reconcile rule on the existing mapping and configure reconciliation, use this sample script.

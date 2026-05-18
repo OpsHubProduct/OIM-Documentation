@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 When the user encounters **OH-Clarity-0057**, then following error message will appear:  
 OH-Clarity-0057: Error occurred while getting 'o_ohLastUpdate' for entity. 'o_ohLastUpdate' attribute is not properly configured in end system as expected. configure 'o_ohLastUpdate' field as per given in "Custom Field Configuration" section of Clarity system in Product Guide.

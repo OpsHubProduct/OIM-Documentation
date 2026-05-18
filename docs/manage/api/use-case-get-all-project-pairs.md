@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Description
 
 - Given two systems, if you want to get the projects in synchronization (for all active integration configured) between those systems, then you can use this sample script.

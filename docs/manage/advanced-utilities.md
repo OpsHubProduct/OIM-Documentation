@@ -8,6 +8,8 @@
 
 5. [Switching to Windows authentication](advanced-utilities/switching-to-windows-authentication-mode-for-mssql-server.md)
 
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
+
 6. [Change Keystore and Private Key passwords](advanced-utilities/change-keystore-and-private-key-passwords.md)
 
 7. [Secret Key Reset Utility](advanced-utilities/regenerate-secret-key.md)
@@ -17,3 +19,5 @@
 9. [Data Count Utility](advanced-utilities/data-count-utility.md)
 
 10. [Encrypt Password Utility](advanced-utilities/how-to-encrypt-password.md)
+
+{% endif %}  

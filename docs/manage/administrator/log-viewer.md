@@ -1,19 +1,19 @@
 # Different Types of Logs
 
-There are different logs maintained and stored under **<code class="expression">space.vars.OIM</code>'s `<Installation Folder>\AppData\logs`** during the installation process and one log is maintained to track the ongoing processing in \<code class="expression">space.vars.OIM</code>.
+There are different logs maintained and stored under **<code class="expression">visitor.claims.unsigned.product</code>'s `<Installation Folder>\AppData\logs`** during the installation process and one log is maintained to track the ongoing processing in \<code class="expression">space.vars.OIM</code>.
 
 | **Log File Name**      | **Description**                                                                                              |
 | ---------------------- |--------------------------------------------------------------------------------------------------------------|
 | DatabaseCreation.log   | Log generated during Database Creation phase of Installation                                                 |
 | Install.log            | Log related to installation steps                                                                            |
-| OpsHubServer.log       | Log generated while <code class="expression">space.vars.OIM</code> Installation (like launching URL).   |
-| Service.log            | Log generated while registering <code class="expression">space.vars.OIM</code> Application as Service.  |
+| OpsHubServer.log       | Log generated while <code class="expression">visitor.claims.unsigned.product</code> Installation (like launching URL).   |
+| Service.log            | Log generated while registering <code class="expression">visitor.claims.unsigned.product</code> Application as Service.  |
 | ConnectionModeConf.log | Log related to the Connection Mode Configuration.                                                            |
-| OpsHub.log             | <code class="expression">space.vars.OIM</code> Application log file for all the migrations/integrations |
+| OpsHub.log             | <code class="expression">visitor.claims.unsigned.product</code> Application log file for all the migrations/integrations |
 | OpsHubTFSService.log   | Common log file for TFS API interaction                                                                      |
 | Integrations           | Folder contains the files for the logs of each migrations/integrations                                       |
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 # Log Settings
 
 System log helps to view logs for tracking backend activity in <code class="expression">space.vars.OIM</code>. Usually logs are useful when any failure or unusual behavior is detected in integration. System log can store logs in 5 different levels. Logs will capture information based on logging level set in System log.
@@ -109,4 +109,4 @@ Click on Word Wrap to enable/disable the word wrapping behavior in the log viewe
 * Word wrap is enabled by default.
 * When word wrap is enabled, long log entries are wrapped, making them easier to read without horizontal scrolling.
 * When word wrap is disabled, log entries remain on a single line, preserving the visual alignment of timestamps and structure. However, horizontal scrolling may be needed.
-{% endif %}
+{% endif %}  

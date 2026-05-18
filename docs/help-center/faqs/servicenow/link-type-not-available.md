@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 This behavior is applicable when Link type is visible in ServiceNow UI, but you are not able to see it in the Issue relationship section of Mapping.

@@ -1,3 +1,7 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
 ## Description
 
 When you encounter OH-TFS/AzureDevOps-0174, then the following error message will appear: 

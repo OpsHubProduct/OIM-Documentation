@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Description
 **400 Bad Request** with the Error code: **OH-API-0002** can be received with the error messages given below: 
 

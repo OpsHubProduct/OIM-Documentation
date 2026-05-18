@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # View System Information
 
 To view system information, click on the user profile icon in the top-right corner of the navigation bar.

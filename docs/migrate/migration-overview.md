@@ -1,0 +1,1 @@
+Data migration is the process of transferring details from one system (**Azure DevOps Server / Azure DevOps Services**) to another system (**Azure DevOps Server / Azure DevOps Services**).

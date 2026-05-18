@@ -411,7 +411,7 @@ to this:
 </variables>
 ```
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}    
 ### Comments Field Advance Mapping Configuration for Build Pipeline Entity
 
 * By default, the comments field is synchronised, as it is, for each revision in the pipeline entity.
@@ -690,7 +690,7 @@ Supported versions of Team Foundation Server are listed in the [Systems Supporte
   * For Collection Level Group synchronization, the integration user must be a '''Project Collection Administrator''' to sync 'Members' and 'Member of' relationships. Otherwise, synchronization may fail due to insufficient permissions.
 * **Active Directory Groups:**
   * Active directory group(s) will not be duplicated or created on the target side due to unavailability of the APIs.
-  * They will be auto-detected, and their hierarchy and permission will be updated as per source via {{SITENAME\}}.
+  * They will be auto-detected, and their hierarchy and permission will be updated as per source via <code class="expression">visitor.claims.unsigned.product</code>.
   * If groups are missing in the target:
     * **Same AD:** Add AD groups to a native group in the target.
     * **Different AD:** Create groups with matching names in the target AD and assign them as needed.
@@ -845,7 +845,7 @@ This will be transformed internally to:
 `select [ID], [Work Item Type], [Assigned To] from WorkItems where [Team Project] = @project and [Remote Link] = [Test Field]`
 for processing.
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}    
 
 > **Note**: If field name is present in WIQL, which is not in this format, then <code class="expression">space.vars.OIM</code> will not do any transformation and the details will be available as stated in the "Team Foundation Server/Azure DevOps End point Format" only. In such case, if any transformation is needed, you can do it with the help of advance mapping as per the expected format.
 
@@ -893,7 +893,7 @@ In WIQL, an id of a work item can be referred in the field value.
   **Example:** `[ID] = [12345]`
   [No change is done here and hence the source work item id will be synchronized/visible in the target end point]
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}   
 * In case, you want the Source workitem id to be replaced with its corresponding target id \[Which is synchronized by <code class="expression">space.vars.OIM</code>], please use a customized workflow - **Default Integration Workflow - TFS to TFS - Query.xml**.
 {% endif %}  
 

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 If a user has configured an integration between **Requirement** entity of Micro Focus ALM/QC and any entity of the target system and user has also configured the "Issue Relationship" to synchronize the Requirement Traceability, but the Requirement Traceability is not getting synchronized.

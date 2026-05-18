@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 Synchronizing Release Pipelines from Azure DevOps Server (TFS) to Azure DevOps Services (ADO) enables teams to modernize their delivery workflows and leverage cloud-based CI/CD capabilities. This integration ensures that Release Pipeline configurations, references, and dependent artifacts are consistently transferred to the target ADO project—eliminating manual re-creation, reducing configuration errors, and accelerating release readiness.
 

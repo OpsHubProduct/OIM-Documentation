@@ -1,8 +1,8 @@
 ## Description
 
-Where to find the logs generated during <code class="expression">space.vars.OIM</code> installation?
+Where to find the logs generated during <code class="expression">visitor.claims.unsigned.product</code> installation?
 
-Logs generated during <code class="expression">space.vars.OIM</code> installation are useful in identifying the reason for failure (if any).
+Logs generated during <code class="expression">visitor.claims.unsigned.product</code> installation are useful in identifying the reason for failure (if any).
 
 ## Solution
 
@@ -12,11 +12,11 @@ This file is located under the 'logs' folder in <code class="expression">space.v
 For example:
 
 Operating System: **Windows**  
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 - Installation Path: `C:\Program Files\OM4ADO`  
 - Location of log file: `C:\Program Files\OM4ADO\logs\Install.log`  
 {% endif %}  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 - Installation Path: `C:\Program Files\OpsHub`  
 - Location of log file: `C:\Program Files\OpsHub\logs\Install.log`  
 

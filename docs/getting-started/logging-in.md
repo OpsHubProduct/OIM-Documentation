@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 Let's see how you can get started with <code class="expression">space.vars.OIM</code>.
 
 # Windows

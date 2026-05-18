@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Integration-Level Criteria Configuration (MBSE)
 
 Integration-Level Criteria Configuration allows administrators to define element-level filters that determine which records are eligible for synchronization in an MBSE integration.

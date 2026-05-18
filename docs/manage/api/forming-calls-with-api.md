@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 With the <code class="expression">space.vars.OIM</code> API, the user can communicate with <code class="expression">space.vars.OIM</code> where the defined format needs to be used for making the API Calls. The below sections will help you with the format and examples around it and give an idea of the generic API format.
 

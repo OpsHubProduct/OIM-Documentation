@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 **Formerly known as vManager**
 
 # Prerequisites
@@ -489,7 +494,7 @@ In this configuration, the user not having permission to access the specific pro
   <img src="../assets/vmgr_add_user_in_group.png"/>
   </p>
 
-* In "Select the users you want to add for group " window, select the  {{SITENAME }} user and click "Add Selected".
+* In "Select the users you want to add for group " window, select the  <code class="expression">space.vars.OIM</code> user and click "Add Selected".
 * Under the "Configurations" pane, Select "Project Configurations" -> "Security".
 * Select "Access Control" tab under "Project Security Configurations".
 * Select "Add" in "Groups with access to project ". Select the newly created and click "Add Selected". 

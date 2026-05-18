@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Prerequisites
 ## User Privileges
 
@@ -145,7 +150,7 @@ Here is the screenshot:
     ```sql
     ALTER USER <username> SET MINS_TO_UNLOCK= 0;
     ```
-* For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the  {{SITENAME }} is installed. For example, on Windows, characters such as   / :  * ? " < > | are not allowed in file names.
+* For Attachment sync, attachment file names must not contain characters that are unsupported by the operating system on which the  <code class="expression">space.vars.OIM</code> is installed. For example, on Windows, characters such as   / :  * ? " < > | are not allowed in file names.
 
 # Appendix
 

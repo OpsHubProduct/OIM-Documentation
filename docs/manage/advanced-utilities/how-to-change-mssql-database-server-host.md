@@ -1,19 +1,19 @@
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}  
 * Close OM4ADO application before execution of the utility.
-{% endif %}
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% endif %}   
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 * Stop OpsHub Server Service before execution of the utility.
-{% endif %}
+{% endif %}  
 * Go to <code class="expression">space.vars.OIM</code>'s `<Installation Folder>/Other_Resources/Resources` 
 * Unzip `HostChange.zip`  
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}  
+{% if "OM4ADO" === visitor.claims.unsigned.product %}    
 * Open Command Prompt with administrator privileges and go to <code class="expression">space.vars.OIM</code>'s directory `<Installation Folder or OM4ADO>/Other_Resources/Resources/HostChange` using command  **`cd <Installation Folder or OM4ADO>/Other_Resources/Resources/HostChange`**
-{% endif %}
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% endif %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}    
 * Open Command Prompt with administrator privileges and go to <code class="expression">space.vars.OIM</code>'s directory `<Installation Folder or OpsHub>/Other_Resources/Resources/HostChange` using command  **`cd <Installation Folder or OpsHub>/Other_Resources/Resources/HostChange`**
 {% endif %}  
-* Run `HostChange.bat` for Windows system. 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+* Run `HostChange.bat` for Windows system.
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}    
 * In case of linux system, run `HostChange.sh` 
 {% endif %}  
 

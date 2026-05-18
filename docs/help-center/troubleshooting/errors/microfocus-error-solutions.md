@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 [OH-Micro Focus ALM/QC-0078: Error occurred while processing the request `<request URL>`, please re-check the username and password entered on system configuration form](microfocus/oh-microfocus-0078.md)
 
 [OH-Micro Focus ALM/QC-012651: Rest request processing Error : `<status_code>` `<name of the status code>` for the request `<request URL>`](microfocus/oh-microfocus-012651.md)

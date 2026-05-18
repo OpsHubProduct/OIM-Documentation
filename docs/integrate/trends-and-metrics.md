@@ -1,8 +1,8 @@
-The Trends dashboard provides a quick view of synchronization activity, project configuration patterns, and failure insights across **<code class="expression">space.vars.SITENAME</code>**. Users can monitor sync volume, identify high- or low-activity areas, track project growth across systems, and drill down into specific systems, integrations, projects, and entity types for deeper analysis. 
+The Trends dashboard provides a quick view of synchronization activity, project configuration patterns, and failure insights across **<code class="expression">space.vars.OIM</code>**. Users can monitor sync volume, identify high- or low-activity areas, track project growth across systems, and drill down into specific systems, integrations, projects, and entity types for deeper analysis. 
 
 # Trends & Metrics View
 
-- Login into **<code class="expression">space.vars.SITENAME</code>**.
+- Login into **<code class="expression">space.vars.OIM</code>**.
 - Navigate to Metrics and Trends Dashboard on the home page 
 
 <p align="center">
@@ -12,7 +12,7 @@ The Trends dashboard provides a quick view of synchronization activity, project 
 # Metrics
 
 ## Projects in sync
-Shows the total number of configured projects including child projects in **<code class="expression">space.vars.SITENAME</code>** across all integrated systems.
+Shows the total number of configured projects including child projects in **<code class="expression">space.vars.OIM</code>** across all integrated systems.
 
 <p align="center">
   <img src="../assets/projects-in-sync-kpi.png" />
@@ -22,7 +22,7 @@ Note: Child projects are not included in the count if the integration that conta
 
 ## Entities synchronized
 
-Shows the total number of entities synchronized by **<code class="expression">space.vars.SITENAME</code>** across all integrated systems.
+Shows the total number of entities synchronized by **<code class="expression">space.vars.OIM</code>** across all integrated systems.
 
 <p align="center">
   <img src="../assets/synchronized-entities-kpi.png" />
@@ -30,7 +30,7 @@ Shows the total number of entities synchronized by **<code class="expression">sp
 
 ## Entity sync count by system
 
-Displays the total count of entities synchronized by **<code class="expression">space.vars.SITENAME</code>** across all systems, including both in-sync and deleted entities.
+Displays the total count of entities synchronized by **<code class="expression">space.vars.OIM</code>** across all systems, including both in-sync and deleted entities.
 
 * In sync entities include all active entities that are currently part of the synchronization.
 

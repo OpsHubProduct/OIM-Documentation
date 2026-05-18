@@ -1,3 +1,7 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
 # Description
 When you receive **400 Bad Request** with the Error code: **OH-API-0073** and Error Message:  
 Current license terms does not allow interaction with APIs, please contact <code class="expression">space.vars.OIM</code> Sales team to get the correct license to use this feature

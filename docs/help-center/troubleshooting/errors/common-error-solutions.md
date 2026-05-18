@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 - **[OpsHub-012000: Processing blocked - Processing is already in progress or has failed for the corresponding target entity; this target entity has to be processed first, then you may require retrying failure for this entity `<entity_id>`](common/opshub-012000.md)**
 
 - **[OpsHub-012010: Processing blocked - Earlier event(s) for the entity `<Entity_Id>` have to be processed first. This is a dependent failure, which may require retry once the actual failure of entity gets processed](common/opshub-012010.md)**

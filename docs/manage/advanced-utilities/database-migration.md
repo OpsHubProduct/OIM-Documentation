@@ -12,10 +12,10 @@ As HSQL is not suitable for production usage, <code class="expression">space.var
 * Change `destinationconnection.properties` and `sourceconnection.properties` in Migrator directory:
   * **sourceconnection.properties**: Change `CONNECTION_HSQL_FILE_PATH` property and replace `<installation path>` with installation path
   * **destinationconnection.properties**: Provide all properties value as guided in file.  
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}    
+{% if "OM4ADO" === visitor.claims.unsigned.product %}    
 * Close OM4ADO application.  
-{% endif %}   
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}    
+{% endif %}     
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 * Shut down server (ensure service is not running if registered).  
 {% endif %}  
 * Take back up of database
@@ -26,7 +26,7 @@ Refer to Database Backup section on [Taking Application Backup](../upgrade/takin
 
 Run `migrator.bat` in Migrator directory
 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 ## Migrating on Linux
 
 Run `migrator.sh` in Migrator directory\

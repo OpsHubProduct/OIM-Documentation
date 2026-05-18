@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Event Failure Management Overview
 
 Event Failure Management is a way to keep track of all failures that occur during integrations. Failures are stored in the <code class="expression">space.vars.OIM</code> database, and during further execution of an integration, the failures specific to the integration are retried up to the maximum permissible count set up during the configuration. <code class="expression">space.vars.OIM</code> also allows a user to manually retry the failures after the automatic retries are over.

@@ -1,4 +1,9 @@
- # Prerequisites
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
+# Prerequisites
 
 ## User privileges
 * Create one user in HubSpot that is dedicated for <code class="expression">space.vars.OIM</code>. This user shouldn't perform any other action from HubSpot's user interface. This user is referred as 'Integration User' in the documentation.

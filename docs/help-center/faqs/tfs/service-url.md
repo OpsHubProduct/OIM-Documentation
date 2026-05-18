@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 During system configuration, there is a field where user needs to enter the Service URL. Now what does <code class="expression">space.vars.OIM</code> accept in the Service URL field.

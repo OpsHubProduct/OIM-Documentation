@@ -1,3 +1,4 @@
+
 ## Description
 
 Area Path and Iteration Path are fields which contain values with Project name as a prefix, means in the format of "<Project Name>/<Whole Path of the Area/Iteration>". So in case TFS/Azure DevOps has been configured with different end system e.g. Jira, HP or in case source and target project is not identical when source and target endpoint is TFS/Azure DevOps, we need to do advance mapping where we need to remove the project name if the source endpoint is TFS/Azure DevOps and we need to add target project name as prefix if the target endpoint is TFS/Azure DevOps.

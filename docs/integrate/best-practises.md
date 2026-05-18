@@ -1,4 +1,4 @@
-Here are some best practices to consider when working with <code class="expression">space.vars.SITENAME</code>.
+Here are some best practices to consider when working with <code class="expression">space.vars.OIM</code>.
 
 # Infrastructure
 
@@ -146,10 +146,10 @@ To reduce API calls and improve performance, it's recommended to set a longer ca
 
 # Don'ts
 
-Here are the practices you must avoid while working with <code class="expression">space.vars.SITENAME</code>. While some exceptional cases may require specific operations, admins must not perform any of the following actions with the <code class="expression">space.vars.SITENAME</code> system without proper guidance.
+Here are the practices you must avoid while working with <code class="expression">space.vars.OIM</code>. While some exceptional cases may require specific operations, admins must not perform any of the following actions with the <code class="expression">space.vars.OIM</code> system without proper guidance.
 
-* Do not rename entity types or projects into end systems. Please consult the system expert or <code class="expression">space.vars.SITENAME</code> support before implementing any such change in the end system.
-* Do not upgrade <code class="expression">space.vars.SITENAME</code> without going through pre and post migration checklist document.
+* Do not rename entity types or projects into end systems. Please consult the system expert or <code class="expression">space.vars.OIM</code> support before implementing any such change in the end system.
+* Do not upgrade <code class="expression">space.vars.OIM</code> without going through pre and post migration checklist document.
 * Do not back date 'Start polling time' once integration has started synchronizing.
 * Do not delete any failures from the integration failure queue.
 * Verify target search queries when you configure integration or reconciliation with this input to consider manually created entities are matched before integration transacts. Admin should manually verify that the search query is correct and producing the expected results. If this query is wrongly configured, then there are chances of entity duplication. For more information on what target search query is, refer to [Search in Target Before Sync](../integrate/integration-configuration.md#search-in-target-before-sync) section.

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 Post Failure Notification is to notify the user in case of continuous execution of failure during polling, when there is no activity performed on an active integration or when any failure occurs during synchronization.  
   

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 SDK can use this API to connect to end system. OpsHub will send all the connection details (e.g., URL, username, password, port, host etc.) user specified in integration, that SDK can use to connect to end system.  
 

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 
 * <code class="expression">space.vars.OIM</code> supports OAuth-based authentication for IBM Engineering Requirements Management DOORS Next system. <code class="expression">space.vars.OIM</code> requires the OAuth token and OAuth token secret.

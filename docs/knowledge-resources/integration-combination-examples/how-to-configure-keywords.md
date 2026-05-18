@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # ETM as a Source  
 
 When **ETM is the source** and the **target system does not support Keywords**, the keywords entity is synced as regular test steps.  

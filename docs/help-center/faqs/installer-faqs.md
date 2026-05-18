@@ -7,12 +7,12 @@
 
 * [Can the application be hosted on a third-party cloud systems such as Microsoft Azure, Amazon Web Services(AWS)?](./installer/oim-hosted-on-third-party-cloud-systems.md)
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}
+{% if "OM4ADO" === visitor.claims.unsigned.product %}
 * [Can the OpsHub Migrator for Microsoft Azure DevOps Service be run by Active Directory users? If yes, what are the permissions required to run it?](./installer/oim-service-run-by-active-directory-users.md)
 {% endif %}  
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 * [Can the OpsHub Server Service be run by Active Directory users? If yes, what are the permissions required to run it?](./installer/oim-service-run-by-active-directory-users.md)
-{% endif %}
+{% endif %}  
 
 * [Which is our recommended database for the application installation?](./installer/database-recommended-for-oim.md)
 

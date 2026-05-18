@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 When integrations are configured for any entity of the source system to **Requirement** entity in Micro Focus QC/ALM, the folder structure/Hierarchy for Requirement entity can be set/created based on 'Issue Relationship' configuration of the mapping.

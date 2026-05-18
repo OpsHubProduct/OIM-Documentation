@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Overview
 
 <code class="expression">space.vars.OIM</code> has rich user interface for achieving the integration configurations and using other functionality of <code class="expression">space.vars.OIM</code>. However, there can be various cases where the user might need to achieve/use them programmatically, i.e., with the external script, external software program, or with some API client, and <code class="expression">space.vars.OIM</code> API is useful in such cases. It is an alternate way to communicate with the <code class="expression">space.vars.OIM</code>.

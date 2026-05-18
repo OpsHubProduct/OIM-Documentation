@@ -1,16 +1,16 @@
 ## Description
 
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %}
-Can the <code class="expression">space.vars.OIM</code> Service be run by Active Directory users? If yes, what are the permissions required to run it?
+{% if "OM4ADO" === visitor.claims.unsigned.product %}
+Can the <code class="expression">space.vars.OM4ADO</code> Service be run by Active Directory users? If yes, what are the permissions required to run it?
 {% endif %}
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}
 Can the OpsHub Server Service be run by Active Directory users? If yes, what are the permissions required to run it?
 {% endif %}
 
 ## Solution
-{% if "OpsHub Migrator for Microsoft Azure DevOps" === space.vars.SITENAME %} 
+{% if "OM4ADO" === visitor.claims.unsigned.product %}   
 OpsHub Migrator for Microsoft Azure DevOps Service can be run by a standard Windows login user as well as an Active Directory user with admin privileges.
-{% endif %} 
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}
+{% endif %}
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 OpsHub Server Service can be run by a standard Windows login user as well as an Active Directory user with admin privileges. 
 {% endif %} 

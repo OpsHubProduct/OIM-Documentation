@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # API Capability Matrix - <code class="expression">space.vars.OIM</code>
 
 This document provides an overview of API capabilities available in <code class="expression">space.vars.OIM</code>.

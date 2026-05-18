@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 - [Azure DevOps Server (TFS) – Micro Focus ALM Integration](azure-devops-server-and-micro-focus-alm-integration.md)  
 - [Azure DevOps Services (VSTS) – Micro Focus ALM Integration](azure-devops-services-and-micro-focus-alm-integration.md) 
 - [Release Pipeline Configuration [Azure DevOps Server (TFS) - Azure DevOps Services (ADO)]](azure-devops-server-and-azure-devops-services-releasepipeline-integration.md)

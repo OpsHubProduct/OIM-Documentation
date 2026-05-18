@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 There are the use cases where only a few of the entities that meet a specific condition need to be synchronized instead of all of the entities. <code class="expression">space.vars.OIM</code> provides this type of synchronization for TFS/Azure DevOps.

@@ -1,3 +1,7 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
 
 Migration is required from current version to higher version as it includes support and feature enhancement from the older version.
 

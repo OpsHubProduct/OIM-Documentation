@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Package Selection Criteria (MBSE)
 
 For MBSE-based systems, OpsHub Integration Manager (OIM) provides a configurable option to control which model packages are included in synchronization.

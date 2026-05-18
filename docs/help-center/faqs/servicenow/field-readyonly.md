@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 This behavior is applicable when a field is editable in ServiceNow UI but it is shown as 'Read Only' in <code class="expression">space.vars.OIM</code> in mapping configuration.

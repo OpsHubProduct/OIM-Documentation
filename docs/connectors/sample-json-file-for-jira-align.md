@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ### JSON Metadata Sample for Jira Align
 
 * Below is the sample JSON for Jira Align entities. Based on your use case and Jira Align instance configuration, the JSON needs to be modified.

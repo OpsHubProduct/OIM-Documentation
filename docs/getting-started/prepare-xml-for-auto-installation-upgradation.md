@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 Here is the process of getting and customizing OpsHubAutoInstall/OpsHubAutoMigrator XML file.  
 
 # <div id="download-xml-file"> 1 - Download XML file </div>  

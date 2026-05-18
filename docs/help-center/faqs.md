@@ -1,3 +1,5 @@
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
+
 <table data-view="cards" data-full-width="false">
   <thead>
     <tr>
@@ -48,3 +50,34 @@
     </tr>
   </tbody>
 </table>
+
+{% endif %}  
+
+{% if "OM4ADO" === visitor.claims.unsigned.product %}
+
+
+<table data-view="cards" data-full-width="false">
+  <thead>
+    <tr>
+      <th align="center" data-card-cover></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center"><mark style="color:#555555"><strong>General</strong></mark></td>
+      <td><a href="faqs/general-faqs.md">General</a></td>
+    </tr>
+    <tr>
+      <td align="center"><mark style="color:#555555"><strong>TFS / Azure DevOps</strong></mark></td>
+      <td><a href="faqs/tfs-faqs.md">TFS / Azure DevOps</a></td>
+    </tr>
+    <tr>
+      <td align="center"><mark style="color:#555555"><strong>Installer</strong></mark></td>
+      <td><a href="faqs/installer-faqs.md">Installer</a></td>
+    </tr>
+  </tbody>
+</table>
+
+{% endif %}  
+

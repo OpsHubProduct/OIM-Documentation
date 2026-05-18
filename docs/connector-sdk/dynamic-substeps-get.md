@@ -1,3 +1,7 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
 
 ## Overview
 Returns the sequence in which a set of fields needs to be updated. OpsHub will break the incoming payload from the source system accordingly and call the **entity – update API** multiple times, as required to update all fields.  

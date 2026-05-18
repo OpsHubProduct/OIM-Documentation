@@ -7,7 +7,7 @@
 * [What should be scope/permissions assigned to the Personal Access Token?](./tfs/pat-permission.md)
 * [How do images in comment/disscussion functionality works after synchronization by <code class="expression">space.vars.OIM</code>?](./tfs/comment-inline-image.md)
 * [How to resolve processing failure for Pipeline integration when there is a Service Connection deleted in the end system?](./tfs/pipelineserviceconnectionfailure.md)
-{% if "OpsHub Integration Manager" === space.vars.SITENAME %}  
+{% if "OM4ADO" !== visitor.claims.unsigned.product && "OAM" !== visitor.claims.unsigned.product %}  
 * [Why <code class="expression">space.vars.OIM</code> needs OpsHubTFSService?](./tfs/purpose-of-opshubtfsservice.md)
 * [How to register OpsHubTFSService?](./tfs/register-opshubtfsservice.md)
 * [How to change default OpsHubTFSService port number?](./tfs/register-opsHubtfsservice-other-port.md)

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Connector SDK APIs
 The following table describes:  
 - The list of SDK APIs and the mandatory APIs.  

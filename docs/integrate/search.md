@@ -1,4 +1,4 @@
-The search functionality allows users to quickly locate components such as Integrations, Mappings, Systems, Workflows, etc., within <code class="expression">space.vars.SITENAME</code>.
+The search functionality allows users to quickly locate components such as Integrations, Mappings, Systems, Workflows, etc., within <code class="expression">space.vars.OIM</code>.
 
 You can search within two scopes — depending on whether you want a focused or global search: **Current Folder** and **All Folders**.
 

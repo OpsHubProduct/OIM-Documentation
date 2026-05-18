@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 <code class="expression">space.vars.OIM</code> supports LDAP and SAML Authentication, so that user can login with their own LDAP or SAML credentials.
 
 # LDAP

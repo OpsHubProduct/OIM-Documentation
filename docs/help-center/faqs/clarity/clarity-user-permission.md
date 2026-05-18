@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 <code class="expression">space.vars.OIM</code> requires one dedicated system user to communicate with the system. This user needs specific privileges.

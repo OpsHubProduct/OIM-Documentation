@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 **Sample Use Cases**
 
 - [Get the project pairs configured in integration(s)](use-case-get-all-project-pairs.md)

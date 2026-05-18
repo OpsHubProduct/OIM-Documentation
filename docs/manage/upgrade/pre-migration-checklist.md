@@ -1,4 +1,9 @@
-> 👉 **Looking for older version steps?**  
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
+> > 👉 **Looking for older version steps?**  
 > Refer to the [Pre-Migration Checklist](https://docs.myopshub.com/oim/index.php/Pre-Migration_Checklist). for `<code class="expression">space.vars.OIM</code>` versions prior to **7.121**.
 
 # Migrating <code class="expression">space.vars.OIM</code> version to 7.121 or above

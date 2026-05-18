@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 # Description
 
 - Let us say the <code class="expression">space.vars.OIM</code> is installed on 10.13.27.211 instance on HTTP and user credentials for this instance is “admin” and “password”.

@@ -1,3 +1,8 @@
+---
+if: >-
+  visitor.claims.unsigned.product !== "OM4ADO" && visitor.claims.unsigned.product !== "OAM"
+---
+
 ## Description
 
 For integration from Micro Focus ALM/QC to any other target system, if Comments synchronization is enabled, the new comments [Added with 'Add Comment'] on Micro Focus ALM/QC entity will be synchronized/added to a target system. But if an already added comment is edited in Micro Focus ALM/QC, then it will be added as a new comment in the target system.
