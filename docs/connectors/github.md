@@ -70,7 +70,8 @@ Refer to this GitHub document to create fine-grained token: [Creating a fine-gra
 #### OIM Configuration:
 * Each fine-grained token is bound to a single organization only as per GitHub's policy.
     * Accordingly, configure separate GitHub systems in OIM for each organization to enable repository synchronization across multiple organizations. For more details on system configuration, refer [System Configuration](#system-configuration).
-* Both classic and fine-grained tokens must be provided in the same field, named “Personal Access Token” in system configuration form.
+* Both classic and fine-grained tokens must be provided in the same field, named “Personal Access Token” in system configuration form. If the token expires, regenerate in GitHub and update it in the system configuration accordingly.
+
 
 # System Configuration
 
