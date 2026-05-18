@@ -49,9 +49,12 @@ Click [Integration Configuration](../integrate/integration-configuration.md) to 
 
 ## Known Limitations
 * Zendesk permits only one active Global OAuth Refresh Token per user at a time. Generating a new token immediately invalidates the previously generated token for that user.
-  * The same token cannot be reused across multiple system configurations or integrations, whether within the same deployment or across separate deployments.
-  * If a new token is generated for a user already in use by an active integration, that integration will begin to fail with authentication errors.
-  * To avoid disruption, ensure that a **separate dedicated Zendesk user** is created for each OpsHub deployment. Do not share the integration user or regenerate its token while an integration is active.
+  * A token used to create a system cannot be reused to:
+    * Create another system (within same or separate deployments)
+    * Configure user override for any integration
+  * If an additional Zendesk system is needed, a separate dedicated Zendesk user must be created and a new token must be generated for it.
+  * Never regenerate a token for a user already associated with an active system, this will result into authentication failures in all integrations using that system
+  * Multiple integrations can be created under the same system without any restriction
 * If a ticket is merged into another ticket, then this merged ticket will contain all public and private attachments from the original ticket into separate comments. If the original ticket contains both public and private comments, then either one of them might not synchronize unless the merged ticket is updated. This is due to the update time of the merged ticket being less than the creation time of the merged comments. Once the merged ticket is updated then all comments will synchronize.
 * Zendesk has some validation for naming the tags mentioned in the Zendesk document. Zendesk will remove most of the special characters from the names of the tags. In that case, if the Zendesk system is the target system, it may result in conflict.
 * <code class="expression">space.vars.OIM</code> can only sync updates related to parent-child links in one ticket at a time due to API limitations. It is because the API does not reflect such a linkage in the linked ticket. As a result, the link will only be visible in one of the tickets on which the linking operation is performed.
@@ -187,7 +190,9 @@ The above behavior with <code class="expression">space.vars.OIM</code> sync refl
   * Read-Only: When Zendesk is configured as source system.
   * Read & Write(Tickets): When Zendesk is configured as target system.
 * Click **Connect to Zendesk**.
+  * ![Connect to Zendesk](../assets/Zendesk_GORT_1.png)
 * You will be redirected to your Zendesk sign-in page. Sign in with the Zendesk user you want to use with OpsHub.
 * Allow the OpsHub application when prompted to grant access.
 * You will be redirected back to the OpsHub website, where your refresh token is generated.
+  * ![Generated OAuth Refresh Token](../assets/Zendesk_GORT_2.png)
 * Copy the generated refresh token and paste it into the **Global OAuth Refresh Token** field on the Zendesk System form.
