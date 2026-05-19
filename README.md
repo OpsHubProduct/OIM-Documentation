@@ -1,7 +1,6 @@
 ---
 if: >-
   visitor.claims.unsigned.product !== "OM4ADO"
-
 cover: ./docs/assets/Site_Images/OIM.png
 icon: hand-wave
 coverY: 0
