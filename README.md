@@ -2,9 +2,6 @@
 if: >-
   visitor.claims.unsigned.product !== "OM4ADO"
     cover: ./docs/assets/Site_Images/OIM.png
-elif: >-
-  visitor.claims.unsigned.product === "OM4ADO"
-    cover: ./docs/assets/Site_Images/OM4ADO.png
 icon: hand-wave
 coverY: 0
 layout:
