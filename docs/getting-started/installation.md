@@ -43,6 +43,11 @@ Here are the required permissions:
 | r-x            | /usr/share/*                                                                          |
 | rw-            | /etc/systemd/system (if user needs <code class="expression">space.vars.OIM</code> as a service for Ubuntu) |
 
+* During <code class="expression">space.vars.OIM</code> installation or upgrade, a dedicated linux user named opshub is created (if it does not already exist), and the required permissions are assigned to this user.
+* It is recommended to run opshubserviced.service using the dedicated opshub user only.
+* If additional system-level configurations are required,
+  for example, if the service needs to bind to a reserved port, it must be explicitly configured at the OS level, since on Linux, non root users, including the opshub user, are not permitted to bind to privileged ports below 1024.
+
 * Note: For HSQLDB, root access is required when user needs to install/migrate <code class="expression">space.vars.OIM</code>.
 
 ### Possible error during Silent Installation/Upgradation
